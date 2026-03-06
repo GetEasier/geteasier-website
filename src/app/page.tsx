@@ -41,17 +41,6 @@ const TESTIMONIALS = [
   },
   {
     avatarSrc: "/images/testimonials/ds-seguros.jpeg",
-    avatarFallback: "PP",
-    quote: `A forma como lidaram com todo o processo fez nos ficar muito satisfeitos com o serviço e o resultado final. Ouviram as nossas ideias e foram sempre de encontro a elas e mais além.
-            A geteasier torna mesmo os processo mais fáceis. Obrigado pelo vosso trabalho e dedicação`,
-    name: "Paulo Pinto",
-    title: "Poder Imobiliário",
-    role: "Gestor",
-    logo: "/images/home/clients/poder-imobiliario-logo.jpeg",
-    employees: "1-10",
-  },
-  {
-    avatarSrc: "/images/testimonials/ds-seguros.jpeg",
     avatarFallback: "CM",
     quote: `Na minha ótica, a GetEasier chegou para se afirmar no mercado. Equipa super competente e que vai de encontro às necessidades e objetivos do cliente. Com o WoodEasier encurtamos o tempo dispendido na nossa metodologia de rastreabilidade das nossas madeiras.`,
     name: "Catarina Moreira",
@@ -71,14 +60,6 @@ const CLIENTS_CARDS = [
   {
     image: "/images/home/clients/logo_peixotos.jpeg",
     alt: "Granitos Irmãos Peixoto, lda",
-  },
-  {
-    image: "/images/home/clients/poder-imobiliario-logo.jpeg",
-    alt: "Poder Imobiliário",
-  },
-  {
-    image: "/images/home/clients/impernor.jpeg",
-    alt: "Impernor",
   },
   {
     image: "/images/home/clients/futuro-alternativo-logo.jpeg",
