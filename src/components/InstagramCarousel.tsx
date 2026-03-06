@@ -96,12 +96,12 @@ function InstagramPostCard({ post }: { post: InstagramPost }) {
 export default function InstagramCarousel({ initialPosts = [] }: InstagramCarouselProps) {
   const { t } = useLanguage()
   const [posts, setPosts] = useState<InstagramPost[]>(initialPosts)
-  const [loading, setLoading] = useState(true)
+  // Se já temos posts estáticos, não mostrar loading (evita spinner longo enquanto a API Apify corre)
+  const [loading, setLoading] = useState(initialPosts.length === 0)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchPosts = async () => {
-      // Só mostrar loading se não tiver posts iniciais (evita flash de loading quando há fallback)
       if (initialPosts.length === 0) setLoading(true)
       try {
         const response = await fetch('/api/instagram')

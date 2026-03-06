@@ -50,7 +50,7 @@ npm run dev
 ### Notas (Apify)
 - A conta Instagram `geteasier.pt` deve ser **pública**.
 - O Apify cobra por execução (pay-per-use); há créditos gratuitos no início.
-- A primeira carga pode demorar 20–50 segundos; as seguintes ficam em cache 1 hora.
+- **Tempo de resposta:** o actor pode demorar **50 s a 1m30** a correr. O primeiro pedido (ou após expirar a cache) é lento; os pedidos seguintes usam cache em memória durante **50 minutos**, por isso são quase instantâneos.
 
 ---
 
