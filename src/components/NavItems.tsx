@@ -4,7 +4,6 @@ import { NAV_ITEMS } from '@/config';
 import { useOnClickOutside } from '@/hooks/use-on-click-outside';
 import { useEffect, useRef, useState } from 'react';
 import NavItem from '@/components/NavItem';
-import { Link } from "react-scroll";
 
 const NavItems = () => {
   const [activeIndex, setActiveIndex] = useState<null | number>(null);
@@ -59,10 +58,6 @@ const NavItems = () => {
           />
         );
       })}
-      <Link to="contact" spy={true} smooth={true} className="border cursor-pointer text-white font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-        <span>Contacte-nos</span>
-        <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-      </Link>
     </div>
   );
 };

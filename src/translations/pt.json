@@ -1,0 +1,267 @@
+{
+  "nav": {
+    "products": "Produtos",
+    "testimonials": "Testemunhos",
+    "about": "Sobre Nós",
+    "contact": "Contacte-nos"
+  },
+  "hero": {
+    "title": "Softwares Simples",
+    "titleHighlight": "para Problemas Complexos",
+    "description1": "A gestão completa da sua empresa em qualquer parte do mundo.",
+    "description2": "Todos os números que precisa da sua empresa sempre no seu bolso. A GetEasier simplifica os processos internos das empresas, transformando tarefas complexas em soluções simples e acessíveis.",
+    "newsletterPlaceholder": "Insira o seu email para receber novidades",
+    "newsletterButton": "Subscrever",
+    "newsletterSuccess": "Obrigado! Vai receber as nossas novidades em breve."
+  },
+  "clients": {
+    "trustedBy": "Trusted by"
+  },
+  "products": {
+    "title": "Produtos",
+    "timeEasier": {
+      "name": "TimeEasier",
+      "tagline": "Registos de Ponto automáticos. Aumente a eficiência operacional da sua empresa.",
+      "description": "O registo de ponto não tem de ser um momento de fricção no dia a dia das empresas. Com a TimeEasier, o registo de entradas e saídas passa a ser simples, rápido e fiável, seja através de tablet no local de trabalho ou em regime remoto. O sistema elimina erros manuais, reduz conflitos, garante histórico automático e facilita o controlo por parte da gestão.",
+      "learnMore": "Saiba mais sobre TimeEasier",
+      "shortDescription": "Registo de ponto simplificado"
+    },
+    "constructionEasier": {
+      "name": "ConstructionEasier",
+      "tagline": "Toda a informação do seu projeto num só lugar. Construa com confiança.",
+      "description": "O ConstructionEasier simplifica a gestão de projetos de construção, permitindo um controlo eficiente de obras, materiais e equipas. Centralize toda a informação do seu projeto num só lugar e otimize os processos de gestão de construção.",
+      "learnMore": "Saiba mais sobre ConstructionEasier",
+      "shortDescription": "Gestão completa de obras"
+    },
+    "stockEasier": {
+      "name": "StockEasier",
+      "tagline": "Controle total do seu inventário. Nunca mais fique sem materiais essenciais.",
+      "description": "O StockEasier é um software intuitivo que simplifica a gestão de stocks, permitindo um controlo eficiente dos materiais consumíveis. Centralize e otimize os seus processos de gestão de inventário de forma prática e eficaz.",
+      "learnMore": "Saiba mais sobre StockEasier",
+      "shortDescription": "Gestão de inventário inteligente"
+    },
+    "woodEasier": {
+      "name": "WoodEasier",
+      "tagline": "Gestão de passaportes de madeira simplificada. Conformidade garantida.",
+      "description": "O WoodEasier é um software projetado para simplificar a gestão dos passaportes de madeira tratada, especialmente em indústrias que lidam com paletes e outros produtos de madeira. Ele oferece recursos para rastrear a origem da madeira, verificar a conformidade com regulamentações e fichas de inspeção fitossanitária da DGAV.",
+      "learnMore": "Saiba mais sobre WoodEasier",
+      "shortDescription": "Passaportes de madeira em conformidade"
+    }
+  },
+  "testimonials": {
+    "title": "Testemunhos",
+    "companySize": "Tamanho da Empresa",
+    "employees": "Trabalhadores"
+  },
+  "team": {
+    "title": "A Equipa",
+    "roles": {
+      "development": "Desenvolvimento",
+      "productManager": "Gestor de Produto"
+    }
+  },
+  "contact": {
+    "title": "Contacte-nos",
+    "ready": "Pronto para simplificar o seu negócio?",
+    "description": "Entre em contacto e descubra todas as soluções que temos para si.",
+    "contactUs": "Contacte-nos",
+    "form": {
+      "title": "Vamos falar",
+      "description": "Preencha o formulário e entraremos em contacto consigo.",
+      "name": "Nome",
+      "namePlaceholder": "Nome",
+      "email": "Email",
+      "emailPlaceholder": "exemplo@domain.com",
+      "message": "Mensagem",
+      "messagePlaceholder": "Escreva aqui a sua mensagem",
+      "send": "Enviar",
+      "whatsapp": "Ou contacte-nos através do WhatsApp",
+      "success": {
+        "title": "Email enviado com sucesso",
+        "description": "Obrigado por entrar em contacto connosco."
+      },
+      "error": {
+        "title": "Erro ao enviar email",
+        "description": "Por favor tente novamente mais tarde."
+      }
+    }
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados",
+    "terms": "Termos",
+    "privacy": "Política de Privacidade",
+    "cookies": "Política de Cookies"
+  },
+  "instagram": {
+    "title": "Últimas Publicações",
+    "subtitle": "Acompanhe as nossas novidades e atualizações no Instagram",
+    "followUs": "Siga-nos no Instagram"
+  },
+  "productPages": {
+    "features": {
+      "title": "Principais Funcionalidades",
+      "subtitle": {
+        "timeEasier": "Tudo o que precisa para uma gestão completa e eficiente do tempo de trabalho",
+        "constructionEasier": "Tudo o que precisa para uma gestão completa e eficiente dos seus projetos de construção",
+        "stockEasier": "Tudo o que precisa para uma gestão completa e eficiente do seu inventário",
+        "woodEasier": "Tudo o que precisa para uma gestão completa e em conformidade dos passaportes de madeira"
+      }
+    },
+    "contact": {
+      "title": "Quer saber mais sobre o {product}?",
+      "timeEasier": "Quer saber mais sobre o TimeEasier?",
+      "constructionEasier": "Quer saber mais sobre o ConstructionEasier?",
+      "stockEasier": "Quer saber mais sobre o StockEasier?",
+      "woodEasier": "Quer saber mais sobre o WoodEasier?"
+    },
+    "timeEasier": {
+      "hero": {
+        "title": "Registo de ponto sem complicações",
+        "description1": "A TimeEasier foi pensada, desenhada e desenvolvida para responder às reais necessidades das empresas portuguesas no que respeita ao controlo de assiduidade, documentação laboral e cumprimento das exigências legais nacionais.",
+        "description2": "Este módulo permite uma gestão simples, rigorosa e totalmente digital do tempo de trabalho, garantindo transparência, conformidade e eficiência no dia a dia da empresa."
+      },
+      "features": {
+        "hourControl": {
+          "title": "Controlo de Horas",
+          "description": "Controlo de horas por colaborador com precisão e transparência."
+        },
+        "scheduleManagement": {
+          "title": "Gestão de Horários",
+          "description": "Controlo de vários horários e tipos de horário (isenção de horário, pago à hora, horário fixo...)."
+        },
+        "absenceManagement": {
+          "title": "Gestão de Ausências",
+          "description": "Gestão completa de ausências por colaborador de forma organizada."
+        },
+        "vacationMap": {
+          "title": "Mapa de Férias",
+          "description": "Visualização e gestão do mapa de férias da empresa."
+        },
+        "monthlyReport": {
+          "title": "Relatório Mensal",
+          "description": "Relatório mensal de horas por colaborador em conformidade com o Artigo 202.º do Código do Trabalho e exigências da ACT."
+        },
+        "documentManagement": {
+          "title": "Gestão de Documentos",
+          "description": "Gestão de documentos por colaborador (Recibos de Vencimento, Relatórios, Contratos de Trabalho, entre outros)."
+        },
+        "overtimeControl": {
+          "title": "Controlo de Horas Extra",
+          "description": "Controlo detalhado de horas extra por colaborador."
+        },
+        "geolocation": {
+          "title": "Geolocalização",
+          "description": "Registo de ponto com geolocalização para maior segurança e controlo."
+        },
+        "generalMonthlyReport": {
+          "title": "Relatório Mensal Geral",
+          "description": "Relatório mensal geral de toda a empresa para análise estratégica."
+        }
+      }
+    },
+    "constructionEasier": {
+      "hero": {
+        "title": "Toda a informação do seu projeto num só lugar",
+        "description1": "O ConstructionEasier foi desenvolvido em parceria com empresas de construção portuguesas, com o objetivo de simplificar o controlo operacional e financeiro de obras — desde o planeamento inicial até à análise de resultados.",
+        "description2": "Este módulo permite gerir todas as obras em curso, preparar as próximas e consultar o histórico das já concluídas, garantindo visibilidade total, rapidez na tomada de decisão e maior rentabilidade por projeto."
+      },
+      "features": {
+        "costControl": {
+          "title": "Controlo de Custos",
+          "description": "Controlo de custos por obra (materiais e mão de obra) para uma gestão financeira rigorosa."
+        },
+        "realtimeLocation": {
+          "title": "Localização em Tempo Real",
+          "description": "Localização em tempo real de colaboradores por obra para maior controlo e segurança."
+        },
+        "stateProgress": {
+          "title": "Gestão de Estado e Progresso",
+          "description": "Gestão do estado e progresso de cada obra com atualizações em tempo real."
+        },
+        "documentOrganization": {
+          "title": "Organização de Documentação",
+          "description": "Organização e partilha de anexos e documentação por obra."
+        },
+        "centralDashboard": {
+          "title": "Dashboard Central",
+          "description": "Dashboard central para análise estratégica e acompanhamento global de todas as obras."
+        }
+      }
+    },
+    "stockEasier": {
+      "hero": {
+        "title": "Controle total do seu inventário",
+        "description1": "A StockEasier foi criada para simplificar e automatizar a gestão de consumíveis, permitindo um controlo rigoroso das entradas, saídas e níveis de stock, sem necessidade de folhas de cálculo ou processos manuais.",
+        "description2": "Com este módulo, a empresa passa a ter informação atualizada em tempo real, reduzindo ruturas, desperdícios e compras urgentes, garantindo maior eficiência operacional."
+      },
+      "features": {
+        "movementRecord": {
+          "title": "Registo de Movimentos",
+          "description": "Registo de entradas e saídas de EPIs e outros consumíveis de forma simples e rápida."
+        },
+        "continuousMonitoring": {
+          "title": "Monitorização Contínua",
+          "description": "Monitorização contínua dos níveis de stock em tempo real."
+        },
+        "automaticAlerts": {
+          "title": "Alertas Automáticos",
+          "description": "Alertas automáticos de reposição quando os níveis estão baixos."
+        },
+        "completeHistory": {
+          "title": "Histórico Completo",
+          "description": "Histórico completo de movimentos e consumos para análise e auditoria."
+        },
+        "categoryManagement": {
+          "title": "Gestão por Categorias",
+          "description": "Gestão por categorias e locais de armazenamento para organização total."
+        },
+        "epiReport": {
+          "title": "Relatório de EPIs",
+          "description": "Relatório de EPIs por colaborador para controlo e conformidade."
+        },
+        "simultaneousAccess": {
+          "title": "Acesso Simultâneo",
+          "description": "Acesso simultâneo e seguro para vários utilizadores."
+        },
+        "intuitiveInterface": {
+          "title": "Interface Intuitiva",
+          "description": "Interface simples e intuitiva, acessível a partir de qualquer dispositivo."
+        }
+      }
+    },
+    "woodEasier": {
+      "hero": {
+        "title": "Gestão de passaportes de madeira simplificada",
+        "description1": "A WoodEasier foi desenvolvida para responder às exigências legais da DGAV e às necessidades práticas das empresas que trabalham com madeira tratada.",
+        "description2": "Com este módulo, todo o processo de registo, rastreabilidade e comunicação torna-se simples, rápido e totalmente em conformidade com a legislação portuguesa. A plataforma garante organização, transparência e segurança em todas as etapas — desde a receção da madeira até à sua expedição — permitindo que a empresa esteja sempre preparada para qualquer auditoria ou inspeção."
+      },
+      "features": {
+        "quickRecord": {
+          "title": "Registo Rápido",
+          "description": "Registo rápido de lotes e movimentos de madeira tratada de forma simples e eficiente."
+        },
+        "automaticEmission": {
+          "title": "Emissão Automática",
+          "description": "Emissão automática de relatórios e comprovativos DGAV em conformidade com a legislação."
+        },
+        "integralTraceability": {
+          "title": "Rastreabilidade Integral",
+          "description": "Histórico completo de operações e rastreabilidade integral desde a receção até à expedição."
+        },
+        "treatmentManagement": {
+          "title": "Gestão de Tratamentos",
+          "description": "Gestão de tratamentos, temperaturas e durações para controlo total do processo."
+        },
+        "clearCommunication": {
+          "title": "Comunicação Clara",
+          "description": "Comunicação clara e fiável entre administração e produção."
+        },
+        "auditPreparation": {
+          "title": "Preparação para Auditorias",
+          "description": "Preparação para inspeções e auditorias sem esforço, com toda a documentação organizada."
+        }
+      }
+    }
+  }
+}
+

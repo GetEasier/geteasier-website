@@ -1,0 +1,267 @@
+{
+  "nav": {
+    "products": "Products",
+    "testimonials": "Testimonials",
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "Simple Software",
+    "titleHighlight": "for Complex Problems",
+    "description1": "Complete management of your company anywhere in the world.",
+    "description2": "All the numbers your company needs, always in your pocket. GetEasier simplifies companies' internal processes, transforming complex tasks into simple and accessible solutions.",
+    "newsletterPlaceholder": "Enter your email to receive updates",
+    "newsletterButton": "Subscribe",
+    "newsletterSuccess": "Thank you! You will receive our updates soon."
+  },
+  "clients": {
+    "trustedBy": "Trusted by"
+  },
+  "products": {
+    "title": "Products",
+    "timeEasier": {
+      "name": "TimeEasier",
+      "tagline": "Automatic Time Tracking. Increase your company's operational efficiency.",
+      "description": "Time tracking doesn't have to be a friction point in companies' daily operations. With TimeEasier, clocking in and out becomes simple, fast, and reliable, whether through a tablet at the workplace or remotely. The system eliminates manual errors, reduces conflicts, ensures automatic history, and facilitates management control.",
+      "learnMore": "Learn more about TimeEasier",
+      "shortDescription": "Simplified time tracking"
+    },
+    "constructionEasier": {
+      "name": "ConstructionEasier",
+      "tagline": "All your project information in one place. Build with confidence.",
+      "description": "ConstructionEasier simplifies construction project management, enabling efficient control of works, materials, and teams. Centralize all your project information in one place and optimize construction management processes.",
+      "learnMore": "Learn more about ConstructionEasier",
+      "shortDescription": "Complete construction management"
+    },
+    "stockEasier": {
+      "name": "StockEasier",
+      "tagline": "Total inventory control. Never run out of essential materials again.",
+      "description": "StockEasier is an intuitive software that simplifies stock management, enabling efficient control of consumable materials. Centralize and optimize your inventory management processes in a practical and effective way.",
+      "learnMore": "Learn more about StockEasier",
+      "shortDescription": "Intelligent inventory management"
+    },
+    "woodEasier": {
+      "name": "WoodEasier",
+      "tagline": "Simplified wood passport management. Compliance guaranteed.",
+      "description": "WoodEasier is software designed to simplify the management of treated wood passports, especially in industries dealing with pallets and other wood products. It offers features to track wood origin, verify compliance with regulations, and DGAV phytosanitary inspection forms.",
+      "learnMore": "Learn more about WoodEasier",
+      "shortDescription": "Compliant wood passports"
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "companySize": "Company Size",
+    "employees": "Employees"
+  },
+  "team": {
+    "title": "The Team",
+    "roles": {
+      "development": "Development",
+      "productManager": "Product Manager"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "ready": "Ready to simplify your business?",
+    "description": "Get in touch and discover all the solutions we have for you.",
+    "contactUs": "Contact Us",
+    "form": {
+      "title": "Let's talk",
+      "description": "Fill out the form and we will get in touch with you.",
+      "name": "Name",
+      "namePlaceholder": "Name",
+      "email": "Email",
+      "emailPlaceholder": "example@domain.com",
+      "message": "Message",
+      "messagePlaceholder": "Write your message here",
+      "send": "Send",
+      "whatsapp": "Or contact us via WhatsApp",
+      "success": {
+        "title": "Email sent successfully",
+        "description": "Thank you for contacting us."
+      },
+      "error": {
+        "title": "Error sending email",
+        "description": "Please try again later."
+      }
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "terms": "Terms",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy"
+  },
+  "instagram": {
+    "title": "Latest Posts",
+    "subtitle": "Follow our news and updates on Instagram",
+    "followUs": "Follow us on Instagram"
+  },
+  "productPages": {
+    "features": {
+      "title": "Main Features",
+      "subtitle": {
+        "timeEasier": "Everything you need for complete and efficient time management",
+        "constructionEasier": "Everything you need for complete and efficient construction project management",
+        "stockEasier": "Everything you need for complete and efficient inventory management",
+        "woodEasier": "Everything you need for complete and compliant wood passport management"
+      }
+    },
+    "contact": {
+      "title": "Want to know more about {product}?",
+      "timeEasier": "Want to know more about TimeEasier?",
+      "constructionEasier": "Want to know more about ConstructionEasier?",
+      "stockEasier": "Want to know more about StockEasier?",
+      "woodEasier": "Want to know more about WoodEasier?"
+    },
+    "timeEasier": {
+      "hero": {
+        "title": "Time tracking without complications",
+        "description1": "TimeEasier was designed and developed to meet the real needs of Portuguese companies regarding attendance control, labor documentation, and compliance with national legal requirements.",
+        "description2": "This module enables simple, rigorous, and fully digital work time management, ensuring transparency, compliance, and efficiency in the company's daily operations."
+      },
+      "features": {
+        "hourControl": {
+          "title": "Hour Control",
+          "description": "Hour control per employee with precision and transparency."
+        },
+        "scheduleManagement": {
+          "title": "Schedule Management",
+          "description": "Control of multiple schedules and schedule types (exempt from schedule, hourly paid, fixed schedule...)."
+        },
+        "absenceManagement": {
+          "title": "Absence Management",
+          "description": "Complete absence management per employee in an organized way."
+        },
+        "vacationMap": {
+          "title": "Vacation Map",
+          "description": "Visualization and management of the company's vacation map."
+        },
+        "monthlyReport": {
+          "title": "Monthly Report",
+          "description": "Monthly hour report per employee in compliance with Article 202 of the Labor Code and ACT requirements."
+        },
+        "documentManagement": {
+          "title": "Document Management",
+          "description": "Document management per employee (Pay Slips, Reports, Employment Contracts, among others)."
+        },
+        "overtimeControl": {
+          "title": "Overtime Control",
+          "description": "Detailed overtime control per employee."
+        },
+        "geolocation": {
+          "title": "Geolocation",
+          "description": "Time tracking with geolocation for greater security and control."
+        },
+        "generalMonthlyReport": {
+          "title": "General Monthly Report",
+          "description": "General monthly report for the entire company for strategic analysis."
+        }
+      }
+    },
+    "constructionEasier": {
+      "hero": {
+        "title": "All your project information in one place",
+        "description1": "ConstructionEasier was developed in partnership with Portuguese construction companies, with the aim of simplifying the operational and financial control of construction projects — from initial planning to results analysis.",
+        "description2": "This module allows you to manage all ongoing projects, prepare upcoming ones, and consult the history of completed ones, ensuring total visibility, quick decision-making, and greater profitability per project."
+      },
+      "features": {
+        "costControl": {
+          "title": "Cost Control",
+          "description": "Cost control per project (materials and labor) for rigorous financial management."
+        },
+        "realtimeLocation": {
+          "title": "Real-time Location",
+          "description": "Real-time location of employees per project for greater control and security."
+        },
+        "stateProgress": {
+          "title": "State and Progress Management",
+          "description": "Management of the state and progress of each project with real-time updates."
+        },
+        "documentOrganization": {
+          "title": "Document Organization",
+          "description": "Organization and sharing of attachments and documentation per project."
+        },
+        "centralDashboard": {
+          "title": "Central Dashboard",
+          "description": "Central dashboard for strategic analysis and global monitoring of all projects."
+        }
+      }
+    },
+    "stockEasier": {
+      "hero": {
+        "title": "Total inventory control",
+        "description1": "StockEasier was created to simplify and automate consumables management, enabling rigorous control of inputs, outputs, and stock levels, without the need for spreadsheets or manual processes.",
+        "description2": "With this module, the company has real-time updated information, reducing shortages, waste, and urgent purchases, ensuring greater operational efficiency."
+      },
+      "features": {
+        "movementRecord": {
+          "title": "Movement Record",
+          "description": "Simple and fast recording of PPE and other consumables inputs and outputs."
+        },
+        "continuousMonitoring": {
+          "title": "Continuous Monitoring",
+          "description": "Continuous real-time monitoring of stock levels."
+        },
+        "automaticAlerts": {
+          "title": "Automatic Alerts",
+          "description": "Automatic restocking alerts when levels are low."
+        },
+        "completeHistory": {
+          "title": "Complete History",
+          "description": "Complete history of movements and consumption for analysis and auditing."
+        },
+        "categoryManagement": {
+          "title": "Category Management",
+          "description": "Management by categories and storage locations for total organization."
+        },
+        "epiReport": {
+          "title": "PPE Report",
+          "description": "PPE report per employee for control and compliance."
+        },
+        "simultaneousAccess": {
+          "title": "Simultaneous Access",
+          "description": "Simultaneous and secure access for multiple users."
+        },
+        "intuitiveInterface": {
+          "title": "Intuitive Interface",
+          "description": "Simple and intuitive interface, accessible from any device."
+        }
+      }
+    },
+    "woodEasier": {
+      "hero": {
+        "title": "Simplified wood passport management",
+        "description1": "WoodEasier was developed to meet DGAV legal requirements and the practical needs of companies working with treated wood.",
+        "description2": "With this module, the entire registration, traceability, and communication process becomes simple, fast, and fully compliant with Portuguese legislation. The platform ensures organization, transparency, and security at all stages — from wood reception to its dispatch — allowing the company to always be prepared for any audit or inspection."
+      },
+      "features": {
+        "quickRecord": {
+          "title": "Quick Record",
+          "description": "Quick recording of batches and movements of treated wood in a simple and efficient way."
+        },
+        "automaticEmission": {
+          "title": "Automatic Emission",
+          "description": "Automatic emission of DGAV reports and certificates in compliance with legislation."
+        },
+        "integralTraceability": {
+          "title": "Integral Traceability",
+          "description": "Complete history of operations and integral traceability from reception to dispatch."
+        },
+        "treatmentManagement": {
+          "title": "Treatment Management",
+          "description": "Management of treatments, temperatures, and durations for total process control."
+        },
+        "clearCommunication": {
+          "title": "Clear Communication",
+          "description": "Clear and reliable communication between administration and production."
+        },
+        "auditPreparation": {
+          "title": "Audit Preparation",
+          "description": "Effortless preparation for inspections and audits, with all documentation organized."
+        }
+      }
+    }
+  }
+}
+

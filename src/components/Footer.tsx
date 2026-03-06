@@ -6,6 +6,7 @@ import { Icons } from '@/components/Icons'
 import Link from 'next/link'
 import { Link as ScrollLink } from 'react-scroll'
 import { Facebook, Instagram, Linkedin } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const SOCIALS = [
   {
@@ -26,6 +27,7 @@ const SOCIALS = [
 ]
 
 const Footer = () => {
+  const { t } = useLanguage();
   const pathname = usePathname()
   const pathsToMinimize = [
     '/verify-email',
@@ -47,7 +49,7 @@ const Footer = () => {
 
           {pathsToMinimize.includes(pathname) ? null : (
             <div>
-              <div className='relative flex items-center px-6 py-6 sm:py-8 lg:mt-0'>
+              <div className='relative flex items-center px-6 py-4 sm:py-5 lg:mt-0'>
                 <div className='absolute inset-0 overflow-hidden rounded-lg -z-1'>
                   <div
                     aria-hidden='true'
@@ -60,15 +62,15 @@ const Footer = () => {
 
                 <div className='text-center relative mx-auto max-w-sm'>
                   <h3 className='font-semibold text-white'>
-                    Pronto para simplificar o seu negócio?
+                    {t('contact.ready')}
                   </h3>
                   <p className='mt-2 text-sm text-muted'>
-                    Entre em contacto e descubra todas as soluções que temos para si.{' '}
+                    {t('contact.description')}{' '}
                     <ScrollLink
                       to='contact'
                       smooth
                       className='whitespace-nowrap font-medium text-white hover:underline'>
-                      Contacte-nos &rarr;
+                      {t('contact.contactUs')} &rarr;
                     </ScrollLink>
                   </p>
                 </div>
@@ -90,7 +92,7 @@ const Footer = () => {
         <div className='py-10 md:flex md:items-center md:justify-between'>
           <div className='text-center md:text-left'>
             <p className='text-sm text-muted-foreground'>
-              &copy; {new Date().getFullYear()} Todos os direitos reservados
+              &copy; {new Date().getFullYear()} {t('footer.rights')}
             </p>
           </div>
 
@@ -99,17 +101,17 @@ const Footer = () => {
               <Link
                 href='/terms-and-conditions'
                 className='text-sm text-muted-foreground hover:text-gray-600'>
-                Termos
+                {t('footer.terms')}
               </Link>
               <Link
                 href='/terms-and-conditions'
                 className='text-sm text-muted-foreground hover:text-gray-600'>
-                Política de Privacidade
+                {t('footer.privacy')}
               </Link>
               <Link
                 href='/terms-and-conditions'
                 className='text-sm text-muted-foreground hover:text-gray-600'>
-                Política de Cookies
+                {t('footer.cookies')}
               </Link>
             </div>
           </div>

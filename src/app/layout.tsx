@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +24,15 @@ export default function RootLayout({
       <body className={cn(
         'relative h-full font-sans antialiased ',
         inter.className)}>
-        <main className="relative overflow-hidden flex flex-col">
-          <Navbar />
-          <div className="flex-grow flex-1">{children}</div>
-          <Footer />
-        </main>
-        <Toaster
-        />
+        <LanguageProvider>
+          <main className="relative overflow-hidden flex flex-col">
+            <Navbar />
+            <div className="flex-grow flex-1">{children}</div>
+            <Footer />
+          </main>
+          <Toaster
+          />
+        </LanguageProvider>
       </body>
     </html>
   );
