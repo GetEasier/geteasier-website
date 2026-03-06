@@ -105,7 +105,7 @@ async function fetchFromApify(apiToken: string, taskId: string) {
         likes: p.likes ?? p.like_count,
         comments: p.comments ?? p.comment_count
       }))
-      .filter((p) => p.imageUrl) // só posts com imagem
+      .filter((p: { imageUrl: string }) => !!p.imageUrl) // só posts com imagem
   } finally {
     clearTimeout(timeout)
   }
