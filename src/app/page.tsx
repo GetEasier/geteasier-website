@@ -657,78 +657,63 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <section className="w-full flex flex-col justify-center relative items-center py-16 px-8" id="team">
-            <div className="w-[100vw] h-[100%] bg-[#003566] absolute top-0 transform  -z-1 -skew-y-3  " />
+          <section className="w-full flex flex-col justify-center relative items-center py-16 px-4 md:px-8" id="team">
+            <div className="w-[100vw] h-[100%] bg-[#003566] absolute top-0 transform -z-1 -skew-y-3" />
             <h3 className="text-4xl md:text-6xl text-center text-white font-bold mb-0 relative z-10">
               {t('team.title')}
             </h3>
-            <div className="w-full sm:w-[70%] grid grid-cols-3 md:grid-cols-3 gap-4 md:gap-16 py-8 md:py-16 px-4 md:px-8">
-              <AnimationFadeUp
-                delay={0.2}
-                duration={0.5}
-                once
-                className="flex flex-col justify-center items-center relative overflow-hidden rounded-xl bg-gray-50 z-0 h-[200px] md:h-[500px]"
-              >
-                <div className="absolute inset-0 bg-center dark:bg-black"></div>
-                <div className="group relative m-0 flex h-full w-full rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+            <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 py-8 md:py-16">
+              <AnimationFadeUp delay={0.2} duration={0.5} once className="flex justify-center items-stretch">
+                <div className="group relative w-full max-w-xs mx-auto aspect-[3/4] rounded-2xl overflow-hidden shadow-lg ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:ring-white/20 hover:-translate-y-1">
+                  <div className="absolute inset-0">
                     <Image
                       src="/images/team/geteasier-1.jpeg"
                       alt="Alexandre Barreto"
                       fill
-                      sizes="(max-width: 768px) 200px, 500px"
-                      className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform opacity-100 transition duration-300 group-hover:scale-110"
+                      sizes="(max-width: 640px) 100vw, 280px"
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute bottom-0 z-20 m-0 pb-2 md:pb-4 ps-2 md:ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110">
-                    <h1 className="text-xs md:text-2xl font-bold text-white shadow-xl">Alexandre Barreto</h1>
-                    <h1 className="text-[10px] md:text-sm text-white shadow-xl">{t('team.roles.development')}</h1>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-white">
+                    <p className="text-lg md:text-xl font-bold drop-shadow-sm">Alexandre Barreto</p>
+                    <p className="text-sm text-white/90">{t('team.roles.development')}</p>
                   </div>
                 </div>
               </AnimationFadeUp>
-              <AnimationFadeUp
-                delay={0.4}
-                duration={0.5}
-                once
-                className="flex flex-col justify-center items-center relative overflow-hidden rounded-xl bg-gray-50 z-0 h-[200px] md:h-[500px]"
-              >
-                <div className="absolute inset-0 bg-center dark:bg-black"></div>
-                <div className="group relative m-0 flex h-full w-full rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+              <AnimationFadeUp delay={0.4} duration={0.5} once className="flex justify-center items-stretch">
+                <div className="group relative w-full max-w-xs mx-auto aspect-[3/4] rounded-2xl overflow-hidden shadow-lg ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:ring-white/20 hover:-translate-y-1">
+                  <div className="absolute inset-0">
                     <Image
                       src="/images/team/geteasier-2.jpeg"
                       alt="Nelson Luís"
                       fill
-                      sizes="(max-width: 768px) 200px, 500px"
-                      className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform opacity-100 transition duration-300 group-hover:scale-110"
+                      sizes="(max-width: 640px) 100vw, 280px"
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute bottom-0 z-20 m-0 pb-2 md:pb-4 ps-2 md:ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110">
-                    <h1 className="text-xs md:text-2xl font-bold text-white shadow-xl">Nelson Luís</h1>
-                    <h1 className="text-[10px] md:text-sm text-white shadow-xl">{t('team.roles.development')}</h1>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-white">
+                    <p className="text-lg md:text-xl font-bold drop-shadow-sm">Nelson Luís</p>
+                    <p className="text-sm text-white/90">{t('team.roles.development')}</p>
                   </div>
                 </div>
               </AnimationFadeUp>
-              <AnimationFadeUp
-                delay={0.6}
-                duration={0.5}
-                once
-                className="flex flex-col justify-center items-center relative overflow-hidden rounded-xl bg-gray-50 z-0 h-[200px] md:h-[500px]"
-              >
-                <div className="absolute inset-0 bg-center dark:bg-black"></div>
-                <div className="group relative m-0 flex h-full w-full rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+              <AnimationFadeUp delay={0.6} duration={0.5} once className="flex justify-center items-stretch">
+                <div className="group relative w-full max-w-xs mx-auto aspect-[3/4] rounded-2xl overflow-hidden shadow-lg ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:ring-white/20 hover:-translate-y-1">
+                  <div className="absolute inset-0">
                     <Image
                       src="/images/team/geteasier-3.jpeg"
                       alt="Rui Peixoto"
                       fill
-                      sizes="(max-width: 768px) 200px, 500px"
-                      className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform opacity-100 transition duration-300 group-hover:scale-110"
+                      sizes="(max-width: 640px) 100vw, 280px"
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute bottom-0 z-20 m-0 pb-2 md:pb-4 ps-2 md:ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110">
-                    <h1 className="text-xs md:text-2xl font-bold text-white shadow-xl">Rui Peixoto</h1>
-                    <h1 className="text-[10px] md:text-sm text-white shadow-xl">{t('team.roles.productManager')}</h1>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-white">
+                    <p className="text-lg md:text-xl font-bold drop-shadow-sm">Rui Peixoto</p>
+                    <p className="text-sm text-white/90">{t('team.roles.productManager')}</p>
                   </div>
                 </div>
               </AnimationFadeUp>
