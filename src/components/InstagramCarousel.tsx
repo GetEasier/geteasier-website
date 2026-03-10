@@ -104,10 +104,9 @@ export default function InstagramCarousel({ initialPosts = [] }: InstagramCarous
     const fetchPosts = async () => {
       if (initialPosts.length === 0) setLoading(true)
       try {
-        const response = await fetch('/api/instagram')
+        const response = await fetch('/api/instagram', { cache: 'no-store' })
         const data = await response.json()
-        
-        if (data.posts && data.posts.length > 0) {
+        if (data.posts && Array.isArray(data.posts) && data.posts.length > 0) {
           setPosts(data.posts)
         } else if (initialPosts.length > 0) {
           setPosts(initialPosts)

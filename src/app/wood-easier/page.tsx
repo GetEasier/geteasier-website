@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/moving-border";
 import AnimationFadeUp from "@/components/animation/fade-up";
 import ContactForm from "@/components/ContactForm";
 import { useLanguage } from "@/contexts/LanguageContext";
+import YouTube, { YouTubeProps } from "react-youtube";
 
 export default function WoodEasierPage() {
   const { t } = useLanguage();
@@ -53,6 +54,26 @@ export default function WoodEasierPage() {
               </div>
             </AnimationFadeUp>
           </div>
+        </MaxWidthWrapper>
+      </section>
+
+      {/* Vídeo */}
+      <section className="py-8 md:py-12 bg-white">
+        <MaxWidthWrapper className="px-4 md:px-0">
+          <AnimationFadeUp delay={0.1} duration={0.5} once>
+            <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden bg-gray-100 shadow-lg">
+              <YouTube
+                videoId="BKbbl5TJGko"
+                className="absolute inset-0 w-full h-full flex justify-center items-center"
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+                opts={{
+                  width: '100%',
+                  height: '100%',
+                  playerVars: { autoplay: 0 },
+                }}
+              />
+            </div>
+          </AnimationFadeUp>
         </MaxWidthWrapper>
       </section>
 

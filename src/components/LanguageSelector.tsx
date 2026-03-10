@@ -20,8 +20,8 @@ const LanguageSelector = () => {
   }, [])
 
   const languages = [
-    { code: 'pt' as const, flag: '🇵🇹', name: 'Português' },
-    { code: 'en' as const, flag: '🇬🇧', name: 'English' },
+    { code: 'pt' as const, name: 'Português' },
+    { code: 'en' as const, name: 'English' },
   ]
 
   const currentLang = languages.find(lang => lang.code === language) || languages[0]
@@ -33,8 +33,7 @@ const LanguageSelector = () => {
         className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
         aria-label="Select language"
       >
-        <span className="text-2xl">{currentLang.flag}</span>
-        <span className="hidden md:block text-sm font-medium text-gray-900">{currentLang.code.toUpperCase()}</span>
+        <span className="text-sm font-medium text-gray-900">{currentLang.code.toUpperCase()}</span>
       </button>
 
       {isOpen && (
@@ -50,8 +49,8 @@ const LanguageSelector = () => {
                 language === lang.code ? 'bg-blue-50' : ''
               }`}
             >
-              <span className="text-2xl">{lang.flag}</span>
-              <span className="text-sm font-medium text-gray-900">{lang.name}</span>
+              <span className="text-sm font-medium text-gray-900">{lang.code.toUpperCase()}</span>
+              <span className="text-sm text-gray-600">{lang.name}</span>
               {language === lang.code && (
                 <span className="ml-auto text-blue-600">✓</span>
               )}

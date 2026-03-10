@@ -214,7 +214,7 @@ export default function Home() {
   const INSTAGRAM_POSTS = [
     {
       id: '1',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 42,
@@ -222,7 +222,7 @@ export default function Home() {
     },
     {
       id: '2',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 38,
@@ -230,7 +230,7 @@ export default function Home() {
     },
     {
       id: '3',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 55,
@@ -238,7 +238,7 @@ export default function Home() {
     },
     {
       id: '4',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 29,
@@ -246,7 +246,7 @@ export default function Home() {
     },
     {
       id: '5',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 67,
@@ -254,7 +254,7 @@ export default function Home() {
     },
     {
       id: '6',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 44,
@@ -262,7 +262,7 @@ export default function Home() {
     },
     {
       id: '7',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 51,
@@ -270,7 +270,7 @@ export default function Home() {
     },
     {
       id: '8',
-      imageUrl: 'https://via.placeholder.com/500', // Replace with actual Instagram image URL
+      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
       caption: 'GetEasier Instagram post',
       link: 'https://www.instagram.com/geteasier.pt/',
       likes: 33,
@@ -563,7 +563,7 @@ export default function Home() {
             <section className="w-full flex flex-col justify-center relative items-center py-20 md:py-24" id="testimonials">
             <Image src="/images/artifacts/bg-blue-ellipse.png" alt="testimonials background"
               className="absolute -bottom-24 -right-32 z-0 opacity-40"
-              width={800} height={800} objectFit="cover" />
+              width={800} height={800} style={{ objectFit: 'cover', height: 'auto' }} />
             <h3 className="text-4xl text-center font-bold mb-0">
               {t('testimonials.title')}
             </h3>
@@ -671,12 +671,12 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-center dark:bg-black"></div>
                 <div className="group relative m-0 flex h-full w-full rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
-                  <div className="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+                  <div className="relative z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
                     <Image
                       src="/images/team/geteasier-1.jpeg"
                       alt="Alexandre Barreto"
                       fill
-                      objectFit="cover"
+                      sizes="(max-width: 768px) 200px, 500px"
                       className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform opacity-100 transition duration-300 group-hover:scale-110"
                     />
                   </div>
@@ -694,13 +694,13 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-center dark:bg-black"></div>
                 <div className="group relative m-0 flex h-full w-full rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
-                  <div className="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+                  <div className="relative z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
                     <Image
                       src="/images/team/geteasier-2.jpeg"
                       alt="Nelson Luís"
                       fill
-                      objectFit="cover"
-                      className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-300 group-hover:scale-110"
+                      sizes="(max-width: 768px) 200px, 500px"
+                      className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform opacity-100 transition duration-300 group-hover:scale-110"
                     />
                   </div>
                   <div className="absolute bottom-0 z-20 m-0 pb-2 md:pb-4 ps-2 md:ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110">
@@ -717,13 +717,13 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-center dark:bg-black"></div>
                 <div className="group relative m-0 flex h-full w-full rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
-                  <div className="z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
+                  <div className="relative z-10 h-full w-full overflow-hidden rounded-xl border border-gray-200 opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
                     <Image
                       src="/images/team/geteasier-3.jpeg"
                       alt="Rui Peixoto"
                       fill
-                      objectFit="cover"
-                      className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-300 group-hover:scale-110"
+                      sizes="(max-width: 768px) 200px, 500px"
+                      className="object-cover object-center rounded-xl animate-fade-in block h-full w-full scale-100 transform opacity-100 transition duration-300 group-hover:scale-110"
                     />
                   </div>
                   <div className="absolute bottom-0 z-20 m-0 pb-2 md:pb-4 ps-2 md:ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110">

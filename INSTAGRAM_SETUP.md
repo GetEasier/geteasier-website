@@ -1,125 +1,71 @@
 # Configuração do Instagram Feed
 
-Para o carrossel buscar **automaticamente** os posts da conta `geteasier.pt`, podes usar uma de duas opções.
+O carrossel "Últimas Publicações" usa a **Instagram Graph API (Meta)** para buscar os posts da conta `geteasier.pt`.
 
 ---
 
-## Opção A: Apify (recomendado se não tiveres Facebook)
+## Requisitos
 
-**Não precisas de conta Facebook nem de developers.facebook.com.** Só precisas de uma conta no [Apify](https://apify.com) (registo com email).
-
-### 1. Criar conta no Apify
-1. Vai a [apify.com](https://apify.com) e regista-te (email ou Google).
-2. Em **Settings** → **Integrations** copia o teu **API Token** e guarda-o.
-
-### 2. Criar uma Task do Instagram Profile Scraper
-1. Abre o actor **Instagram Profile Scraper**:  
-   [https://apify.com/vulnv/instagram-profile-scraper](https://apify.com/vulnv/instagram-profile-scraper)
-2. Clica em **Try for free** / **Start**.
-3. No campo **Input**, coloca por exemplo:
-   ```json
-   {
-     "urls": ["https://www.instagram.com/geteasier.pt/"]
-   }
-   ```
-4. Clica em **Save as Task** (ou **Save**). Dá um nome à task (ex: `geteasier-instagram`).
-5. Na página da Task, copia o **Task ID**:  
-   - Pode aparecer no URL (ex.: `apify.com/.../tasks/xyz~geteasier-instagram`) como `xyz~geteasier-instagram`,  
-   - ou em **Settings** da task como identificador.  
-   Usa esse valor como `APIFY_INSTAGRAM_TASK_ID`.
-
-### 3. Variáveis de ambiente
-Cria ou edita o ficheiro `.env.local` na raiz do projeto:
-
-```env
-APIFY_TOKEN=o_teu_api_token_do_apify
-APIFY_INSTAGRAM_TASK_ID=o_task_id_que_copiaste
-```
-
-Exemplo:
-```env
-APIFY_TOKEN=apify_api_xxxxxxxxxxxx
-APIFY_INSTAGRAM_TASK_ID=tuauser~geteasier-instagram
-```
-
-### 4. Reiniciar o servidor
-```bash
-npm run dev
-```
-
-### Notas (Apify)
-- A conta Instagram `geteasier.pt` deve ser **pública**.
-- O Apify cobra por execução (pay-per-use); há créditos gratuitos no início.
-- **Tempo de resposta:** o actor pode demorar **50 s a 1m30** a correr. O primeiro pedido (ou após expirar a cache) é lento; os pedidos seguintes usam cache em memória durante **50 minutos**, por isso são quase instantâneos.
+- Conta Instagram **Business** ou **Creator** para `geteasier.pt`
+- Conta em [developers.facebook.com](https://developers.facebook.com)
+- A conta Instagram deve estar ligada a uma **Página do Facebook**
 
 ---
 
-## Opção B: Instagram Graph API (Meta / Facebook)
+## Passos para configurar
 
-Requer conta em [developers.facebook.com](https://developers.facebook.com) e ligação a uma Página do Facebook.
+### 1. Criar uma App no Facebook Developers
 
-### 1. Preparar a Conta Instagram
-- A conta `geteasier.pt` deve ser **Business** ou **Creator**
-- Deve estar ligada a uma **Página do Facebook**
+1. Acede a https://developers.facebook.com/apps/
+2. Clica em **Criar App**
+3. Escolhe o tipo **Business** e preenche os dados da app
 
-### 2. Criar uma App no Facebook Developers
+### 2. Adicionar Instagram Graph API
 
-### 1. Preparar a Conta Instagram
-- Certifique-se de que a conta `geteasier.pt` é uma **conta Business** ou **Creator**
-- A conta deve estar conectada a uma **Página do Facebook**
+1. No painel da app, vai a **Adicionar Produto**
+2. Procura **Instagram Graph API** e clica em **Configurar**
+3. Segue as instruções para ligar a conta Instagram à app
 
-### 2. Criar uma App no Facebook Developers
-1. Acesse https://developers.facebook.com/apps/
-2. Clique em "Criar App"
-3. Escolha "Business" como tipo de app
-4. Preencha os dados da app
+### 3. Obter User ID e Access Token
 
-### 3. Adicionar Instagram Graph API
-1. No painel da app, vá em "Adicionar Produto"
-2. Procure por "Instagram Graph API" e clique em "Configurar"
-3. Siga as instruções para conectar sua conta Instagram
+**Importante:** `INSTAGRAM_USER_ID` tem de ser o **ID numérico** da conta (ex: `17841400008460056`), **não** o nome de utilizador (ex: `geteasier.pt`). Se usares o username, a API devolve erro *"Object with ID 'geteasier.pt' does not exist"*.
 
-### 4. Obter Access Token e User ID
-1. Vá em "Ferramentas" > "Explorador da API Graph"
-2. Selecione sua app no dropdown
-3. Para obter o **User ID**:
-   - Use o endpoint: `me?fields=id`
-   - Ou encontre no painel da app em "Instagram" > "Configurações Básicas"
-4. Para obter o **Access Token**:
-   - Clique em "Gerar Token de Acesso"
-   - Selecione as permissões: `instagram_basic`, `pages_read_engagement`
-   - Copie o token gerado
+1. Vai a **Ferramentas** → **Explorador da API Graph**
+2. Seleciona a tua app no dropdown
+3. **User ID (numérico):**
+   - Em **Instagram** → **Configurações Básicas** da app, vê o "Instagram Account ID" (número longo), **ou**
+   - No explorador: escolhe a tua Página do Facebook ligada ao Instagram e usa algo como `{page-id}?fields=instagram_business_account` para obter o `instagram_business_account.id` (esse número é o User ID)
+4. **Access Token:**
+   - Clica em **Gerar Token de Acesso**
+   - Seleciona as permissões: `instagram_basic`, `instagram_manage_insights` (e as que a configuração pedir)
+   - Para produção, gera um **Long-Lived Token** (dura mais tempo)
 
-### 5. Configurar Variáveis de Ambiente
-Crie ou edite o arquivo `.env.local` na raiz do projeto:
+### 4. Variáveis de ambiente
+
+**Em local:** cria ou edita o ficheiro `.env.local` na raiz do projeto:
 
 ```env
-INSTAGRAM_ACCESS_TOKEN=seu_access_token_aqui
-INSTAGRAM_USER_ID=seu_user_id_aqui
+INSTAGRAM_ACCESS_TOKEN=o_teu_access_token_aqui
+INSTAGRAM_USER_ID=17841400008460056
 ```
 
-### 6. Reiniciar o Servidor
-Após adicionar as variáveis de ambiente, reinicie o servidor de desenvolvimento:
+**Não uses** o username (`geteasier.pt`) em `INSTAGRAM_USER_ID` — só o número (Instagram Account ID).
 
-```bash
-npm run dev
-```
+**Na Vercel (produção):** em **Settings** → **Environment Variables** do projeto, adiciona as mesmas variáveis com os teus valores.
 
-## Notas Importantes (Opção B – Graph API)
+### 5. Reiniciar / redeploy
 
-- O Access Token expira após 60 dias. Você precisará renová-lo periodicamente.
-- Para produção, considere usar um **Long-Lived Token** que dura mais tempo.
-- O endpoint busca até 12 posts mais recentes.
-- Os posts são cacheados por 1 hora para melhor performance.
+- Local: reinicia o servidor (`npm run dev`)
+- Vercel: faz redeploy para aplicar as novas variáveis
 
-## Opção C: Posts manuais (sem API)
+---
 
-Se preferir não configurar a API, você pode adicionar os posts manualmente editando o array `INSTAGRAM_POSTS` no arquivo `src/app/page.tsx`.
+## Notas
 
-Para obter as URLs das imagens:
-1. Abra o post no Instagram no navegador
-2. Clique com o botão direito na imagem
-3. Selecione "Copiar endereço da imagem"
-4. Cole a URL no array `INSTAGRAM_POSTS`
+- O token de curta duração expira ao fim de pouco tempo; usa **Long-Lived Token** para produção.
+- A API devolve as últimas **5** publicações e a resposta é cacheada **1 hora**.
+- Se não configurares a API, o site usa os posts estáticos definidos em `src/app/page.tsx` (array `INSTAGRAM_POSTS`).
 
+## Posts manuais (sem API)
 
+Se não quiseres usar a API, podes manter apenas os posts estáticos editando o array `INSTAGRAM_POSTS` em `src/app/page.tsx` e colocando aí as URLs das imagens e links dos posts.

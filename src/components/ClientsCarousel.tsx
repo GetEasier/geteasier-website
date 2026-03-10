@@ -83,6 +83,7 @@ export default function ClientsCarousel({ clients }: ClientsCarouselProps) {
                       width={200}
                       height={150}
                       className="object-contain max-w-full max-h-full"
+                      style={{ width: 'auto', height: 'auto' }}
                     />
                   </div>
                 </div>
