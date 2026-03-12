@@ -11,17 +11,17 @@ import { useLanguage } from '@/contexts/LanguageContext'
 const SOCIALS = [
   {
     name: 'Facebook',
-    href: 'https://facebook.com',
+    href: 'https://www.facebook.com/people/GetEasier/61558913198805/',
     icon: Facebook,
   },
   {
     name: 'Instagram',
-    href: 'https://instagram.com',
+    href: 'https://www.instagram.com/geteasier.pt/',
     icon: Instagram,
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com',
+    href: 'https://pt.linkedin.com/company/geteasier',
     icon: Linkedin,
   },
 ]
