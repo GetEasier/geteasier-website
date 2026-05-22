@@ -104,12 +104,12 @@ const Footer = () => {
                 {t('footer.terms')}
               </Link>
               <Link
-                href='/terms-and-conditions'
+                href='/privacy-policy'
                 className='text-sm text-muted-foreground hover:text-gray-600'>
                 {t('footer.privacy')}
               </Link>
               <Link
-                href='/terms-and-conditions'
+                href='/privacy-policy#cookies'
                 className='text-sm text-muted-foreground hover:text-gray-600'>
                 {t('footer.cookies')}
               </Link>
