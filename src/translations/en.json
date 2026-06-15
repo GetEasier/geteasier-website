@@ -109,6 +109,14 @@
       }
     }
   },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist, was moved, or the URL is incorrect.",
+    "backHome": "Back to home",
+    "viewProducts": "View products",
+    "contact": "Contact us"
+  },
   "footer": {
     "tagline": "Simple software for complex problems. Custom development and our own products to simplify your company's management.",
     "productsTitle": "Products",

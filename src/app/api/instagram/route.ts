@@ -32,7 +32,7 @@ function mapToPost(post: {
 
 /** Buscar posts via Instagram Graph API */
 async function fetchFromGraphAPI(accessToken: string, userId: string) {
-  const url = `https://graph.instagram.com/${userId}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=${MAX_POSTS}&access_token=${accessToken}`
+  const url = `https://graph.facebook.com/v21.0/${userId}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=${MAX_POSTS}&access_token=${accessToken}`
   console.log('[Instagram API] Fetching media for userId:', userId)
   const res = await fetch(url, { next: { revalidate: CACHE_REVALIDATE } })
   console.log('[Instagram API] Response status:', res.status, res.statusText)

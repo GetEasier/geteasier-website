@@ -109,6 +109,14 @@
       }
     }
   },
+  "notFound": {
+    "code": "404",
+    "title": "Página não encontrada",
+    "description": "A página que procura não existe, foi movida ou o endereço está incorreto.",
+    "backHome": "Voltar ao início",
+    "viewProducts": "Ver produtos",
+    "contact": "Contacte-nos"
+  },
   "footer": {
     "tagline": "Softwares simples para problemas complexos. Desenvolvimento à medida e produtos próprios para simplificar a gestão da sua empresa.",
     "productsTitle": "Produtos",
