@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface Client {
   image: string
@@ -15,6 +16,7 @@ interface ClientsCarouselProps {
 }
 
 export default function ClientsCarousel({ clients }: ClientsCarouselProps) {
+  const { t } = useLanguage()
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
@@ -36,12 +38,12 @@ export default function ClientsCarousel({ clients }: ClientsCarouselProps) {
   const centerIndex = current % clients.length
 
   return (
-    <div className="w-full py-8 overflow-hidden" id="clients">
+    <div className="w-full py-12 md:py-16 overflow-hidden" id="clients">
       <div className="flex items-center justify-center mb-8">
         <div className="flex items-center gap-4 w-full max-w-md">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-300"></div>
           <p className="text-center text-gray-500 text-xs md:text-sm font-semibold uppercase tracking-wider whitespace-nowrap">
-            Trusted by
+            {t('clients.trustedBy')}
           </p>
           <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gray-300 to-gray-300"></div>
         </div>

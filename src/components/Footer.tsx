@@ -1,12 +1,13 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { Icons } from '@/components/Icons'
 import Link from 'next/link'
-import { Link as ScrollLink } from 'react-scroll'
-import { Facebook, Instagram, Linkedin } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
+
+const FUNDING_PDF = '/documents/ficha-projeto-universal-ideas.pdf'
+const FUNDING_LOGO = '/images/funding/prr-financiamento.png'
 
 const SOCIALS = [
   {
@@ -26,94 +27,155 @@ const SOCIALS = [
   },
 ]
 
+const PRODUCT_LINKS = [
+  { name: 'TimeEasier', href: '/time-easier', color: '#4285F4' },
+  { name: 'ConstructionEasier', href: '/construction-easier', color: '#34A853' },
+  { name: 'StockEasier', href: '/stock-easier', color: '#EA4335' },
+  { name: 'WoodEasier', href: '/wood-easier', color: '#D4A574' },
+]
+
 const Footer = () => {
-  const { t } = useLanguage();
-  const pathname = usePathname()
-  const pathsToMinimize = [
-    '/verify-email',
-    '/sign-up',
-    '/sign-in',
+  const { t } = useLanguage()
+
+  const companyLinks = [
+    { label: t('nav.products'), href: '/#products-list' },
+    { label: t('footer.testimonialsLink'), href: '/#testimonials' },
+    { label: t('footer.aboutLink'), href: '/#team' },
+    { label: t('footer.contactLink'), href: '/#contact' },
   ]
 
   return (
-    <footer className='bg-white flex-grow-0  pt-8 md:pt-24'>
+    <footer className='bg-[#001d3d] text-white'>
       <MaxWidthWrapper>
-        <div className='border-t border-gray-200'>
-          {/* {pathsToMinimize.includes(pathname) ? null : (
-            <div className='pb-8 pt-16'>
-              <div className='flex justify-center'>
-                <Icons.logo className='h-12 w-auto' />
-              </div>
+        {/* CTA */}
+        <div className='px-4 pt-10 md:pt-14'>
+          <div className='flex flex-col md:flex-row items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 px-6 md:px-10 py-8 md:py-10 shadow-xl'>
+            <div className='text-center md:text-left'>
+              <h3 className='text-xl md:text-2xl font-bold text-white'>
+                {t('contact.ready')}
+              </h3>
+              <p className='text-sm md:text-base text-blue-100 mt-1'>
+                {t('contact.description')}
+              </p>
             </div>
-          )} */}
-
-          {pathsToMinimize.includes(pathname) ? null : (
-            <div>
-              <div className='relative flex items-center px-6 py-4 sm:py-5 lg:mt-0'>
-                <div className='absolute inset-0 overflow-hidden rounded-lg -z-1'>
-                  <div
-                    aria-hidden='true'
-                    className='absolute bg-[#001d3d] inset-0 bg-gradient-to-br bg-opacity-90'
-                  />
-                </div>
-                <Link href='/'>
-                  <Icons.logo className='w-48 relative' />
-                </Link>
-
-                <div className='text-center relative mx-auto max-w-sm'>
-                  <h3 className='font-semibold text-white'>
-                    {t('contact.ready')}
-                  </h3>
-                  <p className='mt-2 text-sm text-muted'>
-                    {t('contact.description')}{' '}
-                    <ScrollLink
-                      to='contact'
-                      smooth
-                      className='whitespace-nowrap font-medium text-white hover:underline'>
-                      {t('contact.contactUs')} &rarr;
-                    </ScrollLink>
-                  </p>
-                </div>
-                <div className='flex items-center relative justify-center space-x-4 '>
-                  {SOCIALS.map((social, index) => (
-                    <Link
-                      key={index}
-                      href={social.href}
-                      className='text-gray-500 hover:text-white'>
-                      <social.icon className='w-6 h-6' />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+            <Link
+              href='/#contact'
+              className='inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white text-blue-700 font-semibold text-sm md:text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap'
+            >
+              {t('contact.contactUs')}
+              <ArrowRight className='w-4 h-4' />
+            </Link>
+          </div>
         </div>
 
-        <div className='py-10 md:flex md:items-center md:justify-between'>
-          <div className='text-center md:text-left'>
-            <p className='text-sm text-muted-foreground'>
-              &copy; {new Date().getFullYear()} {t('footer.rights')}
+        {/* Colunas */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 py-12 md:py-16 px-4'>
+          {/* Marca */}
+          <div className='lg:col-span-2 space-y-4'>
+            <Link href='/' className='inline-block'>
+              <Icons.logo className='w-44' />
+            </Link>
+            <p className='text-sm text-blue-100/70 leading-relaxed max-w-sm'>
+              {t('footer.tagline')}
             </p>
+            <div className='flex items-center gap-3 pt-1'>
+              {SOCIALS.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label={social.name}
+                  className='p-2.5 rounded-full bg-white/5 border border-white/10 text-blue-100/80 hover:bg-white/15 hover:text-white transition-all duration-200'
+                >
+                  <social.icon className='w-5 h-5' />
+                </Link>
+              ))}
+            </div>
           </div>
 
-          <div className='mt-4 flex items-center justify-center md:mt-0'>
-            <div className='flex space-x-8'>
-              <Link
-                href='/terms-and-conditions'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
-                {t('footer.terms')}
-              </Link>
-              <Link
-                href='/privacy-policy'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
-                {t('footer.privacy')}
-              </Link>
-              <Link
-                href='/privacy-policy#cookies'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
-                {t('footer.cookies')}
-              </Link>
-            </div>
+          {/* Produtos */}
+          <div>
+            <h4 className='text-sm font-semibold uppercase tracking-wider text-blue-200 mb-4'>
+              {t('footer.productsTitle')}
+            </h4>
+            <ul className='space-y-2.5'>
+              {PRODUCT_LINKS.map((product) => (
+                <li key={product.name}>
+                  <Link
+                    href={product.href}
+                    className='inline-flex items-center gap-2 text-sm text-blue-100/70 hover:text-white transition-colors duration-200'
+                  >
+                    <span className='w-1.5 h-1.5 rounded-full' style={{ backgroundColor: product.color }} />
+                    {product.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Empresa */}
+          <div>
+            <h4 className='text-sm font-semibold uppercase tracking-wider text-blue-200 mb-4'>
+              {t('footer.companyTitle')}
+            </h4>
+            <ul className='space-y-2.5'>
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className='text-sm text-blue-100/70 hover:text-white transition-colors duration-200'
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Financiamento PRR / República Portuguesa / União Europeia */}
+        <div className='px-4 pb-2 flex justify-center sm:justify-start'>
+          <a
+            href={FUNDING_PDF}
+            download
+            aria-label={t('funding.alt')}
+            title={t('funding.download')}
+            className='inline-flex transition-opacity duration-200 hover:opacity-80'
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={FUNDING_LOGO}
+              alt={t('funding.alt')}
+              className='h-8 md:h-9 w-auto'
+            />
+          </a>
+        </div>
+
+        {/* Barra legal */}
+        <div className='border-t border-white/10 py-6 px-4 flex flex-col md:flex-row items-center justify-between gap-4'>
+          <p className='text-sm text-blue-100/60'>
+            &copy; {new Date().getFullYear()} GetEasier. {t('footer.rights')}.
+          </p>
+          <div className='flex items-center gap-6'>
+            <Link
+              href='/terms-and-conditions'
+              className='text-sm text-blue-100/60 hover:text-white transition-colors duration-200'
+            >
+              {t('footer.terms')}
+            </Link>
+            <Link
+              href='/privacy-policy'
+              className='text-sm text-blue-100/60 hover:text-white transition-colors duration-200'
+            >
+              {t('footer.privacy')}
+            </Link>
+            <Link
+              href='/privacy-policy#cookies'
+              className='text-sm text-blue-100/60 hover:text-white transition-colors duration-200'
+            >
+              {t('footer.cookies')}
+            </Link>
           </div>
         </div>
       </MaxWidthWrapper>

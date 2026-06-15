@@ -1,16 +1,12 @@
 'use client';
 
-import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from 'emailjs-com';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
-// import { Button } from './ui/button';
-import { Button } from "@/components/ui/moving-border";
-import MaxWidthWrapper from './MaxWidthWrapper';
-import { Separator } from './ui/separator';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from './ui/card';
 import { SiWhatsapp } from '@icons-pack/react-simple-icons';
 import { useToast } from './ui/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -56,13 +52,7 @@ export default function ContactForm() {
 
   return (
     <Card className='w-full max-w-[700px] mx-auto relative'>
-      <CardHeader className='px-4 sm:px-6 pb-4 sm:pb-6'>
-        <CardTitle className='text-xl sm:text-2xl md:text-3xl mb-2'>{t('contact.form.title')}</CardTitle>
-        <CardDescription className='text-sm sm:text-base'>
-          {t('contact.form.description')}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className='px-4 sm:px-6 pb-4 sm:pb-6'>
+      <CardContent className='px-4 sm:px-6 py-6 sm:py-8'>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className='space-y-4 sm:space-y-5'
@@ -94,10 +84,9 @@ export default function ContactForm() {
             />
           </div>
           <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 pt-2'>
-            <Button 
-              type='submit' 
-              variant="default"
-              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.98] text-sm sm:text-base"
+            <Button
+              type='submit'
+              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.98] text-sm sm:text-base"
             >
               {t('contact.form.send')}
             </Button>

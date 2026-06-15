@@ -126,10 +126,10 @@ export default function InstagramCarousel({ initialPosts = [] }: InstagramCarous
 
   if (loading) {
     return (
-      <div className="w-full py-12 md:py-16 lg:py-20 bg-white">
+      <div className="w-full py-16 md:py-20 bg-white">
         <MaxWidthWrapper className="px-4 md:px-0">
           <div className="text-center mb-8 md:mb-12">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-gray-900">
+            <h3 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 text-gray-900 tracking-tight">
               {t('instagram.title')}
             </h3>
             <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
@@ -149,10 +149,10 @@ export default function InstagramCarousel({ initialPosts = [] }: InstagramCarous
   }
 
   return (
-    <div className="w-full py-12 md:py-16 lg:py-20 bg-white">
+    <div className="w-full py-16 md:py-20 bg-white">
       <MaxWidthWrapper className="px-4 md:px-0">
         <div className="text-center mb-8 md:mb-12">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-gray-900">
+          <h3 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 text-gray-900 tracking-tight">
             {t('instagram.title')}
           </h3>
           <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">

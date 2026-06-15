@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/moving-border";
 import AnimationFadeUp from "@/components/animation/fade-up";
 import ContactForm from "@/components/ContactForm";
+import { ProductMockup } from "@/components/AppMockup";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function StockEasierPage() {
@@ -17,28 +18,28 @@ export default function StockEasierPage() {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Visual Card - Mobile First, appears first on mobile */}
             <AnimationFadeUp delay={0.1} duration={0.6} once className="w-full order-first lg:order-last">
-              <div className="relative h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl">
-                <div 
-                  className="absolute inset-0 flex items-center justify-center"
+              <div className="relative h-[260px] sm:h-[300px] md:h-[380px] lg:h-[450px] rounded-xl md:rounded-2xl overflow-hidden">
+                <div
+                  className="absolute inset-0"
                   style={{
-                    background: `linear-gradient(135deg, #EA433520 0%, #EA433510 100%)`
+                    background: `linear-gradient(135deg, #EA43351f 0%, #EA43350a 100%)`
                   }}
-                >
-                  <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold" style={{ color: "#EA4335" }}>
-                    StockEasier
-                  </span>
-                </div>
+                />
+                <ProductMockup name="StockEasier" color="#EA4335" className="relative z-10" />
               </div>
             </AnimationFadeUp>
             
             {/* Text Content */}
             <AnimationFadeUp delay={0.2} duration={0.6} once className="w-full order-last lg:order-first">
               <div className="space-y-4 md:space-y-6">
-                <div className="inline-block">
-                  <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold" style={{ color: "#EA4335" }}>
-                    StockEasier
-                  </span>
-                </div>
+                <Image
+                  src="/images/products/logos/stock-easier.png"
+                  alt="StockEasier"
+                  width={1431}
+                  height={430}
+                  priority
+                  className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto"
+                />
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                   {t('productPages.stockEasier.hero.title')}
                 </h1>

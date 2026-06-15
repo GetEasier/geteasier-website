@@ -6,19 +6,39 @@
     "contact": "Contacte-nos"
   },
   "hero": {
+    "badge": "Desenvolvimento à medida · Produtos próprios",
     "title": "Softwares Simples",
     "titleHighlight": "para Problemas Complexos",
     "description1": "A gestão completa da sua empresa em qualquer parte do mundo.",
     "description2": "Todos os números que precisa da sua empresa sempre no seu bolso. A GetEasier simplifica os processos internos das empresas, transformando tarefas complexas em soluções simples e acessíveis.",
+    "ctaPrimary": "Fale connosco",
+    "ctaSecondary": "Conhecer produtos",
     "newsletterPlaceholder": "Insira o seu email para receber novidades",
     "newsletterButton": "Subscrever",
     "newsletterSuccess": "Obrigado! Vai receber as nossas novidades em breve."
   },
   "clients": {
-    "trustedBy": "Trusted by"
+    "trustedBy": "Empresas que confiam em nós"
+  },
+  "services": {
+    "title": "Tecnologia à medida do seu negócio",
+    "subtitle": "Somos uma equipa de IT que desenvolve software à medida e produtos próprios para simplificar a gestão das empresas.",
+    "custom": {
+      "title": "Desenvolvimento à Medida",
+      "description": "Criamos software personalizado de raiz — aplicações web, mobile e integrações — desenhado à volta dos processos reais da sua empresa."
+    },
+    "products": {
+      "title": "Produtos Próprios",
+      "description": "Soluções prontas a usar, desenvolvidas pela nossa equipa, que digitalizam a gestão do dia a dia da sua empresa."
+    },
+    "support": {
+      "title": "Consultoria & Suporte",
+      "description": "Acompanhamos a implementação de ponta a ponta, com suporte de proximidade e evolução contínua das soluções."
+    }
   },
   "products": {
-    "title": "Produtos",
+    "title": "Os nossos produtos",
+    "subtitle": "Soluções prontas a usar, desenvolvidas e suportadas pela nossa equipa.",
     "timeEasier": {
       "name": "TimeEasier",
       "tagline": "Registos de Ponto automáticos. Aumente a eficiência operacional da sua empresa.",
@@ -50,11 +70,13 @@
   },
   "testimonials": {
     "title": "Testemunhos",
+    "subtitle": "O que dizem os nossos clientes sobre trabalhar connosco.",
     "companySize": "Tamanho da Empresa",
     "employees": "Trabalhadores"
   },
   "team": {
     "title": "A Equipa",
+    "subtitle": "As pessoas por trás das soluções.",
     "roles": {
       "development": "Desenvolvimento",
       "productManager": "Gestor de Produto"
@@ -62,6 +84,7 @@
   },
   "contact": {
     "title": "Contacte-nos",
+    "subtitle": "Preencha o formulário e entraremos em contacto consigo.",
     "ready": "Pronto para simplificar o seu negócio?",
     "description": "Entre em contacto e descubra todas as soluções que temos para si.",
     "contactUs": "Contacte-nos",
@@ -87,10 +110,20 @@
     }
   },
   "footer": {
+    "tagline": "Softwares simples para problemas complexos. Desenvolvimento à medida e produtos próprios para simplificar a gestão da sua empresa.",
+    "productsTitle": "Produtos",
+    "companyTitle": "Empresa",
+    "aboutLink": "Equipa",
+    "testimonialsLink": "Testemunhos",
+    "contactLink": "Contacte-nos",
     "rights": "Todos os direitos reservados",
     "terms": "Termos",
     "privacy": "Política de Privacidade",
     "cookies": "Política de Cookies"
+  },
+  "funding": {
+    "alt": "Financiado pela União Europeia — NextGenerationEU · Plano de Recuperação e Resiliência · República Portuguesa",
+    "download": "Ficha de Projeto (PDF)"
   },
   "instagram": {
     "title": "Últimas Publicações",

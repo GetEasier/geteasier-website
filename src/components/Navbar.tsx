@@ -16,21 +16,25 @@ const Navbar = () => {
   const { t } = useLanguage()
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20)
+        ticking = false
+      })
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <div className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'shadow-lg border-b border-blue-200/50 backdrop-blur-md' 
-        : ''
-    }`} id='nav-bar' style={{
-      background: scrolled ? 'rgb(191, 219, 254)' : 'transparent'
-    }}>
+      scrolled
+        ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/60'
+        : 'bg-transparent'
+    }`} id='nav-bar'>
       <header className='relative w-full h-20 mx-4 md:mx-6 lg:mx-8 pt-3 pb-3'>
         <MaxWidthWrapper>
           <div className='flex h-full items-center justify-between px-4 md:px-6'>

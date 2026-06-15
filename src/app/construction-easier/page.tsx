@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/moving-border";
 import AnimationFadeUp from "@/components/animation/fade-up";
 import ContactForm from "@/components/ContactForm";
+import { ProductMockup } from "@/components/AppMockup";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ConstructionEasierPage() {
@@ -17,28 +18,28 @@ export default function ConstructionEasierPage() {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Visual Card - Mobile First, appears first on mobile */}
             <AnimationFadeUp delay={0.1} duration={0.6} once className="w-full order-first lg:order-last">
-              <div className="relative h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl">
-                <div 
-                  className="absolute inset-0 flex items-center justify-center"
+              <div className="relative h-[260px] sm:h-[300px] md:h-[380px] lg:h-[450px] rounded-xl md:rounded-2xl overflow-hidden">
+                <div
+                  className="absolute inset-0"
                   style={{
-                    background: `linear-gradient(135deg, #34A85320 0%, #34A85310 100%)`
+                    background: `linear-gradient(135deg, #34A8531f 0%, #34A8530a 100%)`
                   }}
-                >
-                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold" style={{ color: "#34A853" }}>
-                    ConstructionEasier
-                  </span>
-                </div>
+                />
+                <ProductMockup name="ConstructionEasier" color="#34A853" className="relative z-10" />
               </div>
             </AnimationFadeUp>
             
             {/* Text Content */}
             <AnimationFadeUp delay={0.2} duration={0.6} once className="w-full order-last lg:order-first">
               <div className="space-y-4 md:space-y-6">
-                <div className="inline-block">
-                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: "#34A853" }}>
-                    ConstructionEasier
-                  </span>
-                </div>
+                <Image
+                  src="/images/products/logos/construction-easier.png"
+                  alt="ConstructionEasier"
+                  width={1615}
+                  height={410}
+                  priority
+                  className="h-11 sm:h-12 md:h-14 lg:h-[4.5rem] w-auto"
+                />
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                   {t('productPages.constructionEasier.hero.title')}
                 </h1>

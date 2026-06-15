@@ -6,10 +6,13 @@
     "contact": "Contact Us"
   },
   "hero": {
+    "badge": "Custom development · Own products",
     "title": "Simple Software",
     "titleHighlight": "for Complex Problems",
     "description1": "Complete management of your company anywhere in the world.",
     "description2": "All the numbers your company needs, always in your pocket. GetEasier simplifies companies' internal processes, transforming complex tasks into simple and accessible solutions.",
+    "ctaPrimary": "Talk to us",
+    "ctaSecondary": "Explore products",
     "newsletterPlaceholder": "Enter your email to receive updates",
     "newsletterButton": "Subscribe",
     "newsletterSuccess": "Thank you! You will receive our updates soon."
@@ -17,8 +20,25 @@
   "clients": {
     "trustedBy": "Trusted by"
   },
+  "services": {
+    "title": "Technology tailored to your business",
+    "subtitle": "We are an IT team that builds custom software and our own products to simplify company management.",
+    "custom": {
+      "title": "Custom Development",
+      "description": "We build tailor-made software from scratch — web apps, mobile apps and integrations — designed around your company's real processes."
+    },
+    "products": {
+      "title": "Our Own Products",
+      "description": "Ready-to-use solutions, developed by our team, that digitalize your company's day-to-day management."
+    },
+    "support": {
+      "title": "Consulting & Support",
+      "description": "We follow the implementation end to end, with close support and continuous evolution of the solutions."
+    }
+  },
   "products": {
-    "title": "Products",
+    "title": "Our products",
+    "subtitle": "Ready-to-use solutions, developed and supported by our team.",
     "timeEasier": {
       "name": "TimeEasier",
       "tagline": "Automatic Time Tracking. Increase your company's operational efficiency.",
@@ -50,11 +70,13 @@
   },
   "testimonials": {
     "title": "Testimonials",
+    "subtitle": "What our clients say about working with us.",
     "companySize": "Company Size",
     "employees": "Employees"
   },
   "team": {
     "title": "The Team",
+    "subtitle": "The people behind the solutions.",
     "roles": {
       "development": "Development",
       "productManager": "Product Manager"
@@ -62,6 +84,7 @@
   },
   "contact": {
     "title": "Contact Us",
+    "subtitle": "Fill out the form and we will get in touch with you.",
     "ready": "Ready to simplify your business?",
     "description": "Get in touch and discover all the solutions we have for you.",
     "contactUs": "Contact Us",
@@ -87,10 +110,20 @@
     }
   },
   "footer": {
+    "tagline": "Simple software for complex problems. Custom development and our own products to simplify your company's management.",
+    "productsTitle": "Products",
+    "companyTitle": "Company",
+    "aboutLink": "Team",
+    "testimonialsLink": "Testimonials",
+    "contactLink": "Contact Us",
     "rights": "All rights reserved",
     "terms": "Terms",
     "privacy": "Privacy Policy",
     "cookies": "Cookie Policy"
+  },
+  "funding": {
+    "alt": "Funded by the European Union — NextGenerationEU · Recovery and Resilience Plan · Portuguese Republic",
+    "download": "Project Sheet (PDF)"
   },
   "instagram": {
     "title": "Latest Posts",

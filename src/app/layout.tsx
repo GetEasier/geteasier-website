@@ -10,8 +10,12 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "GetEasier",
-  description: "Softwares Simples para Problemas Complexos.",
+  title: {
+    default: "GetEasier — Softwares Simples para Problemas Complexos",
+    template: "%s | GetEasier",
+  },
+  description:
+    "Equipa de IT com desenvolvimento de software à medida e produtos próprios — TimeEasier, ConstructionEasier, StockEasier e WoodEasier — para simplificar a gestão da sua empresa.",
 };
 
 export default function RootLayout({
@@ -20,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
+    <html lang="pt" className="">
       <body className={cn(
         'relative h-full font-sans antialiased ',
         inter.className)}>
