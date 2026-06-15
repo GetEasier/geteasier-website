@@ -13,6 +13,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Quote, ArrowRight } from "lucide-react";
 import ClientsCarousel from "@/components/ClientsCarousel";
 import ProductTabsCarousel from "@/components/ProductTabsCarousel";
+import ProductMockupsCarousel from "@/components/ProductMockupsCarousel";
 import BackToTop from "@/components/BackToTop";
 import ServicesSection from "@/components/ServicesSection";
 import TeamSection from "@/components/TeamSection";
@@ -354,6 +355,15 @@ export default function Home() {
 
             {/* Product Content - Mobile First Design */}
             <div className="w-full max-w-7xl relative">
+              {/* Mobile / tablet — mockups deslizáveis */}
+              <div className="lg:hidden mb-6 md:mb-8">
+                <ProductMockupsCarousel
+                  products={PRODUCTS.map((p) => ({ name: p.name, color: p.color }))}
+                  selectedIndex={selectedProduct}
+                  onSelect={setSelectedProduct}
+                />
+              </div>
+
               {PRODUCTS.map((product, index) => (
                 <div
                   key={product.name}
@@ -366,8 +376,8 @@ export default function Home() {
                   {/* Mobile Layout: Stacked */}
                   <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
                     
-                    {/* Visual Card - Mockup da aplicação */}
-                    <div className="relative h-[260px] sm:h-[300px] md:h-[380px] lg:h-[450px] rounded-2xl overflow-hidden order-first lg:order-last">
+                    {/* Visual Card — só desktop; no mobile usa o carrossel acima */}
+                    <div className="hidden lg:block relative h-[450px] rounded-2xl overflow-hidden order-last">
                       <div
                         className="absolute inset-0 rounded-2xl"
                         style={{
@@ -378,7 +388,7 @@ export default function Home() {
                     </div>
 
                     {/* Text Content - Optimized for Reading */}
-                    <div className="space-y-5 md:space-y-6 lg:space-y-8 flex flex-col justify-center">
+                    <div className="space-y-5 md:space-y-6 lg:space-y-8 flex flex-col justify-center order-first lg:order-none">
                       {/* Tagline - Impactful */}
                       <div>
                         <h4 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.2] mb-4 md:mb-6">
