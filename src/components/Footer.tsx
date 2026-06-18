@@ -147,7 +147,7 @@ const Footer = () => {
             <img
               src={FUNDING_LOGO}
               alt={t('funding.alt')}
-              className='h-8 md:h-9 w-auto'
+              className='h-10 md:h-12 w-auto'
             />
           </a>
         </div>
