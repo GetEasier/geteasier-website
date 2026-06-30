@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from './ui/button';
-import { ChevronDown, Clock, Building2, Package, TreePine } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Link } from "react-scroll";
@@ -52,7 +52,7 @@ const NavItem = ({
 
   return (
     <div className="flex">
-      <div 
+      <div
         className="relative"
         onMouseEnter={() => hasProducts && handleOpen()}
         onMouseLeave={() => close()}
@@ -104,21 +104,6 @@ const NavItem = ({
             <div className="bg-white rounded-2xl shadow-2xl border border-gray-200/60 overflow-hidden min-w-[320px]">
               <div className="p-2">
               {category.products?.map((product, index) => {
-                const getIcon = () => {
-                  switch (product.icon) {
-                    case 'clock':
-                      return <Clock className="w-5 h-5" />;
-                    case 'building':
-                      return <Building2 className="w-5 h-5" />;
-                    case 'package':
-                      return <Package className="w-5 h-5" />;
-                    case 'tree':
-                      return <TreePine className="w-5 h-5" />;
-                    default:
-                      return <div className="w-5 h-5 rounded-full" style={{ backgroundColor: product.color }} />;
-                  }
-                };
-
                 return (
                   <LinkNext
                     key={product.name}
@@ -139,16 +124,14 @@ const NavItem = ({
                   >
                     <div className="flex items-center gap-4">
                       <div
-                        className="rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
-                        style={{ 
-                          backgroundColor: `${product.color}15`,
-                          width: '40px',
-                          height: '40px',
-                        }}
+                        className="rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 overflow-hidden bg-white"
+                        style={{ width: '40px', height: '40px', boxShadow: `0 2px 8px ${product.color}25` }}
                       >
-                        <div style={{ color: product.color }}>
-                          {getIcon()}
-                        </div>
+                        {product.logo ? (
+                          <Image src={product.logo} alt={product.name} width={40} height={40} className="w-full h-full object-contain" />
+                        ) : (
+                          <div className="w-5 h-5 rounded-full" style={{ backgroundColor: product.color }} />
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">

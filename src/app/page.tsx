@@ -255,12 +255,6 @@ export default function Home() {
 
             {/* Conteúdo */}
             <div className="space-y-6 md:space-y-8 text-center lg:text-left">
-              <AnimationFadeUp delay={0.05} duration={0.6} once>
-                <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/80 backdrop-blur-sm px-4 py-1.5 shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-                  <span className="text-xs md:text-sm font-semibold text-blue-700">{t('hero.badge')}</span>
-                </div>
-              </AnimationFadeUp>
 
               <AnimationFadeUp delay={0.1} duration={0.6} once>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight">

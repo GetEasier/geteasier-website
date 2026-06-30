@@ -37,6 +37,7 @@ export const NAV_ITEMS = [
         color: '#4285F4',
         description: 'Registo de ponto simplificado',
         icon: 'clock',
+        logo: '/images/products/icons/time-easier.png',
       },
       {
         name: 'ConstructionEasier',
@@ -44,6 +45,7 @@ export const NAV_ITEMS = [
         color: '#34A853',
         description: 'Gestão completa de obras',
         icon: 'building',
+        logo: '/images/products/icons/construction-easier.png',
       },
       {
         name: 'StockEasier',
@@ -51,6 +53,7 @@ export const NAV_ITEMS = [
         color: '#EA4335',
         description: 'Gestão de inventário inteligente',
         icon: 'package',
+        logo: '/images/products/icons/stock-easier.png',
       },
       {
         name: 'WoodEasier',
@@ -58,6 +61,7 @@ export const NAV_ITEMS = [
         color: '#D4A574',
         description: 'Passaportes de madeira em conformidade',
         icon: 'tree',
+        logo: '/images/products/icons/wood-easier.png',
       },
     ],
   },

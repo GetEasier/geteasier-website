@@ -3,7 +3,8 @@
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { Icons } from '@/components/Icons'
 import Link from 'next/link'
-import { Facebook, Instagram, Linkedin, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import { Facebook, Instagram, Linkedin } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const FUNDING_PDF = '/documents/ficha-projeto-universal-ideas.pdf'
@@ -28,46 +29,23 @@ const SOCIALS = [
 ]
 
 const PRODUCT_LINKS = [
-  { name: 'TimeEasier', href: '/time-easier', color: '#4285F4' },
-  { name: 'ConstructionEasier', href: '/construction-easier', color: '#34A853' },
-  { name: 'StockEasier', href: '/stock-easier', color: '#EA4335' },
-  { name: 'WoodEasier', href: '/wood-easier', color: '#D4A574' },
+  { name: 'TimeEasier', href: '/time-easier', logo: '/images/products/icons/time-easier.png' },
+  { name: 'ConstructionEasier', href: '/construction-easier', logo: '/images/products/icons/construction-easier.png' },
+  { name: 'StockEasier', href: '/stock-easier', logo: '/images/products/icons/stock-easier.png' },
+  { name: 'WoodEasier', href: '/wood-easier', logo: '/images/products/icons/wood-easier.png' },
 ]
 
 const Footer = () => {
   const { t } = useLanguage()
 
   const companyLinks = [
-    { label: t('nav.products'), href: '/#products-list' },
-    { label: t('footer.testimonialsLink'), href: '/#testimonials' },
-    { label: t('footer.aboutLink'), href: '/#team' },
+    { label: 'Planos', href: '/planos' },
     { label: t('footer.contactLink'), href: '/#contact' },
   ]
 
   return (
     <footer className='bg-[#001d3d] text-white'>
       <MaxWidthWrapper>
-        {/* CTA */}
-        <div className='px-4 pt-10 md:pt-14'>
-          <div className='flex flex-col md:flex-row items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 px-6 md:px-10 py-8 md:py-10 shadow-xl'>
-            <div className='text-center md:text-left'>
-              <h3 className='text-xl md:text-2xl font-bold text-white'>
-                {t('contact.ready')}
-              </h3>
-              <p className='text-sm md:text-base text-blue-100 mt-1'>
-                {t('contact.description')}
-              </p>
-            </div>
-            <Link
-              href='/#contact'
-              className='inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-white text-blue-700 font-semibold text-sm md:text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap'
-            >
-              {t('contact.contactUs')}
-              <ArrowRight className='w-4 h-4' />
-            </Link>
-          </div>
-        </div>
-
         {/* Colunas */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 py-12 md:py-16 px-4'>
           {/* Marca */}
@@ -75,9 +53,6 @@ const Footer = () => {
             <Link href='/' className='inline-block'>
               <Icons.logo className='w-44' />
             </Link>
-            <p className='text-sm text-blue-100/70 leading-relaxed max-w-sm'>
-              {t('footer.tagline')}
-            </p>
             <div className='flex items-center gap-3 pt-1'>
               {SOCIALS.map((social) => (
                 <Link
@@ -104,9 +79,11 @@ const Footer = () => {
                 <li key={product.name}>
                   <Link
                     href={product.href}
-                    className='inline-flex items-center gap-2 text-sm text-blue-100/70 hover:text-white transition-colors duration-200'
+                    className='inline-flex items-center gap-2 text-sm text-blue-100/70 hover:text-white transition-colors duration-200 group'
                   >
-                    <span className='w-1.5 h-1.5 rounded-full' style={{ backgroundColor: product.color }} />
+                    <div className='w-5 h-5 rounded-md overflow-hidden bg-white flex-shrink-0 opacity-90 group-hover:opacity-100 transition-opacity duration-200'>
+                      <Image src={product.logo} alt={product.name} width={20} height={20} className='w-full h-full object-contain' />
+                    </div>
                     {product.name}
                   </Link>
                 </li>

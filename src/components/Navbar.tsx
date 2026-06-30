@@ -10,10 +10,13 @@ import LanguageSelector from './LanguageSelector'
 import { useEffect, useState } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const { t } = useLanguage()
+  const pathname = usePathname()
+  const isPlanos = pathname === '/planos'
 
   useEffect(() => {
     let ticking = false
@@ -51,12 +54,22 @@ const Navbar = () => {
               <NavItems />
             </nav>
 
-            {/* Language Selector and CTA Button */}
-            <div className='hidden lg:flex items-center gap-4 flex-shrink-0'>
+            {/* Language Selector and CTA Buttons */}
+            <div className='hidden lg:flex items-center gap-3 flex-shrink-0'>
               <LanguageSelector />
-              <ScrollLink 
-                to="contact" 
-                spy={true} 
+              <Link
+                href='/planos'
+                className={`font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 text-sm border ${
+                  isPlanos
+                    ? 'bg-blue-600 border-blue-600 text-white shadow-md'
+                    : 'border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400'
+                }`}
+              >
+                Planos
+              </Link>
+              <ScrollLink
+                to="contact"
+                spy={true}
                 smooth={true}
                 className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-200 cursor-pointer text-sm shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
               >

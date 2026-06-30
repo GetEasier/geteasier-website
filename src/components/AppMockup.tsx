@@ -1,10 +1,12 @@
 'use client'
 
+import Image from 'next/image'
+
 const HERO_PRODUCTS = [
-  { name: 'TimeEasier', color: '#4285F4' },
-  { name: 'ConstructionEasier', color: '#34A853' },
-  { name: 'StockEasier', color: '#EA4335' },
-  { name: 'WoodEasier', color: '#D4A574' },
+  { name: 'TimeEasier', color: '#4285F4', icon: '/images/products/icons/time-easier.png' },
+  { name: 'ConstructionEasier', color: '#34A853', icon: '/images/products/icons/construction-easier.png' },
+  { name: 'StockEasier', color: '#EA4335', icon: '/images/products/icons/stock-easier.png' },
+  { name: 'WoodEasier', color: '#D4A574', icon: '/images/products/icons/wood-easier.png' },
 ]
 
 const CHART_BARS = [42, 68, 50, 85, 60, 92, 74, 55, 80, 66]
@@ -118,24 +120,28 @@ export function HeroMockup() {
       </div>
 
       {/* Pílulas flutuantes dos produtos */}
-      <div className="absolute -top-4 -left-2 md:-left-8 animate-float">
-        <ProductPill name="TimeEasier" color="#4285F4" />
+      <div className="absolute -top-3 left-6 md:left-4 animate-float [animation-delay:0s]">
+        <ProductPill name="TimeEasier" icon="/images/products/icons/time-easier.png" color="#4285F4" />
       </div>
-      <div className="absolute -bottom-4 -right-2 md:-right-6 animate-float [animation-delay:1.5s]">
-        <ProductPill name="WoodEasier" color="#D4A574" />
+      <div className="absolute top-1/3 -right-3 md:-right-10 animate-float [animation-delay:1.2s]">
+        <ProductPill name="ConstructionEasier" icon="/images/products/icons/construction-easier.png" color="#34A853" />
       </div>
-      <div className="absolute top-1/2 -right-3 md:-right-10 animate-float [animation-delay:3s]">
-        <ProductPill name="StockEasier" color="#EA4335" />
+      <div className="absolute -bottom-3 left-1/4 animate-float [animation-delay:2.4s]">
+        <ProductPill name="StockEasier" icon="/images/products/icons/stock-easier.png" color="#EA4335" />
+      </div>
+      <div className="absolute bottom-1/4 -right-2 md:-right-9 animate-float [animation-delay:0.6s]">
+        <ProductPill name="WoodEasier" icon="/images/products/icons/wood-easier.png" color="#D4A574" />
       </div>
     </div>
   )
 }
 
-function ProductPill({ name, color }: { name: string; color: string }) {
+function ProductPill({ name, icon, color }: { name: string; icon: string; color: string }) {
   return (
-    <div className="flex items-center gap-2 rounded-full bg-white shadow-lg border border-gray-100 px-3 py-1.5">
-      <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-xs font-semibold text-gray-800 whitespace-nowrap">{name}</span>
+    <div className="flex items-center justify-center rounded-2xl bg-white shadow-lg border border-gray-100 p-2">
+      <div className="w-8 h-8 rounded-xl overflow-hidden" style={{ boxShadow: `0 2px 8px ${color}30` }}>
+        <Image src={icon} alt={name} width={32} height={32} className="w-full h-full object-contain" />
+      </div>
     </div>
   )
 }

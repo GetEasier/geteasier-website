@@ -1,7 +1,7 @@
 'use client'
 
 import { NAV_ITEMS } from '@/config'
-import { Menu, X, ChevronDown, Clock, Building2, Package, TreePine } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Link as ScrollLink } from "react-scroll"
@@ -9,17 +9,6 @@ import Link from 'next/link'
 import { createPortal } from 'react-dom'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-// Map icon names to Lucide React components
-const iconComponents: Record<string, any> = {
-  Clock: Clock,
-  Building2: Building2,
-  Package: Package,
-  TreePine: TreePine,
-  clock: Clock,
-  building: Building2,
-  package: Package,
-  tree: TreePine,
-}
 
 const MobileNav = () => {
   const { t } = useLanguage();
@@ -143,8 +132,6 @@ const MobileNav = () => {
                         }`}>
                           <div className='pl-2 pr-3 py-3 space-y-2'>
                             {category.products?.map((product, productIndex) => {
-                              const iconName = product.icon || 'package'
-                              const IconComponent = iconComponents[iconName] || Package
                               return (
                                 <Link
                                   key={product.name}
@@ -152,13 +139,15 @@ const MobileNav = () => {
                                   onClick={handleLinkClick}
                                   className='flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gradient-to-r hover:from-blue-50/70 hover:via-blue-50/30 hover:to-transparent active:scale-[0.98] transition-all duration-200 group/item border border-transparent hover:border-blue-100/30 shadow-sm hover:shadow-md'>
                                   <div
-                                    className='w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover/item:scale-110 group-hover/item:rotate-3 shadow-sm'
-                                    style={{ 
-                                      backgroundColor: `${product.color}20`,
-                                      boxShadow: `0 2px 8px ${product.color}20`
-                                    }}
+                                    className='w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden bg-white transition-all duration-300 group-hover/item:scale-110 group-hover/item:rotate-3'
+                                    style={{ boxShadow: `0 2px 8px ${product.color}25` }}
                                   >
-                                    {IconComponent && <IconComponent className='w-5 h-5' style={{ color: product.color }} />}
+                                    {product.logo ? (
+                                      // eslint-disable-next-line @next/next/no-img-element
+                                      <img src={product.logo} alt={product.name} className='w-full h-full object-contain' />
+                                    ) : (
+                                      <div className='w-5 h-5 rounded-full' style={{ backgroundColor: product.color }} />
+                                    )}
                                   </div>
                                   <span className='flex-1 font-medium'>{product.name}</span>
                                   <div className='w-2 h-2 rounded-full shadow-sm' style={{ backgroundColor: product.color }}></div>
@@ -186,12 +175,18 @@ const MobileNav = () => {
           </div>
 
           {/* Footer CTA with gradient and animation */}
-          <div 
-            className='border-t border-gray-200/50 p-5 bg-gradient-to-b from-white via-gray-50/30 to-gray-50/50'
+          <div
+            className='border-t border-gray-200/50 p-5 bg-gradient-to-b from-white via-gray-50/30 to-gray-50/50 space-y-3'
             style={{
               animation: `slideUp 0.4s ease-out ${0.15 + NAV_ITEMS.length * 0.05}s both`
             }}
           >
+            <Link
+              href='/planos'
+              onClick={handleLinkClick}
+              className='block w-full text-center px-6 py-3.5 border border-blue-300 text-blue-700 font-bold rounded-xl hover:bg-blue-50 transition-all duration-200 active:scale-[0.98]'>
+              Planos
+            </Link>
             <ScrollLink
               to="contact"
               spy={true}
