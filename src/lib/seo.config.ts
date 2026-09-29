@@ -109,7 +109,7 @@ export const ROUTES: Record<PageId, RouteConfig> = {
     parent: 'products',
     jsonLd: 'software',
     indexable: true,
-    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`],
+    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`, `src/components/demos/TimeEasierDemo.tsx`],
     pt: {
       path: '/time-easier',
       title: 'TimeEasier: registo de ponto e assiduidade | GetEasier',
@@ -130,7 +130,7 @@ export const ROUTES: Record<PageId, RouteConfig> = {
     parent: 'products',
     jsonLd: 'software',
     indexable: true,
-    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`],
+    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`, `src/components/demos/ConstructionEasierDemo.tsx`],
     pt: {
       path: '/construction-easier',
       title: 'ConstructionEasier: gestão de obras | GetEasier',
@@ -151,7 +151,7 @@ export const ROUTES: Record<PageId, RouteConfig> = {
     parent: 'products',
     jsonLd: 'software',
     indexable: true,
-    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`],
+    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`, `src/components/demos/StockEasierDemo.tsx`],
     pt: {
       path: '/stock-easier',
       title: 'StockEasier: gestão de stocks e EPIs | GetEasier',
@@ -172,7 +172,7 @@ export const ROUTES: Record<PageId, RouteConfig> = {
     parent: 'products',
     jsonLd: 'software',
     indexable: true,
-    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`],
+    sources: [`${PAGE}/ProductPage.tsx`, `${CONTENT}/products.ts`, `src/components/demos/WoodEasierDemo.tsx`],
     pt: {
       path: '/wood-easier',
       title: 'WoodEasier: passaportes de madeira tratada | GetEasier',
