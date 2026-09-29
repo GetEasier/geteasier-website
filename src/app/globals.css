@@ -148,3 +148,59 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Demos de produto: o estado vem de data-step no contentor .demo.
+   data-on="0 1" mostra o elemento nesses passos; data-hi="2" destaca-o; data-w usa --w0…--w4 como largura. */
+.demo-stack {
+  display: grid;
+}
+.demo-stack > * {
+  grid-area: 1 / 1;
+}
+.demo [data-on] {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
+}
+.demo [data-hi] {
+  transition:
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+.demo [data-w] {
+  transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.demo[data-step='0'] [data-on~='0'],
+.demo[data-step='1'] [data-on~='1'],
+.demo[data-step='2'] [data-on~='2'],
+.demo[data-step='3'] [data-on~='3'],
+.demo[data-step='4'] [data-on~='4'] {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.demo[data-step='0'] [data-hi~='0'],
+.demo[data-step='1'] [data-hi~='1'],
+.demo[data-step='2'] [data-hi~='2'],
+.demo[data-step='3'] [data-hi~='3'],
+.demo[data-step='4'] [data-hi~='4'] {
+  box-shadow: 0 0 0 2px var(--azul);
+  background-color: #fff;
+}
+.demo[data-step='0'] [data-w] {
+  width: var(--w0);
+}
+.demo[data-step='1'] [data-w] {
+  width: var(--w1);
+}
+.demo[data-step='2'] [data-w] {
+  width: var(--w2);
+}
+.demo[data-step='3'] [data-w] {
+  width: var(--w3);
+}
+.demo[data-step='4'] [data-w] {
+  width: var(--w4);
+}

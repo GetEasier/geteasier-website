@@ -11,12 +11,25 @@ import YouTubeFacade from '@/components/YouTubeFacade'
 import { products } from '@/content/products'
 import { common } from '@/content/common'
 import { href, type Locale, type ProductId } from '@/lib/seo.config'
+import DemoStepper from '@/components/demos/DemoStepper'
+import TimeEasierDemo from '@/components/demos/TimeEasierDemo'
+import ConstructionEasierDemo from '@/components/demos/ConstructionEasierDemo'
+import StockEasierDemo from '@/components/demos/StockEasierDemo'
+import WoodEasierDemo from '@/components/demos/WoodEasierDemo'
+
+const DEMOS: Record<ProductId, (p: { locale: Locale }) => React.ReactNode> = {
+  timeEasier: TimeEasierDemo,
+  constructionEasier: ConstructionEasierDemo,
+  stockEasier: StockEasierDemo,
+  woodEasier: WoodEasierDemo,
+}
 
 export default function ProductPage({ id, locale }: { id: ProductId; locale: Locale }) {
   const p = products[locale]
   const item = p.items[id]
   const c = common[locale]
   const demo = c.cta.demo(item.name)
+  const Demo = DEMOS[id]
 
   return (
     <SiteShell pageId={id} locale={locale}>
@@ -46,16 +59,9 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
       </PageHeader>
 
       <Section id="como-funciona" title={item.stepsTitle} intro={item.stepsIntro}>
-        <ol className="border-t border-linha" data-demo-steps={id}>
-          {item.steps.map((step, i) => (
-            <li key={step} className="grid gap-2 border-b border-linha py-5 md:grid-cols-[4rem_minmax(0,1fr)]">
-              <span className="t-data text-grafite" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <p className="max-w-prose">{step}</p>
-            </li>
-          ))}
-        </ol>
+        <DemoStepper id={id} steps={item.steps} listLabel={locale === 'pt' ? 'Passos da demonstração' : 'Demo steps'}>
+          <Demo locale={locale} />
+        </DemoStepper>
       </Section>
 
       <Section id="funcionalidades" title={item.featuresTitle}>
