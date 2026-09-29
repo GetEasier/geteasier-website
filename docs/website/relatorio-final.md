@@ -47,6 +47,7 @@ Outros comandos: `npm run lint`, `npm run typecheck`, `npm run lastmod` (atualiz
 | 7 Verificação | c4e6957 | `scripts/verify-site.mjs` e `npm run verify` |
 | Revisão visual | 0a84d14 | Depois do comentário do Alexandre ("muito texto"): fotografias e cor de volta, menos texto, montra animada no início, demos automáticas nos produtos |
 | Textos do tablet | 8faa773 | Demos do TimeEasier com os textos reais da app |
+| Ecrãs, funcionalidades e planos | ver git log | Passagem animada entre ecrãs nas demos, funcionalidades em cartões com ilustrações, página de planos com separadores por produto, cartões por plano e tabela comparativa |
 
 ### Páginas
 

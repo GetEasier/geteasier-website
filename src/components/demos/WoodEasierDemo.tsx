@@ -53,7 +53,7 @@ function Rows({ rows }: { rows: string[][] }) {
   return (
     <dl className="border-t border-linha">
       {rows.map(([k, v]) => (
-        <div key={k} className="grid grid-cols-[7rem_minmax(0,1fr)] gap-3 border-b border-linha px-2 py-2">
+        <div key={k} data-row className="grid grid-cols-[7rem_minmax(0,1fr)] gap-3 border-b border-linha px-2 py-2">
           <dt className="text-grafite">{k}</dt>
           <dd className="t-data truncate">{v}</dd>
         </div>
@@ -87,16 +87,16 @@ export default function WoodEasierDemo({ locale }: { locale: Locale }) {
       </ol>
 
       <div className="demo-stack mt-5">
-        <div data-on="0">
+        <div data-on="0" data-screen>
           <Rows rows={t.lot} />
         </div>
 
-        <div data-on="1">
+        <div data-on="1" data-screen>
           <p className="font-semibold">{t.treatment}</p>
           <svg viewBox="0 0 360 140" className="mt-2 h-auto w-full" fill="none" style={{ fontFamily: 'var(--font-plex-mono), monospace' }}>
             <path d="M52 16v100h300" stroke="#06083C" strokeWidth="1" />
             <path d="M52 40h300" stroke="#4A5263" strokeWidth="1" strokeDasharray="4 4" />
-            <path d="M52 110C100 108 140 46 180 40h120c20 0 32 40 52 60" stroke="#1B54B8" strokeWidth="2.5" />
+            <path data-draw pathLength={1} d="M52 110C100 108 140 46 180 40h120c20 0 32 40 52 60" stroke="#1B54B8" strokeWidth="2.5" />
             <path d="M180 26v-6h120v6" stroke="#06083C" strokeWidth="1" />
             <text x="240" y="14" textAnchor="middle" fontSize="11" fill="#06083C">
               {t.duration}
@@ -113,7 +113,7 @@ export default function WoodEasierDemo({ locale }: { locale: Locale }) {
           </svg>
         </div>
 
-        <div data-on="2">
+        <div data-on="2" data-screen>
           <div className="rounded-ctl border border-tinta bg-white p-4">
             <p className="font-semibold">{t.passport}</p>
             <div className="mt-3">
@@ -122,7 +122,7 @@ export default function WoodEasierDemo({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div data-on="3">
+        <div data-on="3" data-screen>
           <p className="font-semibold">{t.history}</p>
           <ul className="mt-2 border-t border-linha">
             {t.stages.map((s, i) => (

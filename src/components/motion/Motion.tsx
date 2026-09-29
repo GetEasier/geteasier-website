@@ -9,7 +9,7 @@ type ST = typeof import('gsap/ScrollTrigger').ScrollTrigger
 // Animação do site. Carrega GSAP + ScrollTrigger só depois de a página estar pronta e só
 // sem "reduzir movimento". Tudo o que anima já está completo e legível sem isto.
 // 1. A planta do início desenha-se uma vez (menos de 3 s).
-// 2. Nas páginas de produto (ecrã largo), a demo fica fixa e o scroll avança os passos.
+// 2. Nas páginas de produto, as ilustrações dos cartões de funcionalidades animam ao entrar.
 // 3. No caso de estudo, o diagrama acende as partes à medida que o texto passa.
 
 let heroPlayed = false
@@ -104,6 +104,13 @@ function reveals(gsap: Gsap, ScrollTrigger: ST) {
   }
 }
 
+// Cartões de funcionalidades: a ilustração anima uma vez quando o cartão chega a meio do ecrã (CSS em .feat-card.is-in).
+function featureCards(ScrollTrigger: ST) {
+  document.querySelectorAll<HTMLElement>('.feat-card').forEach((el) => {
+    ScrollTrigger.create({ trigger: el, start: 'top 75%', once: true, onEnter: () => el.classList.add('is-in') })
+  })
+}
+
 export default function Motion() {
   const pathname = usePathname()
 
@@ -131,6 +138,7 @@ export default function Motion() {
             html.classList.remove('motion-pending')
             architecture(ScrollTrigger, wide)
             reveals(gsap, ScrollTrigger)
+            featureCards(ScrollTrigger)
           },
         )
         revert = () => mm.revert()

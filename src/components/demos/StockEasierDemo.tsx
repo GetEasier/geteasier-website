@@ -67,7 +67,7 @@ export default function StockEasierDemo({ locale }: { locale: Locale }) {
       <p className="t-data mt-2 pl-[15%] text-grafite">{t.min}</p>
 
       <div className="demo-stack mt-5">
-        <div data-on="0 1 2">
+        <div data-on="0 1 2" data-screen>
           <p className="font-semibold">{t.moves}</p>
           <ul className="mt-2 border-t border-linha">
             <li data-hi="0" className="flex justify-between gap-3 rounded border-b border-linha px-2 py-2.5">
@@ -79,7 +79,7 @@ export default function StockEasierDemo({ locale }: { locale: Locale }) {
               <span className="t-data">−1</span>
             </li>
           </ul>
-          <div data-on="2" className="mt-3 flex items-start gap-2 rounded-ctl border border-estado-aviso bg-white px-3 py-2.5">
+          <div data-on="2" data-pop className="mt-3 flex items-start gap-2 rounded-ctl border border-estado-aviso bg-white px-3 py-2.5">
             <Warn className="mt-0.5 text-estado-aviso" />
             <span>
               <span className="block font-semibold">{t.reorder}</span>
@@ -88,11 +88,11 @@ export default function StockEasierDemo({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div data-on="3">
+        <div data-on="3" data-screen>
           <p className="font-semibold">{t.history}</p>
           <div className="mt-3 grid h-28 grid-cols-6 items-end gap-3 border-b border-tinta">
             {USE.map((v, i) => (
-              <div key={t.months[i]} className="flex h-full flex-col justify-end">
+              <div key={t.months[i]} data-row className="flex h-full flex-col justify-end">
                 <span className="t-data text-center">{v}</span>
                 <span className="mt-1 block rounded-t-sm bg-[var(--accent,#1B54B8)]" style={{ height: `${v}%` }} />
               </div>

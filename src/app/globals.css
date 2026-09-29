@@ -186,7 +186,7 @@
 .demo[data-step='2'] [data-hi~='2'],
 .demo[data-step='3'] [data-hi~='3'],
 .demo[data-step='4'] [data-hi~='4'] {
-  box-shadow: 0 0 0 2px var(--azul);
+  box-shadow: 0 0 0 2px var(--accent, var(--azul));
   background-color: #fff;
 }
 .demo[data-step='0'] [data-w] {
@@ -203,6 +203,122 @@
 }
 .demo[data-step='4'] [data-w] {
   width: var(--w4);
+}
+
+/* Passagem entre ecrãs nas demos: o ecrã que sai desliza para a esquerda, o que entra vem da direita
+   e as linhas dele aparecem uma a uma. data-pop dá um pequeno salto a avisos e confirmações.
+   Com "reduzir movimento", a regra global acima corta as animações e fica só a troca. */
+.demo [data-screen] {
+  transform: translateX(-24px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s ease-in,
+    visibility 0s linear 0.35s;
+}
+.demo[data-step='0'] [data-screen][data-on~='0'],
+.demo[data-step='1'] [data-screen][data-on~='1'],
+.demo[data-step='2'] [data-screen][data-on~='2'],
+.demo[data-step='3'] [data-screen][data-on~='3'],
+.demo[data-step='4'] [data-screen][data-on~='4'] {
+  transform: none;
+  animation: demo-screen-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) 0.12s both;
+}
+.demo[data-step='0'] [data-screen][data-on~='0'] :is(li, [data-row]),
+.demo[data-step='1'] [data-screen][data-on~='1'] :is(li, [data-row]),
+.demo[data-step='2'] [data-screen][data-on~='2'] :is(li, [data-row]),
+.demo[data-step='3'] [data-screen][data-on~='3'] :is(li, [data-row]),
+.demo[data-step='4'] [data-screen][data-on~='4'] :is(li, [data-row]) {
+  animation: demo-rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(0.25s + var(--i, 0) * 0.09s);
+}
+.demo [data-screen] :is(li, [data-row]):nth-child(2) { --i: 1; }
+.demo [data-screen] :is(li, [data-row]):nth-child(3) { --i: 2; }
+.demo [data-screen] :is(li, [data-row]):nth-child(4) { --i: 3; }
+.demo [data-screen] :is(li, [data-row]):nth-child(5) { --i: 4; }
+.demo [data-screen] :is(li, [data-row]):nth-child(n + 6) { --i: 5; }
+.demo[data-step='0'] [data-pop][data-on~='0'],
+.demo[data-step='1'] [data-pop][data-on~='1'],
+.demo[data-step='2'] [data-pop][data-on~='2'],
+.demo[data-step='3'] [data-pop][data-on~='3'],
+.demo[data-step='4'] [data-pop][data-on~='4'] {
+  animation: demo-pop 0.5s cubic-bezier(0.3, 1.5, 0.5, 1) 0.3s both;
+}
+.demo[data-step='0'] [data-hi~='0'],
+.demo[data-step='1'] [data-hi~='1'],
+.demo[data-step='2'] [data-hi~='2'],
+.demo[data-step='3'] [data-hi~='3'],
+.demo[data-step='4'] [data-hi~='4'] {
+  animation: demo-ping 1.2s ease-out 0.5s;
+}
+.demo[data-step='1'] [data-on~='1'] [data-draw] {
+  stroke-dasharray: 1;
+  animation: demo-draw 1.6s ease-in-out 0.4s both;
+}
+@keyframes demo-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes demo-screen-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+@keyframes demo-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes demo-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(6px);
+  }
+}
+@keyframes demo-ping {
+  0% {
+    box-shadow: 0 0 0 2px var(--accent, var(--azul)), 0 0 0 2px color-mix(in srgb, var(--accent, #1b54b8) 45%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 2px var(--accent, var(--azul)), 0 0 0 12px transparent;
+  }
+}
+/* Barra que se enche até ao próximo ecrã (AutoDemo). */
+@keyframes demo-progress {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* Ilustrações dos cartões de funcionalidades: animam uma vez quando o cartão entra no ecrã
+   (.feat-card recebe .is-in do Motion). Nada repete mais de 5 s. */
+.feat-card .feat-bar { transform-origin: left; }
+.feat-card .feat-grow { transform-origin: bottom; }
+.feat-card.is-in .feat-bar { animation: feat-bar 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.feat-card.is-in .feat-grow { animation: feat-grow 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.feat-card.is-in .feat-pop { animation: demo-pop 0.5s cubic-bezier(0.3, 1.5, 0.5, 1) both; }
+.feat-card.is-in .feat-rise { animation: demo-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.feat-card.is-in .feat-draw { stroke-dasharray: 1; animation: demo-draw 1.6s ease-in-out both; }
+.feat-card.is-in .feat-scan { animation: feat-scan 1.2s ease-in-out 4 alternate both; }
+.feat-card.is-in .feat-ring { animation: feat-ring 2.4s ease-in-out 2; transform-origin: 50% 10%; }
+@keyframes feat-bar { from { transform: scaleX(0); } }
+@keyframes feat-grow { from { transform: scaleY(0); } }
+@keyframes feat-scan { to { transform: translateY(6.5rem); } }
+@keyframes feat-ring {
+  0%, 60%, 100% { transform: rotate(0); }
+  70% { transform: rotate(14deg); }
+  80% { transform: rotate(-12deg); }
+  90% { transform: rotate(6deg); }
+}
+
+/* Planos: o painel escolhido entra com os cartões em sequência. */
+.plan-panel:not([hidden]) .plan-card {
+  animation: demo-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 /* Fase 4: movimento */

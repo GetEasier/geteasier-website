@@ -83,7 +83,7 @@ export default function ConstructionEasierDemo({ locale }: { locale: Locale }) {
 
         <div className="relative min-w-0">
           <div className="demo-stack">
-            <div data-on="0 3">
+            <div data-on="0 3" data-screen>
               <p className="font-semibold">{t.present}</p>
               <div className="mt-3 border-t border-linha">
                 <div className="t-data grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_3.4rem] gap-2 px-2 py-2 text-grafite">
@@ -92,13 +92,13 @@ export default function ConstructionEasierDemo({ locale }: { locale: Locale }) {
                   ))}
                 </div>
                 {people.map((p) => (
-                  <div key={p.name} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_3.4rem] gap-2 border-t border-linha px-2 py-2">
+                  <div key={p.name} data-row className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_3.4rem] gap-2 border-t border-linha px-2 py-2">
                     <span className="truncate font-semibold">{p.name}</span>
                     <span className="truncate text-grafite">{p.co}</span>
                     <span className="t-data">{p.time}</span>
                   </div>
                 ))}
-                <div data-on="3" data-hi="3" className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_3.4rem] gap-2 rounded border-t border-linha px-2 py-2">
+                <div data-on="3" data-hi="3" data-pop className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_3.4rem] gap-2 rounded border-t border-linha px-2 py-2">
                   <span className="truncate font-semibold">Tiago F.</span>
                   <span className="truncate text-grafite">{t.own}</span>
                   <span className="t-data">08:14</span>
@@ -106,7 +106,7 @@ export default function ConstructionEasierDemo({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            <div data-on="1">
+            <div data-on="1" data-screen>
               <p className="font-semibold">{t.companies}</p>
               <ul className="mt-3 border-t border-linha">
                 <li className="flex items-baseline justify-between gap-3 border-b border-linha px-2 py-3">
@@ -125,7 +125,7 @@ export default function ConstructionEasierDemo({ locale }: { locale: Locale }) {
               </ul>
             </div>
 
-            <div data-on="2">
+            <div data-on="2" data-screen>
               <p className="font-semibold">{t.docs}</p>
               <ul className="mt-3 border-t border-linha">
                 {docs.map((d) => {
@@ -149,6 +149,7 @@ export default function ConstructionEasierDemo({ locale }: { locale: Locale }) {
 
           <div
             data-on="3"
+            data-pop
             className="absolute -top-1 right-0 flex items-center gap-2 rounded-ctl border border-tinta bg-white px-3 py-2 shadow-[0_2px_0_#06083C]"
           >
             <Bell className="text-azul" />

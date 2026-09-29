@@ -58,11 +58,11 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
               </div>
             </div>
             <div lang="pt-PT" className="demo-stack mt-3">
-              <div data-on="0" className="text-center">
+              <div data-on="0" data-pop className="text-center">
                 <p className="text-small font-semibold">A reconhecer rosto</p>
                 <p className="text-[12px] text-white/70">Mantém-te quieto.</p>
               </div>
-              <div data-on="1 2 3" className="rounded bg-white px-2 py-1.5 text-center text-tinta">
+              <div data-on="1 2 3" data-pop className="rounded bg-white px-2 py-1.5 text-center text-tinta">
                 <p className="text-small font-bold">Olá, Rui!</p>
                 <p className="flex items-center justify-center gap-1 text-[12px] font-semibold text-estado-valido">
                   <Check className="h-3.5 w-3.5" />
@@ -76,7 +76,7 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
 
         {/* Gestão */}
         <div className="demo-stack min-w-0">
-          <div data-on="0 1 2">
+          <div data-on="0 1 2" data-screen>
             <p className="font-semibold">{t.today}</p>
             <div className="mt-3 border-t border-linha">
               <div className={`${ROW} t-data text-grafite`}>
@@ -87,7 +87,7 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
                 ))}
               </div>
               {rows.map((r) => (
-                <div key={r.name} data-on={r.on} data-hi={r.hi} className={`${ROW} border-t border-linha`}>
+                <div key={r.name} data-row data-on={r.on} data-hi={r.hi} className={`${ROW} border-t border-linha`}>
                   <span className="min-w-0">
                     <span className="block truncate font-semibold">{r.name}</span>
                     <span className="flex min-w-0 items-center gap-1 text-grafite">
@@ -100,7 +100,7 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
                     <span data-on="0 1" className="text-grafite">
                       –
                     </span>
-                    <span data-on="2" className="text-estado-valido">
+                    <span data-on="2" data-pop className="text-estado-valido">
                       <Check />
                     </span>
                   </span>
@@ -109,7 +109,7 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <div data-on="3">
+          <div data-on="3" data-screen>
             <p className="font-semibold">{t.report}</p>
             <div className="mt-3 border-t border-linha">
               <div className="t-data grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 px-2 py-2 text-grafite">
@@ -124,7 +124,7 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
                 ['Rui M.', '171:30', '3:30'],
                 ['Carla P.', '160:00', '0:00'],
               ].map(([n, h, x]) => (
-                <div key={n} className="grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 border-t border-linha px-2 py-2">
+                <div key={n} data-row className="grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 border-t border-linha px-2 py-2">
                   <span className="truncate font-semibold">{n}</span>
                   <span className="t-data">{h}</span>
                   <span className="t-data">{x}</span>

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
+const INTERVAL = 3200
+
 type Props = {
   steps: string[]
   labels: { pause: string; play: string; step: string; list: string }
@@ -38,7 +40,7 @@ export default function AutoDemo({ steps, labels, accent, children }: Props) {
   const running = playing && visible && motionOk
   useEffect(() => {
     if (!running) return
-    const id = window.setInterval(() => setStep((s) => (s + 1) % steps.length), 2800)
+    const id = window.setInterval(() => setStep((s) => (s + 1) % steps.length), INTERVAL)
     return () => window.clearInterval(id)
   }, [running, steps.length])
 
@@ -72,9 +74,20 @@ export default function AutoDemo({ steps, labels, accent, children }: Props) {
             className="grid h-8 w-8 place-items-center rounded-full"
           >
             <span
-              className={cn('block h-2.5 rounded-full transition-all duration-300', i === step ? 'w-6' : 'w-2.5 bg-linha')}
-              style={i === step ? { backgroundColor: accent } : undefined}
-            />
+              className={cn('relative block h-2.5 overflow-hidden rounded-full bg-linha transition-all duration-300', i === step ? 'w-8' : 'w-2.5')}
+            >
+              {i === step && (
+                // Enche-se até ao próximo ecrã enquanto a demo corre; parada, fica cheia.
+                <span
+                  key={`${step}-${running}`}
+                  className="absolute inset-0 origin-left rounded-full"
+                  style={{
+                    backgroundColor: accent,
+                    animation: running ? `demo-progress ${INTERVAL}ms linear both` : undefined,
+                  }}
+                />
+              )}
+            </span>
           </button>
         ))}
         {motionOk && (

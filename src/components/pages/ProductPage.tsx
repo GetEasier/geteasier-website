@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/site/Breadcrumbs'
 import Section from '@/components/ui/Section'
 import RelatedLinks from '@/components/ui/RelatedLinks'
 import ContactBand from '@/components/ui/ContactBand'
-import FeatureGrid from '@/components/ui/FeatureGrid'
+import ProductFeatures from '@/components/ProductFeatures'
 import Testimonials from '@/components/Testimonials'
 import YouTubeFacade from '@/components/YouTubeFacade'
 import StoreBadges from '@/components/StoreBadges'
@@ -95,7 +95,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
       </section>
 
       <Section id="funcionalidades" title={item.featuresTitle}>
-        <FeatureGrid items={item.features} theme={theme} />
+        <ProductFeatures id={id} locale={locale} />
         <p className="mt-10">
           <Link href={`${href('plans', locale)}#${item.planAnchor}`} className="link">
             {p.planIncluded}
