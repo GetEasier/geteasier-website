@@ -9,22 +9,23 @@ import ProductFeatures from '@/components/ProductFeatures'
 import Testimonials from '@/components/Testimonials'
 import YouTubeFacade from '@/components/YouTubeFacade'
 import StoreBadges from '@/components/StoreBadges'
-import AutoDemo from '@/components/demos/AutoDemo'
-import TimeEasierDemo from '@/components/demos/TimeEasierDemo'
-import ConstructionEasierDemo from '@/components/demos/ConstructionEasierDemo'
-import StockEasierDemo from '@/components/demos/StockEasierDemo'
-import WoodEasierDemo from '@/components/demos/WoodEasierDemo'
+import CameraDemo from '@/components/demos/CameraDemo'
+import TimeEasierScene from '@/components/demos/TimeEasierScene'
+import ConstructionEasierScene from '@/components/demos/ConstructionEasierScene'
+import StockEasierScene from '@/components/demos/StockEasierScene'
+import WoodEasierScene from '@/components/demos/WoodEasierScene'
 import { products } from '@/content/products'
 import { common } from '@/content/common'
 import { href, type Locale, type ProductId } from '@/lib/seo.config'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
 
-const DEMOS: Record<ProductId, (p: { locale: Locale }) => React.ReactNode> = {
-  timeEasier: TimeEasierDemo,
-  constructionEasier: ConstructionEasierDemo,
-  stockEasier: StockEasierDemo,
-  woodEasier: WoodEasierDemo,
+// Demo numa só cena, com a câmara a aproximar-se de cada parte (CameraDemo).
+const SCENES: Record<ProductId, (p: { locale: Locale }) => React.ReactNode> = {
+  timeEasier: TimeEasierScene,
+  constructionEasier: ConstructionEasierScene,
+  stockEasier: StockEasierScene,
+  woodEasier: WoodEasierScene,
 }
 
 // Capturas reais da aplicação, já publicadas no site anterior.
@@ -39,7 +40,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
   const c = common[locale]
   const theme = PRODUCT_THEME[id]
   const demo = c.cta.demo(item.name)
-  const Demo = DEMOS[id]
+  const Scene = SCENES[id]
   const shot = SCREENSHOTS[id]
   const pt = locale === 'pt'
   const labels = {
@@ -61,7 +62,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
         />
         <div className="wrap relative pb-16 pt-8 md:pb-24 md:pt-10">
           <Breadcrumbs pageId={id} locale={locale} />
-          <div className="mt-10 grid items-start gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+          <div className="mt-10 grid gap-x-12 gap-y-6 lg:grid-cols-2 lg:items-end">
             <div>
               <Image
                 src={item.logo.src}
@@ -73,23 +74,27 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
                 className="h-10 w-auto md:h-12"
               />
               <h1 className="t-h1 mt-6 max-w-[18ch]">{item.h1}</h1>
-              <p className="mt-5 max-w-prose text-lead text-grafite">{item.lead[0]}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
+            </div>
+            <div>
+              <p className="max-w-prose text-lead text-grafite">{item.lead[0]}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link href={`${href('contact', locale)}?assunto=${item.demoSubject}`} className={cn('btn text-white hover:opacity-90', theme.solid)}>
                   {demo}
                 </Link>
                 <Link href={`${href('plans', locale)}#${item.planAnchor}`} className="btn-secondary">
                   {c.cta.plans}
                 </Link>
+                {id === 'woodEasier' && (
+                  <Image src="/images/products/DGAV-Approved.png" alt="DGAV" width={629} height={461} className="h-14 w-auto" />
+                )}
               </div>
               {id === 'timeEasier' && <StoreBadges locale={locale} className="mt-6" />}
-              {id === 'woodEasier' && (
-                <Image src="/images/products/DGAV-Approved.png" alt="DGAV" width={629} height={461} className="mt-8 h-20 w-auto" />
-              )}
             </div>
-            <AutoDemo steps={item.steps} labels={labels} accent={theme.hex}>
-              <Demo locale={locale} />
-            </AutoDemo>
+          </div>
+          <div className="mt-12 min-w-0">
+            <CameraDemo steps={item.steps} labels={labels} accent={theme.hex} width={1200} height={760}>
+              <Scene locale={locale} />
+            </CameraDemo>
           </div>
         </div>
       </section>

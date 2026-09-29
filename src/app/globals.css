@@ -388,6 +388,44 @@
   box-shadow: inset 0 -2px 0 var(--accent, #1b54b8);
 }
 
+/* Câmara da demo única (CameraDemo): aproxima-se e afasta-se da cena. */
+.camera {
+  transition: transform 1.1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+/* Um elemento que só aparece depois de outro, dentro do mesmo passo (ex.: rosto reconhecido). */
+.demo [data-later] {
+  animation-delay: var(--later, 1.2s) !important;
+}
+.demo[data-step='0'] [data-fade-out][data-on~='0'],
+.demo[data-step='1'] [data-fade-out][data-on~='1'],
+.demo[data-step='2'] [data-fade-out][data-on~='2'],
+.demo[data-step='3'] [data-fade-out][data-on~='3'],
+.demo[data-step='4'] [data-fade-out][data-on~='4'] {
+  animation: demo-fade-out 0.3s ease var(--later, 1.2s) both;
+}
+@keyframes demo-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.demo[data-step='0'] [data-on~='0'] [data-scan] {
+  animation: scene-scan 0.75s ease-in-out 2 alternate both;
+}
+@keyframes scene-scan {
+  to {
+    transform: translateY(148px);
+  }
+}
+
+.demo[data-step='0'] [data-grow~='0'],
+.demo[data-step='1'] [data-grow~='1'],
+.demo[data-step='2'] [data-grow~='2'],
+.demo[data-step='3'] [data-grow~='3'],
+.demo[data-step='4'] [data-grow~='4'] {
+  animation: feat-grow 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
 /* Fase 4: movimento */
 .motion-pending [data-planta] svg {
   visibility: hidden;
