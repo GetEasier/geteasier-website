@@ -66,7 +66,7 @@ export default function WoodEasierDemo({ locale }: { locale: Locale }) {
   const t = T[locale]
   return (
     <DemoWindow locale={locale} title={t.window}>
-      <ol className="grid grid-cols-4 gap-1.5">
+      <ol className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
         {t.stages.map((s, i) => (
           <li key={s} data-hi={String(i)} className="rounded border-t-2 border-tinta px-1.5 pb-1.5 pt-2">
             <span className="flex items-center gap-1">
@@ -81,7 +81,7 @@ export default function WoodEasierDemo({ locale }: { locale: Locale }) {
                 )}
               </span>
             </span>
-            <span className="mt-1 block truncate font-semibold [font-stretch:72%] sm:[font-stretch:100%]">{s}</span>
+            <span className="mt-1 block truncate font-semibold">{s}</span>
           </li>
         ))}
       </ol>

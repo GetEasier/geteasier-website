@@ -1,14 +1,15 @@
 import localFont from 'next/font/local'
 
-// Archivo variável (peso 100–900, largura 62–125 %) e IBM Plex Mono, ambas OFL.
-// Só o subconjunto latin: cobre todo o texto em português e inglês do site.
+// Archivo variável e IBM Plex Mono, ambas OFL.
+// Archivo reduzida ao que o site usa (fontTools): peso 400–700, largura 100–112 %,
+// Latin básico, Latin-1 e pontuação tipográfica. 43 KB em vez de 88 KB.
 export const archivo = localFont({
-  src: '../fonts/archivo-latin-wdth-normal.woff2',
-  weight: '100 900',
+  src: '../fonts/archivo-subset-wght400-700-wdth100-112.woff2',
+  weight: '400 700',
   style: 'normal',
   display: 'swap',
   variable: '--font-archivo',
-  declarations: [{ prop: 'font-stretch', value: '62% 125%' }],
+  declarations: [{ prop: 'font-stretch', value: '100% 112%' }],
   adjustFontFallback: 'Arial',
   preload: true,
 })

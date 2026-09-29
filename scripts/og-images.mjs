@@ -18,7 +18,7 @@ function html(title, lang) {
   const url = 'geteasier.pt'
   const tag = lang === 'en' ? 'Software team, Portugal' : 'Equipa de software, Portugal'
   return `<!doctype html><html lang="${lang}"><meta charset="utf-8"><style>
-  @font-face{font-family:Archivo;src:url(${font('archivo-latin-wdth-normal.woff2')}) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+  @font-face{font-family:Archivo;src:url(${font('archivo-subset-wght400-700-wdth100-112.woff2')}) format('woff2');font-weight:100 900;font-stretch:62% 125%}
   @font-face{font-family:Plex;src:url(${font('ibm-plex-mono-latin-400-normal.woff2')}) format('woff2')}
   *{margin:0;box-sizing:border-box}
   body{width:1200px;height:630px;background:#F4F6F9;color:#06083C;font-family:Archivo;position:relative;overflow:hidden}
