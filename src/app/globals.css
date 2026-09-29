@@ -204,3 +204,56 @@
 .demo[data-step='4'] [data-w] {
   width: var(--w4);
 }
+
+/* Fase 4: movimento */
+.motion-pending [data-planta] svg {
+  visibility: hidden;
+}
+
+[data-arch-step] h3 {
+  transition: color 0.3s ease;
+}
+[data-arch-step].is-on h3 {
+  color: var(--ciano);
+}
+[data-arch] .arch-box,
+[data-arch] .arch-line {
+  transition:
+    stroke 0.4s ease,
+    stroke-width 0.4s ease;
+}
+
+/* A régua de cota desenha-se quando a secção entra no ecrã (CSS scroll-driven, sem JS). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
+    .ruled {
+      view-timeline-name: --regua;
+    }
+    .ruled::after {
+      transform-origin: top;
+      animation: regua linear both;
+      animation-timeline: --regua;
+      animation-range: entry 20% cover 40%;
+    }
+  }
+}
+@keyframes regua {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Transição entre páginas: o cabeçalho fica, o conteúdo troca depressa. */
+::view-transition-group(*) {
+  animation-duration: 180ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
