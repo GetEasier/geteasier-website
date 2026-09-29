@@ -5,6 +5,7 @@ import { home } from '@/content/home'
 import { PRODUCT_IDS, href, type Locale } from '@/lib/seo.config'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
+import ProductMini from '@/components/home/ProductMini'
 
 // Um painel por produto, na cor do logótipo. O painel inteiro é clicável.
 export default function ProductPanels({
@@ -12,22 +13,25 @@ export default function ProductPanels({
   headingLevel = 'h2',
   className,
   long,
+  mini,
 }: {
   locale: Locale
   headingLevel?: 'h2' | 'h3'
   className?: string
   long?: boolean
+  /** Ecrã pequeno de cada produto, que muda de estado ao entrar (início). */
+  mini?: boolean
 }) {
   const p = products[locale]
   const open = home[locale].products.open
   const H = headingLevel
   return (
-    <ul className={cn('grid gap-5 md:grid-cols-2', className)}>
+    <ul className={cn('grid gap-5 md:grid-cols-2', mini && 'produtos-mini lg:grid-cols-4', className)}>
       {PRODUCT_IDS.map((id) => {
         const item = p.items[id]
         const theme = PRODUCT_THEME[id]
         return (
-          <li key={id} className="reveal-panel">
+          <li key={id} className={mini ? 'produto-painel' : 'reveal-panel'}>
             <Link
               href={href(id, locale)}
               className={cn(
@@ -48,6 +52,7 @@ export default function ProductPanels({
               </span>
               <p className="mt-4 max-w-[34ch] text-lead font-medium">{item.short}</p>
               {long && <p className="mt-2 max-w-[44ch] text-grafite">{item.summary}</p>}
+              {mini && <ProductMini id={id} locale={locale} />}
               <span className={cn('mt-auto inline-flex items-center gap-2 pt-8 font-semibold underline decoration-2 underline-offset-4', theme.text)}>
                 {open(item.name)}
               </span>

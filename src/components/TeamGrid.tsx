@@ -3,12 +3,12 @@ import { TEAM, about } from '@/content/about'
 import type { Locale } from '@/lib/seo.config'
 import { cn } from '@/lib/utils'
 
-export default function TeamGrid({ locale, className, dark }: { locale: Locale; className?: string; dark?: boolean }) {
+export default function TeamGrid({ locale, className, dark, parallax }: { locale: Locale; className?: string; dark?: boolean; parallax?: boolean }) {
   const roles = about[locale].roles
   return (
-    <ul className={cn('grid gap-6 sm:grid-cols-3', className)}>
+    <ul data-team={parallax ? '' : undefined} className={cn('grid gap-6 sm:grid-cols-3', className)}>
       {TEAM.map((m) => (
-        <li key={m.name} className="reveal-photo group relative overflow-hidden rounded-frame">
+        <li key={m.name} className={cn(!parallax && 'reveal-photo', 'group relative overflow-hidden rounded-frame')}>
           <Image
             src={m.photo}
             alt={m.name}
