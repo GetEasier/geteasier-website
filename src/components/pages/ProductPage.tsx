@@ -92,7 +92,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
             </div>
           </div>
           <div className="mt-12 min-w-0">
-            <CameraDemo steps={item.steps} labels={labels} accent={theme.hex} width={1200} height={760}>
+            <CameraDemo steps={item.steps} labels={labels} accent={theme.app} width={1200} height={760}>
               <Scene locale={locale} />
             </CameraDemo>
           </div>
