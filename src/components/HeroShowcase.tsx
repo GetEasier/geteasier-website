@@ -54,7 +54,7 @@ export default function HeroShowcase({ locale }: { locale: Locale }) {
 
   return (
     <div className="relative">
-      <div role="img" aria-label={t.label} className={cn('showcase relative pb-48 pt-12', paused && 'is-paused')}>
+      <div role="img" aria-label={t.label} className={cn('showcase relative pb-56 pt-12', paused && 'is-paused')}>
         {/* Aplicação web */}
         <div className="ml-auto w-full overflow-hidden rounded-frame bg-white text-tinta shadow-[0_24px_60px_-20px_rgba(0,0,0,.55)] sm:w-[94%]">
           <div className="flex items-center gap-2 border-b border-linha px-4 py-2.5">
@@ -101,16 +101,18 @@ export default function HeroShowcase({ locale }: { locale: Locale }) {
               <FaceMesh className="absolute inset-2 text-ciano" />
               <span className="sc-scan absolute inset-x-0 top-0 h-0.5 bg-ciano shadow-[0_0_12px_2px_#18DDBA]" />
             </div>
-            <div className="sc-chip mt-2 flex items-center gap-1.5 rounded-md bg-white px-2 py-1 text-[12px] text-tinta">
-              <Check className="h-3.5 w-3.5 text-estado-valido" />
-              <span className="t-data text-[12px]">08:14</span>
-              <span className="truncate font-semibold">Tiago F.</span>
+            <div lang="pt-PT" className="sc-chip mt-2 rounded-md bg-white px-2 py-1.5 text-center text-tinta">
+              <p className="text-[13px] font-bold leading-tight">Olá, Tiago!</p>
+              <p className="flex items-center justify-center gap-1 text-[11px] font-semibold text-estado-valido">
+                <Check className="h-3 w-3" />
+                Presença registada
+              </p>
             </div>
           </div>
         </div>
 
         {/* Telemóvel com a app */}
-        <div className="absolute bottom-16 right-4 w-[30%] max-w-[140px] rounded-[20px] bg-[#0B0E2E] p-1.5 shadow-[0_20px_50px_-15px_rgba(0,0,0,.7)] ring-1 ring-white/15">
+        <div className="absolute bottom-24 right-4 w-[30%] max-w-[140px] rounded-[20px] bg-[#0B0E2E] p-1.5 shadow-[0_20px_50px_-15px_rgba(0,0,0,.7)] ring-1 ring-white/15">
           <div className="rounded-[15px] bg-white px-2.5 pb-3 pt-4 text-tinta">
             <p className="text-[10px] font-semibold text-produto-time">TimeEasier</p>
             <p className="t-data mt-1 text-[20px] font-medium leading-none">08:14</p>

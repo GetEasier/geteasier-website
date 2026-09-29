@@ -1,8 +1,8 @@
 import type { Locale } from '@/lib/seo.config'
 import DemoWindow, { Check, FaceMesh, Pin } from './DemoWindow'
 
-// Nomes, horas e locais fictícios. O ecrã do tablet não mostra textos de estado:
-// os textos reais do produto ainda não foram fornecidos (auditoria, P11).
+// Nomes, horas e locais fictícios. Os textos do tablet são os da app real (ficheiros de tradução do staging),
+// em português também na versão inglesa do site, como aparecem no produto.
 const T = {
   pt: {
     window: 'TimeEasier',
@@ -57,10 +57,19 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
                 <span className="absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-ciano" />
               </div>
             </div>
-            <div data-on="1 2 3" className="mt-3 flex items-center gap-1.5 rounded bg-white px-2 py-1.5 text-tinta">
-              <Check className="text-estado-valido" />
-              <span className="t-data">07:58</span>
-              <span className="truncate font-semibold">Rui M.</span>
+            <div lang="pt-PT" className="demo-stack mt-3">
+              <div data-on="0" className="text-center">
+                <p className="text-small font-semibold">A reconhecer rosto</p>
+                <p className="text-[12px] text-white/70">Mantém-te quieto.</p>
+              </div>
+              <div data-on="1 2 3" className="rounded bg-white px-2 py-1.5 text-center text-tinta">
+                <p className="text-small font-bold">Olá, Rui!</p>
+                <p className="flex items-center justify-center gap-1 text-[12px] font-semibold text-estado-valido">
+                  <Check className="h-3.5 w-3.5" />
+                  Presença registada
+                </p>
+                <span className="t-data mt-1 inline-block rounded-full bg-papel px-2 text-[12px]">07:58</span>
+              </div>
             </div>
           </div>
         </div>
