@@ -31,7 +31,7 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=...
 
 As publicações do Instagram só aparecem com `INSTAGRAM_ACCESS_TOKEN` e `INSTAGRAM_USER_ID`. Sem elas, a página Sobre mostra só a ligação para o perfil.
 
-Outros comandos: `npm run lint`, `npm run typecheck`, `npm run og` (volta a gerar as imagens de partilha quando os títulos mudam).
+Outros comandos: `npm run lint`, `npm run typecheck`, `npm run lastmod` (atualiza as datas do sitemap), `npm run og` (volta a gerar as imagens de partilha quando os títulos mudam).
 
 ## 2. O que mudou, por fase
 
@@ -93,7 +93,7 @@ Código de animação: GSAP 27 KB + ScrollTrigger 17 KB gzip, cerca de 45 KB. Fi
    - Um carácter fora desse conjunto (por exemplo, um alfabeto não latino) aparece na fonte de sistema.
 7. **Ícones em `public/`.** Estão declarados nos metadados dos layouts. Os ficheiros de ícone na raiz de `app/` davam 404 com dois layouts raiz.
 8. **`lastmod` do sitemap.**
-   - Vem da data do último commit dos ficheiros de cada página (`scripts/lastmod.mjs`, no `prebuild`).
+   - Vem da data do último commit dos ficheiros de cada página (`npm run lastmod`, que se corre à mão antes de um commit de conteúdo; não corre no build, para não alterar ficheiros versionados).
    - Fica guardado em `src/lib/lastmod.json`, que é versionado porque a Vercel pode fazer um clone sem histórico.
    - Por isso a data só fica certa no build depois do commit que a atualiza.
 9. **JSON-LD sem preços nem avaliações.** O `operatingSystem` só aparece no TimeEasier, o único com apps nas lojas.
