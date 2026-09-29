@@ -14,6 +14,13 @@ import TimeEasierScene from '@/components/demos/TimeEasierScene'
 import ConstructionEasierScene from '@/components/demos/ConstructionEasierScene'
 import StockEasierScene from '@/components/demos/StockEasierScene'
 import WoodEasierScene from '@/components/demos/WoodEasierScene'
+import ModesDemo from '@/components/ce/ModesDemo'
+import ModuleTabs from '@/components/ce/ModuleTabs'
+import Profiles from '@/components/ce/Profiles'
+import GateFeed from '@/components/ce/GateFeed'
+import KioskLoop from '@/components/checkin/KioskLoop'
+import Faq from '@/components/ui/Faq'
+import { construction } from '@/content/construction'
 import { products } from '@/content/products'
 import { common } from '@/content/common'
 import { href, type Locale, type ProductId } from '@/lib/seo.config'
@@ -58,6 +65,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
           alt=""
           width={460}
           height={400}
+          priority
           className="pointer-events-none absolute -left-24 -top-16 h-80 w-auto opacity-[0.07]"
         />
         <div className="wrap relative pb-16 pt-8 md:pb-24 md:pt-10">
@@ -98,6 +106,34 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
           </div>
         </div>
       </section>
+
+      {id === 'constructionEasier' && <ConstructionSections locale={locale} ctaHref={`${href('contact', locale)}?assunto=${item.demoSubject}`} />}
+
+      {id === 'timeEasier' && (
+        <section aria-labelledby="tablet-titulo" className="border-t border-linha py-16 md:py-24">
+          <div className="wrap grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+            <div>
+              <h2 id="tablet-titulo" className="t-h2">
+                {pt ? 'O tablet à entrada' : 'The tablet at the entrance'}
+              </h2>
+              <p className="mt-4 max-w-prose text-lead text-grafite">
+                {pt
+                  ? 'Cada colaborador toca no ecrã e o tablet reconhece-lhe o rosto. A presença fica registada com a hora. Se o rosto não for reconhecido, entra com o PIN.'
+                  : 'Each employee taps the screen and the tablet recognises their face. Attendance is recorded with the time. If the face isn’t recognised, they sign in with their PIN.'}
+              </p>
+            </div>
+            <KioskLoop
+              labels={{
+                pause: pt ? 'Pausar a animação' : 'Pause the animation',
+                play: pt ? 'Retomar a animação' : 'Play the animation',
+                summary: pt
+                  ? 'Animação do tablet: espera, reconhece o rosto e mostra "Presença registada".'
+                  : 'Tablet animation: waiting, recognising the face and showing "Presença registada" (attendance recorded).',
+              }}
+            />
+          </div>
+        </section>
+      )}
 
       <Section id="funcionalidades" title={item.featuresTitle}>
         <ProductFeatures id={id} locale={locale} />
@@ -144,6 +180,14 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
         </>
       )}
 
+      {id === 'constructionEasier' && (
+        <Section id="perguntas" title={construction[locale].faqTitle}>
+          <div className="max-w-3xl">
+            <Faq items={construction[locale].faq} />
+          </div>
+        </Section>
+      )}
+
       <RelatedLinks title={p.relatedTitle} links={item.related} locale={locale} />
 
       <ContactBand
@@ -154,5 +198,33 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
         cta={demo}
       />
     </SiteShell>
+  )
+}
+
+// Página do ConstructionEasier: demo com modos, módulos, perfis, portaria e feed, e perguntas.
+function ConstructionSections({ locale, ctaHref }: { locale: Locale; ctaHref: string }) {
+  const t = construction[locale]
+  return (
+    <>
+      <Section id="entrada" title={t.modes.title}>
+        <ModesDemo t={t.modes} feed={t.gateFeed} />
+      </Section>
+      <section id="modulos" aria-labelledby="modulos-titulo" className="bg-white py-16 md:py-24">
+        <div className="wrap">
+          <h2 id="modulos-titulo" className="t-h2">
+            {t.modules.title}
+          </h2>
+          <div className="mt-8">
+            <ModuleTabs t={t.modules} ctaHref={ctaHref} />
+          </div>
+        </div>
+      </section>
+      <Section id="perfis" title={t.profiles.title} className="bg-betao">
+        <Profiles t={t.profiles} />
+      </Section>
+      <Section id="portaria" title={t.gateFeed.title} intro={t.gateFeed.text}>
+        <GateFeed t={t.gateFeed} />
+      </Section>
+    </>
   )
 }
