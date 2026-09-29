@@ -89,3 +89,6 @@ dist
 tmp/
 temp/
 
+
+# verificação local (capturas, relatórios)
+.verify/

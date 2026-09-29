@@ -246,3 +246,19 @@ O site vende quatro produtos com nome (TimeEasier, ConstructionEasier, StockEasi
 - **D5.** Remover os gostos e comentários inventados do Instagram. Sem API, a secção mostra só a ligação para o perfil.
 - **D6.** O vídeo do YouTube em `/wood-easier` passa a carregar só com clique (fachada com imagem), para não correr scripts de terceiros ao abrir a página.
 - **D7.** Lint: acrescentar `.eslintrc.json` com `next/core-web-vitals` para que `npm run lint` corra sem assistente.
+
+## 10. Respostas do Alexandre (29/09/2026)
+
+| Pergunta | Resposta | Decisão |
+|---|---|---|
+| P1 | Sim | Quatro produtos, URLs mantidos. Caso de estudo: TimeEasier + ConstructionEasier |
+| P2 | Sim, mas também dá com www | Canonical `https://geteasier.pt`; `www` redireciona com 301 (configuração de domínios na Vercel) |
+| P3 | Sim | StockEasier e WoodEasier |
+| P4 | Pediu esclarecimento | Proposta explicada no thread; aguarda resposta |
+| P5 | Sim, em produção | Identificação facial no registo de ponto pode ser mostrada |
+| P6 | Sim | Leitura de documentos fica fora |
+| P7 | Sim, mas só Bélgica | Fica fora das demos; mantém-se a linha já existente em `/planos` (Bélgica) |
+| P8 | Sim | Terminal IP65 fica fora; demo com tablet genérico |
+| P9 | Não falar de IA | IA fica fora do site |
+| P10 | Não: quer EN também | Versão EN com URLs próprios em `/en` e slugs em inglês, `hreflang` recíproco e `x-default` para PT |
+| P11 | Não | Aguarda os textos reais do tablet; textos provisórios até lá |

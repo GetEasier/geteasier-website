@@ -1,0 +1,39 @@
+// Dados da empresa e do domínio. SITE_URL é definido só aqui.
+
+export const SITE_URL = 'https://geteasier.pt'
+
+export const COMPANY = {
+  name: 'GetEasier',
+  legalName: 'UNIVERSAL IDEAS - LDA',
+  vatId: '517156261',
+  address: {
+    street: 'Alameda do Outeiro, n.º 163',
+    postalCode: '4575-037',
+    locality: 'Alpendorada e Matos, Marco de Canaveses',
+    region: 'Porto',
+    country: 'PT',
+  },
+  whatsapp: {
+    display: '+351 914 223 323',
+    href: 'https://wa.me/351914223323',
+    e164: '+351914223323',
+  },
+  socials: [
+    { name: 'LinkedIn', href: 'https://pt.linkedin.com/company/geteasier' },
+    { name: 'Instagram', href: 'https://www.instagram.com/geteasier.pt/' },
+    { name: 'Facebook', href: 'https://www.facebook.com/people/GetEasier/61558913198805/' },
+  ],
+  apps: {
+    ios: 'https://apps.apple.com/pt/app/timeeasier/id6755851894',
+    android: 'https://play.google.com/store/apps/details?id=com.geteasier.timeeasier&hl=pt_PT',
+  },
+  funding: {
+    pdf: '/documents/ficha-projeto-universal-ideas.pdf',
+    logo: '/images/funding/prr-financiamento.png',
+  },
+} as const
+
+export function absoluteUrl(path: string) {
+  if (path === '/') return SITE_URL
+  return `${SITE_URL}${path}`
+}

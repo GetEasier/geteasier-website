@@ -2,110 +2,149 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tokens em docs/website/design.md */
+:root {
+  --tinta: #06083c;
+  --azul: #1b54b8;
+  --ciano: #18ddba;
+  --papel: #f4f6f9;
+  --grafite: #4a5263;
+  --linha: #c9d1de;
+  --header-h: 4.25rem;
+  color-scheme: light;
+}
+
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-    --marian-blur: 225 57% 32%;
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+  body {
+    @apply bg-papel font-sans text-body text-tinta antialiased;
+    font-stretch: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--azul);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--tinta);
+    color: #fff;
   }
 }
 
-@layer utilities {
-  .clip-left-polygon {
-    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 6vw)); */
-    clip-path: polygon(0 0, 100% 0%, 100% 20%, 0 36%);
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-page px-5 md:px-8;
   }
 
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  /* Larguras de Archivo: títulos expandidos, como letras de placa de obra */
+  .t-display {
+    @apply text-display font-bold;
+    font-stretch: 112%;
+  }
+  .t-h1 {
+    @apply text-h1 font-bold;
+    font-stretch: 108%;
+  }
+  .t-h2 {
+    @apply text-h2;
+    font-weight: 650;
+    font-stretch: 104%;
+  }
+  .t-h3 {
+    @apply text-h3 font-semibold;
+  }
+  .t-data {
+    @apply font-mono text-data;
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+  /* Botões: dizem o que acontece, sem seta colada */
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-ctl px-5 py-3 text-body font-semibold transition-colors duration-150;
+  }
+  .btn-primary {
+    @apply btn bg-azul text-white hover:bg-azul-escuro;
+  }
+  .btn-secondary {
+    @apply btn border border-tinta/80 text-tinta hover:bg-tinta hover:text-white;
+  }
+  .btn-on-dark {
+    @apply btn border border-white/70 text-white hover:bg-white hover:text-tinta;
   }
 
-  @keyframes slideInLeft {
-    from {
-      transform: translateX(-100%);
-      opacity: 0;
+  .link {
+    @apply font-medium text-azul underline decoration-azul/40 underline-offset-4 hover:decoration-azul;
+  }
+
+  /* Ficha técnica: linhas com filete em vez de cartões */
+  .spec {
+    @apply border-t border-linha;
+  }
+  .spec > * {
+    @apply grid gap-1 border-b border-linha py-4 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] md:gap-8;
+  }
+  .spec dt,
+  .spec .spec-term {
+    @apply font-semibold;
+  }
+  .spec dd,
+  .spec .spec-desc {
+    @apply max-w-prose text-grafite;
+  }
+
+  /* Régua de cota à esquerda das secções (desktop) */
+  .ruled {
+    @apply relative;
+  }
+  @media (min-width: 1024px) {
+    .ruled::before {
+      content: '';
+      position: absolute;
+      left: -1.75rem;
+      top: 0.4rem;
+      width: 0.75rem;
+      height: 1px;
+      background: var(--tinta);
     }
-    to {
-      transform: translateX(0);
-      opacity: 1;
+    .ruled::after {
+      content: '';
+      position: absolute;
+      left: -1.4rem;
+      top: 0.4rem;
+      bottom: 0;
+      width: 1px;
+      background: var(--linha);
     }
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .skip-link {
+    @apply absolute left-4 top-3 z-[100] -translate-y-24 rounded-ctl bg-tinta px-4 py-3 font-semibold text-white focus:translate-y-0;
   }
+}
 
-  @keyframes slideUp {
-    from {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .animate-float {
-    animation: float 5s ease-in-out infinite;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
