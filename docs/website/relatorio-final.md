@@ -45,6 +45,8 @@ Outros comandos: `npm run lint`, `npm run typecheck`, `npm run lastmod` (atualiz
 | 5 SEO | bf36daf | JSON-LD, sitemap com hreflang e lastmod, robots, imagens OG |
 | 6 Desempenho | bbfa5c4 | Fonte reduzida, ajustes em telemóvel |
 | 7 Verificação | c4e6957 | `scripts/verify-site.mjs` e `npm run verify` |
+| Revisão visual | 0a84d14 | Depois do comentário do Alexandre ("muito texto"): fotografias e cor de volta, menos texto, montra animada no início, demos automáticas nos produtos |
+| Textos do tablet | 8faa773 | Demos do TimeEasier com os textos reais da app |
 
 ### Páginas
 
@@ -53,17 +55,27 @@ Outros comandos: `npm run lint`, `npm run typecheck`, `npm run lastmod` (atualiz
 
 Nenhum URL antigo mudou, por isso não houve 301 de páginas. As âncoras antigas da página inicial (`#contact`, `#team`, `#products`, `#products-list`) são levadas para as páginas novas. `www.geteasier.pt` redireciona com 301 para `https://geteasier.pt` (`next.config.mjs`).
 
+### Aspeto visual (revisão depois da primeira versão)
+
+- Início com fundo escuro da marca e uma montra animada: janela web do ConstructionEasier, tablet de picagem com reconhecimento facial e telemóvel do TimeEasier.
+- Logótipos dos clientes a cores, fotografias da equipa a cores, painéis de produto com a cor de cada produto.
+- Cada página de produto abre com a cor do produto e uma demo que avança sozinha.
+- Capturas reais do StockEasier e do WoodEasier, já publicadas no site anterior.
+- Texto reduzido: uma frase de abertura por página e funcionalidades em grelha.
+
 ### Animação
 
 Todas as animações correm só sem "reduzir movimento", e sem elas o conteúdo está completo:
 
-- a planta do início desenha-se uma vez, em menos de 3 s;
-- nas páginas de produto em ecrã largo, a demo fica fixa e o scroll avança os passos;
+- a montra do início repete-se em ciclo de 9 s e tem botão de pausa;
+- as demos dos produtos avançam sozinhas enquanto estão visíveis, com botão de pausa e botões para cada passo;
+- fotografias e painéis aparecem com uma revelação curta quando entram no ecrã;
+- a planta da página de software à medida desenha-se uma vez, em menos de 3 s;
 - o diagrama do caso de estudo acende cada parte quando o texto passa;
 - a régua das secções desenha-se com `animation-timeline: view()`, sem JavaScript;
 - a transição entre páginas é um cruzamento curto com `<ViewTransition>`.
 
-Nenhuma animação dura mais de 5 s, por isso não foi preciso botão de pausa.
+As animações que duram mais de 5 s (montra e demos) têm botão de pausa (WCAG 2.2.2).
 
 ### Medições
 
@@ -71,11 +83,11 @@ Lighthouse mobile, local, sobre `next start`:
 
 | Página | Antes (home) | Depois |
 |---|---|---|
-| Desempenho | 79 | 95–99 (6 páginas medidas) |
+| Desempenho | 79 | 93–97 depois da revisão visual (início 97, software à medida 95, TimeEasier 93) |
 | Acessibilidade | 76 | 100 |
 | Boas práticas | 100 | 100 |
 | SEO | 91 | 100 |
-| LCP (lab) | 3,9 s | 1,9–2,8 s |
+| LCP (lab) | 3,9 s | até 3,1 s (TimeEasier) |
 | CLS | – | 0 |
 
 Código de animação: GSAP 27 KB + ScrollTrigger 17 KB gzip, cerca de 45 KB. Fica abaixo dos 70 KB do brief e só é carregado sem "reduzir movimento".
@@ -115,7 +127,8 @@ Código de animação: GSAP 27 KB + ScrollTrigger 17 KB gzip, cerca de 45 KB. Fi
 
 ## 4. O que ficou por fazer ou não foi verificado
 
-- **Textos do tablet do TimeEasier (P11).** O ecrã do tablet na demo não tem texto de estado, só a hora e o nome. Os textos reais entram quando forem enviados.
+- **Textos do tablet do TimeEasier (P11).** Resolvido: a demo usa os textos da app ("A reconhecer rosto", "Olá, Rui!", "Presença registada"), tirados dos ficheiros de tradução.
+- **Capturas da app com sessão iniciada.** O acesso a staging estava bloqueado neste ambiente, por isso não há capturas reais do TimeEasier nem do ConstructionEasier.
 - **Demo de subempreiteiros (P4).** A demo do ConstructionEasier mostra subempreiteiros e o estado dos documentos (válido, a expirar, em falta), com base nas funcionalidades já publicadas. Falta a confirmação do Alexandre.
 - **Envio real do formulário.** Não foi testado, porque este ambiente não tem as chaves do EmailJS.
 - **Site em produção.** Não foi possível compará-lo, porque o acesso a geteasier.pt e ao YouTube estava bloqueado neste ambiente. O vídeo do WoodEasier só carrega depois do clique, e esse carregamento não foi testado aqui.
