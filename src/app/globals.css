@@ -321,6 +321,73 @@
   animation: demo-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Cursor das demos (AutoDemo): vai ao alvo, clica (onda + botão a afundar) e o ecrã muda. */
+.demo-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 3px 4px rgba(6, 8, 60, 0.35));
+  transition:
+    transform 0.9s cubic-bezier(0.45, 0, 0.2, 1),
+    opacity 0.3s ease,
+    scale 0.15s ease;
+}
+.demo-cursor.is-on {
+  opacity: 1;
+}
+.demo-cursor.is-down {
+  scale: 0.82;
+}
+.demo-ripple {
+  position: absolute;
+  z-index: 19;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-radius: 999px;
+  border: 2px solid var(--accent, #1b54b8);
+  pointer-events: none;
+  animation: demo-ripple 0.6s ease-out both;
+}
+@keyframes demo-ripple {
+  from {
+    transform: scale(0.2);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+.demo [data-click] {
+  transition:
+    scale 0.15s ease,
+    box-shadow 0.2s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.demo .is-pressed {
+  scale: 0.94;
+}
+/* Separadores dentro das demos: data-active="1 2" marca o separador aberto nesses passos. */
+.demo [data-active] {
+  color: var(--grafite, #4a5263);
+}
+.demo[data-step='0'] [data-active~='0'],
+.demo[data-step='1'] [data-active~='1'],
+.demo[data-step='2'] [data-active~='2'],
+.demo[data-step='3'] [data-active~='3'],
+.demo[data-step='4'] [data-active~='4'] {
+  color: var(--tinta, #06083c);
+  background-color: #fff;
+  box-shadow: inset 0 -2px 0 var(--accent, #1b54b8);
+}
+
 /* Fase 4: movimento */
 .motion-pending [data-planta] svg {
   visibility: hidden;

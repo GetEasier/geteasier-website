@@ -1,42 +1,66 @@
-import type { Locale } from '@/lib/seo.config'
-import DemoWindow, { Check, FaceMesh, Pin } from './DemoWindow'
+import type { Locale } from "@/lib/seo.config";
+import DemoWindow, { Check, FaceMesh, Pin } from "./DemoWindow";
 
 // Nomes, horas e locais fictícios. Os textos do tablet são os da app real (ficheiros de tradução do staging),
 // em português também na versão inglesa do site, como aparecem no produto.
 const T = {
   pt: {
-    window: 'TimeEasier',
-    gate: 'Portaria',
-    today: 'Registos de hoje',
-    cols: ['Colaborador', 'Hora', 'Aprov.'],
-    tablet: 'Tablet · Portaria',
-    app: 'App · Av. Central',
-    report: 'Relatório de horas · setembro',
-    repCols: ['Colaborador', 'Horas', 'Extra'],
-    export: 'Exportar',
+    window: "TimeEasier",
+    gate: "Portaria",
+    today: "Registos de hoje",
+    cols: ["Colaborador", "Hora", "Aprov."],
+    tablet: "Tablet · Portaria",
+    app: "App · Av. Central",
+    report: "Relatório de horas · setembro",
+    repCols: ["Colaborador", "Horas", "Extra"],
+    export: "Exportar",
+    tabs: ["Registos", "Relatório"],
   },
   en: {
-    window: 'TimeEasier',
-    gate: 'Gate',
-    today: 'Today’s records',
-    cols: ['Employee', 'Time', 'OK'],
-    tablet: 'Tablet · Gate',
-    app: 'App · Av. Central',
-    report: 'Hours report · September',
-    repCols: ['Employee', 'Hours', 'Overtime'],
-    export: 'Export',
+    window: "TimeEasier",
+    gate: "Gate",
+    today: "Today’s records",
+    cols: ["Employee", "Time", "OK"],
+    tablet: "Tablet · Gate",
+    app: "App · Av. Central",
+    report: "Hours report · September",
+    repCols: ["Employee", "Hours", "Overtime"],
+    export: "Export",
+    tabs: ["Records", "Report"],
   },
-}
+};
 
-const ROW = 'grid grid-cols-[minmax(0,1fr)_3.4rem_3.4rem] items-center gap-2 rounded px-2 py-2'
+const ROW =
+  "grid grid-cols-[minmax(0,1fr)_3.4rem_3.4rem] items-center gap-2 rounded px-2 py-2";
 
 export default function TimeEasierDemo({ locale }: { locale: Locale }) {
-  const t = T[locale]
+  const t = T[locale];
   const rows = [
-    { name: 'Ana S.', time: '07:52', where: t.tablet, app: false, on: undefined, hi: undefined },
-    { name: 'Rui M.', time: '07:58', where: t.tablet, app: false, on: '1 2', hi: '1' },
-    { name: 'Carla P.', time: '08:03', where: t.app, app: true, on: undefined, hi: undefined },
-  ]
+    {
+      name: "Ana S.",
+      time: "07:52",
+      where: t.tablet,
+      app: false,
+      on: undefined,
+      hi: undefined,
+    },
+    {
+      name: "Rui M.",
+      time: "07:58",
+      where: t.tablet,
+      app: false,
+      on: "1 2",
+      hi: "1",
+    },
+    {
+      name: "Carla P.",
+      time: "08:03",
+      where: t.app,
+      app: true,
+      on: undefined,
+      hi: undefined,
+    },
+  ];
 
   return (
     <DemoWindow locale={locale} title={t.window}>
@@ -62,79 +86,122 @@ export default function TimeEasierDemo({ locale }: { locale: Locale }) {
                 <p className="text-small font-semibold">A reconhecer rosto</p>
                 <p className="text-[12px] text-white/70">Mantém-te quieto.</p>
               </div>
-              <div data-on="1 2 3" data-pop className="rounded bg-white px-2 py-1.5 text-center text-tinta">
+              <div
+                data-on="1 2 3"
+                data-pop
+                className="rounded bg-white px-2 py-1.5 text-center text-tinta"
+              >
                 <p className="text-small font-bold">Olá, Rui!</p>
                 <p className="flex items-center justify-center gap-1 text-[12px] font-semibold text-estado-valido">
                   <Check className="h-3.5 w-3.5" />
                   Presença registada
                 </p>
-                <span className="t-data mt-1 inline-block rounded-full bg-papel px-2 text-[12px]">07:58</span>
+                <span className="t-data mt-1 inline-block rounded-full bg-papel px-2 text-[12px]">
+                  07:58
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Gestão */}
-        <div className="demo-stack min-w-0">
-          <div data-on="0 1 2" data-screen>
-            <p className="font-semibold">{t.today}</p>
-            <div className="mt-3 border-t border-linha">
-              <div className={`${ROW} t-data text-grafite`}>
-                {t.cols.map((c) => (
-                  <span key={c} className="truncate">
-                    {c}
-                  </span>
-                ))}
-              </div>
-              {rows.map((r) => (
-                <div key={r.name} data-row data-on={r.on} data-hi={r.hi} className={`${ROW} border-t border-linha`}>
-                  <span className="min-w-0">
-                    <span className="block truncate font-semibold">{r.name}</span>
-                    <span className="flex min-w-0 items-center gap-1 text-grafite">
-                      {r.app && <Pin />}
-                      <span className="truncate">{r.where}</span>
-                    </span>
-                  </span>
-                  <span className="t-data">{r.time}</span>
-                  <span className="demo-stack justify-items-center">
-                    <span data-on="0 1" className="text-grafite">
-                      –
-                    </span>
-                    <span data-on="2" data-pop className="text-estado-valido">
-                      <Check />
-                    </span>
-                  </span>
-                </div>
-              ))}
-            </div>
+        <div className="min-w-0">
+          <div className="mb-3 flex gap-1 border-b border-linha text-small">
+            <span
+              data-active="0 1 2"
+              className="rounded-t px-2.5 py-1.5 font-semibold"
+            >
+              {t.tabs[0]}
+            </span>
+            <span
+              data-active="3"
+              data-click="2"
+              className="rounded-t px-2.5 py-1.5 font-semibold"
+            >
+              {t.tabs[1]}
+            </span>
           </div>
-
-          <div data-on="3" data-screen>
-            <p className="font-semibold">{t.report}</p>
-            <div className="mt-3 border-t border-linha">
-              <div className="t-data grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 px-2 py-2 text-grafite">
-                {t.repCols.map((c) => (
-                  <span key={c} className="truncate">
-                    {c}
-                  </span>
+          <div className="demo-stack">
+            <div data-on="0 1 2" data-screen>
+              <p className="font-semibold">{t.today}</p>
+              <div className="mt-3 border-t border-linha">
+                <div className={`${ROW} t-data text-grafite`}>
+                  {t.cols.map((c) => (
+                    <span key={c} className="truncate">
+                      {c}
+                    </span>
+                  ))}
+                </div>
+                {rows.map((r) => (
+                  <div
+                    key={r.name}
+                    data-row
+                    data-on={r.on}
+                    data-hi={r.hi}
+                    className={`${ROW} border-t border-linha`}
+                  >
+                    <span className="min-w-0">
+                      <span className="block truncate font-semibold">
+                        {r.name}
+                      </span>
+                      <span className="flex min-w-0 items-center gap-1 text-grafite">
+                        {r.app && <Pin />}
+                        <span className="truncate">{r.where}</span>
+                      </span>
+                    </span>
+                    <span className="t-data">{r.time}</span>
+                    <span
+                      data-click={r.on ? "1" : undefined}
+                      className="demo-stack justify-items-center rounded py-1"
+                    >
+                      <span data-on="0 1" className="text-grafite">
+                        –
+                      </span>
+                      <span data-on="2" data-pop className="text-estado-valido">
+                        <Check />
+                      </span>
+                    </span>
+                  </div>
                 ))}
               </div>
-              {[
-                ['Ana S.', '168:00', '0:00'],
-                ['Rui M.', '171:30', '3:30'],
-                ['Carla P.', '160:00', '0:00'],
-              ].map(([n, h, x]) => (
-                <div key={n} data-row className="grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 border-t border-linha px-2 py-2">
-                  <span className="truncate font-semibold">{n}</span>
-                  <span className="t-data">{h}</span>
-                  <span className="t-data">{x}</span>
-                </div>
-              ))}
             </div>
-            <span className="mt-4 inline-flex rounded-ctl border border-tinta/80 px-3 py-1.5 font-semibold">{t.export}</span>
+
+            <div data-on="3" data-screen>
+              <p className="font-semibold">{t.report}</p>
+              <div className="mt-3 border-t border-linha">
+                <div className="t-data grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 px-2 py-2 text-grafite">
+                  {t.repCols.map((c) => (
+                    <span key={c} className="truncate">
+                      {c}
+                    </span>
+                  ))}
+                </div>
+                {[
+                  ["Ana S.", "168:00", "0:00"],
+                  ["Rui M.", "171:30", "3:30"],
+                  ["Carla P.", "160:00", "0:00"],
+                ].map(([n, h, x]) => (
+                  <div
+                    key={n}
+                    data-row
+                    className="grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 border-t border-linha px-2 py-2"
+                  >
+                    <span className="truncate font-semibold">{n}</span>
+                    <span className="t-data">{h}</span>
+                    <span className="t-data">{x}</span>
+                  </div>
+                ))}
+              </div>
+              <span
+                data-click="3"
+                className="mt-4 inline-flex rounded-ctl border border-tinta/80 bg-white px-3 py-1.5 font-semibold"
+              >
+                {t.export}
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </DemoWindow>
-  )
+  );
 }
