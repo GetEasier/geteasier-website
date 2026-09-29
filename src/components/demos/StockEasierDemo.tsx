@@ -60,7 +60,7 @@ export default function StockEasierDemo({ locale }: { locale: Locale }) {
       </div>
 
       <div className="relative mt-4 h-3 rounded-sm bg-linha/60" style={bar}>
-        <div data-w className="h-full rounded-sm bg-azul" />
+        <div data-w className="h-full rounded-sm bg-[var(--accent,#1B54B8)]" />
         <div data-on="2 3" className="absolute inset-y-0 left-0 w-[14%] rounded-sm bg-estado-sinal" />
         <div className="absolute -bottom-1.5 -top-1.5 left-[15%] w-px bg-tinta" />
       </div>
@@ -94,7 +94,7 @@ export default function StockEasierDemo({ locale }: { locale: Locale }) {
             {USE.map((v, i) => (
               <div key={t.months[i]} className="flex h-full flex-col justify-end">
                 <span className="t-data text-center">{v}</span>
-                <span className="mt-1 block rounded-t-sm bg-azul" style={{ height: `${v}%` }} />
+                <span className="mt-1 block rounded-t-sm bg-[var(--accent,#1B54B8)]" style={{ height: `${v}%` }} />
               </div>
             ))}
           </div>

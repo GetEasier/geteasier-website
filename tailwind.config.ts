@@ -18,6 +18,17 @@ const config: Config = {
         papel: '#F4F6F9',
         grafite: '#4A5263',
         linha: '#C9D1DE',
+        // Cores dos logótipos de cada produto
+        produto: {
+          time: '#3B5FA8',
+          'time-claro': '#E8EEF9',
+          obras: '#1E7A45',
+          'obras-claro': '#E6F4EC',
+          stock: '#A51F2D',
+          'stock-claro': '#FBEAEC',
+          wood: '#7A3E1C',
+          'wood-claro': '#F6ECE4',
+        },
         estado: {
           valido: '#0F7A5C',
           aviso: '#8F5400',

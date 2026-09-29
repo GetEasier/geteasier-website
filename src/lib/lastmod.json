@@ -1,10 +1,9 @@
 {
   "src/components/demos/ConstructionEasierDemo.tsx": "2026-09-29T09:33:41+00:00",
-  "src/components/demos/DemoStepper.tsx": "2026-09-29T09:33:41+00:00",
   "src/components/demos/DemoWindow.tsx": "2026-09-29T09:33:41+00:00",
   "src/components/demos/StockEasierDemo.tsx": "2026-09-29T09:33:41+00:00",
   "src/components/demos/TimeEasierDemo.tsx": "2026-09-29T09:33:41+00:00",
-  "src/components/demos/WoodEasierDemo.tsx": "2026-09-29T09:33:41+00:00",
+  "src/components/demos/WoodEasierDemo.tsx": "2026-09-29T09:51:40+00:00",
   "src/components/pages/AboutPage.tsx": "2026-09-29T09:23:53+00:00",
   "src/components/pages/ContactPage.tsx": "2026-09-29T09:23:53+00:00",
   "src/components/pages/CustomSoftwarePage.tsx": "2026-09-29T09:23:53+00:00",

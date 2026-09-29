@@ -2,7 +2,9 @@ import Link from 'next/link'
 import SiteShell from '@/components/site/SiteShell'
 import PageHeader from '@/components/ui/PageHeader'
 import Section from '@/components/ui/Section'
-import SpecList from '@/components/ui/SpecList'
+import ProcessSteps from '@/components/ui/ProcessSteps'
+import FeatureGrid from '@/components/ui/FeatureGrid'
+import HeroPlanta from '@/components/HeroPlanta'
 import ContactBand from '@/components/ui/ContactBand'
 import ArchitectureDiagram from '@/components/ArchitectureDiagram'
 import { customSoftware } from '@/content/custom-software'
@@ -17,18 +19,18 @@ export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
 
   return (
     <SiteShell pageId="customSoftware" locale={locale}>
-      <PageHeader pageId="customSoftware" locale={locale} title={t.h1} lead={t.lead}>
+      <PageHeader pageId="customSoftware" locale={locale} title={t.h1} lead={[t.lead[0]]} aside={<HeroPlanta locale={locale} />}>
         <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn-primary">
           {c.cta.project}
         </Link>
       </PageHeader>
 
       <Section id="o-que-construimos" title={t.buildTitle}>
-        <SpecList items={t.build} />
+        <FeatureGrid items={t.build} theme={{ tint: 'bg-azul/10', text: 'text-azul' }} />
       </Section>
 
       <Section id="como-trabalhamos" title={t.processTitle} intro={t.processIntro}>
-        <SpecList items={t.process} numbered />
+        <ProcessSteps items={t.process} />
       </Section>
 
       <section id="caso-de-estudo" aria-labelledby="caso-titulo" className="bg-tinta py-16 text-white md:py-24">
@@ -69,7 +71,7 @@ export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
       </section>
 
       <Section id="tecnologia" title={t.stackTitle} intro={t.stackIntro}>
-        <SpecList items={t.stack} />
+        <FeatureGrid items={t.stack} theme={{ tint: 'bg-ciano/15', text: 'text-azul' }} />
       </Section>
 
       <ContactBand locale={locale} title={t.contactTitle} text={t.contactText} subject="projeto" cta={c.cta.project} />

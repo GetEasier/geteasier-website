@@ -13,7 +13,6 @@ type ST = typeof import('gsap/ScrollTrigger').ScrollTrigger
 // 3. No caso de estudo, o diagrama acende as partes à medida que o texto passa.
 
 let heroPlayed = false
-const HEADER_OFFSET = 100
 
 function hero(gsap: Gsap) {
   const svg = document.querySelector<SVGSVGElement>('[data-planta] svg')
@@ -45,30 +44,6 @@ function hero(gsap: Gsap) {
     .from(svg.querySelector('.planta-registo'), { opacity: 0, y: 10, duration: 0.4 })
 }
 
-function demos(ScrollTrigger: ST) {
-  document.querySelectorAll<HTMLElement>('[data-demo]').forEach((el) => {
-    const buttons = el.querySelectorAll('ol button')
-    const n = buttons.length
-    const send = (i: number) => el.dispatchEvent(new CustomEvent('demo:step', { detail: i }))
-
-    if (el.offsetHeight < window.innerHeight - HEADER_OFFSET - 40) {
-      // Cabe no ecrã: fica fixo enquanto o scroll percorre os passos.
-      ScrollTrigger.create({
-        trigger: el,
-        start: `top top+=${HEADER_OFFSET}`,
-        end: `+=${Math.round(n * window.innerHeight * 0.4)}`,
-        pin: true,
-        onUpdate: (self) => send(Math.min(n - 1, Math.floor(self.progress * n))),
-      })
-    } else {
-      // Ecrã baixo: cada passo ativa-se quando passa pelo meio do ecrã.
-      buttons.forEach((b, i) => {
-        ScrollTrigger.create({ trigger: b, start: 'top 55%', onEnter: () => send(i), onEnterBack: () => send(i) })
-      })
-    }
-  })
-}
-
 function architecture(ScrollTrigger: ST, wide: boolean) {
   const figure = document.querySelector('[data-arch]')
   if (!figure) return
@@ -98,6 +73,37 @@ function architecture(ScrollTrigger: ST, wide: boolean) {
   }
 }
 
+// Entradas ao scroll: fotografias abrem com uma cortina, painéis e logótipos sobem em sequência.
+// Só elementos abaixo do ecrã ficam escondidos à espera; o resto aparece sem animação.
+function reveals(gsap: Gsap, ScrollTrigger: ST) {
+  const below = (el: Element) => el.getBoundingClientRect().top > window.innerHeight * 0.9
+  const photos = gsap.utils.toArray<HTMLElement>('.reveal-photo').filter(below)
+  photos.forEach((el) => {
+    gsap.fromTo(
+      el,
+      { clipPath: 'inset(0 0 100% 0 round 12px)' },
+      {
+        clipPath: 'inset(0 0 0% 0 round 12px)',
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        clearProps: 'clipPath',
+      },
+    )
+  })
+  for (const sel of ['.reveal-panel', '.reveal-logo']) {
+    const els = gsap.utils.toArray<HTMLElement>(sel).filter(below)
+    if (!els.length) continue
+    gsap.set(els, { opacity: 0, y: 32, scale: 0.98 })
+    ScrollTrigger.batch(els, {
+      start: 'top 88%',
+      once: true,
+      onEnter: (batch) =>
+        gsap.to(batch, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out', stagger: 0.1, clearProps: 'transform,opacity' }),
+    })
+  }
+}
+
 export default function Motion() {
   const pathname = usePathname()
 
@@ -123,8 +129,8 @@ export default function Motion() {
             if (!motion) return
             hero(gsap)
             html.classList.remove('motion-pending')
-            if (wide) demos(ScrollTrigger)
             architecture(ScrollTrigger, wide)
+            reveals(gsap, ScrollTrigger)
           },
         )
         revert = () => mm.revert()

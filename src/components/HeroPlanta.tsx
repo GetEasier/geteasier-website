@@ -1,17 +1,23 @@
 // Momento assinatura: planta de linhas de um sistema real (tablet na obra → servidor → obras).
-// Estático e completo por defeito; a animação (Fase 4) só acrescenta o traçado.
+// Estático e completo por defeito; a animação só acrescenta o traçado. Usado em software à medida.
 
-type Labels = {
-  gate: string
-  tablet: string
-  server: string
-  siteA: string
-  siteB: string
-  recordName: string
-  recordSite: string
+import type { Locale } from '@/lib/seo.config'
+
+const TEXT = {
+  pt: {
+    labels: { gate: 'portaria', tablet: 'tablet', server: 'servidor · API', siteA: 'Rua das Flores', siteB: 'Av. Central', recordName: 'Rui M.', recordSite: 'Rua das Flores' },
+    caption:
+      'Desenho de um sistema: o tablet na portaria de uma obra envia um registo ao servidor, que o associa à obra certa. O registo mostra 07:58, Rui M., Rua das Flores. Dados fictícios.',
+  },
+  en: {
+    labels: { gate: 'site gate', tablet: 'tablet', server: 'server · API', siteA: 'Rua das Flores', siteB: 'Av. Central', recordName: 'Rui M.', recordSite: 'Rua das Flores' },
+    caption:
+      'Drawing of a system: the tablet at a construction site gate sends a record to the server, which links it to the right site. The record shows 07:58, Rui M., Rua das Flores. Fictitious data.',
+  },
 }
 
-export default function HeroPlanta({ labels, caption }: { labels: Labels; caption: string }) {
+export default function HeroPlanta({ locale }: { locale: Locale }) {
+  const { labels, caption } = TEXT[locale]
   return (
     <figure className="relative" data-planta>
       <svg viewBox="0 0 560 440" className="h-auto w-full" aria-hidden="true" focusable="false">

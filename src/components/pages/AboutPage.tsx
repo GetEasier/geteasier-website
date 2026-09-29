@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import SiteShell from '@/components/site/SiteShell'
 import PageHeader from '@/components/ui/PageHeader'
 import Section from '@/components/ui/Section'
 import InstagramFeed from '@/components/InstagramFeed'
-import { TEAM, about } from '@/content/about'
+import TeamGrid from '@/components/TeamGrid'
+import { about } from '@/content/about'
 import { COMPANY } from '@/lib/site'
 import { href, route, type Locale } from '@/lib/seo.config'
 
@@ -13,25 +13,10 @@ export default function AboutPage({ locale }: { locale: Locale }) {
   const a = COMPANY.address
   return (
     <SiteShell pageId="about" locale={locale}>
-      <PageHeader pageId="about" locale={locale} title={t.h1} lead={t.lead} />
+      <PageHeader pageId="about" locale={locale} title={t.h1} lead={[t.lead[0]]} />
 
       <Section id="equipa" title={t.teamTitle}>
-        <ul className="grid gap-10 sm:grid-cols-3">
-          {TEAM.map((m) => (
-            <li key={m.name}>
-              <Image
-                src={m.photo}
-                alt={m.name}
-                width={480}
-                height={600}
-                sizes="(min-width: 640px) 30vw, 100vw"
-                className="aspect-[4/5] w-full rounded-frame object-cover grayscale"
-              />
-              <p className="mt-4 font-semibold">{m.name}</p>
-              <p className="text-small text-grafite">{t.roles[m.role]}</p>
-            </li>
-          ))}
-        </ul>
+        <TeamGrid locale={locale} />
       </Section>
 
       <Section id="empresa" title={t.companyTitle}>

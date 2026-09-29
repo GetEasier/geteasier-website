@@ -257,3 +257,78 @@
     animation: none !important;
   }
 }
+
+/* Montra animada do início (HeroShowcase): ciclo de 9 s com pausa. */
+.showcase .sc-scan {
+  animation: sc-scan 9s linear infinite;
+}
+.showcase .sc-chip {
+  animation: sc-chip 9s ease infinite;
+}
+.showcase .sc-toast {
+  animation: sc-toast 9s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+.showcase .sc-row {
+  animation: sc-row 9s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+.showcase .sc-bar {
+  animation: sc-bar 9s ease infinite;
+}
+.showcase.is-paused * {
+  animation-play-state: paused !important;
+}
+@keyframes sc-scan {
+  0% { top: 0; opacity: 1; }
+  11% { top: calc(100% - 2px); opacity: 1; }
+  22% { top: 0; opacity: 1; }
+  24%, 100% { top: 0; opacity: 0; }
+}
+@keyframes sc-chip {
+  0%, 24% { opacity: 0; transform: translateY(6px); }
+  29%, 92% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+@keyframes sc-toast {
+  0%, 34% { opacity: 0; transform: translateY(-10px) scale(0.96); }
+  39%, 88% { opacity: 1; transform: none; }
+  94%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes sc-row {
+  0%, 42% { opacity: 0; transform: translateX(-16px); }
+  48%, 92% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+@keyframes sc-bar {
+  0%, 44% { width: 58%; }
+  52%, 94% { width: 63%; }
+  100% { width: 58%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showcase * {
+    animation: none !important;
+  }
+  .showcase .sc-scan {
+    opacity: 0;
+  }
+  .showcase .sc-bar {
+    width: 63%;
+  }
+  .showcase-toggle {
+    display: none !important;
+  }
+}
+
+/* Fundo escuro com a luz do logótipo (azul e ciano), para o início, a equipa e o contacto. */
+.hero-dark {
+  background-color: var(--tinta);
+  background-image:
+    radial-gradient(60% 70% at 85% 20%, rgba(27, 84, 184, 0.55), transparent 70%),
+    radial-gradient(40% 50% at 10% 100%, rgba(24, 221, 186, 0.18), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    40px 40px,
+    40px 40px;
+}

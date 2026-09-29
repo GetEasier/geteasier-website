@@ -8,7 +8,7 @@ type Props = { locale: Locale; title: string; text: string; subject: string; cta
 export default function ContactBand({ locale, title, text, subject, cta }: Props) {
   const t = common[locale]
   return (
-    <section aria-labelledby="contacto-titulo" className="bg-tinta py-16 text-white md:py-20">
+    <section aria-labelledby="contacto-titulo" className="hero-dark py-16 text-white md:py-20">
       <div className="wrap grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-end">
         <div>
           <h2 id="contacto-titulo" className="t-h2 max-w-[24ch]">
