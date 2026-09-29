@@ -1,0 +1,75 @@
+# Design notes: motion design e demos
+
+Plano aprovado: `motion-design/plano-fase1.md` (pasta do projeto, 29/09/2026). Este ficheiro regista as decisões das fases 2 a 7 e a razão de cada movimento.
+
+## Princípios aplicados
+
+- Um só momento orquestrado no site: o check-in do hero. Tudo o resto é calmo e cada secção do início tem um efeito diferente.
+- Anima-se só `transform`, `opacity` e `clip-path`. Exceções: o `filter: grayscale` dos logótipos (uma vez, nunca em loop) e o `grid-template-rows` do acordeão (pedido no briefing).
+- Tudo o que se mexe sozinho mais de 5 s tem pausa (hero, quiosque, feed, separadores, testemunhos) e pára fora do ecrã e com a aba escondida (`usePlayback`).
+- Com "reduzir movimento": estados finais, sem pin, sem parallax, sem loops, e os botões de pausa desaparecem (`.motion-only`).
+- Sem JavaScript: o HTML servido já está no estado final (hero com os quatro widgets, contadores com o valor, FAQ em `<details>`, testemunhos em lista, caos em três blocos).
+- Estados iniciais escondidos só com JS: a classe `motion-ok` vai para o `<html>` por um script inline, e o GSAP esconde só o que ainda está abaixo do ecrã.
+
+## Tokens
+
+CSS em `src/app/globals.css` (`--dur-*`, `--ease-*`, `--stagger`, `--loop-pausa`) e TS em `src/motion/tokens.ts`.
+`cubic-bezier(0.16, 1, 0.3, 1)` corresponde ao `expo.out` e `cubic-bezier(0.65, 0, 0.35, 1)` ao `power2.inOut`, por isso não foi preciso o CustomEase. `--ease-confirma` (back.out 1.6) só existe no check do reconhecimento facial.
+
+Cores novas: Betão `#E9EAE6` e Caixa 7035 `#C9CCC6` (`bg-betao`, `border-caixa`). O fundo escuro `.hero-dark` perdeu os brilhos azul e ciano (gradientes decorativos) e ficou só com a grelha.
+
+## Mapa de secções e razão do movimento
+
+| Secção | Movimento | Porquê |
+|---|---|---|
+| Cabeçalho | Encolhe 12 px ao descer (só visual, sem mexer no layout) e linha de progresso em CSS `animation-timeline: scroll()` | Mostra onde se está sem ocupar espaço. Sem CLS. |
+| Início: hero | Check-in: espera, scan, pontos ligam-se, moldura verde, check com o único salto; os widgets entram pela ordem da história; parallax ao ponteiro de 6 px só em desktop com rato | É a metáfora do site: quem entra, quando e se está tudo em ordem. |
+| Clientes | Logótipos passam de cinzento a cor um a um, uma vez | Chama a atenção para os clientes reais sem marquee (só há 5). |
+| Software à medida | A fotografia abre da esquerda para a direita ligada ao scroll (portão de obra); o texto acompanha com atraso | Liga a frente de serviços às pessoas reais. |
+| Os 4 produtos | Painéis sobem como uma persiana; o ecrã pequeno de cada produto muda de estado uma vez e repete ao passar o rato | Cada produto mostra logo o que faz. |
+| Do caos ao controlo | A única secção pinned (desktop com altura ≥ 700 px). Scrub em três atos; no terceiro as linhas da folha e os avisos deslocam-se (FLIP) para a vista organizada; SplitText só na frase final | Prova o "porquê" a quem hoje usa Excel e mensagens. |
+| Testemunhos e números | Crossfade com ligeira deslocação, avanço de 9 s com pausa; contadores sobem uma vez | Prova real; os números ficam [CONFIRMAR]. |
+| Equipa | As três fotografias deslizam a velocidades diferentes (só desktop) | Profundidade sem pedir interação. |
+| FAQ | Altura de 0fr a 1fr em 280 ms | Tira objeções antes do CTA. |
+| ConstructionEasier: modos | Troca de modo com crossfade e escala 0,98 → 1; cada micro-demo corre uma vez por escolha | Três coisas que acontecem à entrada sem texto longo. |
+| Módulos | Barra de 6 s; pausa com rato, foco, fora do ecrã, aba escondida, botão e de vez após escolha; o crachá do Rui transita entre vistas (Flip) | Cinco módulos sem cinco secções. |
+| Perfis | Crossfade de 150 ms | Cada leitor encontra a sua dor em duas frases. |
+| Portaria e feed | Quiosque em loop; cada rosto reconhecido entra no topo do feed (Flip) e o contador sobe; o filtro reorganiza com Flip | As duas vistas reais do produto: a portaria e o gabinete. |
+| TimeEasier | Quiosque em loop | Reutiliza a micro-demo do reconhecimento facial. |
+
+## Primitivas
+
+- `src/motion/tokens.ts`, `src/motion/gsap.ts` (import dinâmico partilhado de GSAP, ScrollTrigger e Flip).
+- `src/components/motion/usePlayback.ts` (IntersectionObserver, visibilitychange, reduced motion, pausa), `useTabs.ts` (tablist/tab/tabpanel com setas, Home e End), `PauseButton.tsx`.
+- `src/components/checkin/`: `FaceCheck` (4 estados), `Kiosk` (caixa vertical), `KioskLoop`, `Badge` (o crachá), `CheckInHero`.
+- `src/components/home/`: `ChaosToControl`, `HomeMotion`, `ProductMini`, `Stats`/`Count`, `TestimonialCarousel`.
+- `src/components/ce/`: `ModesDemo`, `DocRead`, `ModuleTabs`, `Profiles`, `GateFeed`.
+- `src/components/ui/Faq.tsx`.
+- `/motion-lab`: todas as primitivas isoladas. `noindex`, fora do sitemap e sem ligações.
+
+## Decisões e desvios ao plano
+
+- `@gsap/react` não entrou: o `useGSAP` obriga a importar o GSAP de forma estática, o que o punha no JS inicial do início. Usei import dinâmico com `gsap.matchMedia()` e `revert()` no cleanup, que é o que o `useGSAP` faz.
+- DrawSVG não entrou: os traços do rosto e do check desenham-se com `pathLength=1` e `stroke-dashoffset` em CSS, sem JS.
+- O FLIP do caos ao controlo usa posições `offsetLeft/Top` (imunes a transformações) em vez de `Flip.fit`, para o scrub continuar certo depois de um resize. O Flip do GSAP é usado no feed e no crachá dos separadores.
+- Sem snap no pin, para não sequestrar o scroll.
+- Lenis não entrou (scroll nativo chega para um pin).
+- A percentagem "98,7 %" não aparece: o tablet real não a mostra. Fica "Rosto verificado".
+- A demo de leitura de documento não tem vista JSON (acessório retirado).
+- Botões das lojas saíram do hero do início (continuam na página do TimeEasier).
+- "Início" é o primeiro item do menu e só fica marcado na página inicial.
+
+## Medições (build de produção, 29/09)
+
+- `npm run verify`: 22 páginas × 3 vistas, tudo certo.
+- Lighthouse mobile, início: performance 96–97, acessibilidade 100, CLS 0, TBT 60–110 ms, LCP 2,4–2,7 s (o h1; atraso de render sob throttling, no limite dos 2,5 s).
+- Lighthouse mobile, ConstructionEasier: performance 99, acessibilidade 97 (contraste dentro da cena da webapp, já existente), CLS 0, LCP 2,2 s.
+- JS de animação novo (gzip): Flip ≈ 10,6 KB, SplitText ≈ 3,3 KB, mais o código dos componentes; GSAP e ScrollTrigger já estavam pagos.
+
+## Por confirmar antes de produção [CONFIRMAR]
+
+- Leitura de documentos: ecrã da app e campos lidos (textos da demo marcados).
+- Siglas AS, RM, CP, AD por extenso.
+- Os três números da secção "Em números".
+- Caixa do tablet: cor real e especificações (IP65 não é afirmado).
+- Empresas fictícias "Cofragens Tejo", "Eletro Douro" e "Construções Marvila" não coincidem com clientes reais.
