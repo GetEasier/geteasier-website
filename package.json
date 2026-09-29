@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "prebuild": "node scripts/lastmod.mjs"
+    "prebuild": "node scripts/lastmod.mjs",
+    "verify": "node scripts/verify-site.mjs",
+    "og": "node --experimental-strip-types scripts/og-images.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
