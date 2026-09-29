@@ -12,13 +12,13 @@ export const viewport: Viewport = { themeColor: '#F4F6F9' }
 
 export default function PtLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-PT" className={`${archivo.variable} ${plexMono.variable}`}>
+    <html lang="pt-PT" suppressHydrationWarning className={`${archivo.variable} ${plexMono.variable}`}>
       <head>
         {/* Esconde a planta do início até a animação arrancar (no máximo 3 s); nunca com "reduzir movimento". */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var d=document.documentElement;d.classList.add('motion-pending');setTimeout(function(){d.classList.remove('motion-pending')},3000)}}catch(e){}",
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var d=document.documentElement;d.classList.add('motion-pending','motion-ok');setTimeout(function(){d.classList.remove('motion-pending')},3000)}}catch(e){}",
           }}
         />
       </head>

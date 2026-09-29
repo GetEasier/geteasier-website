@@ -307,6 +307,6 @@ export function breadcrumbTrail(id: PageId, locale: Locale) {
   return trail
 }
 
-export const MAIN_NAV: PageId[] = ['customSoftware', 'products', 'plans', 'about', 'contact']
+export const MAIN_NAV: PageId[] = ['home', 'customSoftware', 'products', 'plans', 'about', 'contact']
 export const PRODUCT_IDS = ['timeEasier', 'constructionEasier', 'stockEasier', 'woodEasier'] as const
 export type ProductId = (typeof PRODUCT_IDS)[number]

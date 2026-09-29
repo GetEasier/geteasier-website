@@ -16,6 +16,9 @@ const config: Config = {
         azul: { DEFAULT: '#1B54B8', escuro: '#15418F' },
         ciano: '#18DDBA',
         papel: '#F4F6F9',
+        // Materiais da obra (DESIGN_NOTES.md)
+        betao: '#E9EAE6',
+        caixa: '#C9CCC6',
         grafite: '#4A5263',
         linha: '#C9D1DE',
         // Cores dos logótipos de cada produto

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Logo from '@/components/Logo'
 import MobileMenu from './MobileMenu'
+import HeaderScroll from './HeaderScroll'
 import { MAIN_NAV, ROUTES, breadcrumbTrail, href, route, type Locale, type PageId } from '@/lib/seo.config'
 import { common } from '@/content/common'
 
@@ -18,18 +19,26 @@ export function alternateHref(pageId: PageId | null, locale: Locale) {
 export default function Header({ pageId, locale }: Props) {
   const t = common[locale]
   const activeIds = new Set(pageId ? breadcrumbTrail(pageId, locale).map((c) => c.id) : [])
-  const items = MAIN_NAV.map((id) => ({ id, label: route(id, locale).breadcrumb, path: href(id, locale), active: activeIds.has(id) }))
+  // "Início" só fica marcado na própria página inicial (é pai de todas as outras).
+  const items = MAIN_NAV.map((id) => ({
+    id,
+    label: route(id, locale).breadcrumb,
+    path: href(id, locale),
+    active: id === 'home' ? pageId === 'home' : activeIds.has(id),
+  }))
   const other = locale === 'pt' ? 'en' : 'pt'
 
   return (
-    <header className="sticky top-0 z-50 border-b border-linha bg-papel/95 backdrop-blur-[2px] supports-[backdrop-filter]:bg-papel/90">
-      <div className="wrap flex h-[var(--header-h)] items-center justify-between gap-6">
+    <header className="site-header sticky top-0 z-50 h-[var(--header-h)]">
+      <span aria-hidden="true" className="header-panel border-b border-linha bg-papel/95 backdrop-blur-[2px] supports-[backdrop-filter]:bg-papel/90" />
+      <span aria-hidden="true" className="header-progress" />
+      <div className="header-inner wrap flex h-full items-center justify-between gap-6">
         <Link href={href('home', locale)} className="-m-2 p-2 text-tinta" aria-label={t.nav.home}>
           <Logo idPrefix="logo-header" className="h-7 w-auto md:h-8" />
         </Link>
 
         <nav aria-label={t.nav.label} className="hidden lg:block">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-6 xl:gap-7">
             {items.map((item) => (
               <li key={item.id}>
                 <Link
@@ -49,7 +58,7 @@ export default function Header({ pageId, locale }: Props) {
             href={alternateHref(pageId, locale)}
             hrefLang={other === 'pt' ? 'pt-PT' : 'en'}
             lang={other === 'pt' ? 'pt-PT' : 'en'}
-            className="t-data inline-flex min-h-[44px] items-center rounded-ctl px-2 font-medium text-grafite hover:text-tinta"
+            className="inline-flex min-h-[44px] items-center rounded-ctl px-2 text-small font-semibold text-grafite hover:text-tinta"
             title={t.lang.hint}
           >
             <span aria-hidden="true">{t.lang.short}</span>
@@ -68,6 +77,7 @@ export default function Header({ pageId, locale }: Props) {
           langCode={other === 'pt' ? 'pt-PT' : 'en'}
         />
       </div>
+      <HeaderScroll />
     </header>
   )
 }

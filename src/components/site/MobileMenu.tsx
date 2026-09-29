@@ -43,7 +43,7 @@ export default function MobileMenu({ labels, items, ctaHref, langHref, langCode 
           <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" strokeWidth="1.5" className="hidden group-open:block" />
         </svg>
       </summary>
-      <div className="absolute inset-x-0 top-[var(--header-h)] border-b border-linha bg-papel shadow-[0_12px_24px_-16px_rgba(6,8,60,0.35)]">
+      <div className="absolute inset-x-0 top-[calc(var(--header-h)-var(--compact-shift,0px))] border-b border-linha bg-papel shadow-[0_12px_24px_-16px_rgba(6,8,60,0.35)]">
         <nav aria-label={labels.nav} className="wrap py-4">
           <ul className="border-t border-linha">
             {items.map((item) => (
