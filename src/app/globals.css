@@ -3040,3 +3040,36 @@
     transform: none;
   }
 }
+
+/* --- Contactos: assunto em pílulas (rádios nativos escondidos) ------------------------------- */
+.subject-chip {
+  cursor: pointer;
+}
+.subject-chip span {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid var(--linha);
+  background: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--tinta);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+.subject-chip:hover span {
+  border-color: var(--azul);
+}
+.subject-chip input:checked + span {
+  border-color: var(--azul);
+  background: var(--azul);
+  color: #fff;
+}
+.subject-chip input:focus-visible + span {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+}

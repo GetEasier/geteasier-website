@@ -13,7 +13,7 @@ export type SubjectId = (typeof SUBJECT_IDS)[number]
 
 const pt = {
   h1: 'Fale connosco',
-  lead: 'Escreva-nos sobre um projeto de software à medida, peça uma demonstração de um produto ou uma proposta de plano. Respondemos por email.',
+  lead: 'Um projeto à medida, uma demonstração ou uma proposta de plano. Escreva-nos ou fale já no WhatsApp.',
   form: {
     title: 'Enviar mensagem',
     name: 'Nome',
@@ -40,17 +40,31 @@ const pt = {
     planos: 'Proposta de plano',
     outro: 'Outro assunto',
   } satisfies Record<SubjectId, string>,
+  // Etiquetas curtas das pílulas do assunto; o email continua a levar o assunto completo.
+  chips: {
+    projeto: 'Software à medida',
+    'demo-time-easier': 'Demo TimeEasier',
+    'demo-construction-easier': 'Demo ConstructionEasier',
+    'demo-stock-easier': 'Demo StockEasier',
+    'demo-wood-easier': 'Demo WoodEasier',
+    planos: 'Planos',
+    outro: 'Outro',
+  } satisfies Record<SubjectId, string>,
   otherTitle: 'Outras formas de contacto',
   whatsapp: 'WhatsApp',
+  whatsappCta: 'Escrever no WhatsApp',
+  where: 'Onde estamos',
   social: 'Redes sociais',
   address: 'Sede',
+  map: 'Abrir no Google Maps',
+  reply: 'Respondemos por email ao endereço que indicar.',
 }
 
 export type ContactDict = typeof pt
 
 const en: ContactDict = {
   h1: 'Get in touch',
-  lead: 'Write to us about a custom software project, ask for a product demo or for a plan quote. We reply by email.',
+  lead: 'A custom project, a product demo or a plan quote. Write to us or message us on WhatsApp right away.',
   form: {
     title: 'Send a message',
     name: 'Name',
@@ -77,10 +91,23 @@ const en: ContactDict = {
     planos: 'Plan quote',
     outro: 'Something else',
   },
+  chips: {
+    projeto: 'Custom software',
+    'demo-time-easier': 'TimeEasier demo',
+    'demo-construction-easier': 'ConstructionEasier demo',
+    'demo-stock-easier': 'StockEasier demo',
+    'demo-wood-easier': 'WoodEasier demo',
+    planos: 'Plans',
+    outro: 'Other',
+  },
   otherTitle: 'Other ways to reach us',
   whatsapp: 'WhatsApp',
+  whatsappCta: 'Message us on WhatsApp',
+  where: 'Where we are',
   social: 'Social media',
   address: 'Registered office',
+  map: 'Open in Google Maps',
+  reply: 'We reply by email to the address you give us.',
 }
 
 export const contact: Record<Locale, ContactDict> = { pt, en }

@@ -22,14 +22,14 @@ type Labels = {
   privacyLink: string
 }
 
-type Props = { labels: Labels; subjects: Record<SubjectId, string>; privacyHref: string }
+type Props = { labels: Labels; subjects: Record<SubjectId, string>; chips: Record<SubjectId, string>; privacyHref: string }
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 type Errors = Partial<Record<'name' | 'email' | 'message', string>>
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-export default function ContactForm({ labels, subjects, privacyHref }: Props) {
-  const selectRef = useRef<HTMLSelectElement>(null)
+export default function ContactForm({ labels, subjects, chips, privacyHref }: Props) {
+  const [subject, setSubject] = useState<SubjectId>('projeto')
   const [status, setStatus] = useState<Status>('idle')
   const [errors, setErrors] = useState<Errors>({})
   const statusRef = useRef<HTMLParagraphElement>(null)
@@ -37,7 +37,7 @@ export default function ContactForm({ labels, subjects, privacyHref }: Props) {
   // Assunto pré-preenchido a partir de ?assunto=… (as páginas continuam estáticas).
   useEffect(() => {
     const q = new URLSearchParams(window.location.search).get('assunto')
-    if (q && selectRef.current && (SUBJECT_IDS as readonly string[]).includes(q)) selectRef.current.value = q
+    if (q && (SUBJECT_IDS as readonly string[]).includes(q)) setSubject(q as SubjectId)
   }, [])
 
   function validate(form: HTMLFormElement): Errors {
@@ -84,36 +84,51 @@ export default function ContactForm({ labels, subjects, privacyHref }: Props) {
       )
       setStatus('sent')
       form.reset()
+      setSubject('projeto')
     } catch {
       setStatus('error')
     }
     requestAnimationFrame(() => statusRef.current?.focus())
   }
 
-  const field = 'mt-2 block w-full rounded-ctl border border-grafite/60 bg-white px-3.5 py-3 text-body text-tinta placeholder:text-grafite/70 focus:border-azul focus:outline-none focus:ring-2 focus:ring-azul/30 aria-[invalid=true]:border-estado-erro'
+  const field = 'mt-2 block w-full rounded-2xl border border-linha bg-papel/60 px-3.5 py-3 text-body text-tinta placeholder:text-grafite/70 focus:border-azul focus:outline-none focus:ring-2 focus:ring-azul/30 aria-[invalid=true]:border-estado-erro'
   const errorText = 'mt-1.5 text-small text-estado-erro'
 
   return (
-    <form noValidate onSubmit={onSubmit} aria-labelledby="form-titulo" className="max-w-xl">
+    <form noValidate onSubmit={onSubmit} aria-labelledby="form-titulo">
       <h2 id="form-titulo" className="t-h2">
         {labels.title}
       </h2>
 
       <div className="mt-8 space-y-6">
-        <div>
-          <label htmlFor="cf-name" className="font-semibold">
-            {labels.name}
-          </label>
-          <input id="cf-name" name="name" type="text" autoComplete="name" required aria-invalid={!!errors.name} aria-describedby={errors.name ? 'cf-name-err' : undefined} className={field} />
-          {errors.name && <p id="cf-name-err" className={errorText}>{errors.name}</p>}
-        </div>
+        <fieldset>
+          <legend className="font-semibold">{labels.subject}</legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {SUBJECT_IDS.map((id) => (
+              <label key={id} className="subject-chip">
+                <input type="radio" name="subject" value={id} checked={subject === id} onChange={() => setSubject(id)} className="sr-only" />
+                <span>{chips[id]}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
-        <div>
-          <label htmlFor="cf-email" className="font-semibold">
-            {labels.email}
-          </label>
-          <input id="cf-email" name="email" type="email" autoComplete="email" inputMode="email" required aria-invalid={!!errors.email} aria-describedby={errors.email ? 'cf-email-err' : undefined} className={field} />
-          {errors.email && <p id="cf-email-err" className={errorText}>{errors.email}</p>}
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label htmlFor="cf-name" className="font-semibold">
+              {labels.name}
+            </label>
+            <input id="cf-name" name="name" type="text" autoComplete="name" required aria-invalid={!!errors.name} aria-describedby={errors.name ? 'cf-name-err' : undefined} className={field} />
+            {errors.name && <p id="cf-name-err" className={errorText}>{errors.name}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="cf-email" className="font-semibold">
+              {labels.email}
+            </label>
+            <input id="cf-email" name="email" type="email" autoComplete="email" inputMode="email" required aria-invalid={!!errors.email} aria-describedby={errors.email ? 'cf-email-err' : undefined} className={field} />
+            {errors.email && <p id="cf-email-err" className={errorText}>{errors.email}</p>}
+          </div>
         </div>
 
         <div>
@@ -121,19 +136,6 @@ export default function ContactForm({ labels, subjects, privacyHref }: Props) {
             {labels.company}
           </label>
           <input id="cf-company" name="company" type="text" autoComplete="organization" className={field} />
-        </div>
-
-        <div>
-          <label htmlFor="cf-subject" className="font-semibold">
-            {labels.subject}
-          </label>
-          <select ref={selectRef} id="cf-subject" name="subject" defaultValue="projeto" className={field}>
-            {SUBJECT_IDS.map((id) => (
-              <option key={id} value={id}>
-                {subjects[id]}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div>
@@ -146,7 +148,7 @@ export default function ContactForm({ labels, subjects, privacyHref }: Props) {
           <textarea
             id="cf-message"
             name="message"
-            rows={6}
+            rows={5}
             required
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? 'cf-message-hint cf-message-err' : 'cf-message-hint'}
