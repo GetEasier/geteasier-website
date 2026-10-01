@@ -74,7 +74,7 @@ const pt: ProductsDict = {
       name: 'TimeEasier',
       logo: LOGOS.timeEasier,
       icon: ICONS.timeEasier,
-      short: 'Registo de ponto e assiduidade',
+      short: 'Registo de ponto e gestão de RH',
       summary:
         'Os colaboradores registam entradas e saídas num tablet no local de trabalho ou na app. A gestão tem horas, férias, ausências e o relatório mensal pronto.',
       h1: 'Registo de ponto no tablet do local de trabalho ou no telemóvel',
@@ -247,7 +247,7 @@ const en: ProductsDict = {
   items: {
     timeEasier: {
       ...pt.items.timeEasier,
-      short: 'Time and attendance',
+      short: 'Time tracking and HR',
       summary:
         'Employees clock in and out on a workplace tablet or in the mobile app. Managers get hours, holidays, absences and the monthly report ready.',
       h1: 'Clock in on the workplace tablet or on your phone',
