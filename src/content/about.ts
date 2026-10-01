@@ -27,11 +27,11 @@ const pt = {
   },
   teamTitle: 'As pessoas',
   teamText: 'Os três co-fundadores desenham, desenvolvem e dão suporte a cada projeto.',
-  // Alexandre: a partir do CV (01/10). Nelson e Rui: provisórios até haver CV [CONFIRMAR].
+  // Alexandre: a partir do CV (01/10). Rui: dados do Alexandre (01/10). Nelson: provisório até haver CV [CONFIRMAR].
   people: [
-    { bio: 'Mais de 10 anos a desenvolver software para empresas. Na GetEasier cuida da arquitetura e da parte técnica de cada projeto, para que o software seja sólido, seguro e fácil de fazer crescer.', focus: ['Arquitetura', 'Desenvolvimento', 'Integrações'], degree: 'Engenharia Informática' },
+    { bio: 'Mais de 10 anos a desenvolver software para empresas. Na GetEasier cuida da arquitetura e da parte técnica de cada projeto, para que o software seja sólido, seguro e fácil de fazer crescer.', focus: ['Arquitetura', 'Desenvolvimento', 'Integrações', 'DevOps'], degree: 'Engenharia Informática' },
     { bio: 'Transforma cada processo em ecrãs simples de usar e garante que tudo corre bem depois de entregue.', focus: ['Frontend', 'Integrações', 'Qualidade'] },
-    { bio: 'Fala com os clientes, percebe o processo de cada empresa e decide o que entra em cada versão.', focus: ['Produto', 'Clientes', 'Suporte'] },
+    { bio: 'Conhece por dentro a construção e a pedra natural. Na GetEasier fala com os clientes, percebe como cada empresa trabalha e transforma isso no que o software tem de fazer.', focus: ['Produto', 'Processos', 'Segurança no trabalho'], degree: 'Engenharia e Gestão Industrial' },
   ] as Person[],
   codeKeys: { role: 'papel', focus: 'foco', degree: 'formação', certs: 'certificações' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
@@ -61,9 +61,9 @@ const en: AboutDict = {
   teamTitle: 'The people',
   teamText: 'The three co-founders design, build and support every project.',
   people: [
-    { bio: 'Over 10 years building software for companies. At GetEasier he looks after the architecture and technical side of every project, so the software is solid, secure and easy to grow.', focus: ['Architecture', 'Development', 'Integrations'], degree: 'Computer Engineering' },
+    { bio: 'Over 10 years building software for companies. At GetEasier he looks after the architecture and technical side of every project, so the software is solid, secure and easy to grow.', focus: ['Architecture', 'Development', 'Integrations', 'DevOps'], degree: 'Computer Engineering' },
     { bio: 'Turns each process into screens that are simple to use and makes sure everything runs well after delivery.', focus: ['Frontend', 'Integrations', 'Quality'] },
-    { bio: 'Talks to clients, learns how each company works and decides what goes into every release.', focus: ['Product', 'Clients', 'Support'] },
+    { bio: 'Knows construction and natural stone from the inside. At GetEasier he talks to clients, learns how each company works and turns that into what the software must do.', focus: ['Product', 'Processes', 'Health and safety'], degree: 'Industrial Engineering and Management' },
   ] as Person[],
   codeKeys: { role: 'role', focus: 'focus', degree: 'degree', certs: 'certifications' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
