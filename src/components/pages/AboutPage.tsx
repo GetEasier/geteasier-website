@@ -12,7 +12,7 @@ import { COMPANY } from '@/lib/site'
 import { href, PRODUCT_IDS, type Locale } from '@/lib/seo.config'
 
 // Sobre: hero escuro da marca com a fotografia da equipa, as duas frentes em cartões de cor, uma linha
-// animada por co-fundador e os dados da empresa numa faixa compacta. Contacto e financiamento ficam no rodapé.
+// animada por co-fundador. Contacto e financiamento ficam no rodapé.
 export default function AboutPage({ locale }: { locale: Locale }) {
   const t = about[locale]
   const h = home[locale]
@@ -116,42 +116,9 @@ export default function AboutPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Dados da empresa: uma faixa compacta (o financiamento está no rodapé) */}
-      <section aria-labelledby="empresa-titulo" className="py-16 md:py-20">
-        <div className="wrap">
-          <div className="flex flex-col gap-5 rounded-[24px] bg-white p-6 shadow-[0_24px_48px_-30px_rgba(6,8,60,.35)] ring-1 ring-linha md:flex-row md:items-center md:p-7">
-            <h2 id="empresa-titulo" className="t-h3 md:mr-6">
-              {t.companyTitle}
-            </h2>
-            <dl className="grid flex-1 gap-3 sm:grid-cols-2">
-              <Fact label={t.company.legalName} icon={ICON_BUILDING}>
-                {COMPANY.name}, {COMPANY.legalName}
-              </Fact>
-              <Fact label={t.company.vat} icon={ICON_ID}>
-                <span className="t-data text-base">{COMPANY.vatId}</span>
-              </Fact>
-            </dl>
-          </div>
-        </div>
-      </section>
-
       <InstagramFeed title={t.instagramTitle} linkText={t.instagramLink} href={COMPANY.socials[1].href} />
 
     </SiteShell>
-  )
-}
-
-function Fact({ label, icon, children }: { label: string; icon: React.ReactNode; children: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-3 rounded-2xl bg-betao p-4">
-      <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-azul/10 text-azul">
-        {icon}
-      </span>
-      <div>
-        <dt className="text-small text-grafite">{label}</dt>
-        <dd className="font-semibold">{children}</dd>
-      </div>
-    </div>
   )
 }
 
@@ -168,13 +135,7 @@ const svg = (d: React.ReactNode) => (
     {d}
   </svg>
 )
-const ICON_BUILDING = svg(<path d="M3 14V3.5h6V14M9 6.5h4V14M2 14h12M5 6h2M5 8.5h2M5 11h2M11 9h0M11 11.5h0" />)
-const ICON_ID = svg(
-  <>
-    <rect x="2" y="3.5" width="12" height="9" rx="1.5" />
-    <path d="M5 7h3M5 9.5h6" />
-  </>,
-)
+
 const FACT_ICONS = [
   svg(<path d="M9 1.5L3.5 9H8l-1 5.5L12.5 7H8z" />),
   svg(

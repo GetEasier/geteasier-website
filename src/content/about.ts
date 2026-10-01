@@ -33,11 +33,6 @@ const pt = {
   codeKeys: { role: 'papel', focus: 'foco' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
   founder: 'Co-fundador',
-  companyTitle: 'A empresa',
-  company: {
-    legalName: 'Denominação',
-    vat: 'NIPC',
-  },
   instagramTitle: 'Últimas publicações no Instagram',
   instagramLink: 'Seguir a GetEasier no Instagram',
 }
@@ -70,11 +65,6 @@ const en: AboutDict = {
   codeKeys: { role: 'role', focus: 'focus' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
   founder: 'Co-founder',
-  companyTitle: 'The company',
-  company: {
-    legalName: 'Registered name',
-    vat: 'Tax number',
-  },
   instagramTitle: 'Latest Instagram posts',
   instagramLink: 'Follow GetEasier on Instagram',
 }
