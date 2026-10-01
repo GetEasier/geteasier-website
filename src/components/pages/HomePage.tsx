@@ -197,6 +197,33 @@ export default function HomePage({ locale }: { locale: Locale }) {
           <div id="contacto" className="hero-brand self-start rounded-[28px] p-8 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] lg:sticky lg:top-24">
             <h2 className="t-h3">{t.contact.title}</h2>
             <p className="mt-3 text-white/80">{t.contact.text}</p>
+            <ul className="mt-6 space-y-3 border-t border-white/15 pt-6">
+              <li className="flex items-start gap-3">
+                <span aria-hidden="true" className="contact-ico">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2.5 13.5l.9-2.7A5.5 5.5 0 1 1 5.6 12.9z" />
+                  </svg>
+                </span>
+                <span>
+                  <span className="block text-small text-white/60">{t.contact.whatsapp}</span>
+                  <a href={COMPANY.whatsapp.href} target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-ciano">
+                    {COMPANY.whatsapp.display}
+                  </a>
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span aria-hidden="true" className="contact-ico">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
+                    <circle cx="8" cy="6.3" r="1.8" />
+                  </svg>
+                </span>
+                <span>
+                  <span className="block text-small text-white/60">{t.contact.where}</span>
+                  <span className="font-semibold">{COMPANY.address.locality}</span>
+                </span>
+              </li>
+            </ul>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
                 {c.cta.project}
@@ -256,9 +283,8 @@ const MINIS = [
 ]
 
 const FACT_ICONS = [
-  <svg key="pin" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
-    <circle cx="8" cy="6.3" r="1.8" />
+  <svg key="spark" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 1.5L3.5 9H8l-1 5.5L12.5 7H8z" />
   </svg>,
   <svg key="team" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="6" cy="5.5" r="2.3" />

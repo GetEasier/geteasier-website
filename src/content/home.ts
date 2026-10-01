@@ -190,10 +190,12 @@ const pt = {
   teamTitle: 'A equipa',
   teamText: 'As pessoas que desenham, desenvolvem e dão suporte ao seu software.',
   teamLink: 'Sobre a GetEasier',
-  teamFacts: ['Marco de Canaveses', 'Equipa portuguesa', 'Do desenho ao suporte'],
+  teamFacts: ['Jovem e dinâmica', 'Equipa portuguesa', 'Da arquitetura ao suporte'],
   contact: {
     title: 'Fale-nos do processo que quer resolver',
     text: 'Conte-nos onde a sua equipa perde tempo. Respondemos com perguntas concretas e, se fizer sentido, uma proposta.',
+    whatsapp: 'WhatsApp',
+    where: 'Onde estamos',
   },
 }
 
@@ -353,10 +355,12 @@ const en: HomeDict = {
   teamTitle: 'The team',
   teamText: 'The people who design, build and support your software.',
   teamLink: 'About GetEasier',
-  teamFacts: ['Marco de Canaveses, Portugal', 'Portuguese team', 'From design to support'],
+  teamFacts: ['Young and dynamic', 'Portuguese team', 'From architecture to support'],
   contact: {
     title: 'Tell us about the process you want to fix',
     text: 'Tell us where your team loses time. We reply with specific questions and, if it makes sense, a proposal.',
+    whatsapp: 'WhatsApp',
+    where: 'Where we are',
   },
 }
 
