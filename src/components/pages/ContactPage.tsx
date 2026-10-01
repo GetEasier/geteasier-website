@@ -29,8 +29,6 @@ const SOCIAL_ICONS: Record<string, React.ReactNode> = {
 
 export default function ContactPage({ locale }: { locale: Locale }) {
   const t = contact[locale]
-  const a = COMPANY.address
-  const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${a.street}, ${a.postalCode} ${a.locality}`)}`
 
   return (
     <SiteShell pageId="contact" locale={locale}>
@@ -54,7 +52,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <ul className="grid gap-3">
               <li className={TILE}>
                 <span aria-hidden="true" className="contact-ico">
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -69,20 +67,6 @@ export default function ContactPage({ locale }: { locale: Locale }) {
                 </span>
               </li>
               <li className={TILE}>
-                <span aria-hidden="true" className="contact-ico">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
-                    <circle cx="8" cy="6.3" r="1.8" />
-                  </svg>
-                </span>
-                <span>
-                  <span className="block text-small text-white/60">{t.where}</span>
-                  <a href={mapHref} target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-ciano">
-                    {a.locality}
-                  </a>
-                </span>
-              </li>
-              <li className={`${TILE} sm:col-span-2 lg:col-span-1`}>
                 <span aria-hidden="true" className="contact-ico">
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="4" cy="8" r="1.8" />
@@ -115,33 +99,12 @@ export default function ContactPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Formulário num cartão branco; ao lado, a morada completa com ligação ao mapa */}
+      {/* Formulário num cartão branco (sem morada no site, por decisão do Alexandre) */}
       <section id="mensagem" className="scroll-mt-20 py-14 md:py-20">
-        <div className="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)]">
-          <div className="rounded-[28px] bg-white p-6 shadow-[0_24px_50px_-30px_rgba(6,8,60,.35)] ring-1 ring-tinta/5 md:p-10">
+        <div className="wrap">
+          <div className="mx-auto max-w-4xl rounded-[28px] bg-white p-6 shadow-[0_24px_50px_-30px_rgba(6,8,60,.35)] ring-1 ring-tinta/5 md:p-10">
             <ContactForm labels={t.form} subjects={t.subjects} chips={t.chips} privacyHref={href('privacy', 'pt')} />
           </div>
-
-          <aside aria-labelledby="sede-titulo" className="rounded-[28px] bg-white p-6 shadow-[0_24px_50px_-30px_rgba(6,8,60,.35)] ring-1 ring-tinta/5 md:p-8 lg:sticky lg:top-24">
-            <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-2xl bg-azul/10 text-azul">
-              <svg viewBox="0 0 16 16" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2.5 14.5h11M3.5 14.5V6l4.5-3 4.5 3v8.5M6.5 14.5v-3.5h3v3.5" />
-              </svg>
-            </span>
-            <h2 id="sede-titulo" className="mt-4 t-h3">
-              {t.address}
-            </h2>
-            <address className="mt-3 not-italic text-grafite">
-              {COMPANY.name}, {COMPANY.legalName}
-              <br />
-              {a.street}
-              <br />
-              {a.postalCode} {a.locality}
-            </address>
-            <a href={mapHref} target="_blank" rel="noopener noreferrer" className="btn-secondary mt-6 w-full">
-              {t.map}
-            </a>
-          </aside>
         </div>
       </section>
     </SiteShell>

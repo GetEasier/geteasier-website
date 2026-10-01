@@ -50,14 +50,9 @@ const pt = {
     planos: 'Planos',
     outro: 'Outro',
   } satisfies Record<SubjectId, string>,
-  otherTitle: 'Outras formas de contacto',
   whatsapp: 'WhatsApp',
   whatsappCta: 'Escrever no WhatsApp',
-  where: 'Onde estamos',
   social: 'Redes sociais',
-  address: 'Sede',
-  map: 'Abrir no Google Maps',
-  reply: 'Respondemos por email ao endereço que indicar.',
 }
 
 export type ContactDict = typeof pt
@@ -100,14 +95,9 @@ const en: ContactDict = {
     planos: 'Plans',
     outro: 'Other',
   },
-  otherTitle: 'Other ways to reach us',
   whatsapp: 'WhatsApp',
   whatsappCta: 'Message us on WhatsApp',
-  where: 'Where we are',
   social: 'Social media',
-  address: 'Registered office',
-  map: 'Open in Google Maps',
-  reply: 'We reply by email to the address you give us.',
 }
 
 export const contact: Record<Locale, ContactDict> = { pt, en }
