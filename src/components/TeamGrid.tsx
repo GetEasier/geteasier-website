@@ -41,9 +41,6 @@ export default function TeamGrid({
                   <i aria-hidden="true" />
                   {founder}
                 </span>
-                <span aria-hidden="true" className="team-index">
-                  0{i + 1}
-                </span>
                 <div className="team-info">
                   <p className="team-name">{m.name}</p>
                   <p className="team-role">{roles[m.role]}</p>

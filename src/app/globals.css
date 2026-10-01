@@ -3020,17 +3020,6 @@
   background: #18ddba;
   box-shadow: 0 0 0 3px rgba(24, 221, 186, 0.25);
 }
-.team-index {
-  position: absolute;
-  z-index: 1;
-  top: 0.9rem;
-  right: 1.1rem;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
-}
 @media (prefers-reduced-motion: reduce) {
   .team-card,
   .team-card *,
