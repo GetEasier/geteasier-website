@@ -20,8 +20,6 @@ export default function AboutPage({ locale }: { locale: Locale }) {
   const c = common[locale]
   const p = products[locale].items
   const a = COMPANY.address
-  const fullAddress = `${a.street}, ${a.postalCode} ${a.locality}`
-  const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${fullAddress}, Portugal`)}`
 
   return (
     <SiteShell pageId="about" locale={locale}>
@@ -60,13 +58,6 @@ export default function AboutPage({ locale }: { locale: Locale }) {
               sizes="(min-width: 1024px) 45vw, 100vw"
               className="aspect-[4/3] w-full rounded-[28px] object-cover shadow-[0_30px_60px_-30px_rgba(0,0,0,.6)] ring-1 ring-white/10"
             />
-            <span className="absolute -bottom-4 left-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-small font-semibold text-tinta shadow-lg">
-              <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4 text-azul" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
-                <circle cx="8" cy="6.3" r="1.8" />
-              </svg>
-              {t.place}
-            </span>
           </div>
         </div>
       </section>
@@ -128,7 +119,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
       </section>
 
       <section aria-labelledby="clientes-titulo" className="overflow-x-clip bg-white py-12">
-        <ClientMarquee title={h.clientsTitle} labels={h.clientsPause} />
+        <ClientMarquee title={h.clientsTitle} />
       </section>
 
       {/* Empresa e financiamento: dois cartões compactos lado a lado */}
@@ -144,10 +135,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                 <span className="t-data text-base">{COMPANY.vatId}</span>
               </Fact>
               <Fact label={t.company.address} icon={ICON_PIN} wide>
-                {fullAddress}, {a.region}
-                <a href={mapHref} target="_blank" rel="noopener noreferrer" className="link ml-2 whitespace-nowrap">
-                  {t.mapLink}
-                </a>
+                {a.street}, {a.postalCode} {a.locality}, {a.region}
               </Fact>
             </dl>
           </div>

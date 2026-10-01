@@ -7,9 +7,8 @@ export const TEAM = [
 ] as const
 
 const pt = {
-  h1: 'Uma equipa de desenvolvimento em Marco de Canaveses',
+  h1: 'A equipa por trás do seu software',
   lead: 'Somos uma equipa portuguesa de software. Fazemos produtos próprios e software à medida para outras empresas.',
-  place: 'Marco de Canaveses, Porto',
   frontsTitle: 'Duas frentes, a mesma equipa',
   fronts: {
     custom: {
@@ -33,7 +32,6 @@ const pt = {
     vat: 'NIPC',
     address: 'Sede',
   },
-  mapLink: 'Ver no mapa',
   fundingTitle: 'Projeto financiado',
   fundingText: 'Parte do nosso trabalho é financiada pelo PRR, com fundos NextGenerationEU da União Europeia.',
   fundingLink: 'Ficha do projeto (PDF)',
@@ -47,9 +45,8 @@ const pt = {
 export type AboutDict = typeof pt
 
 const en: AboutDict = {
-  h1: 'A software development team in Marco de Canaveses, Portugal',
+  h1: 'The team behind your software',
   lead: 'We are a Portuguese software team. We build our own products and custom software for other companies.',
-  place: 'Marco de Canaveses, Porto',
   frontsTitle: 'Two fronts, one team',
   fronts: {
     custom: {
@@ -73,7 +70,6 @@ const en: AboutDict = {
     vat: 'Tax number',
     address: 'Registered office',
   },
-  mapLink: 'See on the map',
   fundingTitle: 'Funded project',
   fundingText: 'Part of our work is funded by the Portuguese Recovery and Resilience Plan, with NextGenerationEU funds.',
   fundingLink: 'Project summary (PDF, in Portuguese)',
