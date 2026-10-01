@@ -100,3 +100,14 @@ Segunda versão (01/10): a aplicação de exemplo passa a ser de assiduidade (re
 **Arquitetura**: um diagrama SVG (Web, iOS e Android, Tablet → API com autenticação → Registos, Turnos, Relatórios →
 base de dados e ERP · Salários) que se desenha com `stroke-dashoffset` e por onde circulam pedidos (`animateMotion`, só
 montados durante esse passo). A aplicação fica em esboço até ao passo do código e ganha cor quando o código "corre".
+
+Acabamento (01/10, a pedido de "mais profissional, mais efeitos"): barra de progresso no passo atual, luz que acompanha
+o passo, entradas e saídas com desfoque (profundidade), contorno de luz a rodar no diagrama e no editor, fluxo contínuo e
+pulsos na API com latências, cursor a piscar e pipeline Build, Testes, Deploy, brilho a atravessar a aplicação quando o
+código a desenha, e na entrega um cursor que toca em "Registar entrada" (o botão confirma e o número sobe).
+Tudo pausa com o botão, fora do ecrã e com a aba escondida; com "reduzir movimento" nada disto corre.
+
+Clientes: passa a uma faixa contínua (`ClientMarquee`) com pontas a desvanecer, pausa com o rato, o foco e o botão; sem JS
+ou com "reduzir movimento" fica a grelha parada. Substitui o cinzento a ganhar cor.
+Software à medida: os três itens passam a cartões com ícone em gradiente, descrição e uma pequena ilustração (barras, app,
+integração com um ponto a circular).

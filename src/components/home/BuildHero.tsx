@@ -20,7 +20,8 @@ export type BuildLabels = {
   chart: string
   list: string
   clockIn: string
-  tests: string
+  clockedIn: string
+  pipeline: readonly string[]
   integrations: readonly string[]
   deployed: string
   deployedText: string
@@ -44,7 +45,7 @@ export type BuildLabels = {
 // a aplicação ganha cor) · 3 entrega (a mesma aplicação no telemóvel, ligada ao ERP e aos salários).
 // Tudo em HTML e CSS (transform, opacity, clip-path). O ciclo pausa fora do ecrã, com a aba
 // escondida e com o botão. Sem JavaScript ou com "reduzir movimento" fica no estado final.
-const HOLD = [2200, 3600, 2600, LOOP_PAUSE + 2200]
+const HOLD = [2200, 3800, 3800, LOOP_PAUSE + 2600]
 const LAST = HOLD.length - 1
 const BARS = [0.45, 0.62, 0.5, 0.78, 0.66, 0.9, 0.82]
 
@@ -76,7 +77,14 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
   }, [step, running])
 
   return (
-    <div ref={root} className="build" data-step={step} data-leaving={leaving || undefined}>
+    <div
+      ref={root}
+      className="build"
+      data-step={step}
+      data-run={running || undefined}
+      data-leaving={leaving || undefined}
+      style={{ ['--hold' as string]: `${HOLD[step]}ms` }}
+    >
       <p className="sr-only">{t.summary}</p>
 
       <ol aria-hidden="true" className="build-steps">
@@ -84,12 +92,14 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
           <li key={s} data-on={step >= i || undefined} data-now={step === i || undefined}>
             <span className="build-step-n">{i + 1}</span>
             {s}
+            <span key={step === i ? `run-${step}` : 'idle'} className="build-step-bar" />
           </li>
         ))}
       </ol>
 
       <div aria-hidden="true" className="build-stage">
         <div className="build-canvas">
+          <span className="b-spot" />
           {/* A aplicação: começa como esboço e ganha cor */}
           <div className="b-win">
             <div className="b-bar">
@@ -161,7 +171,7 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
           <Arch t={t.arch} live={step === 1} />
 
           {/* 2: o código */}
-          <div className="b-code">
+          <div className="b-code b-glow">
             <span className="b-code-bar">
               <i />
               <i />
@@ -182,13 +192,19 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
               </span>
               <span className="cl" style={{ ['--l' as string]: 4 }}>
                 &lt;/<em className="tg">Painel</em>&gt;
+                <i className="b-caret" />
               </span>
             </code>
-            <span className="b-tests">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3.5 8.5l3 3 6-7" />
-              </svg>
-              {t.tests}
+            <span className="b-pipe">
+              {t.pipeline.map((p, i) => (
+                <span key={p} className="b-pipe-s" style={{ ['--p' as string]: i }}>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3.5 8.5l3 3 6-7" />
+                  </svg>
+                  {p}
+                </span>
+              ))}
+              <span className="b-pipe-bar" />
             </span>
           </div>
 
@@ -197,10 +213,17 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
             <span className="b-phone-notch" />
             <span className="b-phone-t">{t.appTitle}</span>
             <span className="b-phone-kpi">
-              <b>{t.kpis[0][0]}</b>
+              <b className="b-swap">
+                <span>{t.kpis[0][0]}</span>
+                <span>{Number(t.kpis[0][0]) + 1}</span>
+              </b>
               {t.kpis[0][1]}
             </span>
-            <span className="b-phone-btn">{t.clockIn}</span>
+            <span className="b-phone-btn b-swap">
+              <span>{t.clockIn}</span>
+              <span>{t.clockedIn}</span>
+              <i className="b-ripple" />
+            </span>
             <span className="b-phone-bars">
               {BARS.slice(2).map((h, i) => (
                 <i key={i} style={{ ['--h' as string]: h }} />
@@ -226,8 +249,14 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
             ))}
           </ul>
 
+          {/* 3: o cursor toca em "Registar entrada" */}
+          <svg className="b-cursor" viewBox="0 0 24 24">
+            <path d="M5 3l14 8-6 1.6L10 19z" fill="#fff" stroke="#06083c" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+
           {/* 3: publicado */}
           <div className="b-toast">
+            <span className="b-toast-bar" />
             <span className="b-toast-i">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3.5 8.5l3 3 6-7" />
@@ -261,9 +290,14 @@ const EDGES = [
   { d: curve(486, 287, 508, 287), g: 2 },
 ]
 
+const LAT = [
+  { x: 160, y: 104, ms: '18 ms', g: 0.8 },
+  { x: 336, y: 104, ms: '6 ms', g: 1.3 },
+]
+
 function Arch({ t, live }: { t: BuildLabels['arch']; live: boolean }) {
   return (
-    <div className="b-arch">
+    <div className="b-arch b-glow">
       <span className="b-arch-t">{t.title}</span>
       <svg viewBox="0 0 600 330" className="b-arch-svg">
         <defs>
@@ -274,6 +308,21 @@ function Arch({ t, live }: { t: BuildLabels['arch']; live: boolean }) {
         </defs>
         {EDGES.map((e, i) => (
           <path key={i} d={e.d} pathLength={1} className="b-edge" style={{ ['--g' as string]: e.g }} />
+        ))}
+        {EDGES.map((e, i) => (
+          <path key={`f${i}`} d={e.d} className="b-flow" style={{ ['--g' as string]: e.g }} />
+        ))}
+        <g className="b-rings">
+          <rect x="196" y="117" width="108" height="96" rx="16" />
+          <rect x="196" y="117" width="108" height="96" rx="16" />
+        </g>
+        {LAT.map((l) => (
+          <g key={l.ms} className="b-lat" style={{ ['--g' as string]: l.g }}>
+            <rect x={l.x - 22} y={l.y - 10} width="44" height="18" rx="9" />
+            <text x={l.x} y={l.y + 3} textAnchor="middle">
+              {l.ms}
+            </text>
+          </g>
         ))}
         {t.clients.map((c, i) => (
           <g key={c} className="b-node" style={{ ['--g' as string]: 0 }}>

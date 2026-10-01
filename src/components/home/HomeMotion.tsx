@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { belowFold, loadGsap, reducedMotion } from '@/motion/gsap'
-import { DUR, EASE, STAGGER } from '@/motion/tokens'
+import { DUR, EASE } from '@/motion/tokens'
 
 // Efeitos ao descer no início, um diferente por secção (DESIGN_NOTES.md):
 // clientes passam de cinzento a cor, a fotografia do software à medida abre como um portão,
@@ -21,18 +21,6 @@ export default function HomeMotion() {
       const mm = gsap.matchMedia()
       mm.add({ wide: '(min-width: 1024px)', narrow: '(max-width: 1023.98px)' }, (ctx) => {
         const { wide } = ctx.conditions as { wide: boolean }
-
-        // Clientes: os logótipos ganham cor um a um, uma vez (o cinzento inicial vem do CSS .motion-ok).
-        const logos = gsap.utils.toArray<HTMLElement>('[data-client-logo]')
-        if (logos.length) {
-          ScrollTrigger.create({
-            trigger: logos[0].closest('ul'),
-            start: 'top 85%',
-            once: true,
-            onEnter: () =>
-              gsap.to(logos, { filter: 'grayscale(0)', opacity: 1, duration: DUR.reveal, stagger: STAGGER * 2, ease: EASE.entrada, delay: 0.3 }),
-          })
-        }
 
         // Software à medida: a fotografia abre da esquerda para a direita, ligada ao scroll, e o texto
         // acompanha com um atraso curto (só deslocação, sem baixar o contraste).

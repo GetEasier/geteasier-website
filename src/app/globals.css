@@ -1267,11 +1267,6 @@
     transform: scaleX(1);
   }
 }
-/* Clientes: começam a cinzento só com JS e sem "reduzir movimento"; o HomeMotion dá-lhes cor. */
-.motion-ok [data-client-logo] {
-  filter: grayscale(1);
-  opacity: 0.55;
-}
 .kiosk-reader {
   background: #b8bcb5;
   box-shadow: inset 0 1px 2px rgba(6, 8, 60, 0.25);
@@ -1750,6 +1745,7 @@
   transition:
     opacity 450ms ease,
     transform 700ms var(--ease-entrada),
+    filter 600ms ease,
     visibility 0s;
 }
 .b-note {
@@ -1816,22 +1812,7 @@
   clip-path: inset(0 0 0 0);
   transition: clip-path 420ms steps(18, end) calc(250ms + var(--l) * 330ms);
 }
-.b-tests {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  margin-top: 0.7em;
-  border-radius: 999px;
-  background: rgba(24, 221, 186, 0.15);
-  padding: 0.25em 0.7em;
-  font-size: 0.6em;
-  font-weight: 700;
-  color: #18ddba;
-  transition:
-    opacity 300ms ease 2000ms,
-    transform 500ms var(--ease-entrada) 2000ms;
-}
-.b-tests svg,
+.b-pipe svg,
 .b-ints svg,
 .b-toast-i svg {
   width: 1.1em;
@@ -1979,9 +1960,11 @@
 .build:not([data-step='3']) .b-toast {
   opacity: 0;
   visibility: hidden;
+  filter: blur(6px);
   transition:
     opacity 280ms ease,
     transform 400ms ease-in,
+    filter 400ms ease,
     visibility 0s linear 400ms;
 }
 .build:not([data-step='0']) .b-note {
@@ -2015,7 +1998,7 @@
   clip-path: inset(0 100% 0 0);
   transition: none;
 }
-.build:is([data-step='0'], [data-step='1']) .b-tests {
+.build:is([data-step='0'], [data-step='1']) .b-pipe {
   opacity: 0;
   transform: translateY(0.4em);
   transition: none;
@@ -2153,11 +2136,13 @@
 .b-win {
   transition:
     opacity 400ms ease,
-    transform 600ms var(--ease-entrada);
+    transform 600ms var(--ease-entrada),
+    filter 500ms ease;
 }
 .build[data-step='1'] .b-win {
   opacity: 0;
-  transform: scale(0.96);
+  transform: scale(0.94);
+  filter: blur(6px);
 }
 .b-main,
 .b-row > *,
@@ -2181,5 +2166,665 @@
   }
   .build-step-n {
     display: none;
+  }
+}
+
+/* --- Acabamento do BuildHero: progresso, luz, profundidade, cursor -------------------------- */
+@property --b-ang {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.build-steps > li {
+  position: relative;
+  overflow: hidden;
+}
+.build-step-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #1b54b8, #18ddba);
+}
+.build[data-run] .build-steps > li[data-now] .build-step-bar {
+  animation: b-fill var(--hold) linear both;
+}
+@keyframes b-fill {
+  to {
+    width: 100%;
+  }
+}
+.b-spot {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 22em;
+  height: 22em;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, rgba(24, 221, 186, 0.22), rgba(27, 84, 184, 0.12) 55%, transparent);
+  filter: blur(10px);
+  pointer-events: none;
+  transform: translate(14em, -3em);
+  transition: transform 1200ms var(--ease-estado);
+}
+.build[data-step='1'] .b-spot {
+  transform: translate(6em, 2em) scale(1.3);
+}
+.build[data-step='2'] .b-spot {
+  transform: translate(-2em, 8em);
+}
+.build[data-step='3'] .b-spot {
+  transform: translate(13em, 6em) scale(1.15);
+}
+.build-canvas > :not(.b-spot) {
+  z-index: 1;
+}
+.b-win {
+  position: absolute;
+}
+.b-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--b-ang), transparent 0 55%, rgba(24, 221, 186, 0.9) 72%, rgba(130, 170, 255, 0.9) 84%, transparent 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: b-spin 3.6s linear infinite;
+  pointer-events: none;
+}
+@keyframes b-spin {
+  to {
+    --b-ang: 360deg;
+  }
+}
+
+/* Arquitetura: fluxo contínuo, pulsos na API e latências */
+.b-flow {
+  fill: none;
+  stroke: #18ddba;
+  stroke-width: 1.8;
+  stroke-dasharray: 3 12;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: b-march 0.9s linear infinite;
+  transition: opacity 400ms ease calc(900ms + var(--g) * 380ms);
+}
+.build[data-step='1'] .b-flow {
+  opacity: 0.85;
+}
+@keyframes b-march {
+  to {
+    stroke-dashoffset: -15;
+  }
+}
+.b-rings rect {
+  fill: none;
+  stroke: #18ddba;
+  stroke-width: 1.5;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.build[data-run][data-step='1'] .b-rings rect {
+  animation: b-ring 2s ease-out 1.1s infinite;
+}
+.build[data-run][data-step='1'] .b-rings rect + rect {
+  animation-delay: 2.1s;
+}
+@keyframes b-ring {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+.b-lat {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(4px);
+  transition:
+    opacity 400ms ease calc(600ms + var(--g) * 380ms),
+    transform 500ms var(--ease-entrada) calc(600ms + var(--g) * 380ms);
+}
+.build[data-step='1'] .b-lat {
+  opacity: 1;
+  transform: none;
+}
+.b-lat rect {
+  fill: rgba(9, 13, 66, 0.95);
+  stroke: rgba(24, 221, 186, 0.55);
+}
+.b-lat text {
+  fill: #18ddba;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+/* Código: cursor a piscar e pipeline build, testes, deploy */
+.b-caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1.05em;
+  margin-left: 0.25em;
+  vertical-align: -0.15em;
+  background: #18ddba;
+  animation: b-blink 1s steps(1) infinite;
+}
+@keyframes b-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.b-pipe {
+  position: relative;
+  display: flex;
+  gap: 0.45em;
+  margin-top: 0.75em;
+  padding-bottom: 0.55em;
+  transition: opacity 300ms ease 1800ms;
+}
+.b-pipe-s {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  border-radius: 999px;
+  background: rgba(24, 221, 186, 0.15);
+  padding: 0.25em 0.65em;
+  font-size: 0.58em;
+  font-weight: 700;
+  color: #18ddba;
+  transition:
+    opacity 300ms ease calc(2000ms + var(--p) * 380ms),
+    transform 400ms var(--ease-entrada) calc(2000ms + var(--p) * 380ms);
+}
+.build:is([data-step='0'], [data-step='1']) .b-pipe-s {
+  opacity: 0.25;
+  transform: scale(0.9);
+  transition: none;
+}
+.b-pipe-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #1b54b8, #18ddba);
+  transform-origin: left;
+  transition: transform 1200ms var(--ease-estado) 1950ms;
+}
+.build:is([data-step='0'], [data-step='1']) .b-pipe-bar {
+  transform: scaleX(0);
+  transition: none;
+}
+
+/* Brilho que atravessa a aplicação quando o código a "desenha" */
+.b-win::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.build[data-run][data-step='2'] .b-win::after {
+  animation: b-shine 1.2s var(--ease-estado) 1.7s both;
+}
+@keyframes b-shine {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+/* Entrega: o cursor toca em "Registar entrada" e o número sobe */
+.b-swap {
+  display: inline-grid;
+}
+.b-swap > span {
+  grid-area: 1 / 1;
+}
+.b-swap > span:first-child {
+  opacity: 0;
+}
+.build[data-run][data-step='3'] .b-swap > span:first-child {
+  animation: b-out 250ms ease 1.75s both;
+}
+.build[data-run][data-step='3'] .b-swap > span:nth-child(2) {
+  animation: b-in 400ms var(--ease-entrada) 1.75s both;
+}
+@keyframes b-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.4em);
+  }
+}
+@keyframes b-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+}
+.b-phone-btn {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  background: var(--verde);
+  color: #fff;
+}
+.build[data-run][data-step='3'] .b-phone-btn {
+  animation: b-btn 300ms ease 1.75s both;
+}
+@keyframes b-btn {
+  from {
+    background: #18ddba;
+    color: var(--tinta);
+  }
+}
+.b-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3em;
+  height: 3em;
+  margin: -1.5em 0 0 -1.5em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 0;
+}
+.build[data-run][data-step='3'] .b-ripple {
+  animation: b-rip 700ms ease-out 1.6s both;
+}
+@keyframes b-rip {
+  from {
+    opacity: 0.8;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+.b-cursor {
+  position: absolute;
+  z-index: 3 !important;
+  top: 15.2em;
+  left: 29.4em;
+  width: 1.7em;
+  height: 1.7em;
+  opacity: 0;
+  filter: drop-shadow(0 0.3em 0.4em rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+.build[data-run][data-step='3'] .b-cursor {
+  animation: b-cur 2.6s var(--ease-estado) 0.5s both;
+}
+@keyframes b-cur {
+  0% {
+    opacity: 0;
+    transform: translate(-9em, 7em);
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    transform: none;
+  }
+  50% {
+    transform: scale(0.85);
+  }
+  56% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0.6em, 0.8em);
+  }
+}
+.b-toast {
+  overflow: hidden;
+}
+.b-toast-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--verde);
+  transform-origin: left;
+}
+.build[data-run][data-step='3'] .b-toast-bar {
+  animation: b-toastbar 2.4s linear 1.4s both;
+}
+@keyframes b-toastbar {
+  from {
+    transform: scaleX(0);
+  }
+}
+.build:not([data-run]) *,
+.build:not([data-run]) *::before,
+.build:not([data-run]) *::after {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .build *,
+  .build *::before,
+  .build *::after {
+    animation: none !important;
+  }
+  .b-spot {
+    display: none;
+  }
+}
+
+/* --- Clientes: faixa contínua (ClientMarquee) ------------------------------------------------ */
+.clientes-viewport {
+  display: flex;
+  justify-content: center;
+  padding-inline: 1rem;
+}
+.clientes-track {
+  display: flex;
+}
+.clientes-set {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.clientes-set[aria-hidden],
+.clientes-set > [aria-hidden] {
+  display: none;
+}
+.clientes-tile {
+  display: flex;
+  width: 13rem;
+  height: 6rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--caixa, #dce2ea);
+  border-radius: 18px;
+  background: #fff;
+  padding: 0 1.25rem;
+  box-shadow: 0 12px 30px -22px rgba(6, 8, 60, 0.35);
+  transition:
+    transform var(--dur-ui) var(--ease-entrada),
+    box-shadow var(--dur-ui) ease,
+    border-color var(--dur-ui) ease;
+}
+.clientes-tile img {
+  transition: transform var(--dur-ui) var(--ease-entrada);
+}
+.clientes-tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(27, 84, 184, 0.35);
+  box-shadow: 0 22px 40px -24px rgba(27, 84, 184, 0.55);
+}
+.clientes-tile:hover img {
+  transform: scale(1.06);
+}
+.clientes .motion-only {
+  display: none;
+}
+.motion-ok .clientes .motion-only {
+  display: inline-flex;
+}
+.motion-ok .clientes-viewport {
+  display: block;
+  overflow: hidden;
+  padding: 0.75rem 0 1rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.motion-ok .clientes-track {
+  width: max-content;
+  animation: clientes-scroll 38s linear infinite;
+  animation-play-state: paused;
+}
+.motion-ok .clientes[data-run] .clientes-track {
+  animation-play-state: running;
+}
+.motion-ok .clientes-viewport:hover .clientes-track,
+.motion-ok .clientes-viewport:focus-within .clientes-track {
+  animation-play-state: paused;
+}
+.motion-ok .clientes-set {
+  flex-wrap: nowrap;
+  padding-right: 0.75rem;
+}
+.motion-ok .clientes-set[aria-hidden],
+.motion-ok .clientes-set > [aria-hidden] {
+  display: flex;
+}
+@keyframes clientes-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clientes-track {
+    animation: none !important;
+  }
+}
+
+/* --- Software à medida: cartões ------------------------------------------------------------- */
+.medida-card {
+  --c1: #1b54b8;
+  --c2: #18ddba;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--caixa, #dce2ea);
+  border-radius: 22px;
+  background: #fff;
+  padding: 1.75rem 1.75rem 0;
+  box-shadow: 0 20px 44px -30px rgba(6, 8, 60, 0.4);
+  transition:
+    transform 300ms var(--ease-entrada),
+    box-shadow 300ms ease,
+    border-color 300ms ease;
+}
+.medida-card[data-kind='1'] {
+  --c1: #6d4aff;
+  --c2: #1b54b8;
+}
+.medida-card[data-kind='2'] {
+  --c1: #0f7a5c;
+  --c2: #18ddba;
+}
+.medida-card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c2) 28%, transparent), transparent);
+  transition: transform 500ms var(--ease-entrada);
+  pointer-events: none;
+}
+.medida-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--c1) 35%, transparent);
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--c1) 60%, transparent);
+}
+.medida-card:hover::before {
+  transform: scale(1.3) translate(-8%, 8%);
+}
+.medida-icon {
+  position: relative;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: #fff;
+  box-shadow: 0 12px 24px -12px var(--c1);
+}
+.medida-mini {
+  position: relative;
+  display: flex;
+  height: 5.5rem;
+  margin: 1.5rem -1.75rem 0;
+  align-items: flex-end;
+  justify-content: center;
+  border-top: 1px solid #edf1f6;
+  background: linear-gradient(180deg, #f7f9fc, #eef3f9);
+  padding: 0.9rem 1.75rem 0;
+}
+.mini-web {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  gap: 0.45rem;
+}
+.mini-web i {
+  flex: 1;
+  height: calc(var(--h) * 100%);
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, var(--c2), var(--c1));
+  transform-origin: bottom;
+  transition: transform 500ms var(--ease-entrada) calc(var(--j) * 40ms);
+}
+.medida-card:hover .mini-web i:nth-child(odd) {
+  transform: scaleY(1.12);
+}
+.medida-card:hover .mini-web i:nth-child(even) {
+  transform: scaleY(0.85);
+}
+.mini-app {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.mini-app-phone {
+  display: flex;
+  width: 3.4rem;
+  height: 100%;
+  flex-direction: column;
+  gap: 0.3rem;
+  border: 3px solid #111530;
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: #fff;
+  padding: 0.55rem 0.4rem 0;
+}
+.mini-app-phone i {
+  height: 0.35rem;
+  border-radius: 999px;
+  background: #dfe5ee;
+}
+.mini-app-phone i + i {
+  width: 70%;
+}
+.mini-app-phone b {
+  height: 0.9rem;
+  margin-top: 0.15rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+}
+.mini-app-note {
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--c1);
+  box-shadow: 0 10px 20px -14px rgba(6, 8, 60, 0.5);
+  transition: transform 400ms var(--ease-entrada);
+}
+.mini-app-note svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+.medida-card:hover .mini-app-note {
+  transform: translateY(-4px);
+}
+.mini-int {
+  display: flex;
+  width: 100%;
+  align-self: center;
+  align-items: center;
+  margin-top: -0.9rem;
+}
+.mini-int > span {
+  display: grid;
+  min-width: 3rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid #dfe5ee;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--tinta);
+}
+.mini-int > span.is-app {
+  border: 0;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: #fff;
+}
+.mini-int > i {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #b8c2d3 0 6px, transparent 6px 11px);
+}
+.mini-int > i::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--c2);
+  box-shadow: 0 0 8px var(--c2);
+  animation: mini-flow 1.8s ease-in-out infinite;
+}
+.mini-int > i + span + i::after {
+  animation-direction: reverse;
+}
+@keyframes mini-flow {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .medida-card,
+  .medida-card * {
+    transition: none !important;
+    animation: none !important;
   }
 }
