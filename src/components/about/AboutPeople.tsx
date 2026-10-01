@@ -60,25 +60,12 @@ export default function AboutPeople({ locale }: { locale: Locale }) {
                 {p.bio}
               </p>
               <pre className={`${s.code} mt-7`} aria-hidden="true">
-                <span className={s.line} style={{ ['--i' as string]: 0 }}>
-                  <b>const</b> {id} = {'{'}
-                </span>
-                <span className={s.line} style={{ ['--i' as string]: 1 }}>
-                  {'  '}
-                  {t.codeKeys.role}: <em>&apos;{t.roles[m.role]}&apos;</em>,
-                </span>
-                <span className={s.line} style={{ ['--i' as string]: 2 }}>
-                  {'  '}
-                  {t.codeKeys.focus}: [{p.focus.map((f, k) => (
-                    <em key={f}>
-                      &apos;{f}&apos;{k < p.focus.length - 1 ? ', ' : ''}
-                    </em>
-                  ))}],
-                </span>
-                <span className={s.line} style={{ ['--i' as string]: 3 }}>
-                  {'}'}
-                  <i className={s.caret} />
-                </span>
+                {codeLines(id, [
+                  [t.codeKeys.role, [t.roles[m.role]], false],
+                  [t.codeKeys.focus, p.focus, true],
+                  ...('degree' in p && p.degree ? [[t.codeKeys.degree, [p.degree], false] as const] : []),
+                  ...('certs' in p && p.certs ? [[t.codeKeys.certs, p.certs, true] as const] : []),
+                ])}
               </pre>
             </div>
           </li>
@@ -86,4 +73,34 @@ export default function AboutPeople({ locale }: { locale: Locale }) {
       })}
     </ul>
   )
+}
+
+// Cartão de código: `const nome = { chave: 'valor' | ['a', 'b'], ... }`, uma linha por chave.
+function codeLines(id: string, entries: (readonly [string, readonly string[], boolean])[]) {
+  const all = [
+    <>
+      <b>const</b> {id} = {'{'}
+    </>,
+    ...entries.map(([key, values, list]) => (
+      <>
+        {'  '}
+        {key}: {list && '['}
+        {values.map((v, k) => (
+          <em key={v}>
+            &apos;{v}&apos;{k < values.length - 1 ? ', ' : ''}
+          </em>
+        ))}
+        {list && ']'},
+      </>
+    )),
+    <>
+      {'}'}
+      <i className={s.caret} />
+    </>,
+  ]
+  return all.map((line, i) => (
+    <span key={i} className={s.line} style={{ ['--i' as string]: i }}>
+      {line}
+    </span>
+  ))
 }
