@@ -53,8 +53,14 @@ export default function ProductPanels({
               <p className="mt-4 max-w-[34ch] text-lead font-medium">{item.short}</p>
               {long && <p className="mt-2 max-w-[44ch] text-grafite">{item.summary}</p>}
               {mini && <ProductMini id={id} locale={locale} />}
-              <span className={cn('mt-auto inline-flex items-center gap-2 pt-8 font-semibold underline decoration-2 underline-offset-4', theme.text)}>
-                {open(item.name)}
+              <span className={cn('mt-auto block pt-8 font-semibold underline decoration-2 underline-offset-4', theme.text)}>
+                {open(item.name).replace(item.name, '')}
+                <span className="whitespace-nowrap">
+                  {item.name}
+                  <svg aria-hidden="true" viewBox="0 0 16 16" className="ml-1.5 inline-block h-4 w-4 align-[-2px] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
+                </span>
               </span>
             </Link>
           </li>

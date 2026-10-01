@@ -30,7 +30,7 @@ export default function Header({ pageId, locale }: Props) {
 
   return (
     <header className="site-header sticky top-0 z-50 h-[var(--header-h)]">
-      <span aria-hidden="true" className="header-panel border-b border-linha bg-papel/95 backdrop-blur-[2px] supports-[backdrop-filter]:bg-papel/90" />
+      <span aria-hidden="true" className="header-panel border-b border-linha bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/85" />
       <span aria-hidden="true" className="header-progress" />
       <div className="header-inner wrap flex h-full items-center justify-between gap-6">
         <Link href={href('home', locale)} className="-m-2 p-2 text-tinta" aria-label={t.nav.home}>

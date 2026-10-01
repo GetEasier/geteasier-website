@@ -1119,6 +1119,13 @@
   background: var(--tinta);
   color: #fff;
 }
+.carrossel-dark .carrossel-btn {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.carrossel-dark .carrossel-btn:hover {
+  background: #fff;
+  color: var(--tinta);
+}
 
 /* --- Perguntas frequentes (Faq) ------------------------------------------------------------- */
 .faq-js .faq-body {
@@ -1203,11 +1210,6 @@
 }
 .produtos-mini .produto-painel.is-on .mini-b {
   transition-delay: 120ms;
-}
-@media (min-width: 1024px) {
-  .produtos-mini > li:nth-child(even) {
-    margin-top: 2.5rem;
-  }
 }
 
 /* --- Cabeçalho: encolhe ao descer (só visualmente) e mostra o progresso da página ------------ */

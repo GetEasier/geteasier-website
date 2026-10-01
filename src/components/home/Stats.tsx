@@ -2,22 +2,30 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useSeenOnce } from '@/components/motion/usePlayback'
+import { cn } from '@/lib/utils'
 
 type Stat = { value: number | null; suffix: string; label: string }
 
 // Contadores que sobem uma única vez quando entram no ecrã. Sem número confirmado mostram
 // [CONFIRMAR] (nunca um número inventado). Sem JS ou com "reduzir movimento", o valor final.
-export default function Stats({ items, note }: { items: Stat[]; note?: string }) {
+// Tiles: um bloco de cor por número, nas cores dos produtos (início).
+const TILES = ['bg-produto-time-claro text-produto-time', 'bg-produto-obras-claro text-produto-obras', 'bg-produto-stock-claro text-produto-stock']
+
+export default function Stats({ items, note, tiles }: { items: Stat[]; note?: string; tiles?: boolean }) {
   const ref = useRef<HTMLDListElement>(null)
   const seen = useSeenOnce(ref, 0.5)
   return (
     <div>
-      <dl ref={ref} className="grid gap-6 sm:grid-cols-3">
-        {items.map((s) => (
-          <div key={s.label} className="flex flex-col border-t-2 border-tinta pt-3">
-            <dt className="mt-2 text-small font-semibold text-grafite">{s.label}</dt>
+      <dl ref={ref} className={cn('grid sm:grid-cols-3', tiles ? 'gap-3 lg:grid-cols-1' : 'gap-6')}>
+        {items.map((s, i) => (
+          <div key={s.label} className={cn('flex flex-col', tiles ? cn('rounded-frame p-5', TILES[i % TILES.length]) : 'border-t-2 border-tinta pt-3')}>
+            <dt className={cn('mt-2 text-small font-semibold', tiles ? 'text-tinta' : 'text-grafite')}>{s.label}</dt>
             <dd className="t-data order-first text-[2.25rem] font-medium leading-none">
-              {s.value == null ? '[CONFIRMAR]' : <Count to={s.value} run={seen} suffix={s.suffix} />}
+              {s.value == null ? (
+                <span className="inline-block rounded-full border border-dashed border-current px-3 py-1 text-small font-semibold">[CONFIRMAR]</span>
+              ) : (
+                <Count to={s.value} run={seen} suffix={s.suffix} />
+              )}
             </dd>
           </div>
         ))}

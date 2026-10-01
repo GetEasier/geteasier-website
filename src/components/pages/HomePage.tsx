@@ -45,14 +45,14 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section aria-labelledby="clientes-titulo" className="bg-white py-10">
+      <section aria-labelledby="clientes-titulo" className="bg-white py-12">
         <div className="wrap">
-          <h2 id="clientes-titulo" className="text-small font-semibold text-grafite">
+          <h2 id="clientes-titulo" className="text-center text-small font-semibold uppercase tracking-[0.08em] text-grafite">
             {t.clientsTitle}
           </h2>
-          <ul className="mt-5 grid grid-cols-2 items-center gap-x-10 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
             {CLIENTS.map((client) => (
-              <li key={client.name} className="flex h-16 items-center">
+              <li key={client.name} className="flex h-24 items-center justify-center rounded-frame border border-caixa bg-white px-5 shadow-[0_12px_30px_-22px_rgba(6,8,60,.35)] max-sm:last:col-span-2">
                 <Image src={client.logo} alt={client.name} width={160} height={64} data-client-logo className="max-h-14 w-auto object-contain" />
               </li>
             ))}
@@ -118,20 +118,18 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section id="testimonials" aria-labelledby="testemunhos-titulo" className="py-16 md:py-24">
-        <div className="wrap grid gap-12 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] lg:gap-16">
-          <div>
-            <h2 id="testemunhos-titulo" className="t-h2">
-              {t.testimonialsTitle}
-            </h2>
-            <div className="mt-8">
-              <TestimonialCarousel labels={t.carousel} lang={locale} />
+      <section id="testimonials" aria-labelledby="testemunhos-titulo" className="bg-white py-16 md:py-24">
+        <div className="wrap">
+          <h2 id="testemunhos-titulo" className="t-h2">
+            {t.testimonialsTitle}
+          </h2>
+          <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)]">
+            <div className="hero-brand rounded-[28px] p-7 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] md:p-12">
+              <TestimonialCarousel labels={t.carousel} lang={locale} dark />
             </div>
-          </div>
-          <div>
-            <h3 className="t-h3">{t.stats.title}</h3>
-            <div className="mt-6 [&_dl]:sm:grid-cols-1">
-              <Stats items={t.stats.items} note={t.stats.note} />
+            <div>
+              <h3 className="sr-only">{t.stats.title}</h3>
+              <Stats items={t.stats.items} note={t.stats.note} tiles />
             </div>
           </div>
         </div>
@@ -169,14 +167,14 @@ export default function HomePage({ locale }: { locale: Locale }) {
               </Link>
             </p>
           </div>
-          <div id="contacto" className="self-start rounded-[20px] bg-white p-7 shadow-[0_30px_60px_-30px_rgba(6,8,60,.35)] lg:sticky lg:top-24">
+          <div id="contacto" className="hero-brand self-start rounded-[28px] p-8 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] lg:sticky lg:top-24">
             <h2 className="t-h3">{t.contact.title}</h2>
-            <p className="mt-3 text-grafite">{t.contact.text}</p>
+            <p className="mt-3 text-white/80">{t.contact.text}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn-primary">
+              <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
                 {c.cta.project}
               </Link>
-              <a href={COMPANY.whatsapp.href} className="btn-secondary" target="_blank" rel="noopener noreferrer">
+              <a href={COMPANY.whatsapp.href} className="btn-on-dark" target="_blank" rel="noopener noreferrer">
                 {c.cta.whatsapp}
               </a>
             </div>

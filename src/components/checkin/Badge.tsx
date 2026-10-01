@@ -38,8 +38,8 @@ export default function Badge({
           {initials}
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block truncate font-semibold leading-tight">{name}</span>
-          <span className="block truncate text-[13px] leading-snug text-grafite">
+          <span className={cn('block font-semibold leading-tight', size === 'sm' ? 'break-words' : 'truncate')}>{name}</span>
+          <span className={cn('block text-[13px] leading-snug text-grafite', size === 'sm' ? 'break-words' : 'truncate')}>
             {company}
             {role ? `, ${role}` : ''}
           </span>
