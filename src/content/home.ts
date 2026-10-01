@@ -37,6 +37,31 @@ export const CLIENTS = [
 ] as const
 
 const pt = {
+  build: {
+    summary:
+      'Ilustração animada com dados de exemplo: um pedido de um cliente passa a esboço, o esboço ganha cor, o código é escrito e testado, e a aplicação chega ao computador e ao telemóvel, ligada ao ERP, aos salários e à faturação.',
+    steps: ['Ideia', 'Desenho', 'Código', 'Entrega'],
+    sample: 'dados de exemplo',
+    noteKicker: 'O pedido',
+    note: 'Ver as encomendas de toda a equipa num só sítio',
+    url: 'app.suaempresa.pt',
+    appTitle: 'Encomendas',
+    newBtn: 'Nova',
+    nav: ['Início', 'Encomendas', 'Clientes', 'Relatórios'],
+    kpis: [
+      ['128', 'encomendas'],
+      ['96 %', 'a tempo'],
+      ['12', 'por aprovar'],
+    ],
+    chart: 'Por semana',
+    list: 'Últimas',
+    tests: 'Testes passaram',
+    integrations: ['ERP', 'Salários', 'Faturação'],
+    deployed: 'Versão 1.0 publicada',
+    deployedText: 'Web, iOS e Android',
+    pause: 'Pausar a animação',
+    play: 'Retomar a animação',
+  },
   hero: {
     summary:
       'Ilustração animada com dados de exemplo: o Rui Marques, da Cofragens Tejo, chega à portaria da Obra Marvila, o tablet reconhece-lhe o rosto, a entrada fica registada às 07:42 e o responsável recebe um aviso de que o seguro da Cofragens Tejo expira em 12 dias.',
@@ -158,6 +183,31 @@ const pt = {
 export type HomeDict = typeof pt
 
 const en: HomeDict = {
+  build: {
+    summary:
+      'Animated illustration with sample data: a client request becomes a sketch, the sketch gets colour, the code is written and tested, and the app reaches the computer and the phone, connected to the ERP, payroll and invoicing.',
+    steps: ['Idea', 'Design', 'Code', 'Launch'],
+    sample: 'sample data',
+    noteKicker: 'The request',
+    note: 'See every order from the whole team in one place',
+    url: 'app.yourcompany.com',
+    appTitle: 'Orders',
+    newBtn: 'New',
+    nav: ['Home', 'Orders', 'Clients', 'Reports'],
+    kpis: [
+      ['128', 'orders'],
+      ['96%', 'on time'],
+      ['12', 'to approve'],
+    ],
+    chart: 'Per week',
+    list: 'Latest',
+    tests: 'Tests passed',
+    integrations: ['ERP', 'Payroll', 'Invoicing'],
+    deployed: 'Version 1.0 released',
+    deployedText: 'Web, iOS and Android',
+    pause: 'Pause the animation',
+    play: 'Resume the animation',
+  },
   hero: {
     summary:
       'Animated illustration with sample data: Rui Marques, from Cofragens Tejo, arrives at the Marvila site gate, the tablet recognises his face, the entry is recorded at 07:42 and the manager is told that Cofragens Tejo’s insurance expires in 12 days.',

@@ -4,7 +4,7 @@ import SiteShell from '@/components/site/SiteShell'
 import LegacyHashRedirect from '@/components/LegacyHashRedirect'
 import ProductPanels from '@/components/ProductPanels'
 import TeamGrid from '@/components/TeamGrid'
-import CheckInHero from '@/components/checkin/CheckInHero'
+import BuildHero from '@/components/home/BuildHero'
 import ChaosToControl from '@/components/home/ChaosToControl'
 import HomeMotion from '@/components/home/HomeMotion'
 import Stats from '@/components/home/Stats'
@@ -26,7 +26,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <LegacyHashRedirect locale={locale} />
       <HomeMotion />
 
-      {/* Hero: fundo tinta com a luz da marca, o título em HTML estático (visível antes de qualquer JS) e o check-in ao lado */}
+      {/* Hero: fundo tinta com a luz da marca, o título em HTML estático (visível antes de qualquer JS) e, ao lado, como fazemos software à medida */}
       <section className="hero-brand overflow-x-clip text-white">
         <div className="wrap grid items-center gap-8 pb-12 pt-10 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-12">
           <div>
@@ -41,7 +41,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
               </Link>
             </div>
           </div>
-          <CheckInHero t={t.hero} dark />
+          <BuildHero t={t.build} />
         </div>
       </section>
 

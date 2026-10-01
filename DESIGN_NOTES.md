@@ -86,3 +86,12 @@ Comparou três versões do início e escolheu a B:
 - Menos cinzento: o token `betao` passa a `#F4F6F9` e `caixa` a `#DCE2EA` (os nomes ficam para não mexer em todos os componentes).
 
 Lighthouse mobile depois da mudança: início 89–97 (variação entre corridas), ConstructionEasier 98; CLS 0; `npm run verify` passa.
+
+## Revisão de 01/10/2026: hero do início sobre software à medida
+
+O Alexandre pediu uma animação genérica sobre desenvolvimento à medida em vez do check-in (registo de ponto).
+`BuildHero` conta quatro passos, com os nomes visíveis por cima: **Ideia** (a aplicação é um esboço tracejado e há um post-it com o pedido),
+**Desenho** (os blocos ganham cor e o gráfico sobe), **Código** (o editor escreve as linhas e os testes passam) e **Entrega**
+(a mesma aplicação no telemóvel, ligada ao ERP, salários e faturação, e "Versão 1.0 publicada").
+Tudo em HTML e CSS com tamanhos em `em` sobre `container-type: inline-size`, por isso escala igual no telemóvel.
+Pausa, fora do ecrã e "reduzir movimento" como no check-in; sem JS fica no passo final. O `CheckInHero` continua no motion lab.
