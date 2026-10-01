@@ -29,7 +29,7 @@ type Errors = Partial<Record<'name' | 'email' | 'message', string>>
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 export default function ContactForm({ labels, subjects, chips, privacyHref }: Props) {
-  const [subject, setSubject] = useState<SubjectId>('projeto')
+  const subjectsRef = useRef<HTMLFieldSetElement>(null)
   const [status, setStatus] = useState<Status>('idle')
   const [errors, setErrors] = useState<Errors>({})
   const statusRef = useRef<HTMLParagraphElement>(null)
@@ -37,7 +37,9 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
   // Assunto pré-preenchido a partir de ?assunto=… (as páginas continuam estáticas).
   useEffect(() => {
     const q = new URLSearchParams(window.location.search).get('assunto')
-    if (q && (SUBJECT_IDS as readonly string[]).includes(q)) setSubject(q as SubjectId)
+    if (!q || !(SUBJECT_IDS as readonly string[]).includes(q)) return
+    const radio = subjectsRef.current?.querySelector<HTMLInputElement>(`input[value="${q}"]`)
+    if (radio) radio.checked = true
   }, [])
 
   function validate(form: HTMLFormElement): Errors {
@@ -84,7 +86,6 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
       )
       setStatus('sent')
       form.reset()
-      setSubject('projeto')
     } catch {
       setStatus('error')
     }
@@ -101,12 +102,12 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
       </h2>
 
       <div className="mt-8 space-y-6">
-        <fieldset>
+        <fieldset ref={subjectsRef}>
           <legend className="font-semibold">{labels.subject}</legend>
           <div className="mt-3 flex flex-wrap gap-2">
             {SUBJECT_IDS.map((id) => (
               <label key={id} className="subject-chip">
-                <input type="radio" name="subject" value={id} checked={subject === id} onChange={() => setSubject(id)} className="sr-only" />
+                <input type="radio" name="subject" value={id} defaultChecked={id === 'projeto'} className="sr-only" />
                 <span>{chips[id]}</span>
               </label>
             ))}
