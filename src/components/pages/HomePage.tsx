@@ -47,7 +47,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <section aria-labelledby="clientes-titulo" className="overflow-x-clip bg-white pb-6 pt-12">
-        <ClientMarquee title={t.clientsTitle} labels={t.clientsPause} />
+        <ClientMarquee title={t.clientsTitle} />
       </section>
 
       {/* Software à medida: a fotografia real da equipa abre como um portão de obra; ao lado, os três tipos de trabalho em cartões compactos */}
@@ -121,7 +121,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
           </h2>
         </div>
         <div className="mt-10">
-          <TestimonialMarquee labels={t.testimonialsPause} />
+          <TestimonialMarquee />
         </div>
         <div className="wrap">
           {locale === 'en' && <p className="mt-4 text-small text-grafite">Quoted in the original Portuguese.</p>}

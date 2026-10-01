@@ -825,10 +825,6 @@
   opacity: 0 !important;
   transition-duration: 280ms !important;
 }
-.checkin-pause {
-  display: flex;
-  margin-inline: auto;
-}
 
 @media (min-width: 1024px) {
   .checkin-stage {
@@ -878,9 +874,6 @@
   .checkin .w-par {
     transform: translate3d(calc(var(--px, 0) * var(--d, 1) * 6px), calc(var(--py, 0) * var(--d, 1) * 6px), 0);
     transition: transform 700ms var(--ease-entrada);
-  }
-  .checkin-pause {
-    margin-inline: auto 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1483,10 +1476,6 @@
   font-size: calc(100cqw / 34);
   line-height: 1.25;
 }
-.build-pause {
-  display: flex;
-  margin-inline: auto;
-}
 @media (max-width: 639.98px) {
   .build-steps {
     gap: 0.35rem;
@@ -1500,11 +1489,6 @@
     width: 1.25rem;
     height: 1.25rem;
     font-size: 0.6875rem;
-  }
-}
-@media (min-width: 1024px) {
-  .build-pause {
-    margin-inline: auto 0;
   }
 }
 
@@ -2579,12 +2563,6 @@
 .clientes-tile:hover img {
   transform: scale(1.06);
 }
-.clientes .motion-only {
-  display: none;
-}
-.motion-ok .clientes .motion-only {
-  display: inline-flex;
-}
 .motion-ok .clientes-viewport {
   display: block;
   overflow: hidden;
@@ -2922,12 +2900,6 @@
 .tf-set > [aria-hidden] {
   display: none;
 }
-.testemunhos-faixa .motion-only {
-  display: none;
-}
-.motion-ok .testemunhos-faixa .motion-only {
-  display: inline-flex;
-}
 .motion-ok .tf-viewport {
   max-width: none;
   overflow: hidden;
@@ -2964,5 +2936,107 @@
 @media (prefers-reduced-motion: reduce) {
   .tf-track {
     animation: none !important;
+  }
+}
+
+/* --- Rodapé (Footer.tsx) -------------------------------------------------------------------- */
+.footer-brand {
+  background-color: var(--tinta);
+  background-image:
+    radial-gradient(55% 60% at 90% 0%, rgba(27, 84, 184, 0.55), transparent 70%),
+    radial-gradient(40% 55% at 0% 100%, rgba(24, 221, 186, 0.16), transparent 70%);
+}
+.footer-brand::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(80% 70% at 70% 20%, #000, transparent);
+  mask-image: radial-gradient(80% 70% at 70% 20%, #000, transparent);
+  pointer-events: none;
+}
+.footer-cta {
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 30px 60px -40px rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.footer-link {
+  position: relative;
+  display: inline-block;
+  transition: color 150ms, transform 200ms var(--ease-entrada);
+}
+.footer-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--ciano);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms var(--ease-entrada);
+}
+.footer-link:hover::after,
+.footer-link:focus-visible::after {
+  transform: scaleX(1);
+}
+.footer-social {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: background-color 150ms, color 150ms, transform 200ms var(--ease-entrada);
+}
+.footer-social svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.footer-social:hover,
+.footer-social:focus-visible {
+  background: var(--ciano);
+  color: var(--tinta);
+  transform: translateY(-2px);
+}
+.footer-funding {
+  display: inline-block;
+  border-radius: 12px;
+  opacity: 0.85;
+  transition: opacity 150ms, transform 200ms var(--ease-entrada);
+}
+.footer-funding:hover,
+.footer-funding:focus-visible {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+.footer-mark {
+  position: absolute;
+  right: -6rem;
+  bottom: -5rem;
+  width: 30rem;
+  fill: #fff;
+  opacity: 0.035;
+  pointer-events: none;
+}
+@media (max-width: 767.98px) {
+  .footer-mark {
+    width: 18rem;
+    right: -5rem;
+    bottom: -3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-social:hover,
+  .footer-funding:hover {
+    transform: none;
   }
 }

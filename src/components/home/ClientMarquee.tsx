@@ -2,16 +2,15 @@
 
 import Image from 'next/image'
 import { useRef } from 'react'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { CLIENTS } from '@/content/home'
 
 // Clientes: os logótipos passam devagar numa faixa contínua, com as pontas a desvanecer. Para com o
-// rato ou o foco em cima, fora do ecrã, com a aba escondida e com o botão (WCAG 2.2.2). Sem JS ou com
+// rato ou o foco em cima, fora do ecrã e com a aba escondida. Sem JS ou com
 // "reduzir movimento", os cinco ficam numa grelha parada.
-export default function ClientMarquee({ title, labels }: { title: string; labels: { pause: string; play: string } }) {
+export default function ClientMarquee({ title }: { title: string }) {
   const root = useRef<HTMLDivElement>(null)
-  const { running, paused, setPaused } = usePlayback(root)
+  const { running } = usePlayback(root)
 
   return (
     <div ref={root} className="clientes" data-run={running || undefined}>
@@ -32,9 +31,6 @@ export default function ClientMarquee({ title, labels }: { title: string; labels
             </ul>
           ))}
         </div>
-      </div>
-      <div className="mt-3 flex justify-center">
-        <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={labels} />
       </div>
     </div>
   )

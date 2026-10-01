@@ -123,3 +123,7 @@ Os três cartões de cor passam devagar na horizontal (70 s por volta, mesma key
 ### Do caos ao controlo genérico + rodapé (2026-10-01)
 No início, "Do caos ao controlo" passa a contar uma manhã numa empresa qualquer (pedidos numa folha, post-its, foto do quadro → pedidos com responsável, prazo e estado), para vender o software à medida sem parecer página de produto. A versão da obra passou para a página do ConstructionEasier, logo a seguir ao hero, com o mesmo componente.
 Rodapé: o logótipo dos apoios (PRR) é branco com fundo transparente e estava dentro de uma caixa branca, por isso aparecia uma barra branca vazia. Agora fica direto no fundo escuro, com uma ligação visível para descarregar a ficha do projeto.
+
+### Rodapé novo e sem botões de pausa (2026-10-01)
+Rodapé com o fundo da marca e grelha, colunas com títulos em ciano, redes em ícones redondos, coluna de contacto (WhatsApp e morada) e o símbolo da marca em grande e quase invisível no canto. Fora do início e dos contactos (que já acabam num cartão de contacto) abre com um convite a falar. Clicar nos logótipos dos apoios descarrega a ficha do projeto; a ligação de texto saiu.
+Por pedido do Alexandre, saíram todos os botões de pausar animações (PauseButton e o botão da CameraDemo). As animações continuam a parar fora do ecrã, com a aba escondida e com "reduzir movimento"; as faixas de clientes e testemunhos param com o rato ou o foco em cima.

@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Kiosk from './Kiosk'
 import FaceCheck, { type FaceState } from './FaceCheck'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { LOOP_PAUSE } from '@/motion/tokens'
 
@@ -17,7 +16,7 @@ const STEPS: [FaceState, number][] = [
 // ecrã, com a aba escondida e com o botão; com "reduzir movimento" fica no estado final.
 export default function KioskLoop({ labels, label }: { labels: { pause: string; play: string; summary: string }; label?: string }) {
   const root = useRef<HTMLDivElement>(null)
-  const { running, paused, setPaused } = usePlayback(root)
+  const { running } = usePlayback(root)
   const [i, setI] = useState(2)
   useEffect(() => {
     if (!running) return
@@ -32,7 +31,6 @@ export default function KioskLoop({ labels, label }: { labels: { pause: string; 
           <FaceCheck state={STEPS[i][0]} />
         </Kiosk>
       </div>
-      <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={labels} className="mx-auto mt-2 flex" />
     </div>
   )
 }

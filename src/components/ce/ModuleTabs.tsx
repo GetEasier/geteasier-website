@@ -5,7 +5,6 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import Kiosk from '@/components/checkin/Kiosk'
 import FaceCheck from '@/components/checkin/FaceCheck'
 import Badge, { StatusIcon, type DocStatus } from '@/components/checkin/Badge'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { useTabs } from '@/components/motion/useTabs'
 import type { ConstructionDict } from '@/content/construction'
@@ -22,7 +21,7 @@ export default function ModuleTabs({ t, ctaHref }: { t: T; ctaHref: string }) {
   const root = useRef<HTMLDivElement>(null)
   const kit = useRef<Kit | null>(null)
   const flip = useRef<ReturnType<Kit['Flip']['getState']> | null>(null)
-  const { running, paused, setPaused } = usePlayback(root)
+  const { running } = usePlayback(root)
   const [active, setActive] = useState(0)
   const [hold, setHold] = useState(false)
   const [chosen, setChosen] = useState(false)
@@ -101,7 +100,6 @@ export default function ModuleTabs({ t, ctaHref }: { t: T; ctaHref: string }) {
           </div>
         ))}
       </div>
-      {!chosen && <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={t} className="mt-4" />}
     </div>
   )
 }

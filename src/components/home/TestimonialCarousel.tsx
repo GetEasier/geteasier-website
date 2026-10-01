@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { TESTIMONIALS } from '@/content/home'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { cn } from '@/lib/utils'
 
@@ -17,7 +16,7 @@ const noop = () => () => {}
 // Sem JS, os três aparecem em lista.
 export default function TestimonialCarousel({ labels, lang, dark }: { labels: Labels; lang: 'pt' | 'en'; dark?: boolean }) {
   const root = useRef<HTMLDivElement>(null)
-  const { running, paused, setPaused } = usePlayback(root)
+  const { running, setPaused } = usePlayback(root)
   const [i, setI] = useState(0)
   const [hover, setHover] = useState(false)
   // true só no cliente, depois da hidratação (sem JS os testemunhos ficam em lista).
@@ -86,7 +85,6 @@ export default function TestimonialCarousel({ labels, lang, dark }: { labels: La
             </svg>
           </button>
           <span className={cn('px-2 text-small font-semibold', dark ? 'text-white/70' : 'text-grafite')}>{labels.of.replace('{i}', String(i + 1)).replace('{n}', String(n))}</span>
-          <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={labels} dark={dark} className="ml-auto" />
         </div>
       )}
       {lang === 'en' && <p className={cn('mt-6 text-small', dark ? 'text-white/70' : 'text-grafite')}>Quoted in the original Portuguese.</p>}

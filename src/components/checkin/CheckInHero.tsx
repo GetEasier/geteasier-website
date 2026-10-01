@@ -4,10 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import FaceCheck, { type FaceState } from './FaceCheck'
 import Kiosk from './Kiosk'
 import Badge, { StatusIcon } from './Badge'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { LOOP_PAUSE } from '@/motion/tokens'
-import { cn } from '@/lib/utils'
 
 export type CheckInLabels = {
   summary: string
@@ -33,10 +31,10 @@ const HOLD = [1400, 2300, 1500, 1500, LOOP_PAUSE + 1200]
 const LAST = HOLD.length - 1
 const FACE: FaceState[] = ['wait', 'scan', 'ok', 'ok', 'ok']
 
-export default function CheckInHero({ t, dark }: { t: CheckInLabels; dark?: boolean }) {
+export default function CheckInHero({ t }: { t: CheckInLabels; dark?: boolean }) {
   const root = useRef<HTMLDivElement>(null)
   const stage = useRef<HTMLDivElement>(null)
-  const { running, reduced, paused, setPaused } = usePlayback(root)
+  const { running, reduced } = usePlayback(root)
   const [step, setStep] = useState(LAST)
   const [leaving, setLeaving] = useState(false)
   const started = useRef(false)
@@ -140,7 +138,6 @@ export default function CheckInHero({ t, dark }: { t: CheckInLabels; dark?: bool
           </li>
         </ol>
       </div>
-      <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={t} dark={dark} className={cn('checkin-pause mt-2')} />
     </div>
   )
 }

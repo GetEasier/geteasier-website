@@ -29,6 +29,9 @@ const pt = {
       'Financiado pela União Europeia, NextGenerationEU, Plano de Recuperação e Resiliência, República Portuguesa',
     fundingDownload: 'Descarregar a ficha do projeto financiado (PDF)',
     whatsapp: 'WhatsApp',
+    contact: 'Contacto',
+    ctaTitle: 'Tem uma ideia para a sua empresa?',
+    ctaText: 'Conte-nos como trabalham hoje e mostramos o que dá para simplificar.',
     legalOnlyPt: '',
   },
   cta: {
@@ -75,6 +78,9 @@ const en: CommonDict = {
       'Funded by the European Union, NextGenerationEU, Recovery and Resilience Plan, Portuguese Republic',
     fundingDownload: 'Download the funded project summary (PDF, in Portuguese)',
     whatsapp: 'WhatsApp',
+    contact: 'Contact',
+    ctaTitle: 'Have an idea for your business?',
+    ctaText: 'Tell us how you work today and we will show you what can be simplified.',
     legalOnlyPt: 'Legal documents are available in Portuguese.',
   },
   cta: {

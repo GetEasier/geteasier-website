@@ -312,31 +312,6 @@ export default function CameraDemo({
             </span>
           </button>
         ))}
-        {motionOk && (
-          <button
-            type="button"
-            onClick={() => {
-              if (!playing) setCam(WIDE);
-              setPlaying((p) => !p);
-            }}
-            aria-pressed={!playing}
-            className="ml-auto flex min-h-[32px] items-center gap-2 rounded-full px-3 text-small font-medium text-grafite ring-1 ring-linha hover:bg-white"
-          >
-            <svg
-              viewBox="0 0 12 12"
-              className="h-3 w-3"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              {playing ? (
-                <path d="M2 1h3v10H2zM7 1h3v10H7z" />
-              ) : (
-                <path d="M2 1l9 5-9 5z" />
-              )}
-            </svg>
-            {playing ? labels.pause : labels.play}
-          </button>
-        )}
       </div>
     </div>
   );

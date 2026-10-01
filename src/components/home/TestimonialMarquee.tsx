@@ -2,16 +2,15 @@
 
 import Image from 'next/image'
 import { useRef } from 'react'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { TESTIMONIALS } from '@/content/home'
 
 // Testemunhos numa faixa que anda devagar na horizontal, com as pontas a desvanecer. Para com o rato
-// ou o foco em cima (para se conseguir ler), fora do ecrã, com a aba escondida e com o botão
-// (WCAG 2.2.2). Sem JS ou com "reduzir movimento", os três ficam numa grelha parada.
-export default function TestimonialMarquee({ labels }: { labels: { pause: string; play: string } }) {
+// ou o foco em cima (para se conseguir ler), fora do ecrã e com a aba escondida.
+// Sem JS ou com "reduzir movimento", os três ficam numa grelha parada.
+export default function TestimonialMarquee() {
   const root = useRef<HTMLDivElement>(null)
-  const { running, paused, setPaused } = usePlayback(root)
+  const { running } = usePlayback(root)
   const n = TESTIMONIALS.length
 
   return (
@@ -45,9 +44,6 @@ export default function TestimonialMarquee({ labels }: { labels: { pause: string
             </ul>
           ))}
         </div>
-      </div>
-      <div className="wrap mt-2 flex justify-center">
-        <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={labels} />
       </div>
     </div>
   )

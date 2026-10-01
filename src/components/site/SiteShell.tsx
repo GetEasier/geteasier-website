@@ -32,7 +32,8 @@ export default function SiteShell({ pageId, locale, children }: { pageId: PageId
       <main id="conteudo" tabIndex={-1} className="outline-none">
         <ViewTransition>{children}</ViewTransition>
       </main>
-      <Footer locale={locale} />
+      {/* O início e os contactos já acabam num cartão de contacto; nas outras páginas é o rodapé que convida a falar */}
+      <Footer locale={locale} cta={pageId !== 'home' && pageId !== 'contact'} />
       <Motion />
     </>
   )

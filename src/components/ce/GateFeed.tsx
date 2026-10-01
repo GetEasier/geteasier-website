@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import Kiosk from '@/components/checkin/Kiosk'
 import FaceCheck, { type FaceState } from '@/components/checkin/FaceCheck'
 import Badge from '@/components/checkin/Badge'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import type { ConstructionDict } from '@/content/construction'
 import { loadGsap, reducedMotion, type Kit } from '@/motion/gsap'
@@ -41,7 +40,7 @@ export default function GateFeed({ t, withKiosk = true }: { t: T; withKiosk?: bo
   const root = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
   const kit = useRef<Kit | null>(null)
-  const { running, paused, setPaused } = usePlayback(root)
+  const { running } = usePlayback(root)
   const [people, setPeople] = useState<Person[]>(() => [...ARRIVALS].reverse().concat(START))
   const [filter, setFilter] = useState<string | null>(null)
   const [face, setFace] = useState(0)
@@ -152,11 +151,6 @@ export default function GateFeed({ t, withKiosk = true }: { t: T; withKiosk?: bo
             </li>
           ))}
         </ul>
-        {withKiosk && (
-          <div className="flex justify-end border-t border-caixa px-2">
-            <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={t} />
-          </div>
-        )}
       </div>
     </div>
   )

@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import PauseButton from '@/components/motion/PauseButton'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { LOOP_PAUSE } from '@/motion/tokens'
 import { cn } from '@/lib/utils'
@@ -51,7 +50,7 @@ const BARS = [0.45, 0.62, 0.5, 0.78, 0.66, 0.9, 0.82]
 
 export default function BuildHero({ t }: { t: BuildLabels }) {
   const root = useRef<HTMLDivElement>(null)
-  const { running, paused, setPaused } = usePlayback(root)
+  const { running } = usePlayback(root)
   const [step, setStep] = useState(LAST)
   const [leaving, setLeaving] = useState(false)
   const started = useRef(false)
@@ -270,7 +269,6 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
         </div>
       </div>
 
-      <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={t} dark className="build-pause mt-2" />
     </div>
   )
 }
