@@ -33,7 +33,7 @@ export default function TeamGrid({
               width={480}
               height={600}
               sizes="(min-width: 640px) 30vw, 100vw"
-              className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              className="aspect-[4/5] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
             />
             {lively ? (
               <>
