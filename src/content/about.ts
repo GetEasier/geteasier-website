@@ -24,9 +24,9 @@ const pt = {
   },
   teamTitle: 'As pessoas',
   teamText: 'Os três co-fundadores desenham, desenvolvem e dão suporte a cada projeto.',
-  // Textos provisórios por pessoa [CONFIRMAR com o Alexandre].
+  // Alexandre: a partir do CV (01/10). Nelson e Rui: provisórios até haver CV [CONFIRMAR].
   people: [
-    { bio: 'Desenha a arquitetura dos projetos e escreve boa parte do código, do servidor às apps móveis.', focus: ['Arquitetura', 'Backend', 'Apps móveis'] },
+    { bio: 'Engenheiro de software com mais de 8 anos em sistemas empresariais. Desenhou e construiu de raiz a plataforma da GetEasier, do servidor em Java às apps, incluindo o reconhecimento facial do TimeEasier.', focus: ['Arquitetura', 'Java e Spring Boot', 'DevOps'] },
     { bio: 'Transforma cada processo em ecrãs simples de usar e garante que tudo corre bem depois de entregue.', focus: ['Frontend', 'Integrações', 'Qualidade'] },
     { bio: 'Fala com os clientes, percebe o processo de cada empresa e decide o que entra em cada versão.', focus: ['Produto', 'Clientes', 'Suporte'] },
   ],
@@ -58,7 +58,7 @@ const en: AboutDict = {
   teamTitle: 'The people',
   teamText: 'The three co-founders design, build and support every project.',
   people: [
-    { bio: 'Designs the architecture of each project and writes much of the code, from the server to the mobile apps.', focus: ['Architecture', 'Backend', 'Mobile apps'] },
+    { bio: 'Software engineer with 8+ years on enterprise systems. Designed and built the GetEasier platform from scratch, from the Java backend to the apps, including TimeEasier facial recognition.', focus: ['Architecture', 'Java and Spring Boot', 'DevOps'] },
     { bio: 'Turns each process into screens that are simple to use and makes sure everything runs well after delivery.', focus: ['Frontend', 'Integrations', 'Quality'] },
     { bio: 'Talks to clients, learns how each company works and decides what goes into every release.', focus: ['Product', 'Clients', 'Support'] },
   ],
