@@ -67,19 +67,19 @@
   --c1: #1b54b8;
   --c2: #18ddba;
 }
-[data-c='1'] {
+.cs-page [data-c='1'] {
   --c1: #6d4aff;
   --c2: #1b54b8;
 }
-[data-c='2'] {
+.cs-page [data-c='2'] {
   --c1: #0f7a5c;
   --c2: #18ddba;
 }
-[data-c='3'] {
+.cs-page [data-c='3'] {
   --c1: #e2572b;
   --c2: #f5a524;
 }
-[data-c='4'] {
+.cs-page [data-c='4'] {
   --c1: #0e7490;
   --c2: #18ddba;
 }
@@ -111,10 +111,39 @@
     height: 2px;
     border-radius: 2px;
     background: linear-gradient(90deg, #1b54b8, #6d4aff, #18ddba);
-    opacity: 0.35;
+    opacity: 0.25;
+  }
+  /* A linha enche-se ao descer a página (onde o browser suporta animações ligadas ao scroll) */
+  @supports (animation-timeline: view()) {
+    .cs-steps::after {
+      content: '';
+      position: absolute;
+      top: 1.375rem;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #1b54b8, #6d4aff, #18ddba);
+      transform-origin: left;
+      animation: cs-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 60% cover 55%;
+    }
+  }
+}
+@keyframes cs-fill {
+  from {
+    transform: scaleX(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-steps::after {
+    animation: none !important;
   }
 }
 .cs-step .cs-icon {
+  position: relative;
+  z-index: 1;
   margin-inline: auto;
 }
 
@@ -159,28 +188,91 @@
 }
 
 /* --- Arquitetura montada ao scroll ------------------------------------------------------------ */
-.cs-arch-sticky {
+/* Pista alta com um painel preso: o scroll dentro da pista monta o diagrama, sem espaços vazios */
+.cs-arch-track {
+  position: relative;
+  height: calc(100svh + 6 * 38vh);
+}
+.cs-arch-pin {
   position: sticky;
-  top: calc(var(--header-h, 4rem) + 0.75rem);
-  z-index: 2;
-  align-self: start;
+  top: var(--header-h, 4.25rem);
+  display: grid;
+  height: calc(100svh - var(--header-h, 4.25rem));
+  align-content: center;
+  gap: 1.25rem;
+  padding-block: 1rem;
+}
+@media (min-width: 1024px) {
+  .cs-arch-pin {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: 3.5rem;
+  }
 }
 .cs-arch {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  background: #080b45;
+  background: rgba(8, 11, 69, 0.85);
   padding: 0.75rem;
   box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.8);
 }
+@media (min-width: 1024px) {
+  .cs-arch svg {
+    max-height: calc(100svh - var(--header-h, 4.25rem) - 4rem);
+  }
+}
 .cs-arch-steps {
   display: grid;
-  gap: 12vh;
-  padding-bottom: 20vh;
+  gap: 0.6rem;
 }
-@media (min-width: 1024px) {
-  .cs-arch-steps {
-    gap: 16vh;
-    padding-block: 8vh 30vh;
+.cs-arch-steps .cs-proof-item {
+  opacity: 0.45;
+  transition:
+    opacity 300ms ease,
+    border-color 300ms ease,
+    background-color 300ms ease,
+    transform 400ms var(--ease-entrada);
+}
+.cs-arch-steps .cs-proof-item.is-done {
+  opacity: 0.75;
+}
+.cs-arch-steps .cs-proof-item.is-on {
+  opacity: 1;
+  transform: translateX(6px);
+}
+.cs-arch-dots {
+  display: none;
+}
+/* No telemóvel só se vê o passo atual, com pontos de progresso por baixo */
+@media (max-width: 1023px) {
+  .cs-arch-steps .cs-proof-item:not(.is-on) {
+    display: none;
+  }
+  .cs-arch-steps .cs-proof-item.is-on {
+    transform: none;
+    animation: arch-step-in 400ms var(--ease-entrada);
+  }
+  .cs-arch-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+  }
+  .cs-arch-dots li {
+    width: 1.5rem;
+    height: 0.25rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background-color 300ms ease;
+  }
+  .cs-arch-dots li.is-on {
+    background: #18ddba;
+  }
+}
+@keyframes arch-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 }
 .arch-layer {
@@ -282,6 +374,10 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .cs-arch-steps .cs-proof-item {
+    animation: none !important;
+    transition: none !important;
+  }
   .arch-layer,
   .arch-box,
   .arch-link,
@@ -666,5 +762,365 @@
 @media (min-width: 768px) {
   .cs-quote {
     padding: 3rem;
+  }
+}
+
+/* --- O que construímos em mosaico --------------------------------------------------------------- */
+[data-area='web'] {
+  grid-area: web;
+}
+[data-area='mobile'] {
+  grid-area: mobile;
+}
+[data-area='int'] {
+  grid-area: int;
+}
+[data-area='tenants'] {
+  grid-area: tenants;
+}
+[data-area='support'] {
+  grid-area: support;
+}
+[data-area='cta'] {
+  grid-area: cta;
+}
+.bento {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas: 'web' 'mobile' 'int' 'tenants' 'support' 'cta';
+}
+@media (min-width: 640px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'web web'
+      'mobile int'
+      'mobile tenants'
+      'support support'
+      'cta cta';
+  }
+}
+@media (min-width: 1024px) {
+  .bento {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      'web web mobile'
+      'int tenants mobile'
+      'support support cta';
+  }
+}
+.bento-card {
+  --c1: #1b54b8;
+  --c2: #18ddba;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  overflow: hidden;
+  border: 1px solid var(--caixa, #dce2ea);
+  border-radius: 20px;
+  background: #fff;
+  padding: 1.25rem;
+  box-shadow: 0 14px 30px -26px rgba(6, 8, 60, 0.45);
+  transition:
+    transform 300ms var(--ease-entrada),
+    box-shadow 300ms ease,
+    border-color 300ms ease;
+}
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--c1) 35%, transparent);
+  box-shadow: 0 26px 50px -30px color-mix(in srgb, var(--c1) 60%, transparent);
+}
+.bento-mock {
+  position: relative;
+  display: grid;
+  flex: 1;
+  min-height: 9.5rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 14px;
+  background:
+    radial-gradient(80% 90% at 100% 0%, color-mix(in srgb, var(--c2) 22%, transparent), transparent 70%),
+    color-mix(in srgb, var(--c1) 7%, #f6f8fc);
+  padding: 1rem;
+}
+.bento-cta {
+  justify-content: center;
+  border-color: transparent;
+  background:
+    radial-gradient(70% 90% at 90% 10%, rgba(24, 221, 186, 0.35), transparent 70%),
+    linear-gradient(135deg, #06083c, #1b54b8);
+  color: #fff;
+}
+.bento-cta .cs-icon {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+.bento-cta:hover .cs-icon {
+  transform: translateX(4px);
+}
+.bento-cta .cs-icon {
+  transition: transform 300ms var(--ease-entrada);
+}
+
+/* Painel de gestão */
+.bm-web {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  width: min(100%, 26rem);
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 36px -24px rgba(6, 8, 60, 0.55);
+}
+.bm-side {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  background: #06083c;
+  padding: 0.75rem 0.6rem;
+}
+.bm-side i {
+  height: 0.55rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.bm-side i:first-child {
+  background: #18ddba;
+}
+.bm-main {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.75rem;
+}
+.bm-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+.bm-kpis b {
+  height: 1.8rem;
+  border-radius: 8px;
+  background: #e3ebfb;
+}
+.bm-kpis b:nth-child(2) {
+  background: #d9f5ea;
+}
+.bm-kpis b:nth-child(3) {
+  background: #fdf0d8;
+}
+.bm-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+  height: 4.5rem;
+}
+.bm-bars i {
+  flex: 1;
+  height: calc(var(--h) * 100%);
+  border-radius: 5px 5px 2px 2px;
+  background: linear-gradient(180deg, var(--c2), var(--c1));
+  transform-origin: bottom;
+  animation: bm-breathe 3.2s ease-in-out infinite;
+}
+@keyframes bm-breathe {
+  50% {
+    transform: scaleY(0.82);
+  }
+}
+
+/* App de tarefas */
+.bm-phone {
+  display: grid;
+  gap: 0.4rem;
+  width: 11.5rem;
+  border: 6px solid #06083c;
+  border-radius: 26px;
+  background: #fff;
+  padding: 1.4rem 0.7rem 0.8rem;
+  font-size: 0.7rem;
+  box-shadow: 0 24px 40px -24px rgba(6, 8, 60, 0.6);
+  position: relative;
+}
+.bm-notch {
+  position: absolute;
+  top: 0.35rem;
+  left: 50%;
+  width: 3rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #06083c;
+  transform: translateX(-50%);
+}
+.bm-phone-title {
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+.bm-task {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 9px;
+  background: #f6f8fc;
+  padding: 0.45rem 0.5rem;
+}
+.bm-check {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  border: 1.5px solid #c3cbd8;
+  border-radius: 5px;
+}
+.bm-task[data-done] {
+  color: #4a5263;
+  text-decoration: line-through;
+}
+.bm-task[data-done] .bm-check {
+  border-color: transparent;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      center / 100% no-repeat,
+    linear-gradient(135deg, var(--c1), var(--c2));
+}
+.bm-task:not([data-done]) {
+  animation: bm-pulse 2s ease-in-out infinite;
+}
+@keyframes bm-pulse {
+  50% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c1) 25%, transparent);
+  }
+}
+.bm-phone-btn {
+  margin-top: 0.3rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  padding: 0.4rem;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+}
+@media (min-width: 1024px) {
+  [data-area='mobile'] .bm-phone {
+    width: 13rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* Integrações a circular */
+.bm-int {
+  width: min(100%, 17rem);
+  height: auto;
+  overflow: visible;
+}
+.bm-int-link {
+  fill: none;
+  stroke: color-mix(in srgb, var(--c1) 45%, transparent);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+.bm-int-dot {
+  fill: var(--c1);
+}
+.bm-int-core {
+  fill: var(--c1);
+}
+.bm-int-core-text {
+  fill: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+.bm-int-node {
+  fill: #fff;
+  stroke: color-mix(in srgb, var(--c1) 30%, transparent);
+}
+.bm-int-text {
+  fill: #06083c;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+/* Várias empresas: cartões empilhados que se abrem com o rato */
+.bm-tenants {
+  position: relative;
+  width: 11rem;
+  height: 6.5rem;
+}
+.bm-tenant {
+  --c1: #1b54b8;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.6rem 0.7rem;
+  box-shadow: 0 14px 28px -18px rgba(6, 8, 60, 0.55);
+  border-top: 4px solid var(--c1);
+  font-size: 0.72rem;
+  transition: transform 450ms var(--ease-entrada);
+}
+.bm-tenant i {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #e8ecf3;
+}
+.bm-tenant i:last-child {
+  width: 65%;
+}
+.bm-tenant[data-c='0'] {
+  transform: translate(-0.9rem, -0.7rem) rotate(-4deg);
+}
+.bm-tenant[data-c='1'] {
+  --c1: #6d4aff;
+  transform: translate(0, 0);
+}
+.bm-tenant[data-c='2'] {
+  --c1: #0f7a5c;
+  transform: translate(0.9rem, 0.7rem) rotate(4deg);
+}
+.bento-card:hover .bm-tenant[data-c='0'] {
+  transform: translate(-2rem, -1rem) rotate(-7deg);
+}
+.bento-card:hover .bm-tenant[data-c='2'] {
+  transform: translate(2rem, 1rem) rotate(7deg);
+}
+
+/* Suporte: conversa curta */
+.bm-chat {
+  display: grid;
+  gap: 0.5rem;
+  width: min(100%, 30rem);
+  font-size: 0.8rem;
+}
+.bm-bubble {
+  max-width: 85%;
+  border-radius: 16px;
+  padding: 0.55rem 0.85rem;
+  box-shadow: 0 10px 22px -18px rgba(6, 8, 60, 0.6);
+}
+.bm-bubble-q {
+  justify-self: start;
+  border-bottom-left-radius: 4px;
+  background: #fff;
+}
+.bm-bubble-a {
+  justify-self: end;
+  border-bottom-right-radius: 4px;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-card,
+  .bento-card *,
+  .bm-tenant {
+    animation: none !important;
+    transition: none !important;
+  }
+  .bm-int-dot {
+    display: none;
   }
 }

@@ -34,6 +34,12 @@ const pt = {
     { term: 'Acompanhamento e suporte', desc: 'Ficamos depois da entrega para evoluir o sistema consigo.' },
   ],
   buildCta: { term: 'Tem outra ideia?', desc: 'Conte-nos o que precisa.' },
+  mocks: {
+    mobile: { title: 'Tarefas de hoje', items: ['Instalação · Braga', 'Visita · Porto', 'Entrega · Penafiel'], done: 'Concluído' },
+    integrations: { center: 'O seu sistema', nodes: ['ERP', 'Salários', 'Finanças', 'Banco'] },
+    tenants: ['Empresa A', 'Empresa B', 'Empresa C'],
+    support: ['Podem acrescentar um relatório de vendas por loja?', 'Sim. Já está publicado ✓'],
+  },
   processTitle: 'Como trabalhamos',
   process: [
     { term: 'Descoberta', desc: 'Ouvimos quem vai usar o sistema e vemos onde se perde tempo.' },
@@ -75,6 +81,7 @@ const pt = {
   ],
   quoteTitle: 'O que dizem os clientes',
   faqTitle: 'Perguntas frequentes',
+  faqText: 'Não encontra a sua pergunta? Fale connosco.',
   faq: [
     {
       q: 'Quanto tempo demora um projeto?',
@@ -125,6 +132,12 @@ const en: CustomSoftwareDict = {
     { term: 'Follow-up and support', desc: 'We stay after delivery to keep improving the system with you.' },
   ],
   buildCta: { term: 'Got another idea?', desc: 'Tell us what you need.' },
+  mocks: {
+    mobile: { title: 'Today’s tasks', items: ['Install · Braga', 'Visit · Porto', 'Delivery · Penafiel'], done: 'Done' },
+    integrations: { center: 'Your system', nodes: ['ERP', 'Payroll', 'Tax', 'Bank'] },
+    tenants: ['Company A', 'Company B', 'Company C'],
+    support: ['Could you add a sales report per shop?', 'Yes. It is live now ✓'],
+  },
   processTitle: 'How we work',
   process: [
     { term: 'Discovery', desc: 'We listen to the people who will use the system and see where time gets lost.' },
@@ -166,6 +179,7 @@ const en: CustomSoftwareDict = {
   ],
   quoteTitle: 'What clients say',
   faqTitle: 'Frequently asked questions',
+  faqText: 'Can’t find your question? Talk to us.',
   faq: [
     {
       q: 'How long does a project take?',
