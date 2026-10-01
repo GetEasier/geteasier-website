@@ -18,6 +18,7 @@ import WoodEasierScene from '@/components/demos/WoodEasierScene'
 import ModesDemo from '@/components/ce/ModesDemo'
 import Profiles from '@/components/ce/Profiles'
 import TimeBenefits from '@/components/te/TimeBenefits'
+import StockBenefits from '@/components/se/StockBenefits'
 import Faq from '@/components/ui/Faq'
 import { construction } from '@/content/construction'
 import { products } from '@/content/products'
@@ -36,7 +37,6 @@ const SCENES: Record<ProductId, (p: { locale: Locale }) => React.ReactNode> = {
 
 // Capturas reais da aplicação, já publicadas no site anterior.
 const SCREENSHOTS: Partial<Record<ProductId, { src: string; width: number; height: number }>> = {
-  stockEasier: { src: '/images/products/stock-easier.png', width: 2537, height: 1265 },
   woodEasier: { src: '/images/products/wood-easier.jpeg', width: 433, height: 290 },
 }
 
@@ -79,7 +79,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
                   height={item.logo.height}
                   priority
                   sizes="240px"
-                  className={cn('w-auto', id === 'constructionEasier' ? 'h-9 md:h-11' : 'h-7 md:h-8')}
+                  className={cn('w-auto', id === 'constructionEasier' || id === 'stockEasier' ? 'h-9 md:h-11' : 'h-7 md:h-8')}
                 />
               </span>
               <h1 className="t-h1 mt-6 max-w-[18ch]">{item.h1}</h1>
@@ -112,11 +112,9 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
 
       {id === 'constructionEasier' && <ConstructionSections locale={locale} />}
 
-      {id === 'timeEasier' && (
+      {(id === 'timeEasier' || id === 'stockEasier') && (
         <section aria-labelledby="beneficios-titulo" className="pb-16 md:pb-24">
-          <div className="wrap">
-            <TimeBenefits locale={locale} />
-          </div>
+          <div className="wrap">{id === 'timeEasier' ? <TimeBenefits locale={locale} /> : <StockBenefits locale={locale} />}</div>
         </section>
       )}
 

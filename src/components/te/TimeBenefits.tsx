@@ -1,15 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import ScrollStory from '@/components/demos/ScrollStory'
 import FaceCheck from '@/components/checkin/FaceCheck'
 import { StatusIcon } from '@/components/checkin/Badge'
 import type { Locale } from '@/lib/seo.config'
 import { cn } from '@/lib/utils'
 
-// TimeEasier: o que muda na empresa, contado ao descer. Em desktop o ecrã fica fixo à esquerda
-// e muda conforme o passo que está a meio do ecrã; cada ecrã tem uma pequena animação ao entrar.
-// Em telemóvel, sem JavaScript ou com "reduzir movimento", cada passo mostra o seu ecrã por baixo
-// do texto e tudo fica no estado final. Dados de exemplo; os ecrãs são decorativos (aria-hidden).
+// TimeEasier: o que muda na empresa, contado ao descer (ScrollStory). Dados de exemplo.
 
 const T = {
   pt: {
@@ -213,72 +211,15 @@ function Screen({ i, on, t }: { i: number; on: boolean; t: Dict }): ReactNode {
 
 export default function TimeBenefits({ locale }: { locale: Locale }) {
   const t = T[locale]
-  const [active, setActive] = useState(-1)
-  const steps = useRef<(HTMLLIElement | null)[]>([])
-
-  // O passo ativo é o que atravessa a faixa a meio do ecrã.
-  useEffect(() => {
-    // Com "reduzir movimento" não há passo ativo: tudo fica no estado final.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.i))
-      },
-      { rootMargin: '-45% 0px -45% 0px' },
-    )
-    steps.current.forEach((el) => el && io.observe(el))
-    return () => io.disconnect()
-  }, [])
-
-  const shown = Math.max(active, 0)
-
   return (
-    <div className="tb" data-js={active >= 0 || undefined}>
-      <div className="max-w-prose">
-        <h2 id="beneficios-titulo" className="t-h2">
-          {t.title}
-        </h2>
-        <p className="mt-3 text-lead text-grafite">{t.intro}</p>
-      </div>
-
-      <div className="tb-grid mt-10">
-        {/* Ecrã fixo (desktop com movimento): todos os ecrãs empilhados, só o ativo visível */}
-        <div aria-hidden="true" className="tb-sticky hidden lg:block">
-          <div className="sticky top-[calc(var(--header-h)+3rem)] grid h-[min(30rem,calc(100vh-var(--header-h)-6rem))] place-items-center overflow-hidden rounded-[28px] bg-produto-time-claro p-8">
-            {t.steps.map((s, i) => (
-              <div key={s.title} className="tb-screen col-start-1 row-start-1 grid h-full w-full place-items-center" data-on={i === shown || undefined}>
-                <div className="contents" data-anim={i === active || undefined}>
-                  <Screen i={i} on={i === active} t={t} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <ol className="tb-steps relative">
-          {t.steps.map((s, i) => (
-            <li
-              key={s.title}
-              ref={(el) => {
-                steps.current[i] = el
-              }}
-              data-i={i}
-              data-on={i === shown || undefined}
-              className="tb-step"
-            >
-              <span aria-hidden="true" className="tb-dot" />
-              <h3 className="t-h3">{s.title}</h3>
-              <p className="mt-2 max-w-[42ch] text-grafite">{s.text}</p>
-              {/* Ecrã por baixo do texto (telemóvel, sem JS, reduzir movimento) */}
-              <div aria-hidden="true" className="tb-inline mt-6 grid place-items-center rounded-[22px] bg-produto-time-claro p-6">
-                <div className="contents" data-anim={active < 0 || i <= active || undefined}>
-                  <Screen i={i} on={active < 0 || i <= active} t={t} />
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
+    <ScrollStory
+      headingId="beneficios-titulo"
+      title={t.title}
+      intro={t.intro}
+      steps={t.steps}
+      tint="bg-produto-time-claro"
+      accent="#3B5FA8"
+      screen={(i, on) => <Screen i={i} on={on} t={t} />}
+    />
   )
 }
