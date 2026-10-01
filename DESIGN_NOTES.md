@@ -130,3 +130,6 @@ Por pedido do Alexandre, saíram todos os botões de pausar animações (PauseBu
 
 ### Newsletter (2026-10-01)
 No início, a inscrição na newsletter do Substack é um cartão claro logo a seguir ao hero, antes dos clientes. Nas outras páginas fica no topo do rodapé (no início não se repete). Sem pop-up: irrita quem acabou de chegar e o Google penaliza pop-ups que tapam o conteúdo no telemóvel. O formulário abre a página de subscrição do Substack com o email preenchido. O endereço está em COMPANY.newsletter e ainda é [CONFIRMAR].
+
+### Em números no topo (2026-10-01)
+Números confirmados pelo Alexandre: 8+ empresas clientes, 10 000+ registos de ponto por mês, 4+ anos a fazer software. O cartão escuro "Em números" passou para logo a seguir à newsletter, antes dos clientes. A secção "Páginas relacionadas" saiu das páginas de produto (único sítio onde existia).

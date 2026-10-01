@@ -54,6 +54,20 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* Em números: logo no início, antes dos clientes */}
+      <section aria-labelledby="numeros-titulo" className="bg-white pt-6">
+        <div className="wrap">
+          <div className="hero-brand rounded-[28px] p-7 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] md:p-10">
+            <h2 id="numeros-titulo" className="text-small font-semibold uppercase tracking-[0.08em] text-ciano">
+              {t.stats.title}
+            </h2>
+            <div className="mt-5">
+              <Stats items={t.stats.items} note={t.stats.note} dark />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section aria-labelledby="clientes-titulo" className="overflow-x-clip bg-white pb-6 pt-12">
         <ClientMarquee title={t.clientsTitle} />
       </section>
@@ -121,7 +135,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Testemunhos: cartões de cor numa faixa que anda na horizontal, e os números numa faixa escura por baixo */}
+      {/* Testemunhos: cartões de cor numa faixa que anda na horizontal */}
       <section id="testimonials" aria-labelledby="testemunhos-titulo" className="overflow-x-clip bg-white py-16 md:py-24">
         <div className="wrap">
           <h2 id="testemunhos-titulo" className="t-h2">
@@ -133,12 +147,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
         <div className="wrap">
           {locale === 'en' && <p className="mt-4 text-small text-grafite">Quoted in the original Portuguese.</p>}
-          <div className="hero-brand mt-5 rounded-[28px] p-7 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] md:p-10">
-            <h3 className="text-small font-semibold uppercase tracking-[0.08em] text-ciano">{t.stats.title}</h3>
-            <div className="mt-5">
-              <Stats items={t.stats.items} note={t.stats.note} dark />
-            </div>
-          </div>
         </div>
       </section>
 

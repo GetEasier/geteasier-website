@@ -157,11 +157,11 @@ const pt = {
   },
   stats: {
     title: 'Em números',
-    note: '[CONFIRMAR] Os três números entram quando forem confirmados.',
+    note: undefined as string | undefined,
     items: [
-      { value: null as number | null, suffix: '', label: 'empresas clientes' },
-      { value: null as number | null, suffix: '', label: 'registos de ponto por mês' },
-      { value: null as number | null, suffix: '', label: 'anos a fazer software' },
+      { value: 8 as number | null, suffix: '+', label: 'empresas clientes' },
+      { value: 10000 as number | null, suffix: '+', label: 'registos de ponto por mês' },
+      { value: 4 as number | null, suffix: '+', label: 'anos a fazer software' },
     ],
   },
   carousel: { prev: 'Testemunho anterior', next: 'Testemunho seguinte', pause: 'Pausar os testemunhos', play: 'Retomar os testemunhos', of: '{i} de {n}' },
@@ -320,11 +320,11 @@ const en: HomeDict = {
   },
   stats: {
     title: 'In numbers',
-    note: '[CONFIRMAR] The three numbers go in once they are confirmed.',
+    note: undefined,
     items: [
-      { value: null as number | null, suffix: '', label: 'client companies' },
-      { value: null as number | null, suffix: '', label: 'clock-ins per month' },
-      { value: null as number | null, suffix: '', label: 'years building software' },
+      { value: 8, suffix: '+', label: 'client companies' },
+      { value: 10000, suffix: '+', label: 'clock-ins per month' },
+      { value: 4, suffix: '+', label: 'years building software' },
     ],
   },
   carousel: { prev: 'Previous testimonial', next: 'Next testimonial', pause: 'Pause the testimonials', play: 'Play the testimonials', of: '{i} of {n}' },
