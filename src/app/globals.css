@@ -3090,6 +3090,11 @@
 }
 .tb-step {
   position: relative;
+  min-width: 0;
+}
+.tb-inline {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
 }
 .tb-dot {
   display: none;

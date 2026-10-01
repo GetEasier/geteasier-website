@@ -16,6 +16,7 @@ import StockEasierScene from '@/components/demos/StockEasierScene'
 import WoodEasierScene from '@/components/demos/WoodEasierScene'
 import ModesDemo from '@/components/ce/ModesDemo'
 import Profiles from '@/components/ce/Profiles'
+import ConstructionBenefits from '@/components/ce/ConstructionBenefits'
 import TimeBenefits from '@/components/te/TimeBenefits'
 import StockBenefits from '@/components/se/StockBenefits'
 import WoodBenefits from '@/components/we/WoodBenefits'
@@ -162,7 +163,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
   )
 }
 
-// Página do ConstructionEasier: do caos ao controlo, demo com modos, perfis e perguntas.
+// Página do ConstructionEasier: do caos ao controlo, demo com modos, o que muda ao descer, perfis e perguntas.
 function ConstructionSections({ locale }: { locale: Locale }) {
   const t = construction[locale]
   return (
@@ -176,6 +177,11 @@ function ConstructionSections({ locale }: { locale: Locale }) {
       <Section id="entrada" title={t.modes.title}>
         <ModesDemo t={t.modes} feed={t.gateFeed} />
       </Section>
+      <section aria-labelledby="beneficios-titulo" className="py-16 md:py-24">
+        <div className="wrap">
+          <ConstructionBenefits locale={locale} />
+        </div>
+      </section>
       <Section id="perfis" title={t.profiles.title}>
         <Profiles t={t.profiles} />
       </Section>
