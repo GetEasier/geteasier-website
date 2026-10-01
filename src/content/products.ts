@@ -31,6 +31,10 @@ type ProductsDict = {
   indexSameLink: string
   plansLine: string
   plansLink: string
+  /** Página Produtos: etiqueta no ConstructionEasier, título dos planos e do cartão de software à medida */
+  indexIncludes: string
+  plansTitle: string
+  customTitle: string
   planIncluded: string
   relatedTitle: string
   videoTitle: string
@@ -56,13 +60,14 @@ const ICONS = {
 
 const pt: ProductsDict = {
   indexH1: 'Quatro produtos para empresas que trabalham no terreno',
-  indexLead:
-    'Registo de ponto, gestão de obras, stocks de EPIs e passaportes de madeira tratada. Cada produto resolve um problema concreto e pode ser usado sozinho ou em conjunto com os outros.',
-  indexSame:
-    'Os produtos são desenvolvidos e mantidos pela mesma equipa que faz software à medida. Se precisar de algo que eles não fazem, podemos construí-lo.',
-  indexSameLink: 'Software à medida',
-  plansLine: 'Cada produto tem planos Base, Avançado e Premium.',
+  indexLead: 'Cada um resolve um problema concreto. Funcionam sozinhos ou em conjunto.',
+  indexSame: 'A mesma equipa que faz os produtos constrói o que eles não fazem.',
+  indexSameLink: 'Ver software à medida',
+  plansLine: 'Planos de cada produto',
   plansLink: 'Comparar os planos',
+  indexIncludes: 'Inclui o TimeEasier',
+  plansTitle: 'Base, Avançado ou Premium',
+  customTitle: 'Precisa de algo diferente?',
   planIncluded: 'Ver o que inclui cada plano',
   relatedTitle: 'Páginas relacionadas',
   videoTitle: 'O WoodEasier em vídeo',
@@ -231,13 +236,14 @@ const pt: ProductsDict = {
 
 const en: ProductsDict = {
   indexH1: 'Four products for companies that work on site',
-  indexLead:
-    'Time tracking, construction site management, PPE stock and treated timber passports. Each product solves one specific problem and works on its own or together with the others.',
-  indexSame:
-    'The products are built and maintained by the same team that does custom software. If you need something they do not do, we can build it.',
-  indexSameLink: 'Custom software',
-  plansLine: 'Every product has Base, Advanced and Premium plans.',
+  indexLead: 'Each one solves one specific problem. They work on their own or together.',
+  indexSame: 'The team that builds the products also builds what they do not do.',
+  indexSameLink: 'See custom software',
+  plansLine: 'Plans for each product',
   plansLink: 'Compare the plans',
+  indexIncludes: 'Includes TimeEasier',
+  plansTitle: 'Base, Advanced or Premium',
+  customTitle: 'Need something different?',
   planIncluded: 'See what each plan includes',
   relatedTitle: 'Related pages',
   videoTitle: 'WoodEasier on video',
