@@ -33,31 +33,6 @@ export default function Footer({ locale, cta = true }: { locale: Locale; cta?: b
           </div>
         )}
 
-        {/* Newsletter: o formulário abre a página de subscrição do Substack com o email já preenchido (sem JS nem iframe) */}
-        <div className={`footer-news ${cta ? 'mt-6' : 'mt-14'} grid grid-cols-1 gap-5 rounded-[22px] p-6 md:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] md:items-center md:p-7`}>
-          <div className="flex items-start gap-4">
-            <span aria-hidden="true" className="footer-news-ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="5" width="18" height="14" rx="2.5" />
-                <path d="M3.5 7l8.5 6 8.5-6" />
-              </svg>
-            </span>
-            <div>
-              <h2 className="font-semibold text-white">{t.footer.newsletter.title}</h2>
-              <p className="mt-1 text-small text-white/70">{t.footer.newsletter.text}</p>
-            </div>
-          </div>
-          <form action={`${COMPANY.newsletter}/subscribe`} method="get" target="_blank" className="footer-news-form">
-            <label htmlFor="footer-news-email" className="sr-only">
-              {t.footer.newsletter.label}
-            </label>
-            <input id="footer-news-email" type="email" name="email" required autoComplete="email" placeholder={t.footer.newsletter.placeholder} />
-            <button type="submit" className="btn bg-ciano text-tinta hover:bg-white">
-              {t.footer.newsletter.button}
-            </button>
-          </form>
-        </div>
-
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-14 lg:grid-cols-[1.5fr_1fr_1fr_1.1fr]">
           <div className="col-span-2 max-w-sm lg:col-span-1">
             <Link href={href('home', locale)} aria-label={t.nav.home} className="inline-block text-white">

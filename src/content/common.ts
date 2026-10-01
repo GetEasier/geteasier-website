@@ -32,7 +32,7 @@ const pt = {
     contact: 'Contacto',
     newsletter: {
       title: 'Newsletter',
-      text: 'Novidades, bastidores e ideias sobre software para empresas, no nosso Substack.',
+      text: 'Novidades, bastidores e ideias sobre software para empresas, no seu email.',
       label: 'O seu email',
       placeholder: 'nome@empresa.pt',
       button: 'Subscrever',
@@ -88,7 +88,7 @@ const en: CommonDict = {
     contact: 'Contact',
     newsletter: {
       title: 'Newsletter',
-      text: 'News, behind the scenes and ideas about business software, on our Substack.',
+      text: 'News, behind the scenes and ideas about business software, in your inbox.',
       label: 'Your email',
       placeholder: 'name@company.com',
       button: 'Subscribe',

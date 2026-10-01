@@ -3293,51 +3293,62 @@
   transform: none;
 }
 
-/* Newsletter no rodapé */
-.footer-news {
-  background: linear-gradient(120deg, rgba(24, 221, 186, 0.12), rgba(27, 84, 184, 0.18));
-  border: 1px solid rgba(255, 255, 255, 0.12);
+/* Faixa da newsletter no topo (NewsletterBar.tsx) */
+.news-bar {
+  background: linear-gradient(90deg, #06083c, #10328a 55%, #0d6f7a);
 }
-.footer-news-ico {
+.news-bar-ico {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 12px;
-  background: rgba(24, 221, 186, 0.16);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  background: rgba(24, 221, 186, 0.18);
   color: var(--ciano);
 }
-.footer-news-ico svg {
-  width: 1.3rem;
-  height: 1.3rem;
+.news-bar-ico svg {
+  width: 1rem;
+  height: 1rem;
 }
-.footer-news-form {
+.news-bar-form {
   display: flex;
-  gap: 0.375rem;
-  padding: 0.375rem;
+  flex-shrink: 0;
+  gap: 0.25rem;
+  padding: 0.2rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
-.footer-news-form:focus-within {
+.news-bar-form:focus-within {
   border-color: var(--ciano);
 }
-.footer-news-form input {
+.news-bar-form input {
   min-width: 0;
+  width: 13rem;
   flex: 1;
   background: transparent;
-  padding: 0 0.875rem;
+  padding: 0 0.75rem;
   color: #fff;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   outline: none;
 }
-.footer-news-form input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+.news-bar-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
-.footer-news-form .btn {
-  min-height: 2.75rem;
-  flex-shrink: 0;
+.news-bar-form button {
+  min-height: 2.25rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: var(--ciano);
+  color: var(--tinta);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 150ms;
+}
+.news-bar-form button:hover,
+.news-bar-form button:focus-visible {
+  background: #fff;
 }
 .tb-draw {
   stroke-dasharray: 1;
