@@ -19,21 +19,32 @@ export type BuildLabels = {
   kpis: readonly (readonly string[])[]
   chart: string
   list: string
+  clockIn: string
   tests: string
   integrations: readonly string[]
   deployed: string
   deployedText: string
+  arch: {
+    title: string
+    clients: readonly string[]
+    api: string
+    apiSub: string
+    services: readonly string[]
+    db: string
+    integrations: string
+  }
   pause: string
   play: string
 }
 
-// Hero do início: como fazemos software à medida, em quatro passos que se veem acontecer.
-// 0 ideia (a aplicação ainda é um esboço tracejado e há um post-it com o pedido) · 1 desenho
-// (os blocos ganham cor e o gráfico sobe) · 2 código (o editor escreve as linhas e os testes
-// passam) · 3 entrega (a mesma aplicação no telemóvel, ligada ao ERP, aos salários e à faturação).
+// Hero do início: como fazemos software à medida, em quatro passos que se veem acontecer, com uma
+// aplicação de assiduidade como exemplo. 0 ideia (a aplicação ainda é um esboço tracejado e há um
+// post-it com o pedido) · 1 arquitetura (o diagrama desenha-se e os pedidos circulam das aplicações
+// à API, aos serviços e à base de dados) · 2 código (o editor escreve as linhas, os testes passam e
+// a aplicação ganha cor) · 3 entrega (a mesma aplicação no telemóvel, ligada ao ERP e aos salários).
 // Tudo em HTML e CSS (transform, opacity, clip-path). O ciclo pausa fora do ecrã, com a aba
 // escondida e com o botão. Sem JavaScript ou com "reduzir movimento" fica no estado final.
-const HOLD = [2200, 2300, 2600, LOOP_PAUSE + 2200]
+const HOLD = [2200, 3600, 2600, LOOP_PAUSE + 2200]
 const LAST = HOLD.length - 1
 const BARS = [0.45, 0.62, 0.5, 0.78, 0.66, 0.9, 0.82]
 
@@ -105,7 +116,7 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
                     {t.appTitle}
                   </span>
                   <span className="b-btn bx" style={{ ['--i' as string]: 2 }}>
-                    + {t.newBtn}
+                    {t.newBtn}
                   </span>
                 </div>
                 <div className="b-kpis">
@@ -127,10 +138,11 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
                   </div>
                   <div className="b-card b-list bx" style={{ ['--i' as string]: 7 }}>
                     <span className="b-card-t">{t.list}</span>
-                    {['ok', 'ok', 'wait'].map((s, i) => (
-                      <span key={i} className="b-li">
-                        <i className={cn('b-li-dot', s === 'wait' && 'is-wait')} />
-                        <i className="b-li-l" style={{ width: `${[70, 55, 62][i]}%` }} />
+                    {['07:52', '08:14', '07:58'].map((h, i) => (
+                      <span key={h} className="b-li">
+                        <i className={cn('b-li-dot', i === 1 && 'is-wait')} />
+                        <i className="b-li-l" style={{ width: `${[40, 30, 36][i]}%` }} />
+                        <span className="b-li-t">{h}</span>
                       </span>
                     ))}
                   </div>
@@ -145,6 +157,9 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
             {t.note}
           </div>
 
+          {/* 1: a arquitetura */}
+          <Arch t={t.arch} live={step === 1} />
+
           {/* 2: o código */}
           <div className="b-code">
             <span className="b-code-bar">
@@ -154,16 +169,16 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
             </span>
             <code>
               <span className="cl" style={{ ['--l' as string]: 0 }}>
-                <em className="k">const</em> encomendas = <em className="k">await</em> api.<em className="f">get</em>(<em className="s">&apos;/encomendas&apos;</em>)
+                <em className="k">await</em> api.<em className="f">post</em>(<em className="s">&apos;/registos&apos;</em>, {'{'} tipo: <em className="s">&apos;entrada&apos;</em> {'}'})
               </span>
               <span className="cl" style={{ ['--l' as string]: 1 }}>
                 &lt;<em className="tg">Painel</em> titulo=<em className="s">&quot;{t.appTitle}&quot;</em>&gt;
               </span>
               <span className="cl ind" style={{ ['--l' as string]: 2 }}>
-                &lt;<em className="tg">Indicadores</em> dados={'{'}encomendas{'}'} /&gt;
+                &lt;<em className="tg">Presencas</em> hoje={'{'}registos{'}'} /&gt;
               </span>
               <span className="cl ind" style={{ ['--l' as string]: 3 }}>
-                &lt;<em className="tg">Grafico</em> tipo=<em className="s">&quot;barras&quot;</em> /&gt;
+                &lt;<em className="tg">Grafico</em> tipo=<em className="s">&quot;horas&quot;</em> /&gt;
               </span>
               <span className="cl" style={{ ['--l' as string]: 4 }}>
                 &lt;/<em className="tg">Painel</em>&gt;
@@ -185,6 +200,7 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
               <b>{t.kpis[0][0]}</b>
               {t.kpis[0][1]}
             </span>
+            <span className="b-phone-btn">{t.clockIn}</span>
             <span className="b-phone-bars">
               {BARS.slice(2).map((h, i) => (
                 <i key={i} style={{ ['--h' as string]: h }} />
@@ -227,5 +243,108 @@ export default function BuildHero({ t }: { t: BuildLabels }) {
 
       <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={t} dark className="build-pause mt-2" />
     </div>
+  )
+}
+
+// Diagrama da arquitetura em SVG (escala com a peça). Os pedidos circulam como pontos ao longo das
+// ligações, só enquanto o passo da arquitetura está no ecrã.
+const ROWS = [43, 165, 287]
+const curve = (x1: number, y1: number, x2: number, y2: number) => {
+  const m = (x1 + x2) / 2
+  return `M${x1} ${y1}C${m} ${y1} ${m} ${y2} ${x2} ${y2}`
+}
+const EDGES = [
+  ...ROWS.map((y) => ({ d: curve(126, y, 196, 165), g: 0 })),
+  ...ROWS.map((y) => ({ d: curve(304, 165, 370, y), g: 1 })),
+  { d: curve(486, 43, 516, 92), g: 2 },
+  { d: curve(486, 165, 516, 122), g: 2 },
+  { d: curve(486, 287, 508, 287), g: 2 },
+]
+
+function Arch({ t, live }: { t: BuildLabels['arch']; live: boolean }) {
+  return (
+    <div className="b-arch">
+      <span className="b-arch-t">{t.title}</span>
+      <svg viewBox="0 0 600 330" className="b-arch-svg">
+        <defs>
+          <linearGradient id="b-api" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#1b54b8" />
+            <stop offset="1" stopColor="#0f8f8a" />
+          </linearGradient>
+        </defs>
+        {EDGES.map((e, i) => (
+          <path key={i} d={e.d} pathLength={1} className="b-edge" style={{ ['--g' as string]: e.g }} />
+        ))}
+        {t.clients.map((c, i) => (
+          <g key={c} className="b-node" style={{ ['--g' as string]: 0 }}>
+            <rect x="6" y={ROWS[i] - 23} width="120" height="46" rx="12" />
+            <ClientIcon kind={i} x={22} y={ROWS[i]} />
+            <text x="44" y={ROWS[i] + 5}>
+              {c}
+            </text>
+          </g>
+        ))}
+        <g className="b-node b-node-api" style={{ ['--g' as string]: 0.5 }}>
+          <rect x="196" y="117" width="108" height="96" rx="16" />
+          <text x="250" y="160" textAnchor="middle" className="b-api-t">
+            {t.api}
+          </text>
+          <text x="250" y="182" textAnchor="middle" className="b-sub">
+            {t.apiSub}
+          </text>
+        </g>
+        {t.services.map((c, i) => (
+          <g key={c} className="b-node" style={{ ['--g' as string]: 1 }}>
+            <rect x="370" y={ROWS[i] - 23} width="116" height="46" rx="12" />
+            <rect x="384" y={ROWS[i] - 6} width="12" height="12" rx="3" className="b-svc-i" />
+            <text x="406" y={ROWS[i] + 5}>
+              {c}
+            </text>
+          </g>
+        ))}
+        <g className="b-node" style={{ ['--g' as string]: 1.6 }}>
+          <path d="M516 62v76c0 9 17 15 38 15s38-6 38-15V62" className="b-db" />
+          <ellipse cx="554" cy="62" rx="38" ry="14" className="b-db" />
+          <path d="M516 88c0 9 17 15 38 15s38-6 38-15M516 113c0 9 17 15 38 15s38-6 38-15" className="b-db-l" />
+          <text x="554" y="176" textAnchor="middle" className="b-sub b-sub-l">
+            {t.db}
+          </text>
+        </g>
+        <g className="b-node b-node-int" style={{ ['--g' as string]: 1.6 }}>
+          <rect x="508" y="264" width="88" height="46" rx="12" />
+          <text x="552" y="292" textAnchor="middle" className="b-int-t">
+            {t.integrations}
+          </text>
+        </g>
+        {live &&
+          EDGES.map((e, i) => (
+            <circle key={i} r="4" className="b-pkt">
+              <animateMotion dur="1.6s" begin={`${0.9 + e.g * 0.45 + (i % 3) * 0.25}s`} repeatCount="indefinite" path={e.d} />
+            </circle>
+          ))}
+      </svg>
+    </div>
+  )
+}
+
+function ClientIcon({ kind, x, y }: { kind: number; x: number; y: number }) {
+  if (kind === 0)
+    return (
+      <g className="b-ci">
+        <rect x={x - 8} y={y - 7} width="16" height="11" rx="2" />
+        <path d={`M${x - 4} ${y + 8}h8`} />
+      </g>
+    )
+  if (kind === 1)
+    return (
+      <g className="b-ci">
+        <rect x={x - 5} y={y - 9} width="10" height="18" rx="2.5" />
+      </g>
+    )
+  return (
+    <g className="b-ci">
+      <rect x={x - 8} y={y - 9} width="16" height="18" rx="2.5" />
+      <circle cx={x} cy={y - 2} r="3" />
+    </g>
   )
 }

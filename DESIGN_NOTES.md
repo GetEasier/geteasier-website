@@ -95,3 +95,8 @@ O Alexandre pediu uma animação genérica sobre desenvolvimento à medida em ve
 (a mesma aplicação no telemóvel, ligada ao ERP, salários e faturação, e "Versão 1.0 publicada").
 Tudo em HTML e CSS com tamanhos em `em` sobre `container-type: inline-size`, por isso escala igual no telemóvel.
 Pausa, fora do ecrã e "reduzir movimento" como no check-in; sem JS fica no passo final. O `CheckInHero` continua no motion lab.
+
+Segunda versão (01/10): a aplicação de exemplo passa a ser de assiduidade (registo de ponto) e o segundo passo é
+**Arquitetura**: um diagrama SVG (Web, iOS e Android, Tablet → API com autenticação → Registos, Turnos, Relatórios →
+base de dados e ERP · Salários) que se desenha com `stroke-dashoffset` e por onde circulam pedidos (`animateMotion`, só
+montados durante esse passo). A aplicação fica em esboço até ao passo do código e ganha cor quando o código "corre".
