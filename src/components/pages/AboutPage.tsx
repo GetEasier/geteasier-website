@@ -3,8 +3,7 @@ import Link from 'next/link'
 import SiteShell from '@/components/site/SiteShell'
 import Breadcrumbs from '@/components/site/Breadcrumbs'
 import InstagramFeed from '@/components/InstagramFeed'
-import TeamGrid from '@/components/TeamGrid'
-import ClientMarquee from '@/components/home/ClientMarquee'
+import AboutPeople from '@/components/about/AboutPeople'
 import { about } from '@/content/about'
 import { home } from '@/content/home'
 import { common } from '@/content/common'
@@ -12,14 +11,13 @@ import { products } from '@/content/products'
 import { COMPANY } from '@/lib/site'
 import { href, PRODUCT_IDS, type Locale } from '@/lib/seo.config'
 
-// Sobre: hero escuro da marca com a fotografia da equipa, as duas frentes em cartões de cor, a equipa
-// com os mesmos cartões do início, clientes, e os dados da empresa e do financiamento em cartões compactos.
+// Sobre: hero escuro da marca com a fotografia da equipa, as duas frentes em cartões de cor, uma linha
+// animada por co-fundador e os dados da empresa numa faixa compacta. Contacto e financiamento ficam no rodapé.
 export default function AboutPage({ locale }: { locale: Locale }) {
   const t = about[locale]
   const h = home[locale]
   const c = common[locale]
   const p = products[locale].items
-  const a = COMPANY.address
 
   return (
     <SiteShell pageId="about" locale={locale}>
@@ -114,89 +112,38 @@ export default function AboutPage({ locale }: { locale: Locale }) {
             {t.teamTitle}
           </h2>
           <p className="mt-3 max-w-[48ch] text-lead text-white/80">{t.teamText}</p>
-          <TeamGrid locale={locale} className="mt-10" dark parallax lively />
+          <AboutPeople locale={locale} />
         </div>
       </section>
 
-      <section aria-labelledby="clientes-titulo" className="overflow-x-clip bg-white py-12">
-        <ClientMarquee title={h.clientsTitle} />
-      </section>
-
-      {/* Empresa e financiamento: dois cartões compactos lado a lado */}
-      <section aria-label={t.companyTitle} className="py-16 md:py-24">
-        <div className="wrap grid gap-5 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
-          <div className="rounded-[24px] bg-white p-7 shadow-[0_24px_48px_-30px_rgba(6,8,60,.35)] ring-1 ring-linha">
-            <h2 className="t-h3">{t.companyTitle}</h2>
-            <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+      {/* Dados da empresa: uma faixa compacta (o financiamento está no rodapé) */}
+      <section aria-labelledby="empresa-titulo" className="py-16 md:py-20">
+        <div className="wrap">
+          <div className="flex flex-col gap-5 rounded-[24px] bg-white p-6 shadow-[0_24px_48px_-30px_rgba(6,8,60,.35)] ring-1 ring-linha md:flex-row md:items-center md:p-7">
+            <h2 id="empresa-titulo" className="t-h3 md:mr-6">
+              {t.companyTitle}
+            </h2>
+            <dl className="grid flex-1 gap-3 sm:grid-cols-2">
               <Fact label={t.company.legalName} icon={ICON_BUILDING}>
                 {COMPANY.name}, {COMPANY.legalName}
               </Fact>
               <Fact label={t.company.vat} icon={ICON_ID}>
                 <span className="t-data text-base">{COMPANY.vatId}</span>
               </Fact>
-              <Fact label={t.company.address} icon={ICON_PIN} wide>
-                {a.street}, {a.postalCode} {a.locality}, {a.region}
-              </Fact>
             </dl>
-          </div>
-          <div id="financiamento" className="flex flex-col rounded-[24px] bg-white p-7 shadow-[0_24px_48px_-30px_rgba(6,8,60,.35)] ring-1 ring-linha">
-            <h2 className="t-h3">{t.fundingTitle}</h2>
-            <div className="mt-5 rounded-2xl bg-tinta px-5 py-4">
-              <Image src={COMPANY.funding.logo} alt="PRR, República Portuguesa, NextGenerationEU" width={600} height={87} className="h-auto w-full max-w-[22rem]" />
-            </div>
-            <p className="mt-4 text-grafite">{t.fundingText}</p>
-            <a href={COMPANY.funding.pdf} download className="btn mt-6 self-start border border-linha bg-white text-tinta hover:border-azul hover:text-azul">
-              <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M3 13.5h10" />
-              </svg>
-              {t.fundingLink}
-            </a>
           </div>
         </div>
       </section>
 
       <InstagramFeed title={t.instagramTitle} linkText={t.instagramLink} href={COMPANY.socials[1].href} />
 
-      {/* Fecho: cartão escuro da marca com contacto e redes sociais */}
-      <section aria-labelledby="contacto-titulo" className="pb-16 md:pb-24">
-        <div className="wrap">
-          <div className="hero-brand grid gap-8 rounded-[28px] p-8 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] md:p-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-end">
-            <div>
-              <h2 id="contacto-titulo" className="t-h2">
-                {t.contactTitle}
-              </h2>
-              <p className="mt-3 max-w-[44ch] text-lead text-white/80">{t.contactText}</p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
-                  {c.cta.project}
-                </Link>
-                <a href={COMPANY.whatsapp.href} className="btn-on-dark" target="_blank" rel="noopener noreferrer">
-                  {c.cta.whatsapp}
-                </a>
-              </div>
-            </div>
-            <div className="lg:justify-self-end">
-              <p className="text-small font-semibold uppercase tracking-[0.08em] text-white/60">{t.followTitle}</p>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {COMPANY.socials.map((s) => (
-                  <li key={s.name}>
-                    <a href={s.href} target="_blank" rel="noopener noreferrer" className="team-fact hover:bg-white/10">
-                      {s.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
     </SiteShell>
   )
 }
 
-function Fact({ label, icon, wide, children }: { label: string; icon: React.ReactNode; wide?: boolean; children: React.ReactNode }) {
+function Fact({ label, icon, children }: { label: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className={`flex items-start gap-3 rounded-2xl bg-betao p-4 ${wide ? 'sm:col-span-2' : ''}`}>
+    <div className="flex items-start gap-3 rounded-2xl bg-betao p-4">
       <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-azul/10 text-azul">
         {icon}
       </span>
@@ -228,13 +175,6 @@ const ICON_ID = svg(
     <path d="M5 7h3M5 9.5h6" />
   </>,
 )
-const ICON_PIN = svg(
-  <>
-    <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
-    <circle cx="8" cy="6.3" r="1.8" />
-  </>,
-)
-
 const FACT_ICONS = [
   svg(<path d="M9 1.5L3.5 9H8l-1 5.5L12.5 7H8z" />),
   svg(

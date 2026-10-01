@@ -17,7 +17,7 @@ export default function InstagramFeed({ title, linkText, href }: { title: string
     return () => ctrl.abort()
   }, [])
 
-  // Sem publicações não mostra nada: as redes sociais estão no cartão de contacto da página Sobre.
+  // Sem publicações não mostra nada: as redes sociais estão no rodapé.
   if (posts.length === 0) return null
 
   return (
