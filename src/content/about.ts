@@ -6,6 +6,9 @@ export const TEAM = [
   { name: 'Rui Peixoto', photo: '/images/team/geteasier-3.jpeg', role: 'product' },
 ] as const
 
+// Formação e certificações são opcionais: só aparecem no cartão de código quando existem.
+type Person = { bio: string; focus: string[]; degree?: string; certs?: string[] }
+
 const pt = {
   h1: 'Uma equipa jovem e profissional',
   lead: 'Somos uma equipa portuguesa de software. Fazemos produtos próprios e software à medida para outras empresas.',
@@ -26,10 +29,10 @@ const pt = {
   teamText: 'Os três co-fundadores desenham, desenvolvem e dão suporte a cada projeto.',
   // Alexandre: a partir do CV (01/10). Nelson e Rui: provisórios até haver CV [CONFIRMAR].
   people: [
-    { bio: 'Mais de 8 anos a desenvolver software para empresas. Na GetEasier cuida da arquitetura e da parte técnica de cada projeto, para que o software seja sólido, seguro e fácil de fazer crescer.', focus: ['Arquitetura', 'Java e Spring Boot', 'DevOps'], degree: 'Engenharia Informática, UTAD', certs: ['SAFe 6 Scrum Master', 'Angular'] },
+    { bio: 'Mais de 8 anos a desenvolver software para empresas. Na GetEasier cuida da arquitetura e da parte técnica de cada projeto, para que o software seja sólido, seguro e fácil de fazer crescer.', focus: ['Arquitetura', 'Java e Spring Boot', 'DevOps'], degree: 'Engenharia Informática' },
     { bio: 'Transforma cada processo em ecrãs simples de usar e garante que tudo corre bem depois de entregue.', focus: ['Frontend', 'Integrações', 'Qualidade'] },
     { bio: 'Fala com os clientes, percebe o processo de cada empresa e decide o que entra em cada versão.', focus: ['Produto', 'Clientes', 'Suporte'] },
-  ],
+  ] as Person[],
   codeKeys: { role: 'papel', focus: 'foco', degree: 'formação', certs: 'certificações' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
   founder: 'Co-fundador',
@@ -58,10 +61,10 @@ const en: AboutDict = {
   teamTitle: 'The people',
   teamText: 'The three co-founders design, build and support every project.',
   people: [
-    { bio: 'Over 8 years building software for companies. At GetEasier he looks after the architecture and technical side of every project, so the software is solid, secure and easy to grow.', focus: ['Architecture', 'Java and Spring Boot', 'DevOps'], degree: 'BSc Computer Engineering, UTAD', certs: ['SAFe 6 Scrum Master', 'Angular'] },
+    { bio: 'Over 8 years building software for companies. At GetEasier he looks after the architecture and technical side of every project, so the software is solid, secure and easy to grow.', focus: ['Architecture', 'Java and Spring Boot', 'DevOps'], degree: 'Computer Engineering' },
     { bio: 'Turns each process into screens that are simple to use and makes sure everything runs well after delivery.', focus: ['Frontend', 'Integrations', 'Quality'] },
     { bio: 'Talks to clients, learns how each company works and decides what goes into every release.', focus: ['Product', 'Clients', 'Support'] },
-  ],
+  ] as Person[],
   codeKeys: { role: 'role', focus: 'focus', degree: 'degree', certs: 'certifications' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
   founder: 'Co-founder',

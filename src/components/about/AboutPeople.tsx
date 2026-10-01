@@ -63,8 +63,8 @@ export default function AboutPeople({ locale }: { locale: Locale }) {
                 {codeLines(id, [
                   [t.codeKeys.role, [t.roles[m.role]], false],
                   [t.codeKeys.focus, p.focus, true],
-                  ...('degree' in p && p.degree ? [[t.codeKeys.degree, [p.degree], false] as const] : []),
-                  ...('certs' in p && p.certs ? [[t.codeKeys.certs, p.certs, true] as const] : []),
+                  ...(p.degree ? [[t.codeKeys.degree, [p.degree], false] as const] : []),
+                  ...(p.certs ? [[t.codeKeys.certs, p.certs, true] as const] : []),
                 ])}
               </pre>
             </div>
