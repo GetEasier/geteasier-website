@@ -1,16 +1,30 @@
 import type { Locale } from '@/lib/seo.config'
 
 // Capacidade técnica: secção 1 do briefing (sem IA, por decisão do Alexandre a 29/09/2026).
-// Revisão de 01/10: textos curtos, uma linha por cartão; o visual faz o resto.
+// Revisão de 01/10: textos curtos, uma linha por cartão; o visual faz o resto. A arquitetura é um
+// exemplo genérico de um sistema de gestão (não os nossos produtos), e a tecnologia está por necessidade.
 
 const pt = {
   h1: 'Software feito à volta da forma como a sua empresa trabalha',
   lead: [
     'Quando um produto pronto obriga a sua equipa a mudar a forma de trabalhar, faz sentido construir o sistema certo.',
-    'Desenhamos, desenvolvemos e mantemos aplicações web, apps móveis e integrações. É o mesmo trabalho que fazemos todos os dias nos nossos produtos.',
   ],
-  heroCase: 'Ver um caso real',
-  clientsTitle: 'Empresas que trabalham connosco',
+  heroArch: 'Ver a arquitetura',
+  hero: {
+    caption:
+      'Animação: uma aplicação de gestão ganha módulos um a um (encomendas, aprovações, equipas, faturação e relatórios) e o ecrã principal mostra cada módulo a funcionar. Dados fictícios.',
+    url: 'gestao.suaempresa.pt',
+    modules: ['Encomendas', 'Aprovações', 'Equipas', 'Faturação', 'Relatórios'],
+    orders: [
+      ['#1042', 'Metalúrgica Ave', 'Enviada'],
+      ['#1043', 'Têxteis Sousa', 'Em preparação'],
+      ['#1044', 'Clínica Foz', 'Nova'],
+    ],
+    approval: { title: 'Pedido de compra', value: '1 240 €', who: 'Marta R. · Compras', approve: 'Aprovar', approved: 'Aprovado' },
+    teams: { title: 'Equipas hoje', items: ['Equipa A · Braga', 'Equipa B · Porto', 'Equipa C · Penafiel'] },
+    invoice: { title: 'Fatura FT 2026/318', client: 'Padaria Lima', total: '860,40 €', sent: 'Enviada ao cliente' },
+    reports: { title: 'Vendas por mês', kpis: [['Encomendas', '312'], ['Em atraso', '4']] },
+  },
   buildTitle: 'O que construímos',
   build: [
     { term: 'Aplicações web de gestão', desc: 'Back-offices, portais e aprovações que seguem os passos da sua equipa.' },
@@ -28,29 +42,55 @@ const pt = {
     { term: 'Entrega', desc: 'Pomos o sistema em produção e acompanhamos o arranque.' },
     { term: 'Manutenção e evolução', desc: 'Corrigimos, atualizamos e acrescentamos funcionalidades.' },
   ],
-  proofTitle: 'Caso de estudo: a plataforma do TimeEasier e do ConstructionEasier',
-  proofIntro: 'Construímos esta plataforma de raiz. É o melhor exemplo do que fazemos para outras empresas.',
-  proofFigure:
-    'Diagrama de arquitetura: o tablet, a app móvel e a aplicação web ligam-se a uma API comum, que separa os dados de cada empresa cliente. A API liga-se à identificação biométrica, às integrações externas e à infraestrutura com observabilidade.',
-  proof: [
-    { key: 'clients', term: 'Tablet, app e web', desc: 'Os registos chegam do tablet no local, da app e da web.' },
-    { key: 'tenants', term: 'Várias empresas, dados separados', desc: 'Cada empresa vê só os seus colaboradores, obras e permissões.' },
-    { key: 'biometrics', term: 'Identificação pelo rosto', desc: 'No tablet, a picagem faz-se pelo rosto.' },
-    { key: 'integrations', term: 'Integrações', desc: 'Processamento salarial, ERP e sistemas públicos.' },
-    { key: 'infra', term: 'Infraestrutura e observabilidade', desc: 'Infraestrutura própria, testes automáticos em cada alteração e alertas em produção.' },
+  archTitle: 'Um sistema de gestão, por dentro',
+  archIntro: 'Um exemplo do que desenhamos para uma empresa com vários departamentos. Cada camada tem uma função.',
+  archFigure:
+    'Diagrama de arquitetura de um sistema de gestão: os canais (web, app móvel, portal de clientes e quiosque) passam por uma camada de acesso com login único e permissões, que chama os serviços de encomendas, faturação, stock, RH e aprovações. Os serviços comunicam por eventos e guardam os dados numa base de dados, em ficheiros e em cache, e ligam-se ao ERP, ao banco, às Finanças e ao e-mail e SMS. Tudo corre com publicação automática, métricas, alertas e cópias de segurança.',
+  arch: [
+    { key: 'channels', term: 'Canais', desc: 'Web, app móvel, portal de clientes e quiosque. Cada pessoa usa o ecrã que lhe dá jeito.' },
+    { key: 'access', term: 'Acesso e permissões', desc: 'Um login para tudo, com perfis por departamento, equipa e empresa.' },
+    { key: 'services', term: 'Serviços de negócio', desc: 'Encomendas, faturação, stock, RH e aprovações, cada um com as suas regras.' },
+    { key: 'data', term: 'Dados e eventos', desc: 'Os serviços falam por eventos e cada dado fica guardado uma vez, no sítio certo.' },
+    { key: 'integrations', term: 'Integrações', desc: 'ERP, banco, Finanças, e-mail e SMS, sem copiar dados à mão.' },
+    { key: 'ops', term: 'Operação', desc: 'Publicação automática, métricas, alertas e cópias de segurança.' },
   ],
-  proofLinks: 'Produtos que correm nesta plataforma',
+  archLabels: {
+    channels: ['Web', 'App móvel', 'Portal clientes', 'Quiosque'],
+    access: 'Acesso · login único · permissões',
+    services: ['Encomendas', 'Faturação', 'Stock', 'RH', 'Aprovações'],
+    bus: 'eventos',
+    data: ['Base de dados', 'Ficheiros', 'Cache'],
+    integrations: ['ERP', 'Banco', 'Finanças', 'E-mail/SMS'],
+    ops: 'CI/CD · métricas · alertas · cópias de segurança',
+  },
   stackTitle: 'Tecnologia',
-  stackIntro: 'A stack que usamos e porquê.',
+  stackIntro: 'Escolhemos a tecnologia a partir do que o projeto precisa.',
   stack: [
-    { badge: 'Java', term: 'Java 25 e Spring Boot 4', desc: 'Regras de negócio, segurança e integrações, com suporte longo.' },
-    { badge: 'GraalVM', term: 'Imagens nativas GraalVM', desc: 'Arranque rápido e menos memória, logo menos custo de servidores.' },
-    { badge: 'Angular', term: 'Angular 21', desc: 'Ecrãs de gestão com muitos formulários e tabelas, em TypeScript.' },
-    { badge: 'CI/CD', term: 'CI/CD e observabilidade', desc: 'Testes e publicação automáticos, e visibilidade sobre produção.' },
+    { key: 'backend', term: 'Backend', desc: 'Regras de negócio, APIs e segurança.', chips: ['Java 25', 'Spring Boot 4', 'APIs REST'] },
+    { key: 'frontend', term: 'Frontend', desc: 'Ecrãs de gestão rápidos, com muitos formulários e tabelas.', chips: ['Angular 21', 'TypeScript'] },
+    { key: 'mobile', term: 'Mobile', desc: 'Apps para quem trabalha fora do escritório.', chips: ['iOS', 'Android'] },
+    { key: 'architecture', term: 'Arquitetura', desc: 'Do monólito modular aos serviços separados, conforme o tamanho do projeto.', chips: ['Multi-empresa', 'Eventos', 'Modular'] },
+    { key: 'integrations', term: 'Integrações', desc: 'Ligação ao que a empresa já usa.', chips: ['ERP', 'Banco', 'Finanças'] },
+    { key: 'ops', term: 'CI/CD e operação', desc: 'Publicação automática, monitorização e alertas.', chips: ['Testes automáticos', 'GraalVM', 'Observabilidade'] },
   ],
-  contactTitle: 'Fale-nos do seu projeto',
-  contactText:
-    'Diga-nos o que a sua equipa faz hoje e o que gostaria de mudar. Respondemos com perguntas concretas e, se fizer sentido, marcamos uma conversa.',
+  quoteTitle: 'O que dizem os clientes',
+  faqTitle: 'Perguntas frequentes',
+  faq: [
+    {
+      q: 'Quanto tempo demora um projeto?',
+      a: 'Depende do âmbito. A proposta inclui as fases e o prazo de cada uma, e como trabalhamos em sprints curtos vê resultados desde o início.',
+    },
+    { q: 'Quanto custa?', a: 'Cada projeto tem uma proposta própria, com âmbito, fases e custo, antes de começarmos a programar.' },
+    {
+      q: 'Quem fica com o código e os dados?',
+      a: 'Os dados são sempre da sua empresa. A propriedade do código e a forma de o entregar ficam definidas na proposta.',
+    },
+    {
+      q: 'Podem melhorar um sistema que já temos?',
+      a: 'Sim. Começamos por perceber o que existe e propomos o que faz mais sentido: evoluir, integrar ou substituir.',
+    },
+    { q: 'E depois da entrega?', a: 'Continuamos consigo: suporte, correções, atualizações e novas funcionalidades.' },
+  ],
 }
 
 export type CustomSoftwareDict = typeof pt
@@ -59,10 +99,23 @@ const en: CustomSoftwareDict = {
   h1: 'Software built around the way your company works',
   lead: [
     'When an off-the-shelf product forces your team to change how it works, it makes sense to build the right system instead.',
-    'We design, develop and maintain web applications, mobile apps and integrations. It is the same work we do every day on our own products.',
   ],
-  heroCase: 'See a real case',
-  clientsTitle: 'Companies that work with us',
+  heroArch: 'See the architecture',
+  hero: {
+    caption:
+      'Animation: a management application gains modules one by one (orders, approvals, teams, invoicing and reports) and the main screen shows each module at work. Sample data.',
+    url: 'manage.yourcompany.com',
+    modules: ['Orders', 'Approvals', 'Teams', 'Invoicing', 'Reports'],
+    orders: [
+      ['#1042', 'Metalúrgica Ave', 'Shipped'],
+      ['#1043', 'Têxteis Sousa', 'Preparing'],
+      ['#1044', 'Clínica Foz', 'New'],
+    ],
+    approval: { title: 'Purchase request', value: '€1,240', who: 'Marta R. · Purchasing', approve: 'Approve', approved: 'Approved' },
+    teams: { title: 'Teams today', items: ['Team A · Braga', 'Team B · Porto', 'Team C · Penafiel'] },
+    invoice: { title: 'Invoice FT 2026/318', client: 'Padaria Lima', total: '€860.40', sent: 'Sent to the client' },
+    reports: { title: 'Sales per month', kpis: [['Orders', '312'], ['Late', '4']] },
+  },
   buildTitle: 'What we build',
   build: [
     { term: 'Web applications for management', desc: 'Back offices, portals and approvals that follow the steps your team takes.' },
@@ -80,29 +133,55 @@ const en: CustomSoftwareDict = {
     { term: 'Delivery', desc: 'We put the system into production and stay through the start.' },
     { term: 'Maintenance and evolution', desc: 'We fix, update and add features.' },
   ],
-  proofTitle: 'Case study: the platform behind TimeEasier and ConstructionEasier',
-  proofIntro: 'We built this platform from scratch. It is the best example of what we do for other companies.',
-  proofFigure:
-    'Architecture diagram: the tablet, the mobile app and the web application connect to a shared API, which keeps each client company’s data separate. The API connects to biometric identification, external integrations and infrastructure with observability.',
-  proof: [
-    { key: 'clients', term: 'Tablet, app and web', desc: 'Records come from the on-site tablet, the app and the web.' },
-    { key: 'tenants', term: 'Many companies, separate data', desc: 'Each company sees only its own employees, sites and permissions.' },
-    { key: 'biometrics', term: 'Face identification', desc: 'On the tablet, employees clock in with their face.' },
-    { key: 'integrations', term: 'Integrations', desc: 'Payroll, ERP and public systems.' },
-    { key: 'infra', term: 'Infrastructure and observability', desc: 'Our own infrastructure, automated tests on every change and alerts in production.' },
+  archTitle: 'A management system, inside',
+  archIntro: 'An example of what we design for a company with several departments. Each layer has one job.',
+  archFigure:
+    'Architecture diagram of a management system: the channels (web, mobile app, customer portal and kiosk) go through an access layer with single sign-on and permissions, which calls the orders, invoicing, stock, HR and approvals services. The services talk through events and keep data in a database, in files and in a cache, and connect to the ERP, the bank, the tax authority and e-mail and SMS. Everything runs with automated releases, metrics, alerts and backups.',
+  arch: [
+    { key: 'channels', term: 'Channels', desc: 'Web, mobile app, customer portal and kiosk. Everyone uses the screen that suits them.' },
+    { key: 'access', term: 'Access and permissions', desc: 'One login for everything, with profiles per department, team and company.' },
+    { key: 'services', term: 'Business services', desc: 'Orders, invoicing, stock, HR and approvals, each with its own rules.' },
+    { key: 'data', term: 'Data and events', desc: 'Services talk through events and each piece of data is stored once, in the right place.' },
+    { key: 'integrations', term: 'Integrations', desc: 'ERP, bank, tax authority, e-mail and SMS, with no copying by hand.' },
+    { key: 'ops', term: 'Operations', desc: 'Automated releases, metrics, alerts and backups.' },
   ],
-  proofLinks: 'Products running on this platform',
+  archLabels: {
+    channels: ['Web', 'Mobile app', 'Customer portal', 'Kiosk'],
+    access: 'Access · single sign-on · permissions',
+    services: ['Orders', 'Invoicing', 'Stock', 'HR', 'Approvals'],
+    bus: 'events',
+    data: ['Database', 'Files', 'Cache'],
+    integrations: ['ERP', 'Bank', 'Tax', 'E-mail/SMS'],
+    ops: 'CI/CD · metrics · alerts · backups',
+  },
   stackTitle: 'Technology',
-  stackIntro: 'The stack we use and why.',
+  stackIntro: 'We pick the technology from what the project needs.',
   stack: [
-    { badge: 'Java', term: 'Java 25 and Spring Boot 4', desc: 'Business rules, security and integrations, with long-term support.' },
-    { badge: 'GraalVM', term: 'GraalVM native images', desc: 'Fast start-up and less memory, so lower server costs.' },
-    { badge: 'Angular', term: 'Angular 21', desc: 'Management screens with many forms and tables, in TypeScript.' },
-    { badge: 'CI/CD', term: 'CI/CD and observability', desc: 'Automated tests and releases, and visibility into production.' },
+    { key: 'backend', term: 'Backend', desc: 'Business rules, APIs and security.', chips: ['Java 25', 'Spring Boot 4', 'REST APIs'] },
+    { key: 'frontend', term: 'Frontend', desc: 'Fast management screens with many forms and tables.', chips: ['Angular 21', 'TypeScript'] },
+    { key: 'mobile', term: 'Mobile', desc: 'Apps for people who work away from the office.', chips: ['iOS', 'Android'] },
+    { key: 'architecture', term: 'Architecture', desc: 'From a modular monolith to separate services, depending on the project size.', chips: ['Multi-tenant', 'Events', 'Modular'] },
+    { key: 'integrations', term: 'Integrations', desc: 'Links to what the company already uses.', chips: ['ERP', 'Bank', 'Tax'] },
+    { key: 'ops', term: 'CI/CD and operations', desc: 'Automated releases, monitoring and alerts.', chips: ['Automated tests', 'GraalVM', 'Observability'] },
   ],
-  contactTitle: 'Tell us about your project',
-  contactText:
-    'Tell us what your team does today and what you would like to change. We will reply with specific questions and, if it makes sense, set up a call.',
+  quoteTitle: 'What clients say',
+  faqTitle: 'Frequently asked questions',
+  faq: [
+    {
+      q: 'How long does a project take?',
+      a: 'It depends on the scope. The proposal includes the phases and the timeline of each one, and since we work in short sprints you see results from the start.',
+    },
+    { q: 'How much does it cost?', a: 'Each project has its own proposal, with scope, phases and cost, before we start coding.' },
+    {
+      q: 'Who owns the code and the data?',
+      a: 'The data always belongs to your company. Code ownership and how it is handed over are set out in the proposal.',
+    },
+    {
+      q: 'Can you improve a system we already have?',
+      a: 'Yes. We start by understanding what exists and suggest what makes most sense: evolve it, integrate it or replace it.',
+    },
+    { q: 'What happens after delivery?', a: 'We stay with you: support, fixes, updates and new features.' },
+  ],
 }
 
 export const customSoftware: Record<Locale, CustomSoftwareDict> = { pt, en }

@@ -49,22 +49,47 @@ export const PROCESS_ICONS = [
   </svg>,
 ]
 
-export const PROOF_ICONS: Record<string, React.ReactNode> = {
-  clients: BUILD_ICONS[1],
-  tenants: BUILD_ICONS[3],
-  biometrics: (
-    <svg {...svg}>
-      <path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" />
-      <circle cx="12" cy="10.5" r="2.5" />
-      <path d="M8 17c.8-1.8 2.2-2.7 4-2.7s3.2.9 4 2.7" />
-    </svg>
-  ),
+const SERVER = (
+  <svg {...svg}>
+    <rect x="3" y="4" width="18" height="7" rx="2" />
+    <rect x="3" y="13" width="18" height="7" rx="2" />
+    <path d="M7 7.5h.01M7 16.5h.01" />
+  </svg>
+)
+const DATABASE = (
+  <svg {...svg}>
+    <ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" />
+    <path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8" />
+  </svg>
+)
+const LOCK = (
+  <svg {...svg}>
+    <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
+    <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+  </svg>
+)
+const PULSE = (
+  <svg {...svg}>
+    <path d="M3 12h4l2.5-6 5 12L17 12h4" />
+  </svg>
+)
+
+export const ARCH_ICONS: Record<string, React.ReactNode> = {
+  channels: BUILD_ICONS[0],
+  access: LOCK,
+  services: BUILD_ICONS[3],
+  data: DATABASE,
   integrations: BUILD_ICONS[2],
-  infra: (
-    <svg {...svg}>
-      <path d="M3 12h4l2.5-6 5 12L17 12h4" />
-    </svg>
-  ),
+  ops: PULSE,
+}
+
+export const STACK_ICONS: Record<string, React.ReactNode> = {
+  backend: SERVER,
+  frontend: BUILD_ICONS[0],
+  mobile: BUILD_ICONS[1],
+  architecture: BUILD_ICONS[3],
+  integrations: BUILD_ICONS[2],
+  ops: PULSE,
 }
 
 export const ARROW = (

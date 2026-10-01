@@ -2,27 +2,35 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SiteShell from '@/components/site/SiteShell'
 import Breadcrumbs from '@/components/site/Breadcrumbs'
-import HeroPlanta from '@/components/HeroPlanta'
-import ContactBand from '@/components/ui/ContactBand'
-import ArchitectureDiagram from '@/components/ArchitectureDiagram'
-import { ARROW, BUILD_ICONS, PROCESS_ICONS, PROOF_ICONS } from '@/components/custom/icons'
+import Faq from '@/components/ui/Faq'
+import ModulesHero from '@/components/custom/ModulesHero'
+import ArchitectureScroll from '@/components/custom/ArchitectureScroll'
+import { ARCH_ICONS, ARROW, BUILD_ICONS, PROCESS_ICONS, STACK_ICONS } from '@/components/custom/icons'
 import '@/components/custom/custom-software.css'
 import { customSoftware } from '@/content/custom-software'
 import { common } from '@/content/common'
-import { CLIENTS } from '@/content/home'
-import { products } from '@/content/products'
+import { TESTIMONIALS } from '@/content/home'
 import { href, type Locale } from '@/lib/seo.config'
 
-// Software à medida (revisão de 01/10): hero da marca como o início, cartões compactos com cor e ícones,
-// etapas sem números, caso de estudo em cartões e tecnologia em azulejos. Pouco texto, uma linha por cartão.
+// Software à medida (revisão de 01/10): hero da marca com uma aplicação a ganhar módulos, cartões
+// compactos com cor, etapas sem números, arquitetura genérica montada ao scroll, tecnologia por
+// necessidade, um testemunho e perguntas frequentes. O convite final é o do rodapé. Pouco texto, uma linha por cartão.
+const QUOTE = TESTIMONIALS[0]
+
 export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
   const t = customSoftware[locale]
   const c = common[locale]
-  const p = products[locale]
   const contact = `${href('contact', locale)}?assunto=projeto`
+  const faqLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  }).replace(/</g, '\\u003c')
 
   return (
     <SiteShell pageId="customSoftware" locale={locale}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />
+
       <section className="cs-hero hero-brand overflow-x-clip text-white">
         <div className="wrap pb-14 pt-8 md:pb-20 md:pt-10">
           <Breadcrumbs pageId="customSoftware" locale={locale} />
@@ -34,30 +42,13 @@ export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
                 <Link href={contact} className="btn bg-ciano text-tinta hover:bg-white">
                   {c.cta.project}
                 </Link>
-                <a href="#caso-de-estudo" className="btn-on-dark">
-                  {t.heroCase}
+                <a href="#arquitetura" className="btn-on-dark">
+                  {t.heroArch}
                 </a>
               </div>
             </div>
-            <div className="cs-sheet">
-              <HeroPlanta locale={locale} />
-            </div>
+            <ModulesHero t={t.hero} />
           </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="clientes-titulo" className="bg-white py-10">
-        <div className="wrap">
-          <h2 id="clientes-titulo" className="text-center text-small font-semibold uppercase tracking-[0.08em] text-grafite">
-            {t.clientsTitle}
-          </h2>
-          <ul className="cs-clients mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center">
-            {CLIENTS.map((client) => (
-              <li key={client.name} className="clientes-tile">
-                <Image src={client.logo} alt={client.name} width={160} height={64} className="max-h-14 w-auto object-contain" />
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -108,44 +99,15 @@ export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section id="caso-de-estudo" aria-labelledby="caso-titulo" className="hero-brand py-16 text-white md:py-24">
+      <section id="arquitetura" aria-labelledby="arquitetura-titulo" className="hero-brand pt-16 text-white md:pt-24">
         <div className="wrap">
-          <h2 id="caso-titulo" className="t-h2 max-w-[30ch]">
-            {t.proofTitle}
+          <h2 id="arquitetura-titulo" className="t-h2 max-w-[30ch]">
+            {t.archTitle}
           </h2>
-          <p className="mt-4 max-w-prose text-lead text-white/80">{t.proofIntro}</p>
-          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
-            <ul className="grid gap-3" data-arch-steps>
-              {t.proof.map((item, i) => (
-                <li key={item.key} data-arch-step={item.key} className="cs-proof-item" data-c={i}>
-                  <span className="cs-icon">{PROOF_ICONS[item.key]}</span>
-                  <div className="min-w-0">
-                    <h3 className="font-semibold leading-snug">{item.term}</h3>
-                    <p className="mt-0.5 text-small text-white/75">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:self-start">
-              <ArchitectureDiagram locale={locale} caption={t.proofFigure} />
-            </div>
+          <p className="mt-4 max-w-prose text-lead text-white/80">{t.archIntro}</p>
+          <div className="mt-10">
+            <ArchitectureScroll t={t} icons={ARCH_ICONS} />
           </div>
-          <p className="mt-12 text-small font-semibold uppercase tracking-[0.08em] text-white/70">{t.proofLinks}</p>
-          <ul className="mt-4 flex flex-wrap gap-3">
-            {(['timeEasier', 'constructionEasier'] as const).map((id) => (
-              <li key={id}>
-                <Link href={href(id, locale)} className="cs-product">
-                  <Image src={p.items[id].icon} alt="" width={28} height={28} className="h-7 w-7 rounded-full" />
-                  {p.items[id].name}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link href={href('products', locale)} className="btn-on-dark">
-                {c.cta.products}
-              </Link>
-            </li>
-          </ul>
         </div>
       </section>
 
@@ -155,19 +117,62 @@ export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
             {t.stackTitle}
           </h2>
           <p className="mt-3 text-lead text-grafite">{t.stackIntro}</p>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {t.stack.map((item, i) => (
-              <li key={item.term} className="reveal-panel cs-tech" data-c={i}>
-                <span className="cs-tech-badge">{item.badge}</span>
-                <h3 className="mt-4 font-semibold leading-snug">{item.term}</h3>
-                <p className="mt-1 text-small text-grafite">{item.desc}</p>
+              <li key={item.key} className="reveal-panel cs-tech" data-c={i % 5}>
+                <div className="flex items-center gap-3">
+                  <span className="cs-icon">{STACK_ICONS[item.key]}</span>
+                  <h3 className="font-semibold leading-snug">{item.term}</h3>
+                </div>
+                <p className="mt-3 text-small text-grafite">{item.desc}</p>
+                <ul className="mt-3 flex flex-wrap gap-1.5">
+                  {item.chips.map((chip) => (
+                    <li key={chip} className="cs-chip">
+                      {chip}
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <ContactBand locale={locale} title={t.contactTitle} text={t.contactText} subject="projeto" cta={c.cta.project} />
+      <section aria-labelledby="testemunho-titulo" className="bg-white py-16 md:py-24">
+        <div className="wrap">
+          <h2 id="testemunho-titulo" className="sr-only">
+            {t.quoteTitle}
+          </h2>
+          <figure className="cs-quote">
+            <svg viewBox="0 0 32 24" className="h-8 w-10 text-ciano" fill="currentColor" aria-hidden="true">
+              <path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h6v13zm18 0V14c0-8 4-12.5 12-14l1.5 3C27 4.5 25 7.5 25 11h6v13z" />
+            </svg>
+            <blockquote className="mt-5 max-w-[52ch] text-[1.375rem] font-medium leading-snug md:text-[1.625rem]">{QUOTE.quote}</blockquote>
+            <figcaption className="mt-8 flex flex-wrap items-center gap-4">
+              <Image src={QUOTE.photo} alt="" width={56} height={56} className="h-14 w-14 rounded-full object-cover ring-2 ring-white/30" />
+              <span>
+                <span className="block font-semibold">{QUOTE.name}</span>
+                <span className="block text-small text-white/75">{QUOTE.company}</span>
+              </span>
+              <span className="ml-auto rounded-xl bg-white px-3 py-2">
+                <Image src={QUOTE.logo} alt={QUOTE.company} width={120} height={48} className="h-9 w-auto object-contain" />
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="perguntas" aria-labelledby="perguntas-titulo" className="py-16 md:py-24">
+        <div className="wrap max-w-3xl">
+          <h2 id="perguntas-titulo" className="t-h2">
+            {t.faqTitle}
+          </h2>
+          <div className="mt-8">
+            <Faq items={t.faq} />
+          </div>
+        </div>
+      </section>
+
     </SiteShell>
   )
 }

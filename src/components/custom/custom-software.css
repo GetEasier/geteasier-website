@@ -10,27 +10,6 @@
   color: #fff;
 }
 
-/* Planta do hero num cartão branco, como uma folha de projeto pousada sobre o fundo escuro */
-.cs-sheet {
-  border-radius: 20px;
-  background: #fff;
-  padding: 1rem;
-  box-shadow:
-    0 40px 80px -40px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-/* Clientes: no telemóvel, dois logótipos por linha em vez de um */
-@media (max-width: 639px) {
-  .cs-clients .clientes-tile {
-    width: auto;
-    height: 4.5rem;
-  }
-  .cs-clients .clientes-tile img {
-    max-height: 2.75rem;
-  }
-}
-
 /* Cartões compactos: ícone num gradiente, nome e uma linha */
 .cs-card {
   --c1: #1b54b8;
@@ -139,7 +118,7 @@
   margin-inline: auto;
 }
 
-/* Caso de estudo: pontos em cartões translúcidos sobre o fundo escuro */
+/* Arquitetura: passos em cartões translúcidos sobre o fundo escuro */
 .cs-proof-item {
   display: flex;
   gap: 0.9rem;
@@ -161,22 +140,8 @@
   border-color: rgba(24, 221, 186, 0.6);
   background: rgba(24, 221, 186, 0.08);
 }
-.cs-product {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  border-radius: 999px;
-  background: #fff;
-  padding: 0.4rem 1rem 0.4rem 0.45rem;
-  color: var(--tinta, #06083c);
-  font-weight: 600;
-  transition: transform 300ms var(--ease-entrada);
-}
-.cs-product:hover {
-  transform: translateY(-2px);
-}
 
-/* Tecnologia: azulejos com a sigla em destaque */
+/* Tecnologia: azulejos por necessidade */
 .cs-tech {
   --c1: #1b54b8;
   --c2: #18ddba;
@@ -186,21 +151,520 @@
   padding: 1.1rem;
   box-shadow: 0 14px 30px -26px rgba(6, 8, 60, 0.45);
 }
-.cs-tech-badge {
-  display: inline-block;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--c1), var(--c2));
-  padding: 0.35rem 0.7rem;
-  color: #fff;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .cs-card,
-  .cs-card::before,
-  .cs-product {
+  .cs-card::before {
     transition: none !important;
+  }
+}
+
+/* --- Arquitetura montada ao scroll ------------------------------------------------------------ */
+.cs-arch-sticky {
+  position: sticky;
+  top: calc(var(--header-h, 4rem) + 0.75rem);
+  z-index: 2;
+  align-self: start;
+}
+.cs-arch {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background: #080b45;
+  padding: 0.75rem;
+  box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.8);
+}
+.cs-arch-steps {
+  display: grid;
+  gap: 12vh;
+  padding-bottom: 20vh;
+}
+@media (min-width: 1024px) {
+  .cs-arch-steps {
+    gap: 16vh;
+    padding-block: 8vh 30vh;
+  }
+}
+.arch-layer {
+  opacity: 0.14;
+  transition: opacity 500ms ease;
+}
+.arch-layer.is-on {
+  opacity: 1;
+}
+.arch-box,
+.arch-link,
+.arch-frame {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition:
+    stroke-dashoffset 900ms var(--ease-entrada),
+    stroke 400ms ease;
+}
+.arch-layer.is-on .arch-box,
+.arch-layer.is-on .arch-link,
+.arch-layer.is-on .arch-frame {
+  stroke-dashoffset: 0;
+}
+.arch-box {
+  fill: rgba(255, 255, 255, 0.05);
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 1.5;
+}
+.arch-box-accent {
+  fill: rgba(27, 84, 184, 0.35);
+}
+.arch-box-ext {
+  fill: rgba(245, 165, 36, 0.1);
+  stroke: #f5a524;
+}
+.arch-bus {
+  fill: rgba(109, 74, 255, 0.3);
+  stroke: #8f78ff;
+}
+.arch-layer.is-current .arch-box {
+  stroke: #18ddba;
+  stroke-width: 2;
+}
+.arch-link {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.5;
+}
+.arch-frame {
+  fill: none;
+  stroke: rgba(24, 221, 186, 0.45);
+  stroke-width: 1.5;
+}
+.arch-label {
+  fill: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+}
+.arch-small {
+  font-size: 12.5px;
+}
+.arch-muted {
+  fill: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.08em;
+}
+.arch-dot {
+  fill: #18ddba;
+}
+.arch-layer.is-on .arch-dot {
+  animation: arch-pulse 1.6s ease-in-out infinite;
+}
+.arch-packet {
+  fill: #18ddba;
+  offset-rotate: 0deg;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px #18ddba);
+}
+.arch-packets.is-on .arch-packet {
+  animation: arch-move 3.2s linear infinite;
+}
+@keyframes arch-move {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  8%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+@keyframes arch-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arch-layer,
+  .arch-box,
+  .arch-link,
+  .arch-frame {
+    transition: none !important;
+  }
+  .arch-packet {
+    display: none;
+  }
+  .arch-layer.is-on .arch-dot {
+    animation: none;
+  }
+}
+
+/* --- Hero: a aplicação ganha módulos ---------------------------------------------------------- */
+.mh-win {
+  overflow: hidden;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--tinta, #06083c);
+  box-shadow:
+    0 40px 80px -40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.mh-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid #e6eaf1;
+  padding: 0.6rem 0.9rem;
+}
+.mh-dots {
+  display: flex;
+  gap: 0.3rem;
+}
+.mh-dots i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #dce2ea;
+}
+.mh-url {
+  flex: 1;
+  border-radius: 999px;
+  background: #f1f4f9;
+  padding: 0.2rem 0.75rem;
+  color: #4a5263;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+}
+.mh-body {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  min-height: 19rem;
+}
+@media (max-width: 479px) {
+  /* No telemóvel a barra lateral fica só com os ícones */
+  .mh-body {
+    grid-template-columns: 3.4rem minmax(0, 1fr);
+    min-height: 17rem;
+  }
+  .mh-mod-label {
+    display: none;
+  }
+}
+.mh-side {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  border-right: 1px solid #e6eaf1;
+  background: #f6f8fc;
+  padding: 0.75rem 0.6rem;
+}
+.mh {
+  --c1: #1b54b8;
+  --c2: #18ddba;
+}
+.mh-mod {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px dashed #cfd6e2;
+  border-radius: 10px;
+  padding: 0.35rem 0.45rem;
+  color: transparent;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    color 300ms ease;
+}
+.mh-mod-icon {
+  display: grid;
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+}
+.mh-mod-icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+.mh-mod[data-in] {
+  border: 1.5px solid transparent;
+  background: #fff;
+  color: var(--tinta, #06083c);
+  box-shadow: 0 6px 14px -10px rgba(6, 8, 60, 0.5);
+}
+.mh-mod[data-in] .mh-mod-icon {
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+}
+.mh-mod[data-now] {
+  border-color: color-mix(in srgb, var(--c1) 45%, transparent);
+}
+.mh-mod[data-new] {
+  animation: mh-fly 700ms var(--ease-entrada) both;
+}
+@keyframes mh-fly {
+  from {
+    transform: translateX(260%) rotate(6deg) scale(1.08);
+    box-shadow: 0 24px 40px -14px rgba(6, 8, 60, 0.45);
+  }
+}
+.mh-main {
+  position: relative;
+  overflow: hidden;
+  padding: 0.9rem 1rem;
+  font-size: 0.8rem;
+}
+.mh-panel {
+  position: absolute;
+  inset: 0.9rem 1rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 300ms ease,
+    transform 400ms var(--ease-entrada);
+  pointer-events: none;
+}
+.mh-panel[data-on] {
+  opacity: 1;
+  transform: none;
+  transition-delay: 250ms;
+}
+.mh-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.mh-mono {
+  color: #4a5263;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+}
+.mh-row,
+.mh-team {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 10px;
+  background: #f6f8fc;
+  padding: 0.5rem 0.6rem;
+}
+.mh-pill {
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.mh-pill[data-s='0'] {
+  background: #d9f5ea;
+  color: #0f7a5c;
+}
+.mh-pill[data-s='1'] {
+  background: #fdf0d8;
+  color: #9a5b00;
+}
+.mh-pill[data-s='2'] {
+  background: #e3ebfb;
+  color: #1b54b8;
+}
+.mh-card {
+  border: 1px solid #e6eaf1;
+  border-radius: 14px;
+  padding: 0.9rem;
+  box-shadow: 0 14px 30px -24px rgba(6, 8, 60, 0.5);
+}
+.mh-big {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.mh-sub {
+  display: block;
+  color: #4a5263;
+  font-size: 0.72rem;
+}
+.mh-approve {
+  position: relative;
+  display: inline-grid;
+  margin-top: 0.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.mh-approve > span {
+  grid-area: 1 / 1;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  text-align: center;
+}
+.mh-approve-a {
+  background: #1b54b8;
+  color: #fff;
+}
+.mh-approve-b {
+  background: #d9f5ea;
+  color: #0f7a5c;
+}
+.mh-avatar {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1b54b8, #18ddba);
+}
+.mh-avatar[data-c='1'] {
+  background: linear-gradient(135deg, #6d4aff, #1b54b8);
+}
+.mh-avatar[data-c='2'] {
+  background: linear-gradient(135deg, #e2572b, #f5a524);
+}
+.mh-progress {
+  display: block;
+  margin-top: 0.3rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: #e3e8f0;
+  overflow: hidden;
+}
+.mh-progress i {
+  display: block;
+  height: 100%;
+  width: var(--w);
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1b54b8, #18ddba);
+}
+.mh-lines {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+.mh-lines i {
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #e8ecf3;
+}
+.mh-lines i:nth-child(2) {
+  width: 80%;
+}
+.mh-lines i:nth-child(3) {
+  width: 60%;
+}
+.mh-stamp {
+  display: inline-block;
+  margin-top: 0.6rem;
+  border-radius: 999px;
+  background: #d9f5ea;
+  padding: 0.25rem 0.7rem;
+  color: #0f7a5c;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.mh-kpi {
+  border-radius: 12px;
+  background: #e3ebfb;
+  padding: 0.5rem 0.65rem;
+}
+.mh-kpi[data-c='1'] {
+  background: #fdf0d8;
+}
+.mh-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.35rem;
+  height: 6rem;
+  margin-top: 0.75rem;
+}
+.mh-chart i {
+  flex: 1;
+  height: calc(var(--h) * 100%);
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(180deg, #18ddba, #1b54b8);
+  transform-origin: bottom;
+}
+
+/* Só a correr: as linhas entram, o botão passa a "aprovado", o carimbo aparece e as barras crescem */
+.mh[data-run] .mh-panel[data-on] .mh-row,
+.mh[data-run] .mh-panel[data-on] .mh-team {
+  animation: mh-in 450ms var(--ease-entrada) both;
+}
+.mh[data-run] .mh-panel[data-on] .mh-progress i {
+  animation: mh-grow-x 1100ms var(--ease-entrada) 500ms both;
+  transform-origin: left;
+}
+.mh[data-run] .mh-panel[data-on] .mh-approve-b {
+  animation: mh-swap 400ms ease 1300ms both;
+}
+.mh[data-run] .mh-panel[data-on] .mh-stamp {
+  animation: mh-stamp 450ms var(--ease-entrada) 1200ms both;
+}
+.mh[data-run] .mh-panel[data-on] .mh-chart i {
+  animation: mh-grow-y 700ms var(--ease-entrada) both;
+}
+@keyframes mh-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+@keyframes mh-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes mh-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes mh-swap {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+@keyframes mh-stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.4) rotate(-6deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mh *,
+  .mh *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* --- Tecnologia por necessidade e testemunho --------------------------------------------------- */
+.cs-tech .cs-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+}
+.cs-chip {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c1) 10%, #fff);
+  padding: 0.2rem 0.65rem;
+  color: color-mix(in srgb, var(--c1) 85%, #06083c);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.cs-quote {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    radial-gradient(60% 80% at 90% 0%, rgba(24, 221, 186, 0.3), transparent 70%),
+    linear-gradient(135deg, #06083c, #1b54b8);
+  padding: 2rem;
+  color: #fff;
+  box-shadow: 0 40px 80px -50px rgba(6, 8, 60, 0.8);
+}
+@media (min-width: 768px) {
+  .cs-quote {
+    padding: 3rem;
   }
 }
