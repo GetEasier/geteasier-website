@@ -170,23 +170,6 @@
   background: rgba(24, 221, 186, 0.08);
 }
 
-/* Tecnologia: azulejos por necessidade */
-.cs-tech {
-  --c1: #1b54b8;
-  --c2: #18ddba;
-  border-radius: 18px;
-  border: 1px solid var(--caixa, #dce2ea);
-  background: #fff;
-  padding: 1.1rem;
-  box-shadow: 0 14px 30px -26px rgba(6, 8, 60, 0.45);
-}
-@media (prefers-reduced-motion: reduce) {
-  .cs-card,
-  .cs-card::before {
-    transition: none !important;
-  }
-}
-
 /* --- Arquitetura montada ao scroll ------------------------------------------------------------ */
 /* Pista alta com um painel preso: o scroll dentro da pista monta o diagrama, sem espaços vazios */
 .cs-arch-track {
@@ -731,37 +714,6 @@
   .mh *::before {
     animation: none !important;
     transition: none !important;
-  }
-}
-
-/* --- Tecnologia por necessidade e testemunho --------------------------------------------------- */
-.cs-tech .cs-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 12px;
-}
-.cs-chip {
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--c1) 10%, #fff);
-  padding: 0.2rem 0.65rem;
-  color: color-mix(in srgb, var(--c1) 85%, #06083c);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.cs-quote {
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  background:
-    radial-gradient(60% 80% at 90% 0%, rgba(24, 221, 186, 0.3), transparent 70%),
-    linear-gradient(135deg, #06083c, #1b54b8);
-  padding: 2rem;
-  color: #fff;
-  box-shadow: 0 40px 80px -50px rgba(6, 8, 60, 0.8);
-}
-@media (min-width: 768px) {
-  .cs-quote {
-    padding: 3rem;
   }
 }
 

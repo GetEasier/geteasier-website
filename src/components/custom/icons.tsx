@@ -49,13 +49,6 @@ export const PROCESS_ICONS = [
   </svg>,
 ]
 
-const SERVER = (
-  <svg {...svg}>
-    <rect x="3" y="4" width="18" height="7" rx="2" />
-    <rect x="3" y="13" width="18" height="7" rx="2" />
-    <path d="M7 7.5h.01M7 16.5h.01" />
-  </svg>
-)
 const DATABASE = (
   <svg {...svg}>
     <ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" />
@@ -79,15 +72,6 @@ export const ARCH_ICONS: Record<string, React.ReactNode> = {
   access: LOCK,
   services: BUILD_ICONS[3],
   data: DATABASE,
-  integrations: BUILD_ICONS[2],
-  ops: PULSE,
-}
-
-export const STACK_ICONS: Record<string, React.ReactNode> = {
-  backend: SERVER,
-  frontend: BUILD_ICONS[0],
-  mobile: BUILD_ICONS[1],
-  architecture: BUILD_ICONS[3],
   integrations: BUILD_ICONS[2],
   ops: PULSE,
 }

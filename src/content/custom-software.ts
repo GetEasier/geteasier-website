@@ -2,7 +2,7 @@ import type { Locale } from '@/lib/seo.config'
 
 // Capacidade técnica: secção 1 do briefing (sem IA, por decisão do Alexandre a 29/09/2026).
 // Revisão de 01/10: textos curtos, uma linha por cartão; o visual faz o resto. A arquitetura é um
-// exemplo genérico de um sistema de gestão (não os nossos produtos), e a tecnologia está por necessidade.
+// exemplo genérico de um sistema de gestão (não os nossos produtos). Sem tecnologia nem testemunho (Alexandre, 01/10).
 
 const pt = {
   h1: 'Software feito à volta da forma como a sua empresa trabalha',
@@ -69,17 +69,6 @@ const pt = {
     integrations: ['ERP', 'Banco', 'Finanças', 'E-mail/SMS'],
     ops: 'CI/CD · métricas · alertas · cópias de segurança',
   },
-  stackTitle: 'Tecnologia',
-  stackIntro: 'Escolhemos a tecnologia a partir do que o projeto precisa.',
-  stack: [
-    { key: 'backend', term: 'Backend', desc: 'Regras de negócio, APIs e segurança.', chips: ['Java 25', 'Spring Boot 4', 'APIs REST'] },
-    { key: 'frontend', term: 'Frontend', desc: 'Ecrãs de gestão rápidos, com muitos formulários e tabelas.', chips: ['Angular 21', 'TypeScript'] },
-    { key: 'mobile', term: 'Mobile', desc: 'Apps para quem trabalha fora do escritório.', chips: ['iOS', 'Android'] },
-    { key: 'architecture', term: 'Arquitetura', desc: 'Do monólito modular aos serviços separados, conforme o tamanho do projeto.', chips: ['Multi-empresa', 'Eventos', 'Modular'] },
-    { key: 'integrations', term: 'Integrações', desc: 'Ligação ao que a empresa já usa.', chips: ['ERP', 'Banco', 'Finanças'] },
-    { key: 'ops', term: 'CI/CD e operação', desc: 'Publicação automática, monitorização e alertas.', chips: ['Testes automáticos', 'GraalVM', 'Observabilidade'] },
-  ],
-  quoteTitle: 'O que dizem os clientes',
   faqTitle: 'Perguntas frequentes',
   faqText: 'Não encontra a sua pergunta? Fale connosco.',
   faq: [
@@ -167,17 +156,6 @@ const en: CustomSoftwareDict = {
     integrations: ['ERP', 'Bank', 'Tax', 'E-mail/SMS'],
     ops: 'CI/CD · metrics · alerts · backups',
   },
-  stackTitle: 'Technology',
-  stackIntro: 'We pick the technology from what the project needs.',
-  stack: [
-    { key: 'backend', term: 'Backend', desc: 'Business rules, APIs and security.', chips: ['Java 25', 'Spring Boot 4', 'REST APIs'] },
-    { key: 'frontend', term: 'Frontend', desc: 'Fast management screens with many forms and tables.', chips: ['Angular 21', 'TypeScript'] },
-    { key: 'mobile', term: 'Mobile', desc: 'Apps for people who work away from the office.', chips: ['iOS', 'Android'] },
-    { key: 'architecture', term: 'Architecture', desc: 'From a modular monolith to separate services, depending on the project size.', chips: ['Multi-tenant', 'Events', 'Modular'] },
-    { key: 'integrations', term: 'Integrations', desc: 'Links to what the company already uses.', chips: ['ERP', 'Bank', 'Tax'] },
-    { key: 'ops', term: 'CI/CD and operations', desc: 'Automated releases, monitoring and alerts.', chips: ['Automated tests', 'GraalVM', 'Observability'] },
-  ],
-  quoteTitle: 'What clients say',
   faqTitle: 'Frequently asked questions',
   faqText: 'Can’t find your question? Talk to us.',
   faq: [
