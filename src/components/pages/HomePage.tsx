@@ -9,10 +9,9 @@ import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
 import HomeMotion from '@/components/home/HomeMotion'
 import Stats from '@/components/home/Stats'
-import TestimonialCarousel from '@/components/home/TestimonialCarousel'
 import Faq from '@/components/ui/Faq'
 import { COMPANY } from '@/lib/site'
-import { home } from '@/content/home'
+import { TESTIMONIALS, home } from '@/content/home'
 import { common } from '@/content/common'
 import { href, type Locale } from '@/lib/seo.config'
 
@@ -114,37 +113,69 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* Testemunhos: os três de uma vez, em cartões de cor, e os números numa faixa por baixo */}
       <section id="testimonials" aria-labelledby="testemunhos-titulo" className="bg-white py-16 md:py-24">
         <div className="wrap">
           <h2 id="testemunhos-titulo" className="t-h2">
             {t.testimonialsTitle}
           </h2>
-          <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)]">
-            <div className="hero-brand rounded-[28px] p-7 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] md:p-12">
-              <TestimonialCarousel labels={t.carousel} lang={locale} dark />
-            </div>
-            <div>
-              <h3 className="sr-only">{t.stats.title}</h3>
-              <Stats items={t.stats.items} note={t.stats.note} tiles />
+          <ul className="mt-10 grid gap-5 lg:grid-cols-3">
+            {TESTIMONIALS.map((q, i) => (
+              <li key={q.name} className="testemunho-card" data-kind={i}>
+                <figure className="flex h-full flex-col">
+                  <svg aria-hidden="true" viewBox="0 0 48 36" className="testemunho-aspas h-7 w-auto self-start" fill="currentColor">
+                    <path d="M0 36V22C0 9.6 6.2 2.3 18.6 0l2 5.2C13.5 7 10 11 9.6 17H19v19H0zm27 0V22C27 9.6 33.2 2.3 45.6 0l2 5.2C40.5 7 37 11 36.6 17H46v19H27z" />
+                  </svg>
+                  <blockquote lang="pt-PT" className="mt-5 text-[1.0625rem] font-medium leading-relaxed">
+                    <p>{q.quote}</p>
+                  </blockquote>
+                  <figcaption className="mt-auto flex items-center gap-3 pt-7">
+                    <Image src={q.photo} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover ring-2 ring-white" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-semibold">{q.name}</span>
+                      <span className="block text-small text-grafite">{q.company}</span>
+                    </span>
+                    <span className="grid h-11 shrink-0 place-items-center rounded-full bg-white px-3 shadow-[0_8px_20px_-14px_rgba(6,8,60,.5)]">
+                      <Image src={q.logo} alt="" width={96} height={40} className="max-h-7 w-auto object-contain" />
+                    </span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          {locale === 'en' && <p className="mt-4 text-small text-grafite">Quoted in the original Portuguese.</p>}
+          <div className="hero-brand mt-5 rounded-[28px] p-7 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] md:p-10">
+            <h3 className="text-small font-semibold uppercase tracking-[0.08em] text-ciano">{t.stats.title}</h3>
+            <div className="mt-5">
+              <Stats items={t.stats.items} note={t.stats.note} dark />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="team" aria-labelledby="equipa-titulo" className="overflow-hidden bg-tinta py-16 text-white md:py-24">
-        <div className="wrap">
+      {/* Equipa: fundo da marca com grelha, factos em pílulas e cartões que reagem ao rato */}
+      <section id="team" aria-labelledby="equipa-titulo" className="team-section hero-brand overflow-hidden py-16 text-white md:py-24">
+        <div className="wrap relative">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 id="equipa-titulo" className="t-h2">
                 {t.teamTitle}
               </h2>
               <p className="mt-3 text-lead text-white/80">{t.teamText}</p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {t.teamFacts.map((f, i) => (
+                  <li key={f} className="team-fact">
+                    <span aria-hidden="true">{FACT_ICONS[i]}</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <Link href={href('about', locale)} className="font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
+            <Link href={href('about', locale)} className="btn-on-dark">
               {t.teamLink}
             </Link>
           </div>
-          <TeamGrid locale={locale} className="mt-10" dark parallax />
+          <TeamGrid locale={locale} className="mt-12" dark parallax lively />
         </div>
       </section>
 
@@ -222,4 +253,19 @@ const MINIS = [
     <i />
     <span>€</span>
   </span>,
+]
+
+const FACT_ICONS = [
+  <svg key="pin" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
+    <circle cx="8" cy="6.3" r="1.8" />
+  </svg>,
+  <svg key="team" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="6" cy="5.5" r="2.3" />
+    <path d="M1.8 13.5c.6-2.3 2.2-3.5 4.2-3.5s3.6 1.2 4.2 3.5M10.5 3.4a2.3 2.3 0 0 1 0 4.3M12 10.2c1.1.5 1.9 1.6 2.2 3.3" />
+  </svg>,
+  <svg key="cycle" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M13.5 8A5.5 5.5 0 0 1 3.6 11.3M2.5 8a5.5 5.5 0 0 1 9.9-3.3" />
+    <path d="M12.6 2v2.8H9.8M3.4 14v-2.8h2.8" />
+  </svg>,
 ]

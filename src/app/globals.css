@@ -2828,3 +2828,168 @@
     animation: none !important;
   }
 }
+
+/* --- Testemunhos em cartões (início) --------------------------------------------------------- */
+.testemunho-card {
+  --c: #1b54b8;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #e8eef9;
+  padding: 1.75rem;
+  transition:
+    transform 300ms var(--ease-entrada),
+    box-shadow 300ms ease;
+}
+.testemunho-card[data-kind='1'] {
+  --c: #0f7a5c;
+  background: #e6f4ec;
+}
+.testemunho-card[data-kind='2'] {
+  --c: #7a3e1c;
+  background: #f6ece4;
+}
+.testemunho-card::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -25%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.75), transparent);
+  pointer-events: none;
+}
+.testemunho-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -32px color-mix(in srgb, var(--c) 70%, transparent);
+}
+.testemunho-aspas {
+  color: var(--c);
+}
+@media (prefers-reduced-motion: reduce) {
+  .testemunho-card {
+    transition: none;
+  }
+}
+
+/* --- Equipa (início): grelha de fundo, pílulas e cartões que reagem ao rato ------------------ */
+.team-section {
+  position: relative;
+}
+.team-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 40%, #000, transparent);
+  mask-image: radial-gradient(70% 70% at 50% 40%, #000, transparent);
+  pointer-events: none;
+}
+.team-fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(24, 221, 186, 0.35);
+  border-radius: 999px;
+  background: rgba(24, 221, 186, 0.08);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.team-fact svg {
+  color: #18ddba;
+}
+.team-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 30%;
+  border-radius: 22px;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition:
+    transform 500ms var(--ease-entrada),
+    box-shadow 300ms ease;
+}
+.team-card:hover {
+  box-shadow: 0 40px 70px -30px rgba(24, 221, 186, 0.45);
+  transition:
+    transform 120ms linear,
+    box-shadow 300ms ease;
+}
+.team-card::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(40% 35% at var(--mx) var(--my), rgba(255, 255, 255, 0.28), transparent 70%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+.team-card:hover::after {
+  opacity: 1;
+}
+.team-card::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--b-ang), transparent 0 55%, #18ddba 72%, #82aaff 84%, transparent 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  animation: b-spin 3s linear infinite paused;
+  pointer-events: none;
+}
+.team-card:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+.team-glass {
+  position: absolute;
+  z-index: 1;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  background: rgba(6, 8, 60, 0.74);
+  padding: 0.85rem 1rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform 400ms var(--ease-entrada);
+}
+.team-card:hover .team-glass {
+  transform: translateY(-4px);
+}
+.team-role {
+  display: inline-flex;
+  margin-top: 0.4rem;
+  border-radius: 999px;
+  background: rgba(24, 221, 186, 0.16);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #18ddba;
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-card,
+  .team-card *,
+  .team-card::before,
+  .team-card::after {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}

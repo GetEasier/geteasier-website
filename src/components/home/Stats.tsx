@@ -11,15 +11,15 @@ type Stat = { value: number | null; suffix: string; label: string }
 // Tiles: um bloco de cor por número, nas cores dos produtos (início).
 const TILES = ['bg-produto-time-claro text-produto-time', 'bg-produto-obras-claro text-produto-obras', 'bg-produto-stock-claro text-produto-stock']
 
-export default function Stats({ items, note, tiles }: { items: Stat[]; note?: string; tiles?: boolean }) {
+export default function Stats({ items, note, tiles, dark }: { items: Stat[]; note?: string; tiles?: boolean; dark?: boolean }) {
   const ref = useRef<HTMLDListElement>(null)
   const seen = useSeenOnce(ref, 0.5)
   return (
     <div>
       <dl ref={ref} className={cn('grid sm:grid-cols-3', tiles ? 'gap-3 lg:grid-cols-1' : 'gap-6')}>
         {items.map((s, i) => (
-          <div key={s.label} className={cn('flex flex-col', tiles ? cn('rounded-frame p-5', TILES[i % TILES.length]) : 'border-t-2 border-tinta pt-3')}>
-            <dt className={cn('mt-2 text-small font-semibold', tiles ? 'text-tinta' : 'text-grafite')}>{s.label}</dt>
+          <div key={s.label} className={cn('flex flex-col', tiles ? cn('rounded-frame p-5', TILES[i % TILES.length]) : cn('border-t-2 pt-3', dark ? 'border-white/25' : 'border-tinta'))}>
+            <dt className={cn('mt-2 text-small font-semibold', tiles ? 'text-tinta' : dark ? 'text-white/75' : 'text-grafite')}>{s.label}</dt>
             <dd className="t-data order-first text-[2.25rem] font-medium leading-none">
               {s.value == null ? (
                 <span className="inline-block rounded-full border border-dashed border-current px-3 py-1 text-small font-semibold">[CONFIRMAR]</span>
@@ -30,7 +30,7 @@ export default function Stats({ items, note, tiles }: { items: Stat[]; note?: st
           </div>
         ))}
       </dl>
-      {note && <p className="mt-4 text-small text-grafite">{note}</p>}
+      {note && <p className={cn('mt-4 text-small', dark ? 'text-white/60' : 'text-grafite')}>{note}</p>}
     </div>
   )
 }

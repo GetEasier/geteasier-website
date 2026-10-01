@@ -111,3 +111,8 @@ Clientes: passa a uma faixa contínua (`ClientMarquee`) com pontas a desvanecer,
 ou com "reduzir movimento" fica a grelha parada. Substitui o cinzento a ganhar cor.
 Software à medida: os três itens passam a cartões com ícone em gradiente, descrição e uma pequena ilustração (barras, app,
 integração com um ponto a circular).
+
+Testemunhos (01/10, opção escolhida "Três cartões"): os três testemunhos lado a lado em cartões de cor com foto e logótipo, e os
+números numa faixa escura por baixo. O carrossel deixa de ser usado no início.
+Equipa: fundo da marca com grelha, pílulas com factos (Marco de Canaveses, equipa portuguesa, do desenho ao suporte) e cartões
+que se inclinam para o rato, com luz que segue o ponteiro, contorno de luz ao passar e nome num painel de vidro (`TeamLive`).
