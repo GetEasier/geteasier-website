@@ -20,11 +20,13 @@ const T = {
       { title: 'Quem trabalha fora regista na app', text: 'Na obra, no cliente ou na estrada: a entrada fica com a hora e o local onde foi feita.' },
       { title: 'Férias e ausências num só mapa', text: 'Vê quem está de férias ou ausente antes de organizar a semana.' },
       { title: 'O responsável aprova a sua equipa', text: 'Cada chefe de equipa revê os registos das suas pessoas e aprova-os.' },
+      { title: 'Documentos com alerta de validade', text: 'Contratos, recibos e formações de cada pessoa num só sítio. Recebe um aviso antes de um documento expirar.' },
       { title: 'O fim do mês sem contas à mão', text: 'O relatório de horas de cada colaborador sai pronto, de acordo com o Art. 202.º do Código do Trabalho.' },
     ],
     app: { place: 'Av. Central', action: 'Entrada registada' },
     holidays: { month: 'Outubro', people: ['Ana S.', 'Rui M.', 'Carla P.', 'Hugo T.'], vac: 'Férias', abs: 'Ausência' },
     approve: { title: 'Registos da equipa', pending: 'Pendente', ok: 'Aprovado' },
+    docs: { who: 'Rui M.', items: ['Contrato de trabalho', 'Recibo de setembro', 'Formação'], ok: 'Válido', soon: 'Expira em 12 dias' },
     report: { title: 'Relatório mensal · setembro', done: 'Pronto a exportar' },
   },
   en: {
@@ -35,11 +37,13 @@ const T = {
       { title: 'People working away clock in on the app', text: 'On site, at a client or on the road: each entry keeps the time and the place it was made.' },
       { title: 'Holidays and absences on one map', text: 'See who is on holiday or away before planning the week.' },
       { title: 'Team leaders approve their team', text: 'Each team leader reviews their people’s records and approves them.' },
+      { title: 'Documents with expiry alerts', text: 'Contracts, payslips and training records for each person in one place. You get a warning before a document expires.' },
       { title: 'Month end without manual sums', text: 'Each employee’s hours report comes out ready, in line with Article 202 of the Portuguese Labour Code.' },
     ],
     app: { place: 'Av. Central', action: 'Clock-in recorded' },
     holidays: { month: 'October', people: ['Ana S.', 'Rui M.', 'Carla P.', 'Hugo T.'], vac: 'Holiday', abs: 'Absence' },
     approve: { title: 'Team records', pending: 'Pending', ok: 'Approved' },
+    docs: { who: 'Rui M.', items: ['Employment contract', 'September payslip', 'Training'], ok: 'Valid', soon: 'Expires in 12 days' },
     report: { title: 'Monthly report · September', done: 'Ready to export' },
   },
 }
@@ -144,6 +148,39 @@ function Screen({ i, on, t }: { i: number; on: boolean; t: Dict }): ReactNode {
               </span>
             </li>
           ))}
+        </ul>
+      </div>
+    )
+  if (i === 4)
+    return (
+      <div className="w-full max-w-[25rem] rounded-2xl bg-white p-5 shadow-[0_30px_60px_-30px_rgba(6,8,60,.5)]">
+        <p className="flex items-center gap-3 font-bold">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-produto-time-claro text-data font-bold text-produto-time">R</span>
+          {t.docs.who}
+        </p>
+        <ul className="mt-3 divide-y divide-linha">
+          {t.docs.items.map((d, k) => {
+            const soon = k === 2
+            return (
+              <li key={d} className="flex items-center gap-3 py-3 text-small">
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-produto-time" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 3H6v18h12V7zM14 3v4h4M9 12h6M9 16h6" />
+                </svg>
+                <span className="flex-1 font-semibold">{d}</span>
+                {soon ? (
+                  <span className="tb-alert inline-flex shrink-0 items-center whitespace-nowrap gap-1.5 rounded-full bg-[#FFF4D6] px-2.5 py-1 text-data font-bold text-estado-aviso">
+                    <StatusIcon status="soon" />
+                    {t.docs.soon}
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 text-data font-semibold text-estado-valido">
+                    <StatusIcon status="ok" />
+                    {t.docs.ok}
+                  </span>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </div>
     )

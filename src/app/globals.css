@@ -3223,6 +3223,17 @@
   opacity: 1;
   transform: none;
 }
+.tb-alert {
+  opacity: 0;
+  transform: translateX(12px);
+  transition:
+    opacity 300ms ease 500ms,
+    transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 500ms;
+}
+[data-anim] .tb-alert {
+  opacity: 1;
+  transform: none;
+}
 .tb-pin {
   opacity: 0;
   transform: translateY(-28px);
