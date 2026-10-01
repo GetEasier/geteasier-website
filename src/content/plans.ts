@@ -87,7 +87,7 @@ export const PLAN_MODULES: PlanModule[] = [
 
 const pt = {
   h1: 'Planos e módulos',
-  lead: 'Cada produto tem três planos. A tabela mostra o que inclui cada um. Para saber o preço para a sua empresa, peça uma proposta.',
+  lead: 'O TimeEasier, o ConstructionEasier e o StockEasier têm três planos e o WoodEasier tem um plano único. A tabela mostra o que inclui cada um. Para saber o preço para a sua empresa, peça uma proposta.',
   plans: ['Base', 'Avançado', 'Premium'] as [string, string, string],
   feature: 'Funcionalidade',
   included: 'Incluído',
@@ -117,7 +117,7 @@ export type PlansDict = typeof pt
 
 const en: PlansDict = {
   h1: 'Plans and modules',
-  lead: 'Each product has three plans. The table shows what each one includes. For the price for your company, ask for a quote.',
+  lead: 'TimeEasier, ConstructionEasier and StockEasier have three plans, and WoodEasier has a single plan. The table shows what each one includes. For the price for your company, ask for a quote.',
   plans: ['Base', 'Advanced', 'Premium'],
   feature: 'Feature',
   included: 'Included',

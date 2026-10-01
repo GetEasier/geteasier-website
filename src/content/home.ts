@@ -194,7 +194,6 @@ const pt = {
     title: 'Fale-nos do processo que quer resolver',
     text: 'Conte-nos onde a sua equipa perde tempo. Respondemos com perguntas concretas e, se fizer sentido, uma proposta.',
     whatsapp: 'WhatsApp',
-    where: 'Onde estamos',
   },
 }
 
@@ -358,7 +357,6 @@ const en: HomeDict = {
     title: 'Tell us about the process you want to fix',
     text: 'Tell us where your team loses time. We reply with specific questions and, if it makes sense, a proposal.',
     whatsapp: 'WhatsApp',
-    where: 'Where we are',
   },
 }
 

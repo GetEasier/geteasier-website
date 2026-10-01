@@ -42,7 +42,7 @@ export default function Footer({ locale, cta = true }: { locale: Locale; cta?: b
             <ul className="mt-6 flex gap-2.5" aria-label={t.footer.social}>
               {COMPANY.socials.map((s) => (
                 <li key={s.name}>
-                  <a href={s.href} className="footer-social" rel="noopener noreferrer" target="_blank" aria-label={s.name}>
+                  <a href={s.href} className="footer-social" data-net={s.name} rel="noopener noreferrer" target="_blank" aria-label={s.name}>
                     {SOCIAL_ICONS[s.name]}
                   </a>
                 </li>
@@ -99,19 +99,6 @@ export default function Footer({ locale, cta = true }: { locale: Locale; cta?: b
                   <a href={COMPANY.whatsapp.href} className="font-semibold text-white hover:text-ciano" rel="noopener noreferrer" target="_blank">
                     {COMPANY.whatsapp.display}
                   </a>
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span aria-hidden="true" className="contact-ico">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
-                    <circle cx="8" cy="6.3" r="1.8" />
-                  </svg>
-                </span>
-                <span className="text-white/75">
-                  {COMPANY.address.street}
-                  <br />
-                  {COMPANY.address.postalCode} {COMPANY.address.locality}
                 </span>
               </li>
             </ul>

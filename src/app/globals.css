@@ -2986,26 +2986,35 @@
 .footer-link:focus-visible::after {
   transform: scaleX(1);
 }
+/* Redes nas cores de cada marca, para se reconhecerem logo */
 .footer-social {
   display: grid;
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: 999px;
+  border-radius: 12px;
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: background-color 150ms, color 150ms, transform 200ms var(--ease-entrada);
+  background: var(--net, rgba(255, 255, 255, 0.12));
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.7);
+  transition: transform 200ms var(--ease-entrada), box-shadow 200ms;
+}
+.footer-social[data-net='LinkedIn'] {
+  --net: #0a66c2;
+}
+.footer-social[data-net='Instagram'] {
+  --net: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.footer-social[data-net='Facebook'] {
+  --net: #1877f2;
 }
 .footer-social svg {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.35rem;
+  height: 1.35rem;
 }
 .footer-social:hover,
 .footer-social:focus-visible {
-  background: var(--ciano);
-  color: var(--tinta);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px -14px rgba(0, 0, 0, 0.8);
 }
 .footer-funding {
   display: inline-block;

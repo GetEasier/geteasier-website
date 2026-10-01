@@ -192,18 +192,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
                   </a>
                 </span>
               </li>
-              <li className="flex items-start gap-3">
-                <span aria-hidden="true" className="contact-ico">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2z" />
-                    <circle cx="8" cy="6.3" r="1.8" />
-                  </svg>
-                </span>
-                <span>
-                  <span className="block text-small text-white/60">{t.contact.where}</span>
-                  <span className="font-semibold">{COMPANY.address.locality}</span>
-                </span>
-              </li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
