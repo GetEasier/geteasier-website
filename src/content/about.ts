@@ -27,10 +27,10 @@ const pt = {
   },
   teamTitle: 'As pessoas',
   teamText: 'Os três co-fundadores desenham, desenvolvem e dão suporte a cada projeto.',
-  // Alexandre: a partir do CV (01/10). Rui: dados do Alexandre (01/10). Nelson: provisório até haver CV [CONFIRMAR].
+  // Alexandre: CV; Rui: dados do Alexandre; Nelson: LinkedIn (01/10).
   people: [
     { bio: 'Mais de 10 anos a desenvolver software para empresas. Na GetEasier cuida da arquitetura e da parte técnica de cada projeto, para que o software seja sólido, seguro e fácil de fazer crescer.', focus: ['Arquitetura', 'Desenvolvimento', 'Integrações', 'DevOps'], degree: 'Engenharia Informática' },
-    { bio: 'Transforma cada processo em ecrãs simples de usar e garante que tudo corre bem depois de entregue.', focus: ['Frontend', 'Integrações', 'Qualidade'] },
+    { bio: 'Mais de 12 anos a desenvolver software, boa parte deles a liderar equipas técnicas. Na GetEasier garante que cada aplicação é rápida, fiável e continua a funcionar bem depois de entregue.', focus: ['Desenvolvimento', 'Liderança técnica', 'Qualidade'], degree: 'Mestrado em Engenharia Informática' },
     { bio: 'Conhece por dentro a construção e a pedra natural. Na GetEasier fala com os clientes, percebe como cada empresa trabalha e transforma isso no que o software tem de fazer.', focus: ['Produto', 'Processos', 'Segurança no trabalho'], degree: 'Engenharia e Gestão Industrial' },
   ] as Person[],
   codeKeys: { role: 'papel', focus: 'foco', degree: 'formação', certs: 'certificações' },
@@ -62,7 +62,7 @@ const en: AboutDict = {
   teamText: 'The three co-founders design, build and support every project.',
   people: [
     { bio: 'Over 10 years building software for companies. At GetEasier he looks after the architecture and technical side of every project, so the software is solid, secure and easy to grow.', focus: ['Architecture', 'Development', 'Integrations', 'DevOps'], degree: 'Computer Engineering' },
-    { bio: 'Turns each process into screens that are simple to use and makes sure everything runs well after delivery.', focus: ['Frontend', 'Integrations', 'Quality'] },
+    { bio: 'Over 12 years building software, many of them leading technical teams. At GetEasier he makes sure every application is fast, reliable and keeps running well after delivery.', focus: ['Development', 'Technical leadership', 'Quality'], degree: "Master's in Computer Engineering" },
     { bio: 'Knows construction and natural stone from the inside. At GetEasier he talks to clients, learns how each company works and turns that into what the software must do.', focus: ['Product', 'Processes', 'Health and safety'], degree: 'Industrial Engineering and Management' },
   ] as Person[],
   codeKeys: { role: 'role', focus: 'focus', degree: 'degree', certs: 'certifications' },
