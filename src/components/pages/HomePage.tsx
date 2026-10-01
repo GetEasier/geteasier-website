@@ -49,7 +49,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <ClientMarquee title={t.clientsTitle} labels={t.clientsPause} />
       </section>
 
-      {/* Software à medida: a fotografia real da equipa abre como um portão de obra e, por baixo, os três tipos de trabalho em cartões */}
+      {/* Software à medida: a fotografia real da equipa abre como um portão de obra; ao lado, os três tipos de trabalho em cartões compactos */}
       <section aria-labelledby="medida-titulo" className="overflow-x-clip py-16 md:py-24">
         <div className="wrap">
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
@@ -68,25 +68,24 @@ export default function HomePage({ locale }: { locale: Locale }) {
                 {t.custom.title}
               </h2>
               <p className="mt-4 max-w-prose text-lead text-grafite">{t.custom.text}</p>
+              <ul className="mt-7 grid gap-3">
+                {t.custom.items.map((item, i) => (
+                  <li key={item.title} className="medida-card" data-kind={i}>
+                    <span aria-hidden="true" className="medida-icon">
+                      {ICONS[i]}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-semibold leading-snug">{item.title}</h3>
+                      <p className="mt-1 text-small text-grafite">{item.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
               <Link href={href('customSoftware', locale)} className="btn-primary mt-8">
                 {t.custom.link}
               </Link>
             </div>
           </div>
-          <ul className="medida-cards mt-10 grid gap-5 md:grid-cols-3">
-            {t.custom.items.map((item, i) => (
-              <li key={item.title} className="medida-card group" data-kind={i}>
-                <span aria-hidden="true" className="medida-icon">
-                  {ICONS[i]}
-                </span>
-                <h3 className="mt-5 text-[1.1875rem] font-semibold leading-snug">{item.title}</h3>
-                <p className="mt-2 text-grafite">{item.text}</p>
-                <div aria-hidden="true" className="medida-mini">
-                  {MINIS[i]}
-                </div>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -240,47 +239,19 @@ export default function HomePage({ locale }: { locale: Locale }) {
 }
 
 const ICONS = [
-  <svg key="web" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
+  <svg key="web" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
     <rect x="3" y="4" width="18" height="14" rx="2" />
     <path d="M3 8h18M8 21h8" strokeLinecap="round" />
   </svg>,
-  <svg key="app" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg key="app" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
     <rect x="7" y="2.5" width="10" height="19" rx="2.5" />
     <path d="M11 18.5h2" strokeLinecap="round" />
   </svg>,
-  <svg key="int" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg key="int" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M8 7h9l-3-3M16 17H7l3 3" />
   </svg>,
 ]
 
-// Pequena ilustração no fundo de cada cartão de software à medida (decorativa).
-const MINIS = [
-  <span key="web" className="mini-web">
-    {[0.45, 0.7, 0.55, 0.9, 0.65, 0.8].map((h, i) => (
-      <i key={i} style={{ ['--h' as string]: h, ['--j' as string]: i }} />
-    ))}
-  </span>,
-  <span key="app" className="mini-app">
-    <span className="mini-app-phone">
-      <i />
-      <i />
-      <b />
-    </span>
-    <span className="mini-app-note">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3.5 8.5l3 3 6-7" />
-      </svg>
-      iOS · Android
-    </span>
-  </span>,
-  <span key="int" className="mini-int">
-    <span>ERP</span>
-    <i />
-    <span className="is-app">App</span>
-    <i />
-    <span>€</span>
-  </span>,
-]
 
 const FACT_ICONS = [
   <svg key="spark" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
