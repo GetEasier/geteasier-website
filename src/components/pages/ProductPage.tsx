@@ -60,58 +60,62 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
 
   return (
     <SiteShell pageId={id} locale={locale}>
-      <section className={cn('relative overflow-hidden', theme.tint)}>
-        <Image
-          src={item.icon}
-          alt=""
-          width={460}
-          height={400}
-          priority
-          className="pointer-events-none absolute -left-24 -top-16 h-80 w-auto opacity-[0.07]"
-        />
-        <div className="wrap relative pb-16 pt-8 md:pb-24 md:pt-10">
-          <Breadcrumbs pageId={id} locale={locale} />
+      {/* Hero escuro com a luz da cor do produto (como o do início); a demo fica a meio caminho entre o hero e a página */}
+      <section
+        className="relative overflow-hidden bg-tinta text-white"
+        style={{
+          backgroundImage: `radial-gradient(60% 80% at 85% 10%, ${theme.hex}cc, transparent 70%), radial-gradient(40% 60% at 0% 100%, rgba(24, 221, 186, 0.14), transparent 70%)`,
+        }}
+      >
+        <div className="wrap relative pb-40 pt-8 md:pb-56 md:pt-10">
+          <div className="[&_[aria-current]]:text-white [&_a]:decoration-white/30 [&_a:hover]:text-white [&_nav]:text-white/70">
+            <Breadcrumbs pageId={id} locale={locale} />
+          </div>
           <div className="mt-10 grid gap-x-12 gap-y-6 lg:grid-cols-2 lg:items-end">
             <div>
-              <Image
-                src={item.logo.src}
-                alt={item.name}
-                width={item.logo.width}
-                height={item.logo.height}
-                priority
-                sizes="260px"
-                className="h-10 w-auto md:h-12"
-              />
+              <span className="inline-flex rounded-full bg-white px-4 py-2 shadow-[0_10px_30px_-12px_rgba(0,0,0,.5)]">
+                <Image
+                  src={item.logo.src}
+                  alt={item.name}
+                  width={item.logo.width}
+                  height={item.logo.height}
+                  priority
+                  sizes="200px"
+                  className="h-7 w-auto md:h-8"
+                />
+              </span>
               <h1 className="t-h1 mt-6 max-w-[18ch]">{item.h1}</h1>
             </div>
             <div>
-              <p className="max-w-prose text-lead text-grafite">{item.lead[0]}</p>
+              <p className="max-w-prose text-lead text-white/80">{item.lead[0]}</p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link href={`${href('contact', locale)}?assunto=${item.demoSubject}`} className={cn('btn text-white hover:opacity-90', theme.solid)}>
+                <Link href={`${href('contact', locale)}?assunto=${item.demoSubject}`} className="btn bg-ciano text-tinta hover:bg-white">
                   {demo}
                 </Link>
-                <Link href={`${href('plans', locale)}#${item.planAnchor}`} className="btn-secondary">
+                <Link href={`${href('plans', locale)}#${item.planAnchor}`} className="btn-on-dark">
                   {c.cta.plans}
                 </Link>
                 {id === 'woodEasier' && (
-                  <Image src="/images/products/DGAV-Approved.png" alt="DGAV" width={629} height={461} className="h-14 w-auto" />
+                  <span className="rounded-ctl bg-white p-1.5">
+                    <Image src="/images/products/DGAV-Approved.png" alt="DGAV" width={629} height={461} className="h-12 w-auto" />
+                  </span>
                 )}
               </div>
               {id === 'timeEasier' && <StoreBadges locale={locale} className="mt-6" />}
             </div>
           </div>
-          <div className="mt-12 min-w-0">
-            <CameraDemo steps={item.steps} labels={labels} accent={theme.app} width={1200} height={760}>
-              <Scene locale={locale} />
-            </CameraDemo>
-          </div>
         </div>
       </section>
+      <div className="wrap relative -mt-28 min-w-0 pb-12 md:-mt-44 md:pb-16">
+        <CameraDemo steps={item.steps} labels={labels} accent={theme.app} width={1200} height={760}>
+          <Scene locale={locale} />
+        </CameraDemo>
+      </div>
 
       {id === 'constructionEasier' && <ConstructionSections locale={locale} ctaHref={`${href('contact', locale)}?assunto=${item.demoSubject}`} />}
 
       {id === 'timeEasier' && (
-        <section aria-labelledby="tablet-titulo" className="border-t border-linha py-16 md:py-24">
+        <section aria-labelledby="tablet-titulo" className="pb-16 md:pb-24">
           <div className="wrap grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div>
               <h2 id="tablet-titulo" className="t-h2">

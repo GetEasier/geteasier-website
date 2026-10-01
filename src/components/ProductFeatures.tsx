@@ -255,32 +255,35 @@ export default function ProductFeatures({ id, locale }: { id: ProductId; locale:
           const f = item.features[i]
           return (
             <li key={f.term} className="feat-card reveal-panel overflow-hidden rounded-frame border border-linha bg-white shadow-[0_18px_40px_-28px_rgba(6,8,60,.45)] transition-transform duration-300 hover:-translate-y-1">
-              <div aria-hidden="true" className={cn('grid h-44 place-items-center overflow-hidden', theme.tint)}>
+              <div aria-hidden="true" className={cn('grid h-40 place-items-center overflow-hidden', theme.tint)}>
                 {illustration(`${id}-${i}`, theme.hex, locale === 'pt')}
               </div>
-              <div className="p-6">
-                <h3 className="flex items-center gap-2 text-h3 font-semibold">
+              <div className="p-5">
+                <h3 className="flex items-center gap-2 text-lead font-semibold">
                   <FeatureIcon name={icons[i]} className={cn('h-5 w-5', theme.text)} />
                   {f.term}
                 </h3>
-                <p className="mt-2 text-grafite">{f.desc}</p>
+                <p className="mt-1.5 text-small text-grafite">{f.desc}</p>
               </div>
             </li>
           )
         })}
       </ul>
 
-      <ul className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {/* As restantes em cartões compactos: ícone ao lado do texto */}
+      <ul className={cn('mt-5 grid gap-3 sm:grid-cols-2', rest.length % 3 === 0 || rest.length === 5 ? 'lg:grid-cols-3' : 'lg:grid-cols-4')}>
         {rest.map(({ f, i }) => (
           <li
             key={f.term}
-            className="reveal-panel group rounded-frame border border-linha bg-white p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(6,8,60,.45)]"
+            className="reveal-panel group flex items-start gap-3.5 rounded-frame border border-linha bg-white p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-28px_rgba(6,8,60,.45)]"
           >
-            <span className={cn('grid h-11 w-11 place-items-center rounded-ctl transition-transform duration-300 group-hover:scale-110', theme.tint, theme.text)}>
-              <FeatureIcon name={icons[i]} />
+            <span className={cn('grid h-10 w-10 shrink-0 place-items-center rounded-ctl transition-transform duration-300 group-hover:scale-110', theme.tint, theme.text)}>
+              <FeatureIcon name={icons[i]} className="h-5 w-5" />
             </span>
-            <h3 className="mt-4 font-semibold">{f.term}</h3>
-            <p className="mt-1 text-small text-grafite">{f.desc}</p>
+            <div className="min-w-0">
+              <h3 className="font-semibold leading-snug">{f.term}</h3>
+              <p className="mt-0.5 text-small text-grafite">{f.desc}</p>
+            </div>
           </li>
         ))}
       </ul>

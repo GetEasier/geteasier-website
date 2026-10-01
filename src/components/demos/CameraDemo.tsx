@@ -274,11 +274,8 @@ export default function CameraDemo({
 
       <p
         aria-hidden="true"
-        className="mt-4 min-h-[3.2em] max-w-prose text-small text-grafite"
+        className="mt-4 min-h-[3.2em] max-w-prose font-medium text-tinta"
       >
-        <span className="t-data mr-2" style={{ color: accent }}>
-          {String(current + 1).padStart(2, "0")}
-        </span>
         {steps[current]}
       </p>
       <div className="mt-3 flex items-center gap-2">
