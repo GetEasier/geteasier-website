@@ -128,5 +128,5 @@ Rodapé: o logótipo dos apoios (PRR) é branco com fundo transparente e estava 
 Rodapé com o fundo da marca e grelha, colunas com títulos em ciano, redes em ícones redondos, coluna de contacto (WhatsApp e morada) e o símbolo da marca em grande e quase invisível no canto. Fora do início e dos contactos (que já acabam num cartão de contacto) abre com um convite a falar. Clicar nos logótipos dos apoios descarrega a ficha do projeto; a ligação de texto saiu.
 Por pedido do Alexandre, saíram todos os botões de pausar animações (PauseButton e o botão da CameraDemo). As animações continuam a parar fora do ecrã, com a aba escondida e com "reduzir movimento"; as faixas de clientes e testemunhos param com o rato ou o foco em cima.
 
-### Newsletter no topo (2026-10-01)
-A pedido do Alexandre, a inscrição na newsletter do Substack é uma faixa fina no topo de todas as páginas, por cima do menu (sai com o scroll, o menu fica). Saiu do rodapé. O formulário abre a página de subscrição do Substack com o email preenchido. O endereço do Substack está em COMPANY.newsletter e ainda é [CONFIRMAR].
+### Newsletter (2026-10-01)
+No início, a inscrição na newsletter do Substack é um cartão claro logo a seguir ao hero, antes dos clientes. Nas outras páginas fica no topo do rodapé (no início não se repete). Sem pop-up: irrita quem acabou de chegar e o Google penaliza pop-ups que tapam o conteúdo no telemóvel. O formulário abre a página de subscrição do Substack com o email preenchido. O endereço está em COMPANY.newsletter e ainda é [CONFIRMAR].

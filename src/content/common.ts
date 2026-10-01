@@ -32,6 +32,7 @@ const pt = {
     contact: 'Contacto',
     newsletter: {
       title: 'Newsletter',
+      bandTitle: 'Receba as novidades da GetEasier',
       text: 'Novidades, bastidores e ideias sobre software para empresas, no seu email.',
       label: 'O seu email',
       placeholder: 'nome@empresa.pt',
@@ -88,6 +89,7 @@ const en: CommonDict = {
     contact: 'Contact',
     newsletter: {
       title: 'Newsletter',
+      bandTitle: 'Get the GetEasier news',
       text: 'News, behind the scenes and ideas about business software, in your inbox.',
       label: 'Your email',
       placeholder: 'name@company.com',

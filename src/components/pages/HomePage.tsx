@@ -9,6 +9,7 @@ import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
 import TestimonialMarquee from '@/components/home/TestimonialMarquee'
 import HomeMotion from '@/components/home/HomeMotion'
+import Newsletter from '@/components/site/Newsletter'
 import Stats from '@/components/home/Stats'
 import Faq from '@/components/ui/Faq'
 import { COMPANY } from '@/lib/site'
@@ -43,6 +44,13 @@ export default function HomePage({ locale }: { locale: Locale }) {
             </div>
           </div>
           <BuildHero t={t.build} />
+        </div>
+      </section>
+
+      {/* Newsletter logo a seguir ao hero, antes dos clientes (pedido do Alexandre; sem pop-up) */}
+      <section aria-labelledby="news-inicio-titulo" className="bg-white pt-10">
+        <div className="wrap">
+          <Newsletter locale={locale} variant="band" id="news-inicio" />
         </div>
       </section>
 

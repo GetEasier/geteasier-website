@@ -4,11 +4,12 @@ import Logo from '@/components/Logo'
 import { MAIN_NAV, PRODUCT_IDS, href, route, type Locale } from '@/lib/seo.config'
 import { COMPANY } from '@/lib/site'
 import { common } from '@/content/common'
+import Newsletter from './Newsletter'
 
 // Rodapé: fundo da marca com grelha, um convite a falar (fora do início e dos contactos, que já
 // acabam num cartão de contacto), colunas de ligações, redes em ícones e os apoios. Clicar nos
 // logótipos dos apoios descarrega a ficha do projeto.
-export default function Footer({ locale, cta = true }: { locale: Locale; cta?: boolean }) {
+export default function Footer({ locale, cta = true, newsletter = true }: { locale: Locale; cta?: boolean; newsletter?: boolean }) {
   const t = common[locale]
   const colTitle = 'mb-4 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-ciano'
   const linkCls = 'footer-link text-white/75 hover:text-white'
@@ -30,6 +31,12 @@ export default function Footer({ locale, cta = true }: { locale: Locale; cta?: b
                 {t.cta.whatsapp}
               </a>
             </div>
+          </div>
+        )}
+
+        {newsletter && (
+          <div className={cta ? 'mt-6' : 'mt-14'}>
+            <Newsletter locale={locale} variant="footer" id="news-rodape" />
           </div>
         )}
 
