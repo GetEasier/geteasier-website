@@ -75,21 +75,21 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <div className="wrap border-t border-white/15 py-6">
-        <a
-          href={COMPANY.funding.pdf}
-          download
-          className="inline-block rounded-ctl bg-white p-2"
-          title={t.footer.fundingDownload}
-        >
-          <Image
-            src={COMPANY.funding.logo}
-            alt={`${t.footer.fundingAlt}. ${t.footer.fundingDownload}`}
-            width={4925}
-            height={711}
-            sizes="320px"
-            className="h-10 w-auto md:h-11"
-          />
+      {/* Apoios: o logótipo é branco com fundo transparente, por isso fica direto no fundo escuro */}
+      <div className="wrap flex flex-col gap-4 border-t border-white/15 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <Image
+          src={COMPANY.funding.logo}
+          alt={t.footer.fundingAlt}
+          width={4925}
+          height={711}
+          sizes="400px"
+          className="h-10 w-auto max-w-full md:h-12"
+        />
+        <a href={COMPANY.funding.pdf} download className={`${linkCls} inline-flex items-center gap-2 text-small`}>
+          <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M2.5 13.5h11" />
+          </svg>
+          {t.footer.fundingDownload}
         </a>
       </div>
 

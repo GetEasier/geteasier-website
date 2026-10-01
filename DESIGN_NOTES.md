@@ -119,3 +119,7 @@ que se inclinam para o rato, com luz que segue o ponteiro, contorno de luz ao pa
 
 ### Testemunhos em faixa horizontal (2026-10-01)
 Os três cartões de cor passam devagar na horizontal (70 s por volta, mesma keyframe da faixa dos clientes), com as pontas a desvanecer. Param com o rato ou o foco em cima, fora do ecrã, com a aba escondida e com o botão "Pausar os testemunhos" (WCAG 2.2.2). Sem JS ou com "reduzir movimento" ficam os três cartões parados na grelha da página.
+
+### Do caos ao controlo genérico + rodapé (2026-10-01)
+No início, "Do caos ao controlo" passa a contar uma manhã numa empresa qualquer (pedidos numa folha, post-its, foto do quadro → pedidos com responsável, prazo e estado), para vender o software à medida sem parecer página de produto. A versão da obra passou para a página do ConstructionEasier, logo a seguir ao hero, com o mesmo componente.
+Rodapé: o logótipo dos apoios (PRR) é branco com fundo transparente e estava dentro de uma caixa branca, por isso aparecia uma barra branca vazia. Agora fica direto no fundo escuro, com uma ligação visível para descarregar a ficha do projeto.

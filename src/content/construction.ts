@@ -127,6 +127,50 @@ const pt = {
     summary:
       'Demonstração animada: cada vez que um trabalhador é reconhecido no tablet da portaria, aparece no topo da lista de quem está a trabalhar agora, com a hora e a empresa.',
   },
+  chaos: {
+    title: 'Do caos ao controlo',
+    intro: 'Uma manhã numa obra, antes e depois do ConstructionEasier. Dados de exemplo.',
+    acts: [
+      {
+        name: 'Caos',
+        text: 'A lista de trabalhadores vive numa folha de cálculo, os documentos chegam por fotografia no telemóvel e as entradas ficam num livro na portaria.',
+      },
+      {
+        name: 'Pressão',
+        text: 'Ninguém sabe ao certo quem está no estaleiro nem que documentos caducaram. Os avisos chegam tarde.',
+      },
+      {
+        name: 'Controlo',
+        text: 'Cada pessoa aparece uma vez, com a empresa, a hora de entrada e o estado dos documentos. Os avisos passam a resultados.',
+      },
+    ],
+    sheet: {
+      file: 'trabalhadores_obras_FINAL_v3.xlsx',
+      cols: ['Nome', 'Empresa', 'Obra', 'Seguro', 'Entrada'],
+      rows: [
+        ['Rui Marques', 'Cofragens Tejo', 'Marvila', 'válido', '07:42'],
+        ['Ana Figueiredo', 'Eletro Douro', 'Marvila', 'caducado', '—'],
+        ['rui marques', 'Cofragens Tejo', 'Marvila', '—', '07:42'],
+        ['Paulo Sá', '—', 'Marvila', 'válido', '08:05'],
+        ['Hugo Tavares', 'Cofragens Tejo', 'Marvila', 'em falta', '07:58'],
+      ],
+      photo: 'Foto do seguro',
+      photoTime: '07:51',
+      book: 'Livro de entradas',
+      bookLines: ['Rui M. 7h40', 'Paulo ? 8h', 'H. Tavares'],
+    },
+    alerts: ['Pessoa não identificada no estaleiro', 'Seguro do subempreiteiro caducou', 'Inspeção da ACT amanhã'],
+    view: {
+      title: 'Obra Marvila, hoje',
+      people: [
+        { name: 'Rui Marques', company: 'Cofragens Tejo', time: '07:42', status: 'ok', text: 'Documentos em dia' },
+        { name: 'Ana Figueiredo', company: 'Eletro Douro', time: '07:55', status: 'missing', text: 'Seguro caducado' },
+        { name: 'Paulo Sá', company: 'Eletro Douro', time: '08:05', status: 'ok', text: 'Documentos em dia' },
+        { name: 'Hugo Tavares', company: 'Cofragens Tejo', time: '07:58', status: 'soon', text: 'Seguro expira em 12 dias' },
+      ],
+    },
+    results: ['38 entradas verificadas hoje', '12 documentos validados', '0 pessoas sem registo'],
+  },
   faqTitle: 'Perguntas sobre o ConstructionEasier',
   faq: [
     {
@@ -236,6 +280,50 @@ const en: ConstructionDict = {
     pause: 'Pause the demo',
     play: 'Play the demo',
     summary: 'Animated demo: each time a worker is recognised on the gate tablet, they appear at the top of the list of who is working now, with time and company.',
+  },
+  chaos: {
+    title: 'From chaos to control',
+    intro: 'A morning on a construction site, before and after ConstructionEasier. Sample data.',
+    acts: [
+      {
+        name: 'Chaos',
+        text: 'The worker list lives in a spreadsheet, documents arrive as phone photos and entries go into a book at the gate.',
+      },
+      {
+        name: 'Pressure',
+        text: 'Nobody knows for sure who is on site or which documents have expired. Warnings arrive late.',
+      },
+      {
+        name: 'Control',
+        text: 'Each person appears once, with their company, entry time and document status. Warnings become results.',
+      },
+    ],
+    sheet: {
+      file: 'site_workers_FINAL_v3.xlsx',
+      cols: ['Name', 'Company', 'Site', 'Insurance', 'Entry'],
+      rows: [
+        ['Rui Marques', 'Cofragens Tejo', 'Marvila', 'valid', '07:42'],
+        ['Ana Figueiredo', 'Eletro Douro', 'Marvila', 'expired', '—'],
+        ['rui marques', 'Cofragens Tejo', 'Marvila', '—', '07:42'],
+        ['Paulo Sá', '—', 'Marvila', 'valid', '08:05'],
+        ['Hugo Tavares', 'Cofragens Tejo', 'Marvila', 'missing', '07:58'],
+      ],
+      photo: 'Insurance photo',
+      photoTime: '07:51',
+      book: 'Entry book',
+      bookLines: ['Rui M. 7h40', 'Paulo ? 8h', 'H. Tavares'],
+    },
+    alerts: ['Unidentified person on site', 'Subcontractor insurance has expired', 'Labour inspection tomorrow'],
+    view: {
+      title: 'Marvila site, today',
+      people: [
+        { name: 'Rui Marques', company: 'Cofragens Tejo', time: '07:42', status: 'ok', text: 'Documents up to date' },
+        { name: 'Ana Figueiredo', company: 'Eletro Douro', time: '07:55', status: 'missing', text: 'Insurance expired' },
+        { name: 'Paulo Sá', company: 'Eletro Douro', time: '08:05', status: 'ok', text: 'Documents up to date' },
+        { name: 'Hugo Tavares', company: 'Cofragens Tejo', time: '07:58', status: 'soon', text: 'Insurance expires in 12 days' },
+      ],
+    },
+    results: ['38 entries verified today', '12 documents validated', '0 people without a record'],
   },
   faqTitle: 'Questions about ConstructionEasier',
   faq: [

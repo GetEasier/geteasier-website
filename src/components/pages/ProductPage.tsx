@@ -3,6 +3,7 @@ import Link from 'next/link'
 import SiteShell from '@/components/site/SiteShell'
 import Breadcrumbs from '@/components/site/Breadcrumbs'
 import Section from '@/components/ui/Section'
+import ChaosToControl from '@/components/home/ChaosToControl'
 import RelatedLinks from '@/components/ui/RelatedLinks'
 import ContactBand from '@/components/ui/ContactBand'
 import ProductFeatures from '@/components/ProductFeatures'
@@ -201,11 +202,17 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
   )
 }
 
-// Página do ConstructionEasier: demo com modos, módulos, perfis, portaria e feed, e perguntas.
+// Página do ConstructionEasier: do caos ao controlo, demo com modos, módulos, perfis, portaria e feed, e perguntas.
 function ConstructionSections({ locale, ctaHref }: { locale: Locale; ctaHref: string }) {
   const t = construction[locale]
   return (
     <>
+      {/* A manhã na obra antes e depois (veio do início, que agora conta a versão genérica) */}
+      <section aria-labelledby="caos-titulo" className="overflow-x-clip bg-betao py-16 md:py-24">
+        <div className="wrap">
+          <ChaosToControl t={t.chaos} headingId="caos-titulo" />
+        </div>
+      </section>
       <Section id="entrada" title={t.modes.title}>
         <ModesDemo t={t.modes} feed={t.gateFeed} />
       </Section>
