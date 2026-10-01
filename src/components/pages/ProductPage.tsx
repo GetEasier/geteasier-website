@@ -19,7 +19,7 @@ import ModesDemo from '@/components/ce/ModesDemo'
 import ModuleTabs from '@/components/ce/ModuleTabs'
 import Profiles from '@/components/ce/Profiles'
 import GateFeed from '@/components/ce/GateFeed'
-import KioskLoop from '@/components/checkin/KioskLoop'
+import TimeBenefits from '@/components/te/TimeBenefits'
 import Faq from '@/components/ui/Faq'
 import { construction } from '@/content/construction'
 import { products } from '@/content/products'
@@ -115,27 +115,9 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
       {id === 'constructionEasier' && <ConstructionSections locale={locale} ctaHref={`${href('contact', locale)}?assunto=${item.demoSubject}`} />}
 
       {id === 'timeEasier' && (
-        <section aria-labelledby="tablet-titulo" className="pb-16 md:pb-24">
-          <div className="wrap grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
-            <div>
-              <h2 id="tablet-titulo" className="t-h2">
-                {pt ? 'O tablet à entrada' : 'The tablet at the entrance'}
-              </h2>
-              <p className="mt-4 max-w-prose text-lead text-grafite">
-                {pt
-                  ? 'Cada colaborador toca no ecrã e o tablet reconhece-lhe o rosto. A presença fica registada com a hora. Se o rosto não for reconhecido, entra com o PIN.'
-                  : 'Each employee taps the screen and the tablet recognises their face. Attendance is recorded with the time. If the face isn’t recognised, they sign in with their PIN.'}
-              </p>
-            </div>
-            <KioskLoop
-              labels={{
-                pause: pt ? 'Pausar a animação' : 'Pause the animation',
-                play: pt ? 'Retomar a animação' : 'Play the animation',
-                summary: pt
-                  ? 'Animação do tablet: espera, reconhece o rosto e mostra "Presença registada".'
-                  : 'Tablet animation: waiting, recognising the face and showing "Presença registada" (attendance recorded).',
-              }}
-            />
+        <section aria-labelledby="beneficios-titulo" className="pb-16 md:pb-24">
+          <div className="wrap">
+            <TimeBenefits locale={locale} />
           </div>
         </section>
       )}
