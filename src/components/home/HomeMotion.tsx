@@ -82,7 +82,7 @@ export default function HomeMotion() {
         // Equipa: as fotografias deslizam a velocidades ligeiramente diferentes (só desktop).
         if (wide) {
           const photos = gsap.utils.toArray<HTMLElement>('[data-team] li')
-          const speed = [-6, 5, -10]
+          const speed = [-3, 3, -5]
           photos.forEach((el, i) => {
             gsap.fromTo(
               el,

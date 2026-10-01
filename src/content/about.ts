@@ -13,7 +13,8 @@ const pt = {
     'O ConstructionEasier, por exemplo, foi desenvolvido com empresas de construção portuguesas. O que aprendemos a construir os produtos é o que levamos para os projetos à medida.',
   ],
   teamTitle: 'A equipa',
-  roles: { development: 'Desenvolvimento', product: 'Gestão de produto' },
+  roles: { development: 'Software Engineer', product: 'Product Manager' },
+  founder: 'Co-fundador',
   companyTitle: 'A empresa',
   company: {
     legalName: 'Denominação',
@@ -38,7 +39,8 @@ const en: AboutDict = {
     'ConstructionEasier, for example, was developed together with Portuguese construction companies. What we learn building our products goes into our custom projects.',
   ],
   teamTitle: 'The team',
-  roles: { development: 'Development', product: 'Product management' },
+  roles: { development: 'Software Engineer', product: 'Product Manager' },
+  founder: 'Co-founder',
   companyTitle: 'The company',
   company: {
     legalName: 'Registered name',

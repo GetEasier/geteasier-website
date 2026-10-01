@@ -2956,32 +2956,80 @@
   opacity: 1;
   animation-play-state: running;
 }
-.team-glass {
+.team-card > img {
+  filter: saturate(1.05) contrast(1.03);
+}
+.team-info {
   position: absolute;
   z-index: 1;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  left: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 16px;
-  background: rgba(6, 8, 60, 0.74);
-  padding: 0.85rem 1rem;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  transition: transform 400ms var(--ease-entrada);
+  inset: auto 0 0;
+  padding: 5.5rem 1.4rem 1.35rem;
+  background: linear-gradient(0deg, rgba(6, 8, 60, 0.95) 0%, rgba(6, 8, 60, 0.7) 45%, transparent 100%);
 }
-.team-card:hover .team-glass {
-  transform: translateY(-4px);
+.team-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
 }
 .team-role {
-  display: inline-flex;
-  margin-top: 0.4rem;
-  border-radius: 999px;
-  background: rgba(24, 221, 186, 0.16);
-  padding: 0.15rem 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.55rem;
+  font-family: var(--font-mono), monospace;
   font-size: 0.8125rem;
   font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: #18ddba;
+}
+.team-role::before {
+  content: '';
+  width: 1.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #18ddba, #82aaff);
+  transition: width 400ms var(--ease-entrada);
+}
+.team-card:hover .team-role::before {
+  width: 2.5rem;
+}
+.team-chip {
+  position: absolute;
+  z-index: 1;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(6, 8, 60, 0.6);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.team-chip i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #18ddba;
+  box-shadow: 0 0 0 3px rgba(24, 221, 186, 0.25);
+}
+.team-index {
+  position: absolute;
+  z-index: 1;
+  top: 0.9rem;
+  right: 1.1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 @media (prefers-reduced-motion: reduce) {
   .team-card,

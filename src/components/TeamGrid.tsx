@@ -20,6 +20,7 @@ export default function TeamGrid({
   lively?: boolean
 }) {
   const roles = about[locale].roles
+  const founder = about[locale].founder
   return (
     <ul data-team={parallax ? '' : undefined} data-team-live={lively ? '' : undefined} className={cn('grid gap-6 sm:grid-cols-3', className)}>
       {lively && <TeamLive />}
@@ -35,14 +36,25 @@ export default function TeamGrid({
               className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             />
             {lively ? (
-              <div className="team-glass">
-                <p className="text-lead font-semibold leading-tight">{m.name}</p>
-                <p className="team-role">{roles[m.role]}</p>
-              </div>
+              <>
+                <span className="team-chip">
+                  <i aria-hidden="true" />
+                  {founder}
+                </span>
+                <span aria-hidden="true" className="team-index">
+                  0{i + 1}
+                </span>
+                <div className="team-info">
+                  <p className="team-name">{m.name}</p>
+                  <p className="team-role">{roles[m.role]}</p>
+                </div>
+              </>
             ) : (
               <div className={cn('absolute inset-x-0 bottom-0 bg-gradient-to-t from-tinta/90 via-tinta/40 to-transparent p-5 pt-16', dark ? 'text-white' : 'text-white')}>
                 <p className="text-lead font-semibold">{m.name}</p>
-                <p className="text-small text-white/85">{roles[m.role]}</p>
+                <p className="text-small text-white/85">
+                  {founder} · {roles[m.role]}
+                </p>
               </div>
             )}
           </div>
