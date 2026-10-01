@@ -17,15 +17,8 @@ export default function InstagramFeed({ title, linkText, href }: { title: string
     return () => ctrl.abort()
   }, [])
 
-  if (posts.length === 0) {
-    return (
-      <p className="wrap border-t border-linha py-10">
-        <a href={href} className="link" target="_blank" rel="noopener noreferrer">
-          {linkText}
-        </a>
-      </p>
-    )
-  }
+  // Sem publicações não mostra nada: as redes sociais estão no cartão de contacto da página Sobre.
+  if (posts.length === 0) return null
 
   return (
     <section aria-labelledby="instagram-titulo" className="border-t border-linha py-16">
