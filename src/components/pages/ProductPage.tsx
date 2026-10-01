@@ -4,7 +4,6 @@ import SiteShell from '@/components/site/SiteShell'
 import Breadcrumbs from '@/components/site/Breadcrumbs'
 import Section from '@/components/ui/Section'
 import ChaosToControl from '@/components/home/ChaosToControl'
-import RelatedLinks from '@/components/ui/RelatedLinks'
 import ContactBand from '@/components/ui/ContactBand'
 import ProductFeatures from '@/components/ProductFeatures'
 import Testimonials from '@/components/Testimonials'
@@ -151,7 +150,6 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
         </Section>
       )}
 
-      <RelatedLinks title={p.relatedTitle} links={item.related} locale={locale} />
 
       <ContactBand
         locale={locale}
