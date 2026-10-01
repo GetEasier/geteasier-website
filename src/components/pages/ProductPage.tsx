@@ -16,9 +16,7 @@ import ConstructionEasierScene from '@/components/demos/ConstructionEasierScene'
 import StockEasierScene from '@/components/demos/StockEasierScene'
 import WoodEasierScene from '@/components/demos/WoodEasierScene'
 import ModesDemo from '@/components/ce/ModesDemo'
-import ModuleTabs from '@/components/ce/ModuleTabs'
 import Profiles from '@/components/ce/Profiles'
-import GateFeed from '@/components/ce/GateFeed'
 import TimeBenefits from '@/components/te/TimeBenefits'
 import Faq from '@/components/ui/Faq'
 import { construction } from '@/content/construction'
@@ -80,8 +78,8 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
                   width={item.logo.width}
                   height={item.logo.height}
                   priority
-                  sizes="200px"
-                  className="h-7 w-auto md:h-8"
+                  sizes="240px"
+                  className={cn('w-auto', id === 'constructionEasier' ? 'h-9 md:h-11' : 'h-7 md:h-8')}
                 />
               </span>
               <h1 className="t-h1 mt-6 max-w-[18ch]">{item.h1}</h1>
@@ -112,7 +110,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
         </CameraDemo>
       </div>
 
-      {id === 'constructionEasier' && <ConstructionSections locale={locale} ctaHref={`${href('contact', locale)}?assunto=${item.demoSubject}`} />}
+      {id === 'constructionEasier' && <ConstructionSections locale={locale} />}
 
       {id === 'timeEasier' && (
         <section aria-labelledby="beneficios-titulo" className="pb-16 md:pb-24">
@@ -188,8 +186,8 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
   )
 }
 
-// Página do ConstructionEasier: do caos ao controlo, demo com modos, módulos, perfis, portaria e feed, e perguntas.
-function ConstructionSections({ locale, ctaHref }: { locale: Locale; ctaHref: string }) {
+// Página do ConstructionEasier: do caos ao controlo, demo com modos, perfis e perguntas.
+function ConstructionSections({ locale }: { locale: Locale }) {
   const t = construction[locale]
   return (
     <>
@@ -202,21 +200,8 @@ function ConstructionSections({ locale, ctaHref }: { locale: Locale; ctaHref: st
       <Section id="entrada" title={t.modes.title}>
         <ModesDemo t={t.modes} feed={t.gateFeed} />
       </Section>
-      <section id="modulos" aria-labelledby="modulos-titulo" className="bg-white py-16 md:py-24">
-        <div className="wrap">
-          <h2 id="modulos-titulo" className="t-h2">
-            {t.modules.title}
-          </h2>
-          <div className="mt-8">
-            <ModuleTabs t={t.modules} ctaHref={ctaHref} />
-          </div>
-        </div>
-      </section>
-      <Section id="perfis" title={t.profiles.title} className="bg-betao">
+      <Section id="perfis" title={t.profiles.title}>
         <Profiles t={t.profiles} />
-      </Section>
-      <Section id="portaria" title={t.gateFeed.title} intro={t.gateFeed.text}>
-        <GateFeed t={t.gateFeed} />
       </Section>
     </>
   )
