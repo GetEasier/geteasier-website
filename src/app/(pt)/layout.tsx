@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import '../globals.css'
-import { archivo, plexMono } from '@/lib/fonts'
+import { sans, mono } from '@/lib/fonts'
 import { SITE_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const viewport: Viewport = { themeColor: '#F4F6F9' }
 
 export default function PtLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-PT" suppressHydrationWarning className={`${archivo.variable} ${plexMono.variable}`}>
+    <html lang="pt-PT" suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
       <head>
         {/* Esconde a planta do início até a animação arrancar (no máximo 3 s); nunca com "reduzir movimento". */}
         <script

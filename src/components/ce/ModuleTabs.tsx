@@ -95,7 +95,7 @@ export default function ModuleTabs({ t, ctaHref }: { t: T; ctaHref: string }) {
                 {t.cta}
               </Link>
             </div>
-            <div aria-hidden="true" className="min-h-[19rem] border border-caixa bg-betao p-5 sm:p-8">
+            <div aria-hidden="true" className="min-h-[19rem] rounded-[20px] bg-betao p-5 sm:p-8">
               <Mockup i={i} t={t} />
             </div>
           </div>
@@ -114,7 +114,7 @@ function Rui({ status, text }: { status?: DocStatus; text?: string }) {
 
 function Panel({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="border border-caixa bg-white p-4 text-small">
+    <div className="rounded-[14px] bg-white p-4 text-small shadow-[0_8px_24px_-14px_rgba(6,8,60,.3)]">
       <p className="font-semibold">{title}</p>
       <div className="mt-2">{children}</div>
     </div>
@@ -156,7 +156,7 @@ function Mockup({ i, t }: { i: number; t: T }) {
             {t.docCols.map((c, k) => {
               const s: DocStatus = k === 2 ? 'soon' : k === 3 ? 'missing' : 'ok'
               return (
-                <div key={c} className="border border-caixa py-2">
+                <div key={c} className="rounded-[10px] bg-betao py-2">
                   <p className="font-semibold">{c}</p>
                   <StatusIcon status={s} className={`mx-auto mt-1 ${s === 'ok' ? 'text-estado-valido' : 'text-estado-erro'}`} />
                 </div>
@@ -194,7 +194,7 @@ function Mockup({ i, t }: { i: number; t: T }) {
             </li>
           ))}
         </ul>
-        <span className="mt-3 inline-block rounded-[4px] bg-produto-obras px-3 py-1.5 font-semibold text-white">{t.report.export}</span>
+        <span className="mt-3 inline-block rounded-full bg-produto-obras px-3 py-1.5 font-semibold text-white">{t.report.export}</span>
       </Panel>
     </div>
   )

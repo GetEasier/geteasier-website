@@ -66,7 +66,7 @@ export default function HeroPlanta({ locale }: { locale: Locale }) {
           <path d="M250 140v14M360 140v14M250 147h110" />
         </g>
 
-        <g style={{ fontFamily: 'var(--font-plex-mono), monospace' }} fill="#4A5263" fontSize="12">
+        <g style={{ fontFamily: 'var(--font-mono), monospace' }} fill="#4A5263" fontSize="12">
           <text x="30" y="300">{labels.gate}</text>
           <text x="62" y="252">{labels.tablet}</text>
           <text x="266" y="282">{labels.server}</text>
@@ -81,10 +81,10 @@ export default function HeroPlanta({ locale }: { locale: Locale }) {
             <rect width="298" height="44" rx="4" fill="#fff" stroke="#06083C" strokeWidth="1.5" />
             <rect width="6" height="44" fill="#0F7A5C" />
             <path d="M22 22l5 5 10-11" fill="none" stroke="#0F7A5C" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            <text x="50" y="27" style={{ fontFamily: 'var(--font-plex-mono), monospace' }} fontSize="14" fontWeight="500" fill="#06083C">
+            <text x="50" y="27" style={{ fontFamily: 'var(--font-mono), monospace' }} fontSize="14" fontWeight="500" fill="#06083C">
               07:58
             </text>
-            <text x="100" y="27" style={{ fontFamily: 'var(--font-plex-mono), monospace' }} fontSize="13" fill="#06083C">
+            <text x="100" y="27" style={{ fontFamily: 'var(--font-mono), monospace' }} fontSize="13" fill="#06083C">
               {labels.recordName} · {labels.recordSite}
             </text>
           </g>

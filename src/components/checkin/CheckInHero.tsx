@@ -33,7 +33,7 @@ const HOLD = [1400, 2300, 1500, 1500, LOOP_PAUSE + 1200]
 const LAST = HOLD.length - 1
 const FACE: FaceState[] = ['wait', 'scan', 'ok', 'ok', 'ok']
 
-export default function CheckInHero({ t }: { t: CheckInLabels }) {
+export default function CheckInHero({ t, dark }: { t: CheckInLabels; dark?: boolean }) {
   const root = useRef<HTMLDivElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const { running, reduced, paused, setPaused } = usePlayback(root)
@@ -140,7 +140,7 @@ export default function CheckInHero({ t }: { t: CheckInLabels }) {
           </li>
         </ol>
       </div>
-      <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={t} className={cn('checkin-pause mt-2')} />
+      <PauseButton paused={paused} onToggle={() => setPaused(!paused)} labels={t} dark={dark} className={cn('checkin-pause mt-2')} />
     </div>
   )
 }

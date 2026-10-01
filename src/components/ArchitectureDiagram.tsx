@@ -48,7 +48,7 @@ export default function ArchitectureDiagram({ locale, caption }: { locale: Local
       <svg viewBox="0 0 520 402" className="h-auto w-full" aria-hidden="true" focusable="false">
         <style>{`
           .arch-box{fill:none;stroke:rgba(255,255,255,.55);stroke-width:1.4}
-          .arch-text{fill:#fff;font-family:var(--font-plex-mono),monospace;font-size:12px}
+          .arch-text{fill:#fff;font-family:var(--font-mono),monospace;font-size:12px}
           .arch-line{fill:none;stroke:rgba(255,255,255,.45);stroke-width:1.4}
           [data-node].is-on .arch-box{stroke:#18DDBA;stroke-width:2}
           [data-node].is-on .arch-line{stroke:#18DDBA}

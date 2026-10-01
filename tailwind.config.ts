@@ -16,9 +16,9 @@ const config: Config = {
         azul: { DEFAULT: '#1B54B8', escuro: '#15418F' },
         ciano: '#18DDBA',
         papel: '#F4F6F9',
-        // Materiais da obra (DESIGN_NOTES.md)
-        betao: '#E9EAE6',
-        caixa: '#C9CCC6',
+        // Fundo das secções alternadas e filetes (DESIGN_NOTES.md, revisto a 01/10)
+        betao: '#F4F6F9',
+        caixa: '#DCE2EA',
         grafite: '#4A5263',
         linha: '#C9D1DE',
         // Cores dos logótipos de cada produto
@@ -40,8 +40,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-archivo)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-plex-mono)', 'ui-monospace', 'Menlo', 'monospace'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'Menlo', 'monospace'],
       },
       fontSize: {
         display: ['clamp(2.5rem, 1.66rem + 3.4vw, 4.5rem)', { lineHeight: '1.02', letterSpacing: '-0.02em' }],
@@ -58,8 +58,8 @@ const config: Config = {
         prose: '64ch',
       },
       borderRadius: {
-        ctl: '6px',
-        frame: '12px',
+        ctl: '10px',
+        frame: '18px',
       },
     },
   },

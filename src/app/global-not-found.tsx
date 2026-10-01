@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
-import { archivo, plexMono } from '@/lib/fonts'
+import { sans, mono } from '@/lib/fonts'
 import SiteShell from '@/components/site/SiteShell'
 import { common } from '@/content/common'
 import { MAIN_NAV, href, route } from '@/lib/seo.config'
@@ -18,7 +18,7 @@ export default function GlobalNotFound() {
   const pt = common.pt.notFound
   const en = common.en.notFound
   return (
-    <html lang="pt-PT" className={`${archivo.variable} ${plexMono.variable}`}>
+    <html lang="pt-PT" className={`${sans.variable} ${mono.variable}`}>
       <body>
         <SiteShell pageId={null} locale="pt">
           <section className="wrap grid gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">

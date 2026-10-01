@@ -73,3 +73,16 @@ Cores novas: Betão `#E9EAE6` e Caixa 7035 `#C9CCC6` (`bg-betao`, `border-caixa`
 - Os três números da secção "Em números".
 - Caixa do tablet: cor real e especificações (IP65 não é afirmado).
 - Empresas fictícias "Cofragens Tejo", "Eletro Douro" e "Construções Marvila" não coincidem com clientes reais.
+
+## Revisão de 01/10/2026: Geist e hero escuro
+
+O Alexandre achou que o site parecia "software antigo". As escolhas para fugir ao kit SaaS
+(fundo Betão, caixa 7035, cantos retos, filetes em vez de sombras, Archivo larga) davam esse ar.
+Comparou três versões do início e escolheu a B:
+
+- Tipo de letra: **Geist** e **Geist Mono** (variáveis, OFL), em subconjunto Latin de cerca de 31 KB e 33 KB. Saem a Archivo e a IBM Plex Mono. Títulos com espaçamento negativo em vez de largura expandida.
+- Hero do início em tinta com a luz azul e ciano da marca (`.hero-brand`), CTA ciano, como no redesign de que ele gostou.
+- Cantos arredondados (`ctl` 10 px, `frame` 18 px, widgets e crachá 14–16 px, caixa do tablet 28 px), botões em pílula e sombras suaves nos widgets e painéis.
+- Menos cinzento: o token `betao` passa a `#F4F6F9` e `caixa` a `#DCE2EA` (os nomes ficam para não mexer em todos os componentes).
+
+Lighthouse mobile depois da mudança: início 89–97 (variação entre corridas), ConstructionEasier 98; CLS 0; `npm run verify` passa.

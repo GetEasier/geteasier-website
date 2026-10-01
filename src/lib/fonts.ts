@@ -1,26 +1,24 @@
 import localFont from 'next/font/local'
 
-// Archivo variável e IBM Plex Mono, ambas OFL.
-// Archivo reduzida ao que o site usa (fontTools): peso 400–700, largura 100–112 %,
-// Latin básico, Latin-1 e pontuação tipográfica. 43 KB em vez de 88 KB.
-export const archivo = localFont({
-  src: '../fonts/archivo-subset-wght400-700-wdth100-112.woff2',
-  weight: '400 700',
+// Geist e Geist Mono variáveis (OFL, Vercel), reduzidas ao Latin básico, Latin-1 e pontuação
+// tipográfica: cerca de 31 KB e 33 KB em vez de 70 KB cada. Escolhidas pelo Alexandre a 01/10/2026
+// em vez da Archivo larga, que dava ao site um ar de software antigo.
+export const sans = localFont({
+  src: '../fonts/geist-latin-wght100-900.woff2',
+  weight: '100 900',
   style: 'normal',
   display: 'swap',
-  variable: '--font-archivo',
-  declarations: [{ prop: 'font-stretch', value: '100% 112%' }],
+  variable: '--font-sans',
   adjustFontFallback: 'Arial',
   preload: true,
 })
 
-export const plexMono = localFont({
-  src: [
-    { path: '../fonts/ibm-plex-mono-latin-400-normal.woff2', weight: '400', style: 'normal' },
-    { path: '../fonts/ibm-plex-mono-latin-500-normal.woff2', weight: '500', style: 'normal' },
-  ],
+export const mono = localFont({
+  src: '../fonts/geist-mono-latin-wght100-900.woff2',
+  weight: '100 900',
+  style: 'normal',
   display: 'swap',
-  variable: '--font-plex-mono',
+  variable: '--font-mono',
   adjustFontFallback: false,
   preload: false,
 })

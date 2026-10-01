@@ -26,26 +26,26 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <LegacyHashRedirect locale={locale} />
       <HomeMotion />
 
-      {/* Hero: fundo Betão, o título em HTML estático (visível antes de qualquer JS) e o check-in ao lado */}
-      <section className="overflow-x-clip bg-betao">
+      {/* Hero: fundo tinta com a luz da marca, o título em HTML estático (visível antes de qualquer JS) e o check-in ao lado */}
+      <section className="hero-brand overflow-x-clip text-white">
         <div className="wrap grid items-center gap-8 pb-12 pt-10 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-12">
           <div>
-            <h1 className="t-display max-w-[16ch] max-sm:text-[2.125rem] max-sm:[font-stretch:104%]">{t.h1}</h1>
-            <p className="mt-5 max-w-[36ch] text-lead text-grafite">{t.lead}</p>
+            <h1 className="t-display max-w-[16ch] max-sm:text-[2.125rem]">{t.h1}</h1>
+            <p className="mt-5 max-w-[36ch] text-lead text-white/80">{t.lead}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn-primary">
+              <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
                 {c.cta.project}
               </Link>
-              <Link href={href('products', locale)} className="btn-secondary">
+              <Link href={href('products', locale)} className="btn-on-dark">
                 {c.cta.products}
               </Link>
             </div>
           </div>
-          <CheckInHero t={t.hero} />
+          <CheckInHero t={t.hero} dark />
         </div>
       </section>
 
-      <section aria-labelledby="clientes-titulo" className="border-y border-caixa bg-white py-10">
+      <section aria-labelledby="clientes-titulo" className="bg-white py-10">
         <div className="wrap">
           <h2 id="clientes-titulo" className="text-small font-semibold text-grafite">
             {t.clientsTitle}
@@ -70,7 +70,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
               width={1600}
               height={1067}
               sizes="(min-width: 1024px) 58vw, 100vw"
-              className="aspect-[4/3] w-full object-cover"
+              className="aspect-[4/3] w-full rounded-[20px] object-cover"
             />
           </div>
           <div data-gate-text>
@@ -169,7 +169,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
               </Link>
             </p>
           </div>
-          <div id="contacto" className="self-start border-t-4 border-azul bg-white p-7 lg:sticky lg:top-24">
+          <div id="contacto" className="self-start rounded-[20px] bg-white p-7 shadow-[0_30px_60px_-30px_rgba(6,8,60,.35)] lg:sticky lg:top-24">
             <h2 className="t-h3">{t.contact.title}</h2>
             <p className="mt-3 text-grafite">{t.contact.text}</p>
             <div className="mt-6 flex flex-wrap gap-3">

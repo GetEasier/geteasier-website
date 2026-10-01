@@ -125,7 +125,7 @@ export default function GateFeed({ t, withKiosk = true }: { t: T; withKiosk?: bo
           </div>
         </div>
       )}
-      <div className="border border-caixa bg-white">
+      <div className="overflow-hidden rounded-[20px] bg-white shadow-[0_30px_60px_-34px_rgba(6,8,60,.4)] ring-1 ring-tinta/5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-caixa px-4 py-3">
           <p className="font-semibold">{t.feed}</p>
           <p className="text-small font-semibold text-estado-valido" aria-live="polite">
@@ -139,7 +139,7 @@ export default function GateFeed({ t, withKiosk = true }: { t: T; withKiosk?: bo
               type="button"
               aria-pressed={filter === c}
               onClick={() => choose(c)}
-              className="min-h-[36px] rounded-[4px] px-3 text-small font-semibold text-grafite transition-colors duration-150 hover:text-tinta aria-pressed:bg-tinta aria-pressed:text-white"
+              className="min-h-[36px] rounded-full px-3 text-small font-semibold text-grafite transition-colors duration-150 hover:text-tinta aria-pressed:bg-tinta aria-pressed:text-white"
             >
               {c ?? t.all}
             </button>

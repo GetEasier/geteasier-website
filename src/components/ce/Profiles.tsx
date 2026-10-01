@@ -20,11 +20,11 @@ export default function Profiles({ t }: { t: ConstructionDict['profiles'] }) {
       <div className="tab-stack is-quick">
         {t.items.map((p, i) => (
           <div key={p.tab} {...panel(i)} className="grid gap-6 outline-none sm:grid-cols-2">
-            <div className="border-t-4 border-estado-erro bg-white p-6">
+            <div className="rounded-[18px] bg-white p-6 shadow-[inset_0_3px_0_#B42318,0_20px_40px_-28px_rgba(6,8,60,.4)]">
               <p className="text-small font-semibold text-grafite">{t.pain}</p>
               <p className="mt-2 text-lead">{p.pain}</p>
             </div>
-            <div className="border-t-4 border-estado-valido bg-white p-6">
+            <div className="rounded-[18px] bg-white p-6 shadow-[inset_0_3px_0_#0F7A5C,0_20px_40px_-28px_rgba(6,8,60,.4)]">
               <p className="text-small font-semibold text-grafite">{t.gain}</p>
               <p className="mt-2 text-lead">{p.gain}</p>
             </div>

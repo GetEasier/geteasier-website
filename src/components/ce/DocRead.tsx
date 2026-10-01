@@ -44,7 +44,7 @@ export default function DocRead({ t, run }: { t: Doc; run: number }) {
         </div>
         <span className="doc-beam" />
       </div>
-      <div className="doc-form border border-caixa bg-white p-4">
+      <div className="doc-form rounded-[16px] bg-white p-4 shadow-[0_20px_40px_-28px_rgba(6,8,60,.4)] ring-1 ring-tinta/5">
         <p className="font-semibold">{t.form}</p>
         <dl className="mt-3 grid gap-2 text-small">
           {t.fields.map((f, i) => (
