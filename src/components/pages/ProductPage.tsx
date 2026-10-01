@@ -19,6 +19,7 @@ import ModesDemo from '@/components/ce/ModesDemo'
 import Profiles from '@/components/ce/Profiles'
 import TimeBenefits from '@/components/te/TimeBenefits'
 import StockBenefits from '@/components/se/StockBenefits'
+import WoodBenefits from '@/components/we/WoodBenefits'
 import Faq from '@/components/ui/Faq'
 import { construction } from '@/content/construction'
 import { products } from '@/content/products'
@@ -35,9 +36,11 @@ const SCENES: Record<ProductId, (p: { locale: Locale }) => React.ReactNode> = {
   woodEasier: WoodEasierScene,
 }
 
-// Capturas reais da aplicação, já publicadas no site anterior.
-const SCREENSHOTS: Partial<Record<ProductId, { src: string; width: number; height: number }>> = {
-  woodEasier: { src: '/images/products/wood-easier.jpeg', width: 433, height: 290 },
+// "O que muda com o produto", contado ao descer (o ConstructionEasier tem as suas secções próprias).
+const BENEFITS: Partial<Record<ProductId, (p: { locale: Locale }) => React.ReactNode>> = {
+  timeEasier: TimeBenefits,
+  stockEasier: StockBenefits,
+  woodEasier: WoodBenefits,
 }
 
 export default function ProductPage({ id, locale }: { id: ProductId; locale: Locale }) {
@@ -47,7 +50,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
   const theme = PRODUCT_THEME[id]
   const demo = c.cta.demo(item.name)
   const Scene = SCENES[id]
-  const shot = SCREENSHOTS[id]
+  const Benefits = BENEFITS[id]
   const pt = locale === 'pt'
   const labels = {
     pause: pt ? 'Pausar' : 'Pause',
@@ -112,9 +115,11 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
 
       {id === 'constructionEasier' && <ConstructionSections locale={locale} />}
 
-      {(id === 'timeEasier' || id === 'stockEasier') && (
+      {Benefits && (
         <section aria-labelledby="beneficios-titulo" className="pb-16 md:pb-24">
-          <div className="wrap">{id === 'timeEasier' ? <TimeBenefits locale={locale} /> : <StockBenefits locale={locale} />}</div>
+          <div className="wrap">
+            <Benefits locale={locale} />
+          </div>
         </section>
       )}
 
@@ -126,31 +131,6 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
           </Link>
         </p>
       </Section>
-
-      {shot && (
-        <section aria-labelledby="por-dentro-titulo" className="bg-white py-16 md:py-24">
-          <div className="wrap">
-            <h2 id="por-dentro-titulo" className="t-h2">
-              {pt ? `O ${item.name} por dentro` : `Inside ${item.name}`}
-            </h2>
-            <div className="reveal-photo mt-10 overflow-hidden rounded-frame border border-linha bg-papel shadow-[0_30px_70px_-30px_rgba(6,8,60,.45)]">
-              <div className="flex gap-2 border-b border-linha bg-white px-4 py-3">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
-              </div>
-              <Image
-                src={shot.src}
-                alt={pt ? `Ecrã do ${item.name}` : `${item.name} screen`}
-                width={shot.width}
-                height={shot.height}
-                sizes="(min-width: 1240px) 1180px, 100vw"
-                className={cn('mx-auto h-auto', shot.width < 800 ? 'w-auto max-w-full' : 'w-full')}
-              />
-            </div>
-          </div>
-        </section>
-      )}
 
       {id === 'woodEasier' && (
         <>
