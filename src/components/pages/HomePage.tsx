@@ -7,11 +7,12 @@ import TeamGrid from '@/components/TeamGrid'
 import BuildHero from '@/components/home/BuildHero'
 import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
+import TestimonialMarquee from '@/components/home/TestimonialMarquee'
 import HomeMotion from '@/components/home/HomeMotion'
 import Stats from '@/components/home/Stats'
 import Faq from '@/components/ui/Faq'
 import { COMPANY } from '@/lib/site'
-import { TESTIMONIALS, home } from '@/content/home'
+import { home } from '@/content/home'
 import { common } from '@/content/common'
 import { href, type Locale } from '@/lib/seo.config'
 
@@ -112,36 +113,17 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Testemunhos: os três de uma vez, em cartões de cor, e os números numa faixa por baixo */}
-      <section id="testimonials" aria-labelledby="testemunhos-titulo" className="bg-white py-16 md:py-24">
+      {/* Testemunhos: cartões de cor numa faixa que anda na horizontal, e os números numa faixa escura por baixo */}
+      <section id="testimonials" aria-labelledby="testemunhos-titulo" className="overflow-x-clip bg-white py-16 md:py-24">
         <div className="wrap">
           <h2 id="testemunhos-titulo" className="t-h2">
             {t.testimonialsTitle}
           </h2>
-          <ul className="mt-10 grid gap-5 lg:grid-cols-3">
-            {TESTIMONIALS.map((q, i) => (
-              <li key={q.name} className="testemunho-card" data-kind={i}>
-                <figure className="flex h-full flex-col">
-                  <svg aria-hidden="true" viewBox="0 0 48 36" className="testemunho-aspas h-7 w-auto self-start" fill="currentColor">
-                    <path d="M0 36V22C0 9.6 6.2 2.3 18.6 0l2 5.2C13.5 7 10 11 9.6 17H19v19H0zm27 0V22C27 9.6 33.2 2.3 45.6 0l2 5.2C40.5 7 37 11 36.6 17H46v19H27z" />
-                  </svg>
-                  <blockquote lang="pt-PT" className="mt-5 text-[1.0625rem] font-medium leading-relaxed">
-                    <p>{q.quote}</p>
-                  </blockquote>
-                  <figcaption className="mt-auto flex items-center gap-3 pt-7">
-                    <Image src={q.photo} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover ring-2 ring-white" />
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-semibold">{q.name}</span>
-                      <span className="block text-small text-grafite">{q.company}</span>
-                    </span>
-                    <span className="grid h-11 shrink-0 place-items-center rounded-full bg-white px-3 shadow-[0_8px_20px_-14px_rgba(6,8,60,.5)]">
-                      <Image src={q.logo} alt="" width={96} height={40} className="max-h-7 w-auto object-contain" />
-                    </span>
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
+        </div>
+        <div className="mt-10">
+          <TestimonialMarquee labels={t.testimonialsPause} />
+        </div>
+        <div className="wrap">
           {locale === 'en' && <p className="mt-4 text-small text-grafite">Quoted in the original Portuguese.</p>}
           <div className="hero-brand mt-5 rounded-[28px] p-7 text-white shadow-[0_30px_60px_-30px_rgba(6,8,60,.55)] md:p-10">
             <h3 className="text-small font-semibold uppercase tracking-[0.08em] text-ciano">{t.stats.title}</h3>

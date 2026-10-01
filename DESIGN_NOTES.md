@@ -116,3 +116,6 @@ Testemunhos (01/10, opção escolhida "Três cartões"): os três testemunhos la
 números numa faixa escura por baixo. O carrossel deixa de ser usado no início.
 Equipa: fundo da marca com grelha, pílulas com factos (Marco de Canaveses, equipa portuguesa, do desenho ao suporte) e cartões
 que se inclinam para o rato, com luz que segue o ponteiro, contorno de luz ao passar e nome num painel de vidro (`TeamLive`).
+
+### Testemunhos em faixa horizontal (2026-10-01)
+Os três cartões de cor passam devagar na horizontal (70 s por volta, mesma keyframe da faixa dos clientes), com as pontas a desvanecer. Param com o rato ou o foco em cima, fora do ecrã, com a aba escondida e com o botão "Pausar os testemunhos" (WCAG 2.2.2). Sem JS ou com "reduzir movimento" ficam os três cartões parados na grelha da página.
