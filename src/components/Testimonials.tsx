@@ -21,7 +21,6 @@ export default function Testimonials({ locale, only }: { locale: Locale; only?: 
                 <p>{t.quote}</p>
               </blockquote>
               <figcaption className="mt-auto flex items-center gap-3 pt-6">
-                <Image src={t.photo} alt="" width={56} height={56} className="h-14 w-14 rounded-full object-cover ring-2 ring-ciano/60" />
                 <span className="min-w-0 flex-1">
                   <span className="block font-semibold">{t.name}</span>
                   <span className="block text-small text-grafite">{t.company}</span>

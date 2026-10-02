@@ -33,7 +33,6 @@ export default function TestimonialMarquee() {
                       <p>{q.quote}</p>
                     </blockquote>
                     <figcaption className="mt-auto flex items-center gap-3 pt-7">
-                      <Image src={q.photo} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover ring-2 ring-white" />
                       <span className="min-w-0 flex-1">
                         <span className="block font-semibold">{q.name}</span>
                         <span className="block text-small text-grafite">{q.company}</span>

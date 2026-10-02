@@ -1,6 +1,7 @@
 import type { Locale } from '@/lib/seo.config'
 
-// Testemunhos e clientes: já publicados no site anterior, com nome, empresa e fotografia.
+// Testemunhos e clientes: já publicados no site anterior, com nome, empresa e fotografia
+// (as fotografias não aparecem no site desde 2026-10-02, a pedido do Alexandre).
 export const TESTIMONIALS = [
   {
     quote:
