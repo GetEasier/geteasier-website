@@ -3003,6 +3003,13 @@
     box-shadow var(--dur-ui) ease,
     border-color var(--dur-ui) ease;
 }
+.clientes-nome {
+  text-align: center;
+  transition: transform var(--dur-ui) var(--ease-entrada);
+}
+.clientes-tile:hover .clientes-nome {
+  transform: scale(1.04);
+}
 .clientes-tile img {
   transition: transform var(--dur-ui) var(--ease-entrada);
 }

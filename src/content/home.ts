@@ -29,13 +29,17 @@ export const TESTIMONIALS = [
   },
 ] as const
 
-export const CLIENTS = [
+// Sem logótipo (logo: null), o cartão mostra o nome em texto; `sub` é uma segunda linha opcional.
+// ACIP e Carvões Mirita (2026-10-02) ainda estão em texto: os sites deles não abriam daqui.
+export const CLIENTS: readonly { name: string; logo: string | null; sub?: string }[] = [
   { name: 'Granitos do Norte', logo: '/images/home/clients/logo_gnt.jpeg' },
   { name: 'Granitos Irmãos Peixoto', logo: '/images/home/clients/logo_peixotos.jpeg' },
   { name: 'Pardais', logo: '/images/home/clients/logo_pardais.jpeg' },
+  { name: 'ACIP', sub: 'Associação Empresarial de Castelo de Paiva', logo: null },
   { name: 'Futuro Alternativo', logo: '/images/home/clients/futuro-alternativo-logo.jpeg' },
   { name: 'OJP', logo: '/images/home/clients/Logo_OJP.jpeg' },
-] as const
+  { name: 'Carvões Mirita', logo: null },
+]
 
 const pt = {
   build: {

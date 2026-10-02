@@ -29,7 +29,14 @@ export default function ClientMarquee({ title }: { title: string }) {
             <ul key={copy} className="clientes-set" aria-hidden={copy === 1 || undefined}>
               {[...CLIENTS, ...CLIENTS].map((client, i) => (
                 <li key={`${client.name}-${i}`} className="clientes-tile" aria-hidden={i >= CLIENTS.length || undefined}>
-                  <Image src={client.logo} alt={copy === 0 && i < CLIENTS.length ? client.name : ''} width={160} height={64} className="max-h-14 w-auto object-contain" />
+                  {client.logo ? (
+                    <Image src={client.logo} alt={copy === 0 && i < CLIENTS.length ? client.name : ''} width={160} height={64} className="max-h-14 w-auto object-contain" />
+                  ) : (
+                    <span className="clientes-nome">
+                      <span className="block text-[1.05rem] font-semibold leading-tight tracking-[-0.01em] text-tinta">{client.name}</span>
+                      {client.sub && <span className="mt-1 block text-[0.72rem] leading-snug text-grafite">{client.sub}</span>}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
