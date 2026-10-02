@@ -1493,9 +1493,8 @@
 .mm-scrim {
   position: absolute;
   inset: 0;
-  background: rgba(6, 8, 60, 0.42);
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  touch-action: none;
+  background: rgba(6, 8, 60, 0.5);
   -webkit-tap-highlight-color: transparent;
 }
 .mm-sheet {
@@ -1509,7 +1508,7 @@
   border-radius: 0 0 26px 26px;
   background: #fff;
   padding: 0.75rem 1rem 0;
-  box-shadow: 0 28px 60px -30px rgba(6, 8, 60, 0.6);
+  box-shadow: 0 18px 40px -24px rgba(6, 8, 60, 0.55);
   color: var(--tinta);
 }
 .mm-grip {
@@ -1667,31 +1666,27 @@
   color: var(--tinta);
 }
 
-/* Movimento: o painel cresce a partir do botão com uma mola curta e as linhas entram logo atrás,
-   uma a uma. Ao fechar, encolhe de volta para o botão. --ox e --oy (centro do botão) vêm do JS. Com "reduzir movimento" (sem motion-ok), abre e fecha sem nada disto. */
+/* Movimento: o painel cresce a partir do botão e, ao fechar, encolhe de volta para ele. Só se anima
+   transform e opacity (o iPhone fá-los na GPU): nada de blur no fundo, cantos animados ou linhas com
+   atraso, que deixavam a caixa branca vazia a meio. --ox e --oy (centro do botão) vêm do JS. Com "reduzir movimento" (sem motion-ok), abre e fecha sem nada disto. */
 .motion-ok .mm[open] .mm-scrim {
   animation: mm-fade 260ms ease backwards;
 }
 .motion-ok .mm[open] .mm-sheet {
   transform-origin: var(--ox, 90%) var(--oy, -2rem);
-  animation: mm-grow 460ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
-  transition: transform 340ms cubic-bezier(0.32, 0.72, 0, 1);
-}
-.motion-ok .mm[open] .mm-in {
-  animation: mm-row 420ms var(--ease-entrada) backwards;
-  animation-delay: calc(70ms + var(--i, 0) * 26ms);
+  will-change: transform, opacity;
+  animation: mm-grow 420ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .motion-ok .mm[data-state='dragging'] .mm-sheet {
   transition: none;
 }
 .motion-ok .mm[data-state='closing'] .mm-sheet {
-  transform: scale(0.12) !important;
+  transform: scale(0.3) !important;
   opacity: 0;
-  border-radius: 40px;
   transition:
-    transform 280ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 200ms ease 80ms,
-    border-radius 280ms ease;
+    transform 240ms cubic-bezier(0.4, 0, 0.6, 1),
+    opacity 170ms ease 70ms;
 }
 .motion-ok .mm[data-state='closing'] .mm-scrim {
   opacity: 0;
@@ -1705,23 +1700,16 @@
 }
 @keyframes mm-grow {
   from {
-    transform: scale(0.12);
+    transform: scale(0.3);
     opacity: 0;
-    border-radius: 40px;
   }
-  30% {
+  35% {
     opacity: 1;
   }
 }
 @keyframes mm-fade {
   from {
     opacity: 0;
-  }
-}
-@keyframes mm-row {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -8px, 0);
   }
 }
 

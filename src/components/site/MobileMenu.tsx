@@ -21,6 +21,8 @@ type Props = {
 // fecha ao tocar, ícones em cada linha, os quatro produtos à mão e a língua num seletor PT | EN.
 // <details> faz com que abra e feche sem JavaScript; o JS junta as animações, o arrasto, o Escape, o
 // foco preso no menu e a página parada por trás. Sem "motion-ok" abre e fecha sem movimento.
+// As ligações do menu não fazem prefetch: ao abrir, ficavam onze à vista de uma vez e o Next ia
+// buscar todas as páginas a meio da animação, o que a engasgava no telemóvel.
 export default function MobileMenu({ labels, items, products, ctaHref, langs }: Props) {
   const ref = useRef<HTMLDetailsElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
@@ -71,14 +73,17 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
     const d = ref.current
     const sheet = sheetRef.current
     if (!d || !sheet) return
-    const root = document.documentElement
+    const layer = sheet.parentElement as HTMLElement
 
-    const onToggle = () => {
-      if (d.open) {
-        root.style.overflow = 'hidden'
-      } else {
-        root.style.overflow = ''
-      }
+    // A página por trás fica parada sem mexer em estilos do <html> (isso obrigava o browser a
+    // recalcular a página inteira e engasgava a animação): os gestos sobre o fundo e sobre o painel,
+    // quando ele não tem scroll próprio, simplesmente não fazem scroll.
+    const canScroll = () => sheet.scrollHeight > sheet.clientHeight + 1
+    const onTouchMove = (e: TouchEvent) => {
+      if (!sheet.contains(e.target as Node) || !canScroll()) e.preventDefault()
+    }
+    const onWheel = (e: WheelEvent) => {
+      if (!sheet.contains(e.target as Node) || !canScroll()) e.preventDefault()
     }
 
     const onKey = (e: KeyboardEvent) => {
@@ -148,7 +153,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
       }
     }
 
-    d.addEventListener('toggle', onToggle)
+    layer.addEventListener('touchmove', onTouchMove, { passive: false })
+    layer.addEventListener('wheel', onWheel, { passive: false })
     document.addEventListener('keydown', onKey)
     sheet.addEventListener('pointerdown', onDown)
     sheet.addEventListener('pointermove', onMove)
@@ -156,14 +162,14 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
     sheet.addEventListener('pointercancel', onUp)
     sheet.addEventListener('click', onClick, true)
     return () => {
-      d.removeEventListener('toggle', onToggle)
+      layer.removeEventListener('touchmove', onTouchMove)
+      layer.removeEventListener('wheel', onWheel)
       document.removeEventListener('keydown', onKey)
       sheet.removeEventListener('pointerdown', onDown)
       sheet.removeEventListener('pointermove', onMove)
       sheet.removeEventListener('pointerup', onUp)
       sheet.removeEventListener('pointercancel', onUp)
       sheet.removeEventListener('click', onClick, true)
-      root.style.overflow = ''
     }
   }, [close])
 
@@ -187,9 +193,6 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
     }
   }
 
-  let i = 0
-  const step = () => ({ '--i': i++ }) as CSSProperties
-
   return (
     <details ref={ref} className="mm group lg:hidden">
       <summary className="mm-trigger" onClick={onSummary}>
@@ -207,8 +210,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
           <nav aria-label={labels.nav}>
             <ul className="mm-list">
               {items.map((item) => (
-                <li key={item.id} className="mm-in" style={step()}>
-                  <Link href={item.path} aria-current={item.active ? 'page' : undefined} className="mm-item">
+                <li key={item.id}>
+                  <Link prefetch={false} href={item.path} aria-current={item.active ? 'page' : undefined} className="mm-item">
                     <span className="mm-ico" aria-hidden="true">
                       {NAV_ICONS[item.id]}
                     </span>
@@ -219,8 +222,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
                     <ul className="mm-products" aria-label={labels.products}>
                       {products.map((p) => (
                         <li key={p.id}>
-                          <Link href={p.path} aria-current={p.active ? 'page' : undefined} className="mm-product">
-                            <Image src={p.icon} alt="" width={28} height={28} className="h-6 w-6 shrink-0 rounded-md object-contain" />
+                          <Link prefetch={false} href={p.path} aria-current={p.active ? 'page' : undefined} className="mm-product">
+                            <Image src={p.icon} alt="" width={28} height={28} loading="eager" className="h-6 w-6 shrink-0 rounded-md object-contain" />
                             <span className="min-w-0 truncate">{p.name}</span>
                           </Link>
                         </li>
@@ -232,9 +235,9 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
             </ul>
           </nav>
 
-          <div className="mm-sep mm-in" style={step()} />
+          <div className="mm-sep" />
 
-          <div className="mm-lang mm-in" style={step()}>
+          <div className="mm-lang">
             <span className="mm-ico" aria-hidden="true">
               {GLOBE}
             </span>
@@ -247,7 +250,7 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
                     {l.short}
                   </span>
                 ) : (
-                  <Link key={l.code} href={l.href} hrefLang={l.code} lang={l.code} className="mm-seg-opt" title={l.name}>
+                  <Link key={l.code} prefetch={false} href={l.href} hrefLang={l.code} lang={l.code} className="mm-seg-opt" title={l.name}>
                     <span aria-hidden="true">{l.short}</span>
                     <span className="sr-only">{l.name}</span>
                   </Link>
@@ -256,8 +259,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
             </div>
           </div>
 
-          <div className="mm-in" style={step()}>
-            <Link href={ctaHref} className="btn-primary mt-3 w-full">
+          <div>
+            <Link prefetch={false} href={ctaHref} className="btn-primary mt-3 w-full">
               {labels.cta}
             </Link>
           </div>
