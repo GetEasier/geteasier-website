@@ -21,7 +21,12 @@ npx playwright install chromium     # só da primeira vez
 npm run verify
 ```
 
-O `.env.local` precisa das chaves do EmailJS para o formulário de contacto enviar mensagens:
+O formulário de contacto envia pelo Web3Forms quando existe `NEXT_PUBLIC_WEB3FORMS_KEY` (a chave pede-se em web3forms.com com o email que deve receber os pedidos; põe-se no `.env.local` e nas variáveis da Vercel). Sem essa chave, usa as chaves antigas do EmailJS:
+
+```
+NEXT_PUBLIC_WEB3FORMS_KEY=...
+```
+
 
 ```
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=...
