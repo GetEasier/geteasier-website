@@ -19,7 +19,7 @@ type Props = {
   tint: string
   accent: string
   screen: (i: number, on: boolean) => ReactNode
-  /** O título de cada passo monta-se letra a letra ao descer (ScrollWord). */
+  /** O título e o texto de cada passo montam-se letra a letra ao descer (ScrollWord). */
   animateSteps?: boolean
 }
 
@@ -79,7 +79,7 @@ export default function ScrollStory({ headingId, title, intro, steps, tint, acce
             >
               <span aria-hidden="true" className="tb-dot" />
               {animateSteps ? <ScrollWord as="h3" text={s.title} className="t-h3" /> : <h3 className="t-h3">{s.title}</h3>}
-              <p className="mt-2 max-w-[42ch] text-grafite">{s.text}</p>
+              {animateSteps ? <ScrollWord as="p" text={s.text} className="mt-2 max-w-[42ch] text-grafite" /> : <p className="mt-2 max-w-[42ch] text-grafite">{s.text}</p>}
               {/* Ecrã por baixo do texto (telemóvel, sem JS, reduzir movimento) */}
               <div aria-hidden="true" className={cn('tb-inline mt-6 grid place-items-center rounded-[22px] p-6', tint)}>
                 <div className="contents" data-anim={active < 0 || i <= active || undefined}>
