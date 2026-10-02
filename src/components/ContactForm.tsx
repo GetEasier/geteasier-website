@@ -91,8 +91,8 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
             botcheck: data.get('botcheck') ? true : '',
           }),
         })
-        const out = (await res.json().catch(() => null)) as { success?: boolean } | null
-        if (!res.ok || !out?.success) throw new Error('web3forms')
+        const out = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null
+        if (!res.ok || !out?.success) throw new Error(`Web3Forms ${res.status}: ${out?.message ?? 'sem resposta'}`)
       } else {
         // Sem chave do Web3Forms, mantém o envio antigo pelo EmailJS.
         await emailjs.send(
@@ -112,7 +112,8 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
       }
       setStatus('sent')
       form.reset()
-    } catch {
+    } catch (err) {
+      console.error('[contacto] envio falhou', err)
       setStatus('error')
     }
     requestAnimationFrame(() => statusRef.current?.focus())
