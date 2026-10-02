@@ -5,6 +5,7 @@ import LegacyHashRedirect from '@/components/LegacyHashRedirect'
 import ProductPanels from '@/components/ProductPanels'
 import TeamGrid from '@/components/TeamGrid'
 import BuildHero from '@/components/home/BuildHero'
+import BlurReveal from '@/components/home/BlurReveal'
 import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
 import TestimonialMarquee from '@/components/home/TestimonialMarquee'
@@ -32,8 +33,10 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <section className="hero-brand overflow-x-clip text-white">
         <div className="wrap grid items-center gap-8 pb-12 pt-10 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-12">
           <div>
-            <h1 className="t-display max-w-[16ch] max-sm:text-[2.125rem]">{t.h1}</h1>
-            <p className="mt-5 max-w-[36ch] text-lead text-white/80">{t.lead}</p>
+            <h1 className="t-display max-w-[16ch] max-sm:text-[2.125rem]">
+              <BlurReveal text={t.h1} />
+            </h1>
+            <p className="blur-in mt-5 max-w-[36ch] text-lead text-white/80">{t.lead}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
                 {c.cta.project}

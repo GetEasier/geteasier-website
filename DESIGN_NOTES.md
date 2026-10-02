@@ -133,3 +133,6 @@ No início, a inscrição na newsletter do Substack é um cartão claro logo a s
 
 ### Em números no topo (2026-10-01)
 Números confirmados pelo Alexandre: 8+ empresas clientes, 10 000+ registos de ponto por mês, 4+ anos a fazer software. O cartão escuro "Em números" passou para logo a seguir à newsletter, antes dos clientes. A secção "Páginas relacionadas" saiu das páginas de produto (único sítio onde existia).
+
+### Título do início em "blur reveal" (2026-10-02, teste)
+A pedido do Alexandre (inspirado no blur-reveal-text da SpaceUI), o título do início revela-se palavra a palavra de desfocado para nítido, e o texto por baixo entra a seguir. Feito em CSS (BlurReveal.tsx + .blur-word), sem instalar o componente: o registo shadcn não está acessível deste ambiente e o projeto não usa shadcn. Só anima com .motion-ok; sem JS ou com "reduzir movimento" fica logo nítido.
