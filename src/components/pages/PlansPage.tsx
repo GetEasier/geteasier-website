@@ -10,24 +10,6 @@ import { href, type Locale } from '@/lib/seo.config'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
 
-function Mark({ on, yes, no, hex }: { on: boolean; yes: string; no: string; hex: string }) {
-  return on ? (
-    <span className="inline-grid h-6 w-6 place-items-center rounded-full text-white" style={{ backgroundColor: hex }}>
-      <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5">
-        <path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span className="sr-only">{yes}</span>
-    </span>
-  ) : (
-    <span className="inline-flex text-linha">
-      <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4">
-        <path d="M4 8h8" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-      <span className="sr-only">{no}</span>
-    </span>
-  )
-}
-
 function Tick({ hex }: { hex: string }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-0.5 h-4 w-4 shrink-0" style={{ color: hex }}>
@@ -102,54 +84,6 @@ export default function PlansPage({ locale }: { locale: Locale }) {
           ))}
         </ul>
 
-        {!m.singlePlan && (
-          <details className="plan-compare group mt-8 rounded-frame border border-linha bg-white" open>
-            <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 px-5 font-semibold md:px-6">
-              {t.compare}
-              <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4 transition-transform group-open:rotate-180">
-                <path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </summary>
-            <div className="relative overflow-x-auto border-t border-linha">
-              <table className="w-full min-w-[34rem] border-collapse text-left">
-                <caption className="sr-only">
-                  {item.name}: {t.h1}
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col" className="px-5 py-4 text-small font-semibold text-grafite md:px-6">
-                      {t.feature}
-                    </th>
-                    {t.plans.map((name, i) => (
-                      <th
-                        key={name}
-                        scope="col"
-                        className={cn('w-24 py-4 text-center font-semibold sm:w-32', i === 2 && 'bg-tinta text-white')}
-                      >
-                        {name}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {m.rows.map((row) => (
-                    <tr key={row.pt} className="border-t border-linha transition-colors hover:bg-papel">
-                      <th scope="row" className="px-5 py-3 font-normal md:px-6">
-                        {row[locale]}
-                        {row.beOnly && <span className="t-data ml-2 whitespace-nowrap text-grafite">({t.beOnly})</span>}
-                      </th>
-                      {row.plans.map((on, i) => (
-                        <td key={t.plans[i]} className={cn('py-3 text-center', i === 2 && 'bg-tinta/[0.04]')}>
-                          <Mark on={on} yes={t.included} no={t.notIncluded} hex={theme.hex} />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </details>
-        )}
       </section>
     )
   })
@@ -172,7 +106,7 @@ export default function PlansPage({ locale }: { locale: Locale }) {
           panels={panels}
         />
 
-        <ul className="mt-12 grid gap-3 text-small text-grafite md:grid-cols-3">
+        <ul className="mt-12 grid gap-3 text-small text-grafite md:grid-cols-2">
           {t.notes.map((n) => (
             <li key={n} className="flex gap-3 rounded-ctl bg-white p-4">
               <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-0.5 h-4 w-4 shrink-0 text-azul" fill="none" stroke="currentColor" strokeWidth="1.6">

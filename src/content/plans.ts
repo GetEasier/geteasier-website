@@ -87,16 +87,12 @@ export const PLAN_MODULES: PlanModule[] = [
 
 const pt = {
   h1: 'Planos e módulos',
-  lead: 'O TimeEasier, o ConstructionEasier e o StockEasier têm três planos e o WoodEasier tem um plano único. A tabela mostra o que inclui cada um. Para saber o preço para a sua empresa, peça uma proposta.',
+  lead: 'O TimeEasier, o ConstructionEasier e o StockEasier têm três planos e o WoodEasier tem um plano único. Cada cartão mostra o que o plano inclui. Para saber o preço para a sua empresa, peça uma proposta.',
   plans: ['Base', 'Avançado', 'Premium'] as [string, string, string],
-  feature: 'Funcionalidade',
-  included: 'Incluído',
-  notIncluded: 'Não incluído',
   singlePlan: 'O WoodEasier tem um plano único, com todas as funcionalidades.',
   beOnly: 'Só na Bélgica',
   notes: [
     'Mínimo de 25 colaboradores nos módulos cobrados por colaborador.',
-    'O ConstructionEasier inclui todas as funcionalidades do TimeEasier no plano correspondente.',
     'Acresce IVA à taxa legal em vigor.',
   ],
   productLink: (name: string) => `Como funciona o ${name}`,
@@ -109,7 +105,6 @@ const pt = {
   base: 'Inclui:',
   single: 'Plano único',
   allFeatures: 'Todas as funcionalidades:',
-  compare: 'Comparar todas as funcionalidades',
   count: (n: number) => `${n} funcionalidades`,
 }
 
@@ -117,16 +112,12 @@ export type PlansDict = typeof pt
 
 const en: PlansDict = {
   h1: 'Plans and modules',
-  lead: 'TimeEasier, ConstructionEasier and StockEasier have three plans, and WoodEasier has a single plan. The table shows what each one includes. For the price for your company, ask for a quote.',
+  lead: 'TimeEasier, ConstructionEasier and StockEasier have three plans, and WoodEasier has a single plan. Each card shows what the plan includes. For the price for your company, ask for a quote.',
   plans: ['Base', 'Advanced', 'Premium'],
-  feature: 'Feature',
-  included: 'Included',
-  notIncluded: 'Not included',
   singlePlan: 'WoodEasier has a single plan with every feature.',
   beOnly: 'Belgium only',
   notes: [
     'Minimum of 25 employees on modules charged per employee.',
-    'ConstructionEasier includes every TimeEasier feature in the matching plan.',
     'Prices exclude VAT at the applicable rate.',
   ],
   productLink: (name: string) => `How ${name} works`,
@@ -139,7 +130,6 @@ const en: PlansDict = {
   base: 'Includes:',
   single: 'Single plan',
   allFeatures: 'Every feature:',
-  compare: 'Compare every feature',
   count: (n: number) => `${n} features`,
 }
 

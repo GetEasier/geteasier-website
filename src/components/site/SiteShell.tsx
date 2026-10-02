@@ -32,9 +32,9 @@ export default function SiteShell({ pageId, locale, children }: { pageId: PageId
       <main id="conteudo" tabIndex={-1} className="outline-none">
         <ViewTransition>{children}</ViewTransition>
       </main>
-      {/* O início e os contactos já acabam num cartão de contacto; nas outras páginas é o rodapé que convida a falar.
+      {/* O início, os planos e os contactos já acabam num cartão de contacto; nas outras páginas é o rodapé que convida a falar.
           A newsletter do início está logo a seguir ao hero, por isso não se repete no rodapé. */}
-      <Footer locale={locale} cta={pageId !== 'home' && pageId !== 'contact'} newsletter={pageId !== 'home'} />
+      <Footer locale={locale} cta={pageId !== 'home' && pageId !== 'contact' && pageId !== 'plans'} newsletter={pageId !== 'home'} />
       <Motion />
     </>
   )
