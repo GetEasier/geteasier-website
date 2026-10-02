@@ -16,7 +16,7 @@ type Props = {
   langs: { code: string; short: string; name: string; href: string; current: boolean }[]
 }
 
-// Menu do telemóvel: um painel que desce do cabeçalho, do mesmo lado do botão (o estilo vem do
+// Menu do telemóvel: um painel que cresce a partir do botão e volta para ele ao fechar (o estilo vem do
 // user-menu da Arc), com uma pega em baixo para o arrastar para cima e fechar, um fundo escurecido que
 // fecha ao tocar, ícones em cada linha, os quatro produtos à mão e a língua num seletor PT | EN.
 // <details> faz com que abra e feche sem JavaScript; o JS junta as animações, o arrasto, o Escape, o
@@ -169,9 +169,22 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
 
   const onSummary = (e: React.MouseEvent) => {
     const d = ref.current
-    if (!d?.open) return
-    e.preventDefault()
-    close(true)
+    if (!d) return
+    if (d.open) {
+      e.preventDefault()
+      close(true)
+      return
+    }
+    // O painel cresce a partir do centro do botão (e é para lá que volta ao fechar).
+    const sheet = sheetRef.current
+    const btn = e.currentTarget.getBoundingClientRect()
+    const header = d.closest('header')
+    if (sheet && header) {
+      // O painel começa onde acaba o cabeçalho (menos o encolher ao descer a página).
+      const top = header.getBoundingClientRect().bottom - (parseFloat(getComputedStyle(header).getPropertyValue('--compact-shift')) || 0)
+      sheet.style.setProperty('--ox', `${btn.left + btn.width / 2}px`)
+      sheet.style.setProperty('--oy', `${btn.top + btn.height / 2 - top}px`)
+    }
   }
 
   let i = 0

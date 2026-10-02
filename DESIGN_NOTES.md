@@ -159,3 +159,5 @@ Atualização no mesmo dia: o Alexandre escolheu que o painel desça do cabeçal
 ## Menu do computador: Produtos abre os quatro produtos (2026-10-02)
 
 Com o rato por cima de "Produtos" (ou o foco do teclado lá dentro) abre um painel com os quatro produtos (ícone, nome e a frase curta de `products.ts`) e "Ver todos os produtos". "Produtos" continua a ser ligação para /produtos. É só CSS (`.nav-drop`, `.nav-panel`); abre com `:has(:focus-visible)` e não com `:focus-within`, para não ficar aberto depois de um clique com o rato.
+
+Atualização (2026-10-02, mais tarde): o painel passa a crescer a partir do botão Menu (scale com origem no centro do botão, calculada no clique) e a encolher de volta para ele ao fechar, a pedido do Alexandre.

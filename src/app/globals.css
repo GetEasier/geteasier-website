@@ -1667,13 +1667,14 @@
   color: var(--tinta);
 }
 
-/* Movimento: o painel desce do cabeçalho com uma mola curta e as linhas entram logo atrás, uma a
-   uma. Ao fechar, sobe depressa. Com "reduzir movimento" (sem motion-ok), abre e fecha sem nada disto. */
+/* Movimento: o painel cresce a partir do botão com uma mola curta e as linhas entram logo atrás,
+   uma a uma. Ao fechar, encolhe de volta para o botão. --ox e --oy (centro do botão) vêm do JS. Com "reduzir movimento" (sem motion-ok), abre e fecha sem nada disto. */
 .motion-ok .mm[open] .mm-scrim {
   animation: mm-fade 260ms ease backwards;
 }
 .motion-ok .mm[open] .mm-sheet {
-  animation: mm-down 480ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
+  transform-origin: var(--ox, 90%) var(--oy, -2rem);
+  animation: mm-grow 460ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
   transition: transform 340ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 .motion-ok .mm[open] .mm-in {
@@ -1684,8 +1685,13 @@
   transition: none;
 }
 .motion-ok .mm[data-state='closing'] .mm-sheet {
-  transform: translate3d(0, -100%, 0) !important;
-  transition: transform 240ms cubic-bezier(0.4, 0, 1, 1);
+  transform: scale(0.12) !important;
+  opacity: 0;
+  border-radius: 40px;
+  transition:
+    transform 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms ease 80ms,
+    border-radius 280ms ease;
 }
 .motion-ok .mm[data-state='closing'] .mm-scrim {
   opacity: 0;
@@ -1697,9 +1703,14 @@
 .motion-ok .mm-thumb {
   transition: transform 300ms var(--ease-confirma);
 }
-@keyframes mm-down {
+@keyframes mm-grow {
   from {
-    transform: translate3d(0, -100%, 0);
+    transform: scale(0.12);
+    opacity: 0;
+    border-radius: 40px;
+  }
+  30% {
+    opacity: 1;
   }
 }
 @keyframes mm-fade {
