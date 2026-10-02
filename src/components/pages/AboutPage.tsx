@@ -2,13 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SiteShell from '@/components/site/SiteShell'
 import Breadcrumbs from '@/components/site/Breadcrumbs'
-import InstagramFeed from '@/components/InstagramFeed'
 import AboutPeople from '@/components/about/AboutPeople'
 import { about } from '@/content/about'
 import { home } from '@/content/home'
 import { common } from '@/content/common'
 import { products } from '@/content/products'
-import { COMPANY } from '@/lib/site'
 import { href, PRODUCT_IDS, type Locale } from '@/lib/seo.config'
 
 // Sobre: hero escuro da marca com a fotografia da equipa, as duas frentes em cartões de cor, uma linha
@@ -115,8 +113,6 @@ export default function AboutPage({ locale }: { locale: Locale }) {
           <AboutPeople locale={locale} />
         </div>
       </section>
-
-      <InstagramFeed title={t.instagramTitle} linkText={t.instagramLink} href={COMPANY.socials[1].href} />
 
     </SiteShell>
   )

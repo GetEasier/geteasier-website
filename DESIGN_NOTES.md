@@ -140,3 +140,7 @@ A pedido do Alexandre, o hero do início usa o Cinematic Text da Planes (useplan
 
 ### Perguntas frequentes animadas (2026-10-02)
 No componente Faq (início, Software à medida e ConstructionEasier): as perguntas sobem uma a uma quando a lista entra no ecrã; a pergunta aberta passa a cartão branco com sombra e uma barra ciano→azul que cresce à esquerda; o "+" está num círculo que roda e fica azul; a resposta entra com fade. Sem JS funciona como antes (details); com "reduzir movimento" não há transições.
+
+## Integração antiga do Instagram retirada (2026-10-02)
+
+O token da Graph API expirou e a página Sobre já não mostrava publicações. Saíram a rota `/api/instagram`, o `InstagramFeed`, o `INSTAGRAM_SETUP.md`, os textos `instagramTitle`/`instagramLink` e os `remotePatterns` do Instagram/Facebook em `next.config.mjs`. Ficam os ícones do Instagram no rodapé e nos contactos. As variáveis `INSTAGRAM_ACCESS_TOKEN` e `INSTAGRAM_USER_ID` deixaram de ser usadas.

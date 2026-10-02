@@ -34,8 +34,6 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=...
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=...
 ```
 
-As publicações do Instagram só aparecem com `INSTAGRAM_ACCESS_TOKEN` e `INSTAGRAM_USER_ID`. Sem elas, a página Sobre mostra só a ligação para o perfil.
-
 Outros comandos: `npm run lint`, `npm run typecheck`, `npm run lastmod` (atualiza as datas do sitemap), `npm run og` (volta a gerar as imagens de partilha quando os títulos mudam).
 
 ## 2. O que mudou, por fase

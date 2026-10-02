@@ -36,8 +36,6 @@ const pt = {
   codeKeys: { role: 'papel', focus: 'foco', degree: 'formação', certs: 'certificações' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
   founder: 'Co-fundador',
-  instagramTitle: 'Últimas publicações no Instagram',
-  instagramLink: 'Seguir a GetEasier no Instagram',
 }
 
 export type AboutDict = typeof pt
@@ -68,8 +66,6 @@ const en: AboutDict = {
   codeKeys: { role: 'role', focus: 'focus', degree: 'degree', certs: 'certifications' },
   roles: { development: 'Software Engineer', product: 'Product Manager' },
   founder: 'Co-founder',
-  instagramTitle: 'Latest Instagram posts',
-  instagramLink: 'Follow GetEasier on Instagram',
 }
 
 export const about: Record<Locale, AboutDict> = { pt, en }
