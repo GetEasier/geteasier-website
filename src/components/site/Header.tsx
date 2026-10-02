@@ -18,7 +18,10 @@ export function alternateHref(pageId: PageId | null, locale: Locale) {
 
 export default function Header({ pageId, locale }: Props) {
   const t = common[locale]
-  const activeIds = new Set(pageId ? breadcrumbTrail(pageId, locale).map((c) => c.id) : [])
+  // Uma página que está no menu marca só o seu item (Planos é filha de Produtos no breadcrumb,
+  // mas não deve sublinhar Produtos); as outras marcam o antepassado que está no menu.
+  const inNav = pageId != null && (MAIN_NAV as readonly string[]).includes(pageId)
+  const activeIds = new Set(pageId ? (inNav ? [pageId] : breadcrumbTrail(pageId, locale).map((c) => c.id)) : [])
   // "Início" só fica marcado na própria página inicial (é pai de todas as outras).
   const items = MAIN_NAV.map((id) => ({
     id,
