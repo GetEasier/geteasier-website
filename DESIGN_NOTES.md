@@ -149,6 +149,9 @@ O token da Graph API expirou e a página Sobre já não mostrava publicações. 
 
 As duas faixas do início deixaram a animação CSS e passaram a `useMarquee` (`src/components/motion/useMarquee.ts`): um rAF move a faixa à mesma velocidade de antes (38 s e 70 s por volta) e a pessoa pode arrastar com o rato, fazer swipe no telemóvel ou usar o scroll horizontal do trackpad. O automático para com o rato ou o foco em cima e retoma 1,5 s depois de largar. O swipe vertical e a roda vertical continuam a descer a página (`touch-action: pan-y`). Sem `motion-ok` (reduzir movimento ou sem JS) fica a grelha parada. Scroll com CPU 4x no início igual ao anterior (~27-28 ms por frame nas duas versões).
 
-## Menu do telemóvel em folha que sobe do fundo (2026-10-02)
+## Menu do telemóvel em painel com ícones, produtos e PT | EN (2026-10-02)
 
 Inspirado no `@uiarc/user-menu` (Arc, MIT), que no telemóvel abre como folha inferior. O registo não descarrega daqui e o site não usa shadcn nem a biblioteca `motion`, por isso foi refeito à mão em `MobileMenu.tsx` + CSS `.mm-*`, sem dependências. Do componente ficou: folha a subir com mola, pega e arrasto para baixo para fechar, fundo escurecido que fecha ao tocar, linhas com ícone que entram uma a uma, seletor segmentado (aqui PT | EN) e página parada por trás. A mais: os quatro produtos em atalhos dentro do menu e o botão "Falar sobre um projeto" a toda a largura. Continua a ser um `<details>` (abre e fecha sem JS); Escape fecha, o foco fica preso na folha e volta ao botão. Sem `motion-ok` abre e fecha sem movimento. Fechado não pesa nada (o conteúdo do `<details>` não é desenhado).
+
+
+Atualização no mesmo dia: o Alexandre escolheu que o painel desça do cabeçalho (do lado do botão, que passa a "Fechar menu") em vez de subir do fundo. A pega ficou em baixo e arrastar para cima fecha; o resto ficou igual.

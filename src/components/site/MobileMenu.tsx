@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
-import Logo from '@/components/Logo'
 
 type Item = { id: string; label: string; path: string; active: boolean }
 type Product = { id: string; name: string; icon: string; path: string; active: boolean }
@@ -17,11 +16,11 @@ type Props = {
   langs: { code: string; short: string; name: string; href: string; current: boolean }[]
 }
 
-// Menu do telemóvel: uma folha que sobe do fundo do ecrã (inspirada no user-menu da Arc), com uma
-// pega para a arrastar para baixo e fechar, um fundo escurecido que fecha ao tocar, ícones em cada
-// linha, os quatro produtos à mão e a língua num seletor PT | EN.
+// Menu do telemóvel: um painel que desce do cabeçalho, do mesmo lado do botão (o estilo vem do
+// user-menu da Arc), com uma pega em baixo para o arrastar para cima e fechar, um fundo escurecido que
+// fecha ao tocar, ícones em cada linha, os quatro produtos à mão e a língua num seletor PT | EN.
 // <details> faz com que abra e feche sem JavaScript; o JS junta as animações, o arrasto, o Escape, o
-// foco preso dentro da folha e a página parada por trás. Sem "motion-ok" abre e fecha sem movimento.
+// foco preso no menu e a página parada por trás. Sem "motion-ok" abre e fecha sem movimento.
 export default function MobileMenu({ labels, items, products, ctaHref, langs }: Props) {
   const ref = useRef<HTMLDetailsElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
@@ -44,7 +43,7 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
     if (!motionOk() || !sheet) return done()
     closing.current = true
     d.dataset.state = 'closing'
-    // A folha desce a partir de onde estiver (também a meio de um arrasto).
+    // O painel sobe a partir de onde estiver (também a meio de um arrasto).
     sheet.style.transform = ''
     const t = window.setTimeout(done, 400)
     sheet.addEventListener(
@@ -72,13 +71,11 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
     const d = ref.current
     const sheet = sheetRef.current
     if (!d || !sheet) return
-    d.dataset.js = ''
     const root = document.documentElement
 
     const onToggle = () => {
       if (d.open) {
         root.style.overflow = 'hidden'
-        requestAnimationFrame(() => sheet.querySelector<HTMLElement>('.mm-close')?.focus({ preventScroll: true }))
       } else {
         root.style.overflow = ''
       }
@@ -90,8 +87,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
         e.preventDefault()
         close(true)
       } else if (e.key === 'Tab') {
-        // O foco fica dentro da folha enquanto está aberta.
-        const f = [...sheet.querySelectorAll<HTMLElement>('a[href], button')]
+        // O foco fica no menu (botão Fechar e painel) enquanto está aberto.
+        const f = [...d.querySelectorAll<HTMLElement>('summary, .mm-sheet a[href]')]
         if (!f.length) return
         const first = f[0]
         const last = f[f.length - 1]
@@ -105,8 +102,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
       }
     }
 
-    // Arrastar para baixo fecha: pela pega e pelo cabeçalho sempre, e pela folha toda quando ela
-    // não tem nada para fazer scroll.
+    // Arrastar para cima fecha: pela pega sempre, e pelo painel todo quando ele não tem nada para
+    // fazer scroll.
     let drag: { id: number; y0: number; x0: number; t0: number; dy: number; on: boolean } | null = null
     const onDown = (e: PointerEvent) => {
       if (!motionOk() || (e.pointerType === 'mouse' && e.button !== 0)) return
@@ -124,8 +121,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
         sheet.setPointerCapture(e.pointerId)
         d.dataset.state = 'dragging'
       }
-      // Para cima resiste, para baixo segue o dedo.
-      drag.dy = dy > 0 ? dy : dy / 6
+      // Para baixo resiste, para cima segue o dedo.
+      drag.dy = dy < 0 ? dy : dy / 6
       sheet.style.transform = `translate3d(0,${drag.dy}px,0)`
     }
     const onUp = (e: PointerEvent) => {
@@ -133,8 +130,8 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
       const { dy, on, t0 } = drag
       drag = null
       if (!on) return
-      const fast = dy / Math.max(1, performance.now() - t0) > 0.6
-      if (dy > 90 || (fast && dy > 24)) {
+      const fast = -dy / Math.max(1, performance.now() - t0) > 0.6
+      if (dy < -90 || (fast && dy < -24)) {
         swallow = true
         setTimeout(() => (swallow = false), 0)
         close(false)
@@ -183,27 +180,17 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
   return (
     <details ref={ref} className="mm group lg:hidden">
       <summary className="mm-trigger" onClick={onSummary}>
-        <span>{labels.menu}</span>
-        <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[1.1rem] w-[1.1rem]">
-          <path d="M3 7h14M3 13h9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <span className="group-open:hidden">{labels.menu}</span>
+        <span className="hidden group-open:inline">{labels.close}</span>
+        <svg aria-hidden="true" viewBox="0 0 20 20" className="mm-burger h-[1.1rem] w-[1.1rem]">
+          <path d="M3 7h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M3 13h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </summary>
 
       <div className="mm-layer">
         <div className="mm-scrim" aria-hidden="true" onClick={() => close(true)} />
         <div ref={sheetRef} className="mm-sheet" role="dialog" aria-modal="true" aria-label={labels.nav}>
-          <div className="mm-grip">
-            <span className="mm-handle" aria-hidden="true" />
-            <div className="mm-head">
-              <Logo idPrefix="logo-menu" className="h-7 w-auto text-tinta" />
-              <button type="button" className="mm-close" aria-label={labels.close} onClick={() => close(true)}>
-                <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[1.05rem] w-[1.05rem]">
-                  <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
           <nav aria-label={labels.nav}>
             <ul className="mm-list">
               {items.map((item) => (
@@ -260,6 +247,9 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
             <Link href={ctaHref} className="btn-primary mt-3 w-full">
               {labels.cta}
             </Link>
+          </div>
+          <div className="mm-grip" aria-hidden="true">
+            <span className="mm-handle" />
           </div>
         </div>
       </div>
