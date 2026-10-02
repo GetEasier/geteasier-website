@@ -3004,8 +3004,24 @@
     border-color var(--dur-ui) ease;
 }
 .clientes-nome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   transition: transform var(--dur-ui) var(--ease-entrada);
+}
+.clientes-nome:has(.clientes-marca) {
+  flex-direction: row;
+  gap: 0.6rem;
+}
+.clientes-marca {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #2b2b2b, #0e0e0e);
 }
 .clientes-tile:hover .clientes-nome {
   transform: scale(1.04);

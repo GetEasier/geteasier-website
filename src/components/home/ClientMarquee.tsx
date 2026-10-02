@@ -33,6 +33,11 @@ export default function ClientMarquee({ title }: { title: string }) {
                     <Image src={client.logo} alt={copy === 0 && i < CLIENTS.length ? client.name : ''} width={160} height={64} className="max-h-14 w-auto object-contain" />
                   ) : (
                     <span className="clientes-nome">
+                      {client.mark && (
+                        <span aria-hidden="true" className="clientes-marca">
+                          <Image src={client.mark} alt="" width={47} height={60} className="h-6 w-auto" />
+                        </span>
+                      )}
                       <span className="block text-[1.05rem] font-semibold leading-tight tracking-[-0.01em] text-tinta">{client.name}</span>
                       {client.sub && <span className="mt-1 block text-[0.72rem] leading-snug text-grafite">{client.sub}</span>}
                     </span>

@@ -29,16 +29,16 @@ export const TESTIMONIALS = [
   },
 ] as const
 
-// Sem logótipo (logo: null), o cartão mostra o nome em texto; `sub` é uma segunda linha opcional.
-// ACIP e Carvões Mirita (2026-10-02) ainda estão em texto: os sites deles não abriam daqui.
-export const CLIENTS: readonly { name: string; logo: string | null; sub?: string }[] = [
+// Sem logótipo (logo: null), o cartão mostra o nome em texto; `sub` é uma segunda linha opcional e
+// `mark` um símbolo branco num quadrado escuro ao lado do nome (Carvões Mirita só tem a chama).
+export const CLIENTS: readonly { name: string; logo: string | null; sub?: string; mark?: string }[] = [
   { name: 'Granitos do Norte', logo: '/images/home/clients/logo_gnt.jpeg' },
   { name: 'Granitos Irmãos Peixoto', logo: '/images/home/clients/logo_peixotos.jpeg' },
   { name: 'Pardais', logo: '/images/home/clients/logo_pardais.jpeg' },
-  { name: 'ACIP', sub: 'Associação Empresarial de Castelo de Paiva', logo: null },
+  { name: 'ACI Castelo de Paiva, Associação Comercial e Industrial', logo: '/images/home/clients/logo_aci_castelo_paiva.png' },
   { name: 'Futuro Alternativo', logo: '/images/home/clients/futuro-alternativo-logo.jpeg' },
   { name: 'OJP', logo: '/images/home/clients/Logo_OJP.jpeg' },
-  { name: 'Carvões Mirita', logo: null },
+  { name: 'Carvões Mirita', logo: null, mark: '/images/home/clients/mirita_chama.png' },
 ]
 
 const pt = {
