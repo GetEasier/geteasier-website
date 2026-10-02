@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
+import ScrollWord from './ScrollWord'
 
 // "O que muda com o produto", contado ao descer. Em desktop o ecrã fica fixo à esquerda e muda
 // conforme o passo que está a meio do ecrã; cada ecrã anima ao ficar ativo (atributo data-anim,
@@ -18,9 +19,11 @@ type Props = {
   tint: string
   accent: string
   screen: (i: number, on: boolean) => ReactNode
+  /** Palavra grande que se monta ao descer, antes do título (opcional). */
+  word?: string
 }
 
-export default function ScrollStory({ headingId, title, intro, steps, tint, accent, screen }: Props) {
+export default function ScrollStory({ headingId, title, intro, steps, tint, accent, screen, word }: Props) {
   const [active, setActive] = useState(-1)
   const items = useRef<(HTMLLIElement | null)[]>([])
 
@@ -42,6 +45,7 @@ export default function ScrollStory({ headingId, title, intro, steps, tint, acce
 
   return (
     <div className="tb" style={{ ['--tb-accent' as string]: accent }}>
+      {word && <ScrollWord word={word} className="mb-12 md:mb-20" style={{ color: accent }} />}
       <div className="max-w-prose">
         <h2 id={headingId} className="t-h2">
           {title}

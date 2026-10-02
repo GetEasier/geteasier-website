@@ -3424,3 +3424,29 @@
 [data-anim] .tb-draw {
   stroke-dashoffset: 0;
 }
+
+/* ScrollWord: palavra que se monta ao descer (src/components/demos/ScrollWord.tsx).
+   --p vai de 0 (letras espalhadas e inclinadas) a 1 (palavra montada); --d é a distância da letra ao centro. */
+.sw {
+  --p: 1;
+  overflow-x: clip;
+  perspective: 500px;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  font-size: clamp(3rem, 13vw, 10rem);
+}
+.sw-char {
+  display: inline-block;
+  transform: translateX(calc(var(--d) * 0.55em * (1 - var(--p)))) rotateX(calc(var(--d) * 22deg * (1 - var(--p))));
+  opacity: calc(0.25 + 0.75 * var(--p));
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sw-char {
+    transform: none;
+    opacity: 1;
+  }
+}

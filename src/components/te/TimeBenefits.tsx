@@ -219,6 +219,7 @@ export default function TimeBenefits({ locale }: { locale: Locale }) {
       steps={t.steps}
       tint="bg-produto-time-claro"
       accent="#3B5FA8"
+      word="TimeEasier"
       screen={(i, on) => <Screen i={i} on={on} t={t} />}
     />
   )
