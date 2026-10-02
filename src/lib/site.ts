@@ -18,8 +18,8 @@ export const COMPANY = {
     href: 'https://wa.me/351914223323',
     e164: '+351914223323',
   },
-  // [CONFIRMAR] endereço do Substack da GetEasier
-  newsletter: 'https://geteasier.substack.com',
+  // Newsletter da GetEasier no Substack
+  newsletter: 'https://geteasiersoftwares.substack.com',
   socials: [
     { name: 'LinkedIn', href: 'https://pt.linkedin.com/company/geteasier' },
     { name: 'Instagram', href: 'https://www.instagram.com/geteasier.pt/' },

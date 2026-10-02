@@ -129,7 +129,7 @@ Rodapé com o fundo da marca e grelha, colunas com títulos em ciano, redes em �
 Por pedido do Alexandre, saíram todos os botões de pausar animações (PauseButton e o botão da CameraDemo). As animações continuam a parar fora do ecrã, com a aba escondida e com "reduzir movimento"; as faixas de clientes e testemunhos param com o rato ou o foco em cima.
 
 ### Newsletter (2026-10-01)
-No início, a inscrição na newsletter do Substack é um cartão claro logo a seguir ao hero, antes dos clientes. Nas outras páginas fica no topo do rodapé (no início não se repete). Sem pop-up: irrita quem acabou de chegar e o Google penaliza pop-ups que tapam o conteúdo no telemóvel. O formulário abre a página de subscrição do Substack com o email preenchido. O endereço está em COMPANY.newsletter e ainda é [CONFIRMAR].
+No início, a inscrição na newsletter do Substack é um cartão claro logo a seguir ao hero, antes dos clientes. Nas outras páginas fica no topo do rodapé (no início não se repete). Sem pop-up: irrita quem acabou de chegar e o Google penaliza pop-ups que tapam o conteúdo no telemóvel. O formulário abre a página de subscrição do Substack com o email preenchido. O endereço está em COMPANY.newsletter: https://geteasiersoftwares.substack.com (confirmado pelo Alexandre a 2026-10-02).
 
 ### Em números no topo (2026-10-01)
 Números confirmados pelo Alexandre: 8+ empresas clientes, 10 000+ registos de ponto por mês, 4+ anos a fazer software. O cartão escuro "Em números" passou para logo a seguir à newsletter, antes dos clientes. A secção "Páginas relacionadas" saiu das páginas de produto (único sítio onde existia).
