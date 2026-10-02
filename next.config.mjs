@@ -1,3 +1,6 @@
+// Pré-visualizações da Vercel (tudo o que não é produção) ficam fora dos motores de busca.
+const isPreview = !!process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -6,6 +9,10 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+  },
+  async headers() {
+    if (!isPreview) return []
+    return [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }]
   },
   async redirects() {
     return [
