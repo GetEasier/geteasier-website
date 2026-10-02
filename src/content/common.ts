@@ -9,6 +9,7 @@ const pt = {
     cta: 'Falar sobre um projeto',
     home: 'GetEasier, página inicial',
     langTitle: 'Idioma',
+    allProducts: 'Ver todos os produtos',
   },
   lang: {
     label: 'Language',
@@ -68,6 +69,7 @@ const en: CommonDict = {
     cta: 'Discuss a project',
     home: 'GetEasier home page',
     langTitle: 'Language',
+    allProducts: 'See all products',
   },
   lang: {
     label: 'Idioma',

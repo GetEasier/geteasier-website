@@ -1362,6 +1362,89 @@
   box-shadow: inset 0 1px 2px rgba(6, 8, 60, 0.25);
 }
 
+/* --- Menu do computador: Produtos abre os quatro produtos (Header.tsx) ------------------------ */
+.nav-drop {
+  position: relative;
+}
+.nav-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 60;
+  padding-top: 0.9rem;
+  opacity: 0;
+  visibility: hidden;
+  translate: -50% 0;
+  transition:
+    opacity 180ms ease,
+    visibility 0s linear 180ms;
+}
+.nav-drop:hover .nav-panel,
+.nav-drop:has(:focus-visible) .nav-panel {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 180ms ease,
+    visibility 0s;
+}
+.nav-panel-card {
+  width: 34rem;
+  border: 1px solid var(--caixa);
+  border-radius: 22px;
+  background: #fff;
+  padding: 0.6rem;
+  box-shadow: 0 30px 60px -30px rgba(6, 8, 60, 0.45), 0 4px 12px -6px rgba(6, 8, 60, 0.12);
+}
+.nav-product {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 15px;
+  padding: 0.7rem 0.8rem;
+  transition: background-color var(--dur-micro) ease;
+}
+.nav-product:hover,
+.nav-product:focus-visible {
+  background: var(--papel);
+}
+.nav-product[aria-current='page'] {
+  background: #edf3fd;
+}
+.nav-panel-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--caixa);
+  padding: 0.75rem 0.8rem 0.3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--azul);
+}
+.nav-panel-all:hover span {
+  translate: 3px 0;
+}
+.nav-panel-all span {
+  transition: translate var(--dur-micro) ease;
+}
+.nav-chevron {
+  transition: rotate var(--dur-ui) var(--ease-entrada);
+}
+.nav-drop:hover .nav-chevron,
+.nav-drop:has(:focus-visible) .nav-chevron {
+  rotate: 180deg;
+}
+.motion-ok .nav-panel-card {
+  transform: translateY(6px) scale(0.98);
+  transform-origin: top center;
+  transition: transform 260ms var(--ease-entrada);
+}
+.motion-ok .nav-drop:hover .nav-panel-card,
+.motion-ok .nav-drop:has(:focus-visible) .nav-panel-card {
+  transform: none;
+}
+
 /* --- Menu do telemóvel: painel que desce do cabeçalho (MobileMenu.tsx) ----------------------- */
 .mm-trigger {
   display: inline-flex;

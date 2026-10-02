@@ -155,3 +155,7 @@ Inspirado no `@uiarc/user-menu` (Arc, MIT), que no telemóvel abre como folha in
 
 
 Atualização no mesmo dia: o Alexandre escolheu que o painel desça do cabeçalho (do lado do botão, que passa a "Fechar menu") em vez de subir do fundo. A pega ficou em baixo e arrastar para cima fecha; o resto ficou igual.
+
+## Menu do computador: Produtos abre os quatro produtos (2026-10-02)
+
+Com o rato por cima de "Produtos" (ou o foco do teclado lá dentro) abre um painel com os quatro produtos (ícone, nome e a frase curta de `products.ts`) e "Ver todos os produtos". "Produtos" continua a ser ligação para /produtos. É só CSS (`.nav-drop`, `.nav-panel`); abre com `:has(:focus-visible)` e não com `:focus-within`, para não ficar aberto depois de um clique com o rato.

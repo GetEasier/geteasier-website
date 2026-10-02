@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/components/Logo'
 import MobileMenu from './MobileMenu'
@@ -44,14 +45,46 @@ export default function Header({ pageId, locale }: Props) {
         <nav aria-label={t.nav.label} className="hidden lg:block">
           <ul className="flex items-center gap-6 xl:gap-7">
             {items.map((item) => (
-              <li key={item.id}>
+              <li key={item.id} className={item.id === 'products' ? 'nav-drop' : undefined}>
                 <Link
                   href={item.path}
                   aria-current={item.active ? 'page' : undefined}
-                  className="relative py-2 font-medium text-tinta after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:origin-left after:scale-x-0 after:bg-azul after:transition-transform hover:after:scale-x-100 aria-[current=page]:after:scale-x-100"
+                  className="relative inline-flex items-center gap-1 py-2 font-medium text-tinta after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:origin-left after:scale-x-0 after:bg-azul after:transition-transform hover:after:scale-x-100 aria-[current=page]:after:scale-x-100"
                 >
                   {item.label}
+                  {item.id === 'products' && (
+                    <svg aria-hidden="true" viewBox="0 0 16 16" className="nav-chevron h-3.5 w-3.5">
+                      <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
                 </Link>
+                {/* Produtos abre com o rato ou o foco por cima: os quatro produtos à mão (só CSS). */}
+                {item.id === 'products' && (
+                  <div className="nav-panel">
+                    <div className="nav-panel-card">
+                      <ul className="grid grid-cols-2 gap-1.5">
+                        {PRODUCT_IDS.map((id) => {
+                          const p = productsContent[locale].items[id]
+                          return (
+                            <li key={id}>
+                              <Link href={href(id, locale)} aria-current={pageId === id ? 'page' : undefined} className="nav-product">
+                                <Image src={p.icon} alt="" width={40} height={40} className="h-10 w-10 shrink-0 object-contain" />
+                                <span className="min-w-0">
+                                  <span className="block font-semibold text-tinta">{p.name}</span>
+                                  <span className="mt-0.5 block text-[0.8125rem] leading-snug text-grafite">{p.short}</span>
+                                </span>
+                              </Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                      <Link href={item.path} className="nav-panel-all">
+                        {t.nav.allProducts}
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
