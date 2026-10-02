@@ -22,20 +22,8 @@ export type CinematicTextProps = {
 
 const CINEMA = 'cubic-bezier(0.16, 1, 0.3, 1)'
 
-export function CinematicText({
-  children,
-  as = 'h1',
-  delay = 0.2,
-  stagger = 0.11,
-  blur = 28,
-  once = true,
-  className,
-}: CinematicTextProps) {
-  const ref = React.useRef<HTMLElement>(null)
+function useInViewOnce(ref: React.RefObject<HTMLElement | null>, once: boolean) {
   const [inView, setInView] = React.useState(false)
-  const words = React.useMemo(() => children.split(/\s+/).filter(Boolean), [children])
-  const Tag = as as React.ElementType
-
   React.useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -52,26 +40,45 @@ export function CinematicText({
     )
     io.observe(el)
     return () => io.disconnect()
-  }, [once])
+  }, [ref, once])
+  return inView
+}
+
+const WORD_CLASS =
+  'inline-block will-change-[filter,transform] motion-reduce:!transform-none motion-reduce:!filter-none motion-reduce:![transition:opacity_0.22s_ease-out]'
+
+function cinemaStyle(inView: boolean, blur: number, delay: number): React.CSSProperties {
+  return {
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'none' : 'translateY(22px) scale(1.04)',
+    filter: inView ? 'blur(0px)' : `blur(${blur}px)`,
+    transition: `opacity 1.4s ${CINEMA}, transform 1.4s ${CINEMA}, filter 1.4s ${CINEMA}`,
+    transitionDelay: `${delay}s`,
+  }
+}
+
+export function CinematicText({
+  children,
+  as = 'h1',
+  delay = 0.2,
+  stagger = 0.11,
+  blur = 28,
+  once = true,
+  className,
+}: CinematicTextProps) {
+  const ref = React.useRef<HTMLElement>(null)
+  const inView = useInViewOnce(ref, once)
+  const words = React.useMemo(() => children.split(/\s+/).filter(Boolean), [children])
+  const Tag = as as React.ElementType
 
   return (
     <Tag ref={ref} className={cn('text-balance', className)}>
       <span className="sr-only">{children}</span>
       <span aria-hidden>
         {words.map((word, i) => (
-          <span
-            key={`${word}-${i}`}
-            className="inline-block will-change-[filter,transform] motion-reduce:!transform-none motion-reduce:!filter-none motion-reduce:![transition:opacity_0.22s_ease-out]"
-            style={{
-              opacity: inView ? 1 : 0,
-              transform: inView ? 'none' : 'translateY(22px) scale(1.04)',
-              filter: inView ? 'blur(0px)' : `blur(${blur}px)`,
-              transition: `opacity 1.4s ${CINEMA}, transform 1.4s ${CINEMA}, filter 1.4s ${CINEMA}`,
-              transitionDelay: `${delay + i * stagger}s`,
-            }}
-          >
+          <span key={`${word}-${i}`} className={WORD_CLASS} style={cinemaStyle(inView, blur, delay + i * stagger)}>
             {word}
-            {i < words.length - 1 ? ' ' : ''}
+            {i < words.length - 1 ? '\u00a0' : ''}
           </span>
         ))}
       </span>
@@ -80,3 +87,26 @@ export function CinematicText({
 }
 
 CinematicText.displayName = 'CinematicText'
+
+// O mesmo efeito para elementos que não são texto simples (os botões do hero): cada filho entra
+// como uma palavra, com o mesmo desfoque, a mesma curva e o seu próprio atraso.
+export function CinematicGroup({
+  children,
+  delay = 0.2,
+  stagger = 0.11,
+  blur = 28,
+  once = true,
+  className,
+}: Omit<CinematicTextProps, 'children' | 'as'> & { children: React.ReactNode }) {
+  const ref = React.useRef<HTMLDivElement>(null)
+  const inView = useInViewOnce(ref, once)
+  return (
+    <div ref={ref} className={className}>
+      {React.Children.toArray(children).map((child, i) => (
+        <span key={i} className={WORD_CLASS} style={cinemaStyle(inView, blur, delay + i * stagger)}>
+          {child}
+        </span>
+      ))}
+    </div>
+  )
+}

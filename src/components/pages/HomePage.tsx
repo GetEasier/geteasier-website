@@ -5,7 +5,7 @@ import LegacyHashRedirect from '@/components/LegacyHashRedirect'
 import ProductPanels from '@/components/ProductPanels'
 import TeamGrid from '@/components/TeamGrid'
 import BuildHero from '@/components/home/BuildHero'
-import { CinematicText } from '@/components/interactions/CinematicText'
+import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
 import TestimonialMarquee from '@/components/home/TestimonialMarquee'
@@ -36,15 +36,17 @@ export default function HomePage({ locale }: { locale: Locale }) {
             <CinematicText as="h1" className="t-display max-w-[16ch] max-sm:text-[2.125rem]">
               {t.h1}
             </CinematicText>
-            <p className="mt-5 max-w-[36ch] text-lead text-white/80">{t.lead}</p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <CinematicText as="p" delay={0.9} stagger={0.04} blur={16} className="mt-5 max-w-[36ch] text-lead text-white/80">
+              {t.lead}
+            </CinematicText>
+            <CinematicGroup delay={1.45} stagger={0.12} className="mt-7 flex flex-wrap gap-3">
               <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
                 {c.cta.project}
               </Link>
               <Link href={href('products', locale)} className="btn-on-dark">
                 {c.cta.products}
               </Link>
-            </div>
+            </CinematicGroup>
           </div>
           <BuildHero t={t.build} />
         </div>
