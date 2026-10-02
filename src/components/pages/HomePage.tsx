@@ -5,6 +5,7 @@ import LegacyHashRedirect from '@/components/LegacyHashRedirect'
 import ProductPanels from '@/components/ProductPanels'
 import TeamGrid from '@/components/TeamGrid'
 import BuildHero from '@/components/home/BuildHero'
+import CustomBeams from '@/components/home/CustomBeams'
 import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
@@ -77,11 +78,13 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <ClientMarquee title={t.clientsTitle} />
       </section>
 
-      {/* Software à medida: a fotografia real da equipa abre como um portão de obra; ao lado, os três tipos de trabalho em cartões compactos */}
+      {/* Software à medida: a fotografia real da equipa abre como um portão de obra; do monitor sai um
+          feixe de luz para cada cartão e o ícone do cartão anima quando a luz chega (CustomBeams) */}
       <section aria-labelledby="medida-titulo" className="overflow-x-clip py-16 md:py-24">
         <div className="wrap">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
-            <div data-gate>
+          <CustomBeams
+            items={t.custom.items}
+            photo={
               <Image
                 src="/images/home/team-get-easier.jpeg"
                 alt={t.custom.photoAlt}
@@ -90,30 +93,21 @@ export default function HomePage({ locale }: { locale: Locale }) {
                 sizes="(min-width: 1024px) 58vw, 100vw"
                 className="aspect-[4/3] w-full rounded-[20px] object-cover"
               />
-            </div>
-            <div data-gate-text>
-              <h2 id="medida-titulo" className="t-h2">
-                {t.custom.title}
-              </h2>
-              <p className="mt-4 max-w-prose text-lead text-grafite">{t.custom.text}</p>
-              <ul className="mt-7 grid gap-3">
-                {t.custom.items.map((item, i) => (
-                  <li key={item.title} className="medida-card" data-kind={i}>
-                    <span aria-hidden="true" className="medida-icon">
-                      {ICONS[i]}
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold leading-snug">{item.title}</h3>
-                      <p className="mt-1 text-small text-grafite">{item.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+            }
+            intro={
+              <>
+                <h2 id="medida-titulo" className="t-h2">
+                  {t.custom.title}
+                </h2>
+                <p className="mt-4 max-w-prose text-lead text-grafite">{t.custom.text}</p>
+              </>
+            }
+            footer={
               <Link href={href('customSoftware', locale)} className="btn-primary mt-8">
                 {t.custom.link}
               </Link>
-            </div>
-          </div>
+            }
+          />
         </div>
       </section>
 
@@ -228,21 +222,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
     </SiteShell>
   )
 }
-
-const ICONS = [
-  <svg key="web" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="14" rx="2" />
-    <path d="M3 8h18M8 21h8" strokeLinecap="round" />
-  </svg>,
-  <svg key="app" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="7" y="2.5" width="10" height="19" rx="2.5" />
-    <path d="M11 18.5h2" strokeLinecap="round" />
-  </svg>,
-  <svg key="int" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8 7h9l-3-3M16 17H7l3 3" />
-  </svg>,
-]
-
 
 const FACT_ICONS = [
   <svg key="spark" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
