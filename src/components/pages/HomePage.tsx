@@ -5,6 +5,7 @@ import LegacyHashRedirect from '@/components/LegacyHashRedirect'
 import ProductPanels from '@/components/ProductPanels'
 import TeamGrid from '@/components/TeamGrid'
 import BuildHero from '@/components/home/BuildHero'
+import { CinematicText } from '@/components/interactions/CinematicText'
 import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
 import TestimonialMarquee from '@/components/home/TestimonialMarquee'
@@ -28,11 +29,13 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <LegacyHashRedirect locale={locale} />
       <HomeMotion />
 
-      {/* Hero: fundo tinta com a luz da marca, o título em HTML estático (visível antes de qualquer JS) e, ao lado, como fazemos software à medida */}
+      {/* Hero: fundo tinta com a luz da marca, o título com o Cinematic Text (entra palavra a palavra, desfocado) e, ao lado, como fazemos software à medida */}
       <section className="hero-brand overflow-x-clip text-white">
         <div className="wrap grid items-center gap-8 pb-12 pt-10 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-12">
           <div>
-            <h1 className="t-display max-w-[16ch] max-sm:text-[2.125rem]">{t.h1}</h1>
+            <CinematicText as="h1" className="t-display max-w-[16ch] max-sm:text-[2.125rem]">
+              {t.h1}
+            </CinematicText>
             <p className="mt-5 max-w-[36ch] text-lead text-white/80">{t.lead}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">

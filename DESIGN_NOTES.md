@@ -134,3 +134,6 @@ No início, a inscrição na newsletter do Substack é um cartão claro logo a s
 ### Em números no topo (2026-10-01)
 Números confirmados pelo Alexandre: 8+ empresas clientes, 10 000+ registos de ponto por mês, 4+ anos a fazer software. O cartão escuro "Em números" passou para logo a seguir à newsletter, antes dos clientes. A secção "Páginas relacionadas" saiu das páginas de produto (único sítio onde existia).
 
+
+### Título do início em "Cinematic Text" (2026-10-02, teste)
+A pedido do Alexandre, o título do início usa o Cinematic Text da Planes (useplanes.com): cada palavra desce de um desfoque forte e assenta. Código do componente copiado do registo da Planes para src/components/interactions/CinematicText.tsx, com a biblioteca motion trocada por transições CSS com os mesmos tempos (1,4 s por palavra, 0,11 s entre palavras) e a mesma curva: evita uma dependência nova só por um título, e o registo npm não estava acessível deste ambiente. Com "reduzir movimento" é só um fade de 0,22 s. O título fica escondido até o JS correr, por isso conta para o LCP.
