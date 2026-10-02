@@ -19,11 +19,11 @@ type Props = {
   tint: string
   accent: string
   screen: (i: number, on: boolean) => ReactNode
-  /** Palavra grande que se monta ao descer, antes do título (opcional). */
-  word?: string
+  /** O título de cada passo monta-se letra a letra ao descer (ScrollWord). */
+  animateSteps?: boolean
 }
 
-export default function ScrollStory({ headingId, title, intro, steps, tint, accent, screen, word }: Props) {
+export default function ScrollStory({ headingId, title, intro, steps, tint, accent, screen, animateSteps }: Props) {
   const [active, setActive] = useState(-1)
   const items = useRef<(HTMLLIElement | null)[]>([])
 
@@ -44,8 +44,7 @@ export default function ScrollStory({ headingId, title, intro, steps, tint, acce
   const shown = Math.max(active, 0)
 
   return (
-    <div className="tb" style={{ ['--tb-accent' as string]: accent }}>
-      {word && <ScrollWord word={word} className="mb-12 md:mb-20" style={{ color: accent }} />}
+    <div className={cn('tb', animateSteps && 'overflow-x-clip')} style={{ ['--tb-accent' as string]: accent }}>
       <div className="max-w-prose">
         <h2 id={headingId} className="t-h2">
           {title}
@@ -79,7 +78,7 @@ export default function ScrollStory({ headingId, title, intro, steps, tint, acce
               className="tb-step"
             >
               <span aria-hidden="true" className="tb-dot" />
-              <h3 className="t-h3">{s.title}</h3>
+              {animateSteps ? <ScrollWord as="h3" text={s.title} className="t-h3" /> : <h3 className="t-h3">{s.title}</h3>}
               <p className="mt-2 max-w-[42ch] text-grafite">{s.text}</p>
               {/* Ecrã por baixo do texto (telemóvel, sem JS, reduzir movimento) */}
               <div aria-hidden="true" className={cn('tb-inline mt-6 grid place-items-center rounded-[22px] p-6', tint)}>
