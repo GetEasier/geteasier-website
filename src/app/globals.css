@@ -2669,15 +2669,6 @@
 }
 .motion-ok .clientes-track {
   width: max-content;
-  animation: clientes-scroll 38s linear infinite;
-  animation-play-state: paused;
-}
-.motion-ok .clientes[data-run] .clientes-track {
-  animation-play-state: running;
-}
-.motion-ok .clientes-viewport:hover .clientes-track,
-.motion-ok .clientes-viewport:focus-within .clientes-track {
-  animation-play-state: paused;
 }
 .motion-ok .clientes-set {
   flex-wrap: nowrap;
@@ -2686,16 +2677,6 @@
 .motion-ok .clientes-set[aria-hidden],
 .motion-ok .clientes-set > [aria-hidden] {
   display: flex;
-}
-@keyframes clientes-scroll {
-  to {
-    transform: translateX(-50%);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .clientes-track {
-    animation: none !important;
-  }
 }
 
 /* --- Software à medida: cartões compactos ao lado da fotografia ---------------------------- */
@@ -3007,15 +2988,23 @@
 .motion-ok .tf-track {
   display: flex;
   width: max-content;
-  animation: clientes-scroll 70s linear infinite;
-  animation-play-state: paused;
 }
-.motion-ok .testemunhos-faixa[data-run] .tf-track {
-  animation-play-state: running;
+/* Faixas que se deslizam à mão (useMarquee): o JS move a faixa; aqui só o cursor e o toque. */
+.motion-ok :is(.clientes-viewport, .tf-viewport) {
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
 }
-.motion-ok .tf-viewport:hover .tf-track,
-.motion-ok .tf-viewport:focus-within .tf-track {
-  animation-play-state: paused;
+.motion-ok :is(.clientes-viewport, .tf-viewport)[data-dragging] {
+  cursor: grabbing;
+}
+.motion-ok :is(.clientes-viewport, .tf-viewport) img {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+.motion-ok :is(.clientes-track, .tf-track) {
+  will-change: transform;
 }
 .motion-ok .tf-set,
 .motion-ok .tf-set[aria-hidden] {
@@ -3029,11 +3018,6 @@
 .motion-ok .tf-set > li {
   width: min(26rem, 82vw);
   flex-shrink: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  .tf-track {
-    animation: none !important;
-  }
 }
 
 /* --- Rodapé (Footer.tsx) -------------------------------------------------------------------- */

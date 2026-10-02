@@ -2,21 +2,25 @@
 
 import Image from 'next/image'
 import { useRef } from 'react'
+import { useMarquee } from '@/components/motion/useMarquee'
 import { usePlayback } from '@/components/motion/usePlayback'
 import { TESTIMONIALS } from '@/content/home'
 
-// Testemunhos numa faixa que anda devagar na horizontal, com as pontas a desvanecer. Para com o rato
+// Testemunhos numa faixa que anda devagar na horizontal e também se desliza à mão (useMarquee). Para com o rato
 // ou o foco em cima (para se conseguir ler), fora do ecrã e com a aba escondida.
 // Sem JS ou com "reduzir movimento", os três ficam numa grelha parada.
 export default function TestimonialMarquee() {
   const root = useRef<HTMLDivElement>(null)
+  const viewport = useRef<HTMLDivElement>(null)
+  const track = useRef<HTMLDivElement>(null)
   const { running } = usePlayback(root)
+  useMarquee(viewport, track, { seconds: 70, running })
   const n = TESTIMONIALS.length
 
   return (
-    <div ref={root} className="testemunhos-faixa" data-run={running || undefined}>
-      <div className="tf-viewport wrap">
-        <div className="tf-track">
+    <div ref={root} className="testemunhos-faixa">
+      <div ref={viewport} className="tf-viewport wrap">
+        <div ref={track} className="tf-track">
           {[0, 1].map((copy) => (
             <ul key={copy} className="tf-set" aria-hidden={copy === 1 || undefined}>
               {[...TESTIMONIALS, ...TESTIMONIALS].map((q, i) => (

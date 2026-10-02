@@ -144,3 +144,7 @@ No componente Faq (início, Software à medida e ConstructionEasier): as pergunt
 ## Integração antiga do Instagram retirada (2026-10-02)
 
 O token da Graph API expirou e a página Sobre já não mostrava publicações. Saíram a rota `/api/instagram`, o `InstagramFeed`, o `INSTAGRAM_SETUP.md`, os textos `instagramTitle`/`instagramLink` e os `remotePatterns` do Instagram/Facebook em `next.config.mjs`. Ficam os ícones do Instagram no rodapé e nos contactos. As variáveis `INSTAGRAM_ACCESS_TOKEN` e `INSTAGRAM_USER_ID` deixaram de ser usadas.
+
+## Clientes e testemunhos também se deslizam à mão (2026-10-02)
+
+As duas faixas do início deixaram a animação CSS e passaram a `useMarquee` (`src/components/motion/useMarquee.ts`): um rAF move a faixa à mesma velocidade de antes (38 s e 70 s por volta) e a pessoa pode arrastar com o rato, fazer swipe no telemóvel ou usar o scroll horizontal do trackpad. O automático para com o rato ou o foco em cima e retoma 1,5 s depois de largar. O swipe vertical e a roda vertical continuam a descer a página (`touch-action: pan-y`). Sem `motion-ok` (reduzir movimento ou sem JS) fica a grelha parada. Scroll com CPU 4x no início igual ao anterior (~27-28 ms por frame nas duas versões).
