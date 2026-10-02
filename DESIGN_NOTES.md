@@ -137,3 +137,6 @@ Números confirmados pelo Alexandre: 8+ empresas clientes, 10 000+ registos de p
 
 ### Título do início em "Cinematic Text" (2026-10-02, teste)
 A pedido do Alexandre, o hero do início usa o Cinematic Text da Planes (useplanes.com): cada palavra do título desce de um desfoque forte e assenta, depois o texto de apoio (mais rápido e menos desfocado) e por fim os dois botões (CinematicGroup). Código do componente copiado do registo da Planes para src/components/interactions/CinematicText.tsx, com a biblioteca motion trocada por transições CSS com os mesmos tempos (1,4 s por palavra, 0,11 s entre palavras) e a mesma curva: evita uma dependência nova só por um título, e o registo npm não estava acessível deste ambiente. Com "reduzir movimento" é só um fade de 0,22 s. O título fica escondido até o JS correr, por isso conta para o LCP.
+
+### Perguntas frequentes animadas (2026-10-02)
+No componente Faq (início, Software à medida e ConstructionEasier): as perguntas sobem uma a uma quando a lista entra no ecrã; a pergunta aberta passa a cartão branco com sombra e uma barra ciano→azul que cresce à esquerda; o "+" está num círculo que roda e fica azul; a resposta entra com fade. Sem JS funciona como antes (details); com "reduzir movimento" não há transições.

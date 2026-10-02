@@ -1129,15 +1129,77 @@
 .faq-js .faq-item.is-open .faq-body {
   grid-template-rows: 1fr;
 }
+.faq-item {
+  position: relative;
+  border-radius: 0;
+  transition:
+    background-color var(--dur-ui) var(--ease-estado),
+    border-radius var(--dur-ui) var(--ease-estado),
+    box-shadow var(--dur-ui) var(--ease-estado);
+}
+/* Barra de cor à esquerda que cresce na pergunta aberta */
+.faq-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--ciano), var(--azul));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 420ms var(--ease-entrada);
+}
+.faq-q {
+  transition:
+    color 150ms,
+    padding 280ms var(--ease-entrada);
+}
+.faq-item .faq-body > div > p {
+  transition:
+    opacity 320ms ease 60ms,
+    transform 420ms var(--ease-entrada) 60ms;
+}
+.faq-js .faq-item:not(.is-open) .faq-body > div > p {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+.faq-js .faq-item.is-open {
+  background: #fff;
+  border-radius: 16px;
+  border-bottom-color: transparent;
+  box-shadow: 0 18px 40px -28px rgba(6, 8, 60, 0.45);
+}
+.faq-js .faq-item.is-open::before {
+  transform: scaleY(1);
+}
+.faq-js .faq-item.is-open .faq-q,
+.faq-js .faq-item.is-open .faq-body {
+  padding-inline: 1.25rem;
+}
+.faq-js .faq-item.is-open .faq-q {
+  color: var(--azul);
+}
+/* Ícone: + dentro de um círculo que roda e ganha cor ao abrir */
+.faq-icon {
+  background: rgba(27, 84, 184, 0.08);
+  color: var(--azul);
+  transition:
+    background-color var(--dur-ui) var(--ease-estado),
+    color var(--dur-ui) var(--ease-estado),
+    transform 420ms var(--ease-entrada);
+}
 .faq-icon::before,
 .faq-icon::after {
   content: '';
   position: absolute;
-  left: 0;
+  left: 30%;
   top: 50%;
-  width: 100%;
+  width: 40%;
   height: 2px;
   margin-top: -1px;
+  border-radius: 2px;
   background: currentColor;
   transition: transform var(--dur-ui) var(--ease-estado);
 }
@@ -1150,8 +1212,43 @@
 .faq-js .faq-item[open]:not(.is-open) .faq-icon::after {
   transform: rotate(90deg);
 }
+.faq-js .faq-item.is-open .faq-icon {
+  background: var(--azul);
+  color: #fff;
+  transform: rotate(180deg);
+}
 .faq-q:hover {
   color: var(--azul);
+}
+.faq-q:hover .faq-icon {
+  background: rgba(27, 84, 184, 0.16);
+}
+.faq-js .faq-item.is-open .faq-q:hover .faq-icon {
+  background: var(--tinta);
+}
+/* Entrada: as perguntas sobem uma a uma quando a lista entra no ecrã */
+.motion-ok .faq-wait .faq-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 500ms ease calc(var(--i, 0) * 70ms),
+    transform 700ms var(--ease-entrada) calc(var(--i, 0) * 70ms),
+    background-color var(--dur-ui) var(--ease-estado),
+    border-radius var(--dur-ui) var(--ease-estado),
+    box-shadow var(--dur-ui) var(--ease-estado);
+}
+.motion-ok .faq-wait.is-in .faq-item {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item,
+  .faq-item::before,
+  .faq-q,
+  .faq-icon,
+  .faq-item .faq-body > div > p {
+    transition: none;
+  }
 }
 
 /* --- Ecrãs pequenos dos produtos (ProductMini) ---------------------------------------------- */
