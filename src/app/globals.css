@@ -3522,25 +3522,11 @@
   stroke-dashoffset: 0;
 }
 
-/* ScrollWord: título que se monta letra a letra ao descer (src/components/demos/ScrollWord.tsx).
-   --p vai de 0 (letras espalhadas e inclinadas) a 1 (montado); --d é a distância da letra ao centro, de -1 a 1. */
+/* ScrollWord: título ou texto que se monta ao descer (src/components/demos/ScrollWord.tsx).
+   O transform e a opacidade de cada peça são escritos pelo componente enquanto o texto entra no ecrã. */
 .sw {
-  --p: 1;
-  --sw-spread: 5em;
   perspective: 500px;
 }
 .sw-char {
   display: inline-block;
-  transform: translateX(calc(var(--d) * var(--sw-spread) * (1 - var(--p)))) rotateX(calc(var(--d) * 80deg * (1 - var(--p))));
-  opacity: calc(0.2 + 0.8 * var(--p));
-  will-change: transform;
-}
-p.sw {
-  --sw-spread: 9em;
-}
-@media (prefers-reduced-motion: reduce) {
-  .sw-char {
-    transform: none;
-    opacity: 1;
-  }
 }
