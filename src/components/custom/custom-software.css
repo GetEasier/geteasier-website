@@ -193,6 +193,7 @@
   }
 }
 .cs-arch {
+  contain: layout paint;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   background: rgba(8, 11, 69, 0.85);
@@ -200,8 +201,9 @@
   box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.8);
 }
 @media (min-width: 1024px) {
-  .cs-arch svg {
-    max-height: calc(100svh - var(--header-h, 4.25rem) - 4rem);
+  .cb-board {
+    max-width: calc((100svh - var(--header-h, 4.25rem) - 4rem) * 600 / 540);
+    margin-inline: auto;
   }
 }
 .cs-arch-steps {
@@ -258,56 +260,139 @@
     transform: translateY(10px);
   }
 }
+.cb-board {
+  position: relative;
+  aspect-ratio: 600 / 540;
+}
+.cb-board > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Camadas como planos próprios: só opacidade e transform, que o browser compõe sem repintar */
 .arch-layer {
-  opacity: 0.14;
-  transition: opacity 500ms ease;
+  opacity: 0.12;
+  transform: translateY(6px);
+  will-change: opacity, transform;
+  transition:
+    opacity 500ms ease,
+    transform 600ms var(--ease-entrada);
 }
 .arch-layer.is-on {
   opacity: 1;
+  transform: none;
 }
-.arch-box,
-.arch-link,
 .arch-frame {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition:
-    stroke-dashoffset 900ms var(--ease-entrada),
-    stroke 400ms ease;
-}
-.arch-layer.is-on .arch-box,
-.arch-layer.is-on .arch-link,
-.arch-layer.is-on .arch-frame {
-  stroke-dashoffset: 0;
-}
-.arch-box {
-  fill: rgba(255, 255, 255, 0.05);
-  stroke: rgba(255, 255, 255, 0.6);
+  fill: none;
+  stroke: rgba(24, 221, 186, 0.4);
   stroke-width: 1.5;
 }
-.arch-box-accent {
-  fill: rgba(27, 84, 184, 0.35);
+
+/* Placa de circuito: furos, pistas, chips com pinos e impulsos de luz */
+.cb-via {
+  fill: rgba(255, 255, 255, 0.09);
 }
-.arch-box-ext {
-  fill: rgba(245, 165, 36, 0.1);
+.cb-trace-base {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.cb-trace {
+  fill: none;
+  stroke: rgba(120, 160, 255, 0.55);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.cb-pulse {
+  fill: none;
+  stroke: #18ddba;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-dasharray: 8 92;
+  stroke-dashoffset: 100;
+  opacity: 0;
+}
+.cs-arch.is-live .arch-layer.is-on .cb-pulse {
+  opacity: 1;
+  animation: cb-run 2.2s linear infinite;
+}
+.cs-arch.is-scrolling .cb-pulse,
+.cs-arch.is-scrolling .cb-bus-flow,
+.cs-arch.is-scrolling .arch-dot {
+  animation-play-state: paused !important;
+}
+@keyframes cb-run {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.cb-body {
+  fill: #0d1258;
+}
+.cb-edge {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 1.4;
+}
+.cb-pins rect {
+  fill: rgba(255, 255, 255, 0.35);
+}
+.cb-icon-bg {
+  fill: rgba(27, 84, 184, 0.55);
+}
+.cb-icon {
+  fill: none;
+  stroke: #9fe9dc;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cb-accent .cb-body {
+  fill: #13308a;
+}
+.cb-ext .cb-edge {
   stroke: #f5a524;
 }
-.arch-bus {
-  fill: rgba(109, 74, 255, 0.3);
+.cb-ext .cb-icon-bg {
+  fill: rgba(245, 165, 36, 0.25);
+}
+.cb-ext .cb-icon {
+  stroke: #ffd38a;
+}
+.cb-bus .cb-body {
+  fill: rgba(109, 74, 255, 0.28);
+}
+.cb-bus .cb-edge {
   stroke: #8f78ff;
 }
-.arch-layer.is-current .arch-box {
+.cb-bus-flow {
+  fill: none;
+  stroke: rgba(175, 160, 255, 0.5);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 4;
+}
+.cs-arch.is-live .arch-layer.is-on .cb-bus-flow {
+  animation: cb-bus 1.6s linear infinite;
+}
+@keyframes cb-bus {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+.cb-ops .cb-body {
+  fill: rgba(24, 221, 186, 0.08);
+}
+.arch-layer.is-current .cb-edge {
   stroke: #18ddba;
   stroke-width: 2;
 }
-.arch-link {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.4);
-  stroke-width: 1.5;
+.arch-layer.is-current .cb-pins rect {
+  fill: #18ddba;
 }
-.arch-frame {
-  fill: none;
-  stroke: rgba(24, 221, 186, 0.45);
-  stroke-width: 1.5;
+.arch-layer.is-current .cb-icon-bg {
+  fill: rgba(24, 221, 186, 0.3);
 }
 .arch-label {
   fill: #fff;
@@ -318,6 +403,9 @@
 .arch-small {
   font-size: 12.5px;
 }
+.cb-label {
+  font-size: 11px;
+}
 .arch-muted {
   fill: rgba(255, 255, 255, 0.7);
   letter-spacing: 0.08em;
@@ -325,31 +413,8 @@
 .arch-dot {
   fill: #18ddba;
 }
-.arch-layer.is-on .arch-dot {
+.cs-arch.is-live .arch-layer.is-on .arch-dot {
   animation: arch-pulse 1.6s ease-in-out infinite;
-}
-.arch-packet {
-  fill: #18ddba;
-  offset-rotate: 0deg;
-  opacity: 0;
-  filter: drop-shadow(0 0 4px #18ddba);
-}
-.arch-packets.is-on .arch-packet {
-  animation: arch-move 3.2s linear infinite;
-}
-@keyframes arch-move {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-  }
-  8%,
-  88% {
-    opacity: 1;
-  }
-  100% {
-    offset-distance: 100%;
-    opacity: 0;
-  }
 }
 @keyframes arch-pulse {
   50% {
@@ -361,14 +426,15 @@
     animation: none !important;
     transition: none !important;
   }
-  .arch-layer,
-  .arch-box,
-  .arch-link,
-  .arch-frame {
+  .arch-layer {
     transition: none !important;
+    transform: none;
   }
-  .arch-packet {
+  .cb-pulse {
     display: none;
+  }
+  .cb-bus-flow {
+    animation: none !important;
   }
   .arch-layer.is-on .arch-dot {
     animation: none;
