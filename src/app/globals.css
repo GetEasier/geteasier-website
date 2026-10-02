@@ -1447,17 +1447,15 @@
 
 /* --- Menu do telemóvel: painel que desce do cabeçalho (MobileMenu.tsx) ----------------------- */
 .mm-trigger {
-  display: inline-flex;
-  min-height: 44px;
+  display: grid;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
   list-style: none;
-  align-items: center;
-  gap: 0.55rem;
+  place-items: center;
   border: 1px solid rgba(6, 8, 60, 0.14);
   border-radius: 999px;
   background: #fff;
-  padding: 0 1.1rem;
-  font-weight: 600;
   color: var(--tinta);
   box-shadow: 0 6px 16px -12px rgba(6, 8, 60, 0.45);
   -webkit-tap-highlight-color: transparent;
@@ -1466,8 +1464,13 @@
   display: none;
 }
 .mm-trigger:active,
-.mm[open] .mm-trigger {
+.mm[open]:not([data-state='closing']) .mm-trigger {
   background: var(--papel);
+}
+.mm[open]:not([data-state='closing']) .mm-label-menu,
+.mm:not([open]) .mm-label-close,
+.mm[data-state='closing'] .mm-label-close {
+  display: none;
 }
 .mm-burger path {
   transform-box: fill-box;
@@ -1477,10 +1480,10 @@
   transform: scaleX(0.64);
   transform-origin: left center;
 }
-.mm[open] .mm-burger path:first-child {
+.mm[open]:not([data-state='closing']) .mm-burger path:first-child {
   transform: translateY(3px) rotate(45deg);
 }
-.mm[open] .mm-burger path:last-child {
+.mm[open]:not([data-state='closing']) .mm-burger path:last-child {
   transform: translateY(-3px) rotate(-45deg);
   transform-origin: center;
 }

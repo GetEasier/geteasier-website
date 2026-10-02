@@ -196,9 +196,9 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
   return (
     <details ref={ref} className="mm group lg:hidden">
       <summary className="mm-trigger" onClick={onSummary}>
-        <span className="group-open:hidden">{labels.menu}</span>
-        <span className="hidden group-open:inline">{labels.close}</span>
-        <svg aria-hidden="true" viewBox="0 0 20 20" className="mm-burger h-[1.1rem] w-[1.1rem]">
+        <span className="mm-label-menu sr-only">{labels.menu}</span>
+        <span className="mm-label-close sr-only">{labels.close}</span>
+        <svg aria-hidden="true" viewBox="0 0 20 20" className="mm-burger h-5 w-5">
           <path d="M3 7h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           <path d="M3 13h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>

@@ -163,3 +163,5 @@ Com o rato por cima de "Produtos" (ou o foco do teclado lá dentro) abre um pain
 Atualização (2026-10-02, mais tarde): o painel passa a crescer a partir do botão Menu (scale com origem no centro do botão, calculada no clique) e a encolher de volta para ele ao fechar, a pedido do Alexandre.
 
 Afinação (2026-10-02): no iPhone a abertura engasgava. Causas medidas: (1) ao abrir, as onze ligações ficavam visíveis e o Next fazia prefetch de todas a meio da animação (23 pedidos) — o menu passou a prefetch={false}; (2) prender o scroll com overflow:hidden no <html> recalculava a página inteira (2478 elementos) — passou a bloquear os gestos de toque/roda no fundo e no painel; (3) blur no fundo, cantos animados e linhas com atraso (caixa branca vazia a meio) saíram. Com CPU 6x: média 35→25 ms por frame, pior frame 450→~110 ms.
+
+Atualização: o botão do menu no telemóvel passa a ser só ícone (redondo, riscas que viram X), com o texto Menu/Fechar menu só para leitores de ecrã. Ao tocar para fechar, o ícone e o texto voltam logo, em vez de esperarem pelo fim da animação.
