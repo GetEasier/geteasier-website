@@ -2,8 +2,9 @@ import Link from 'next/link'
 import Logo from '@/components/Logo'
 import MobileMenu from './MobileMenu'
 import HeaderScroll from './HeaderScroll'
-import { MAIN_NAV, ROUTES, breadcrumbTrail, href, route, type Locale, type PageId } from '@/lib/seo.config'
+import { MAIN_NAV, PRODUCT_IDS, ROUTES, breadcrumbTrail, href, route, type Locale, type PageId } from '@/lib/seo.config'
 import { common } from '@/content/common'
+import { products as productsContent } from '@/content/products'
 
 type Props = { pageId: PageId | null; locale: Locale }
 
@@ -73,11 +74,23 @@ export default function Header({ pageId, locale }: Props) {
         </div>
 
         <MobileMenu
-          labels={{ menu: t.nav.menu, close: t.nav.close, nav: t.nav.label, cta: t.nav.cta, lang: t.lang.switchTo, langHint: t.lang.hint }}
+          labels={{ menu: t.nav.menu, close: t.nav.close, nav: t.nav.label, cta: t.nav.cta, langTitle: t.nav.langTitle, products: t.footer.products }}
           items={items}
+          products={PRODUCT_IDS.map((id) => ({
+            id,
+            name: productsContent[locale].items[id].name,
+            icon: productsContent[locale].items[id].icon,
+            path: href(id, locale),
+            active: pageId === id,
+          }))}
           ctaHref={`${href('contact', locale)}?assunto=projeto`}
-          langHref={alternateHref(pageId, locale)}
-          langCode={other === 'pt' ? 'pt-PT' : 'en'}
+          langs={(['pt', 'en'] as const).map((l) => ({
+            code: l === 'pt' ? 'pt-PT' : 'en',
+            short: l.toUpperCase(),
+            name: l === 'pt' ? 'Português' : 'English',
+            href: l === locale ? href(pageId ?? 'home', locale) : alternateHref(pageId, locale),
+            current: l === locale,
+          }))}
         />
       </div>
       <HeaderScroll />

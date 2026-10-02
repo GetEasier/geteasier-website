@@ -1,73 +1,307 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
+import Logo from '@/components/Logo'
 
 type Item = { id: string; label: string; path: string; active: boolean }
+type Product = { id: string; name: string; icon: string; path: string; active: boolean }
 type Props = {
-  labels: { menu: string; close: string; nav: string; cta: string; lang: string; langHint: string }
+  labels: { menu: string; close: string; nav: string; cta: string; langTitle: string; products: string }
   items: Item[]
+  products: Product[]
   ctaHref: string
-  langHref: string
-  langCode: string
+  /** As duas línguas, pela ordem do seletor; a atual não é ligação. */
+  langs: { code: string; short: string; name: string; href: string; current: boolean }[]
 }
 
-// <details> funciona sem JavaScript; o JS só fecha o menu ao mudar de página ou com Escape.
-export default function MobileMenu({ labels, items, ctaHref, langHref, langCode }: Props) {
+// Menu do telemóvel: uma folha que sobe do fundo do ecrã (inspirada no user-menu da Arc), com uma
+// pega para a arrastar para baixo e fechar, um fundo escurecido que fecha ao tocar, ícones em cada
+// linha, os quatro produtos à mão e a língua num seletor PT | EN.
+// <details> faz com que abra e feche sem JavaScript; o JS junta as animações, o arrasto, o Escape, o
+// foco preso dentro da folha e a página parada por trás. Sem "motion-ok" abre e fecha sem movimento.
+export default function MobileMenu({ labels, items, products, ctaHref, langs }: Props) {
   const ref = useRef<HTMLDetailsElement>(null)
+  const sheetRef = useRef<HTMLDivElement>(null)
+  const closing = useRef(false)
   const pathname = usePathname()
 
+  const motionOk = () => document.documentElement.classList.contains('motion-ok')
+
+  const close = useCallback((returnFocus: boolean) => {
+    const d = ref.current
+    const sheet = sheetRef.current
+    if (!d?.open || closing.current) return
+    const done = () => {
+      closing.current = false
+      d.open = false
+      delete d.dataset.state
+      if (sheet) sheet.style.transform = ''
+      if (returnFocus) d.querySelector('summary')?.focus({ preventScroll: true })
+    }
+    if (!motionOk() || !sheet) return done()
+    closing.current = true
+    d.dataset.state = 'closing'
+    // A folha desce a partir de onde estiver (também a meio de um arrasto).
+    sheet.style.transform = ''
+    const t = window.setTimeout(done, 400)
+    sheet.addEventListener(
+      'transitionend',
+      (e) => {
+        if (e.target !== sheet) return
+        window.clearTimeout(t)
+        done()
+      },
+      { once: true },
+    )
+  }, [])
+
+  // Mudar de página fecha logo, sem animação.
   useEffect(() => {
-    if (ref.current) ref.current.open = false
+    const d = ref.current
+    if (d) {
+      d.open = false
+      delete d.dataset.state
+    }
+    closing.current = false
   }, [pathname])
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && ref.current?.open) {
-        ref.current.open = false
-        ref.current.querySelector('summary')?.focus()
+    const d = ref.current
+    const sheet = sheetRef.current
+    if (!d || !sheet) return
+    d.dataset.js = ''
+    const root = document.documentElement
+
+    const onToggle = () => {
+      if (d.open) {
+        root.style.overflow = 'hidden'
+        requestAnimationFrame(() => sheet.querySelector<HTMLElement>('.mm-close')?.focus({ preventScroll: true }))
+      } else {
+        root.style.overflow = ''
       }
     }
+
+    const onKey = (e: KeyboardEvent) => {
+      if (!d.open) return
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        close(true)
+      } else if (e.key === 'Tab') {
+        // O foco fica dentro da folha enquanto está aberta.
+        const f = [...sheet.querySelectorAll<HTMLElement>('a[href], button')]
+        if (!f.length) return
+        const first = f[0]
+        const last = f[f.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    // Arrastar para baixo fecha: pela pega e pelo cabeçalho sempre, e pela folha toda quando ela
+    // não tem nada para fazer scroll.
+    let drag: { id: number; y0: number; x0: number; t0: number; dy: number; on: boolean } | null = null
+    const onDown = (e: PointerEvent) => {
+      if (!motionOk() || (e.pointerType === 'mouse' && e.button !== 0)) return
+      const fromGrip = (e.target as HTMLElement).closest('.mm-grip')
+      const fits = sheet.scrollHeight <= sheet.clientHeight + 1
+      if (!fromGrip && !fits) return
+      drag = { id: e.pointerId, y0: e.clientY, x0: e.clientX, t0: performance.now(), dy: 0, on: false }
+    }
+    const onMove = (e: PointerEvent) => {
+      if (!drag || e.pointerId !== drag.id) return
+      const dy = e.clientY - drag.y0
+      if (!drag.on) {
+        if (Math.abs(dy) < 6 || Math.abs(dy) < Math.abs(e.clientX - drag.x0)) return
+        drag.on = true
+        sheet.setPointerCapture(e.pointerId)
+        d.dataset.state = 'dragging'
+      }
+      // Para cima resiste, para baixo segue o dedo.
+      drag.dy = dy > 0 ? dy : dy / 6
+      sheet.style.transform = `translate3d(0,${drag.dy}px,0)`
+    }
+    const onUp = (e: PointerEvent) => {
+      if (!drag || e.pointerId !== drag.id) return
+      const { dy, on, t0 } = drag
+      drag = null
+      if (!on) return
+      const fast = dy / Math.max(1, performance.now() - t0) > 0.6
+      if (dy > 90 || (fast && dy > 24)) {
+        swallow = true
+        setTimeout(() => (swallow = false), 0)
+        close(false)
+      } else {
+        delete d.dataset.state
+        sheet.style.transform = ''
+      }
+    }
+    let swallow = false
+    const onClick = (e: MouseEvent) => {
+      if (swallow) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
+
+    d.addEventListener('toggle', onToggle)
     document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [])
+    sheet.addEventListener('pointerdown', onDown)
+    sheet.addEventListener('pointermove', onMove)
+    sheet.addEventListener('pointerup', onUp)
+    sheet.addEventListener('pointercancel', onUp)
+    sheet.addEventListener('click', onClick, true)
+    return () => {
+      d.removeEventListener('toggle', onToggle)
+      document.removeEventListener('keydown', onKey)
+      sheet.removeEventListener('pointerdown', onDown)
+      sheet.removeEventListener('pointermove', onMove)
+      sheet.removeEventListener('pointerup', onUp)
+      sheet.removeEventListener('pointercancel', onUp)
+      sheet.removeEventListener('click', onClick, true)
+      root.style.overflow = ''
+    }
+  }, [close])
+
+  const onSummary = (e: React.MouseEvent) => {
+    const d = ref.current
+    if (!d?.open) return
+    e.preventDefault()
+    close(true)
+  }
+
+  let i = 0
+  const step = () => ({ '--i': i++ }) as CSSProperties
 
   return (
-    <details ref={ref} className="group lg:hidden">
-      <summary className="flex min-h-[44px] cursor-pointer list-none items-center gap-2 rounded-ctl border border-tinta/70 px-4 font-semibold [&::-webkit-details-marker]:hidden">
-        <span className="group-open:hidden">{labels.menu}</span>
-        <span className="hidden group-open:inline">{labels.close}</span>
-        <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4">
-          <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" strokeWidth="1.5" className="group-open:hidden" />
-          <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" strokeWidth="1.5" className="hidden group-open:block" />
+    <details ref={ref} className="mm group lg:hidden">
+      <summary className="mm-trigger" onClick={onSummary}>
+        <span>{labels.menu}</span>
+        <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[1.1rem] w-[1.1rem]">
+          <path d="M3 7h14M3 13h9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </summary>
-      <div className="absolute inset-x-0 top-[calc(var(--header-h)-var(--compact-shift,0px))] border-b border-linha bg-papel shadow-[0_12px_24px_-16px_rgba(6,8,60,0.35)]">
-        <nav aria-label={labels.nav} className="wrap py-4">
-          <ul className="border-t border-linha">
-            {items.map((item) => (
-              <li key={item.id} className="border-b border-linha">
-                <Link
-                  href={item.path}
-                  aria-current={item.active ? 'page' : undefined}
-                  className="flex min-h-[52px] items-center text-lead font-medium aria-[current=page]:text-azul"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-wrap items-center gap-4 pt-5">
-            <Link href={ctaHref} className="btn-primary">
+
+      <div className="mm-layer">
+        <div className="mm-scrim" aria-hidden="true" onClick={() => close(true)} />
+        <div ref={sheetRef} className="mm-sheet" role="dialog" aria-modal="true" aria-label={labels.nav}>
+          <div className="mm-grip">
+            <span className="mm-handle" aria-hidden="true" />
+            <div className="mm-head">
+              <Logo idPrefix="logo-menu" className="h-7 w-auto text-tinta" />
+              <button type="button" className="mm-close" aria-label={labels.close} onClick={() => close(true)}>
+                <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[1.05rem] w-[1.05rem]">
+                  <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <nav aria-label={labels.nav}>
+            <ul className="mm-list">
+              {items.map((item) => (
+                <li key={item.id} className="mm-in" style={step()}>
+                  <Link href={item.path} aria-current={item.active ? 'page' : undefined} className="mm-item">
+                    <span className="mm-ico" aria-hidden="true">
+                      {NAV_ICONS[item.id]}
+                    </span>
+                    <span className="flex-1">{item.label}</span>
+                    {item.active && <span className="mm-dot" aria-hidden="true" />}
+                  </Link>
+                  {item.id === 'products' && (
+                    <ul className="mm-products" aria-label={labels.products}>
+                      {products.map((p) => (
+                        <li key={p.id}>
+                          <Link href={p.path} aria-current={p.active ? 'page' : undefined} className="mm-product">
+                            <Image src={p.icon} alt="" width={28} height={28} className="h-6 w-6 shrink-0 rounded-md object-contain" />
+                            <span className="min-w-0 truncate">{p.name}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="mm-sep mm-in" style={step()} />
+
+          <div className="mm-lang mm-in" style={step()}>
+            <span className="mm-ico" aria-hidden="true">
+              {GLOBE}
+            </span>
+            <span className="flex-1 font-medium">{labels.langTitle}</span>
+            <div className="mm-seg" style={{ '--index': langs.findIndex((l) => l.current) } as CSSProperties}>
+              <span className="mm-thumb" aria-hidden="true" />
+              {langs.map((l) =>
+                l.current ? (
+                  <span key={l.code} className="mm-seg-opt" aria-current="true" title={l.name}>
+                    {l.short}
+                  </span>
+                ) : (
+                  <Link key={l.code} href={l.href} hrefLang={l.code} lang={l.code} className="mm-seg-opt" title={l.name}>
+                    <span aria-hidden="true">{l.short}</span>
+                    <span className="sr-only">{l.name}</span>
+                  </Link>
+                ),
+              )}
+            </div>
+          </div>
+
+          <div className="mm-in" style={step()}>
+            <Link href={ctaHref} className="btn-primary mt-3 w-full">
               {labels.cta}
             </Link>
-            <Link href={langHref} hrefLang={langCode} lang={langCode} title={labels.langHint} className="link min-h-[44px] content-center">
-              {labels.lang}
-            </Link>
           </div>
-        </nav>
+        </div>
       </div>
     </details>
   )
 }
+
+const svg = (children: ReactNode) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    {children}
+  </svg>
+)
+
+const NAV_ICONS: Record<string, ReactNode> = {
+  home: svg(<path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z" />),
+  customSoftware: svg(<path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4M13.5 5.5l-3 13" />),
+  products: svg(
+    <>
+      <rect x="4" y="4" width="6.5" height="6.5" rx="1.6" />
+      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6" />
+      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6" />
+      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6" />
+    </>,
+  ),
+  plans: svg(
+    <>
+      <path d="M3.5 12.6V5a1.5 1.5 0 0 1 1.5-1.5h7.6l8 8a1.5 1.5 0 0 1 0 2.1l-6.9 6.9a1.5 1.5 0 0 1-2.1 0z" />
+      <circle cx="8.3" cy="8.3" r="1.4" />
+    </>,
+  ),
+  about: svg(
+    <>
+      <circle cx="9" cy="8.5" r="3.2" />
+      <path d="M3.5 19.5c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M15.5 5.6a3.2 3.2 0 0 1 0 5.8M17.5 14.8c1.6.6 2.7 2.2 3 4.7" />
+    </>,
+  ),
+  contact: svg(<path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h13A1.5 1.5 0 0 1 20 6.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 3.5V17h0A1.5 1.5 0 0 1 4 15.5z" />),
+}
+
+const GLOBE = svg(
+  <>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5s1.1-6.1 3.4-8.5z" />
+  </>,
+)
