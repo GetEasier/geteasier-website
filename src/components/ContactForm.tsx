@@ -79,14 +79,16 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
-          subject: `Site GetEasier: ${subject}`,
-          from_name: 'Site GetEasier',
-          name,
-          email,
+          // O texto de abertura do email é fixo no plano gratuito; o assunto, o remetente e os campos (em PT) controlamos aqui.
+          subject: `Novo contacto: ${subject} · ${name}${company ? ` (${company})` : ''}`,
+          from_name: `${name} via site GetEasier`,
           replyto: email,
+          Nome: name,
+          Email: email,
+          ...(company ? { Empresa: company } : {}),
           Assunto: subject,
-          Empresa: company || '—',
-          message,
+          Mensagem: message,
+          Página: window.location.href,
           botcheck: data.get('botcheck') ? true : '',
         }),
       })
