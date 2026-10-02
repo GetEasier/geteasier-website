@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import Breadcrumbs from '@/components/site/Breadcrumbs'
 import type { Locale, PageId } from '@/lib/seo.config'
+import { CinematicText } from '@/components/interactions/CinematicText'
 
 type Props = { pageId: PageId; locale: Locale; title: string; lead?: string[]; children?: ReactNode; aside?: ReactNode; before?: ReactNode }
 
@@ -11,7 +12,7 @@ export default function PageHeader({ pageId, locale, title, lead, children, asid
       <div className={aside ? 'mt-10 grid items-start gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]' : 'mt-10'}>
         <div>
           {before && <div className="mb-6">{before}</div>}
-          <h1 className="t-h1 max-w-[22ch]">{title}</h1>
+          <CinematicText as="h1" className="t-h1 max-w-[22ch]">{title}</CinematicText>
           {lead && (
             <div className="mt-6 max-w-prose space-y-4 text-lead text-grafite">
               {lead.map((p) => (

@@ -36,10 +36,10 @@ export default function HomePage({ locale }: { locale: Locale }) {
             <CinematicText as="h1" className="t-display max-w-[16ch] max-sm:text-[2.125rem]">
               {t.h1}
             </CinematicText>
-            <CinematicText as="p" delay={0.9} stagger={0.04} blur={16} className="mt-5 max-w-[36ch] text-lead text-white/80">
+            <CinematicText as="p" delay={0.55} stagger={0.03} blur={16} className="mt-5 max-w-[36ch] text-lead text-white/80">
               {t.lead}
             </CinematicText>
-            <CinematicGroup delay={1.45} stagger={0.12} className="mt-7 flex flex-wrap gap-3">
+            <CinematicGroup delay={0.95} stagger={0.08} className="mt-7 flex flex-wrap gap-3">
               <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
                 {c.cta.project}
               </Link>

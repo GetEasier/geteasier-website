@@ -21,6 +21,8 @@ export type CinematicTextProps = {
 }
 
 const CINEMA = 'cubic-bezier(0.16, 1, 0.3, 1)'
+// O original da Planes usa 1,4 s por palavra e 0,11 s entre palavras; o Alexandre pediu mais rápido.
+const DURATION = 1
 
 function useInViewOnce(ref: React.RefObject<HTMLElement | null>, once: boolean) {
   const [inView, setInView] = React.useState(false)
@@ -52,7 +54,7 @@ function cinemaStyle(inView: boolean, blur: number, delay: number): React.CSSPro
     opacity: inView ? 1 : 0,
     transform: inView ? 'none' : 'translateY(22px) scale(1.04)',
     filter: inView ? 'blur(0px)' : `blur(${blur}px)`,
-    transition: `opacity 1.4s ${CINEMA}, transform 1.4s ${CINEMA}, filter 1.4s ${CINEMA}`,
+    transition: `opacity ${DURATION}s ${CINEMA}, transform ${DURATION}s ${CINEMA}, filter ${DURATION}s ${CINEMA}`,
     transitionDelay: `${delay}s`,
   }
 }
@@ -60,8 +62,8 @@ function cinemaStyle(inView: boolean, blur: number, delay: number): React.CSSPro
 export function CinematicText({
   children,
   as = 'h1',
-  delay = 0.2,
-  stagger = 0.11,
+  delay = 0.1,
+  stagger = 0.07,
   blur = 28,
   once = true,
   className,
@@ -92,8 +94,8 @@ CinematicText.displayName = 'CinematicText'
 // como uma palavra, com o mesmo desfoque, a mesma curva e o seu próprio atraso.
 export function CinematicGroup({
   children,
-  delay = 0.2,
-  stagger = 0.11,
+  delay = 0.1,
+  stagger = 0.07,
   blur = 28,
   once = true,
   className,

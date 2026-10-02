@@ -11,6 +11,7 @@ import { plans } from '@/content/plans'
 import { PRODUCT_IDS, href, type Locale, type ProductId } from '@/lib/seo.config'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
+import { CinematicText } from '@/components/interactions/CinematicText'
 
 // Quatro funcionalidades de cada produto mostradas no cartão (índices em `features`, iguais em PT e EN).
 const HIGHLIGHTS: Record<ProductId, number[]> = {
@@ -47,7 +48,7 @@ export default function ProductsPage({ locale }: { locale: Locale }) {
           </div>
           <div className="mt-10 grid items-center gap-12 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)]">
             <div>
-              <h1 className="t-h1 max-w-[20ch]">{p.indexH1}</h1>
+              <CinematicText as="h1" className="t-h1 max-w-[20ch]">{p.indexH1}</CinematicText>
               <p className="mt-5 max-w-[40ch] text-lead text-white/80">{p.indexLead}</p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link href={`${href('contact', locale)}?assunto=planos`} className="btn bg-ciano text-tinta hover:bg-white">

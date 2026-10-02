@@ -27,6 +27,7 @@ import { common } from '@/content/common'
 import { href, type Locale, type ProductId } from '@/lib/seo.config'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
+import { CinematicText } from '@/components/interactions/CinematicText'
 
 // Demo numa só cena, com a câmara a aproximar-se de cada parte (CameraDemo).
 const SCENES: Record<ProductId, (p: { locale: Locale }) => React.ReactNode> = {
@@ -85,7 +86,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
                   className={cn('w-auto', id === 'constructionEasier' || id === 'stockEasier' ? 'h-9 md:h-11' : 'h-7 md:h-8')}
                 />
               </span>
-              <h1 className="t-h1 mt-6 max-w-[18ch]">{item.h1}</h1>
+              <CinematicText as="h1" className="t-h1 mt-6 max-w-[18ch]">{item.h1}</CinematicText>
             </div>
             <div>
               <p className="max-w-prose text-lead text-white/80">{item.lead[0]}</p>

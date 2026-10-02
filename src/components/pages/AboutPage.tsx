@@ -8,6 +8,7 @@ import { home } from '@/content/home'
 import { common } from '@/content/common'
 import { products } from '@/content/products'
 import { href, PRODUCT_IDS, type Locale } from '@/lib/seo.config'
+import { CinematicText } from '@/components/interactions/CinematicText'
 
 // Sobre: hero escuro da marca com a fotografia da equipa, as duas frentes em cartões de cor, uma linha
 // animada por co-fundador. Contacto e financiamento ficam no rodapé.
@@ -25,7 +26,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
             <div className="[&_a:hover]:text-white [&_a]:decoration-white/30 [&_nav]:text-white/60 [&_[aria-current]]:text-white">
               <Breadcrumbs pageId="about" locale={locale} />
             </div>
-            <h1 className="t-h1 mt-10 max-w-[18ch]">{t.h1}</h1>
+            <CinematicText as="h1" className="t-h1 mt-10 max-w-[18ch]">{t.h1}</CinematicText>
             <p className="mt-5 max-w-[40ch] text-lead text-white/80">{t.lead}</p>
             <ul className="mt-6 flex flex-wrap gap-2">
               {h.teamFacts.map((f, i) => (
