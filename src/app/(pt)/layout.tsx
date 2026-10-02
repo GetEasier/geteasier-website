@@ -6,7 +6,7 @@ import { SITE_URL } from '@/lib/site'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   manifest: '/manifest.webmanifest',
-  icons: { icon: [{ url: '/favicon.ico', sizes: 'any' }, { url: '/icon.svg', type: 'image/svg+xml' }], apple: '/apple-icon.png' },
+  icons: { icon: [{ url: '/favicon.ico', sizes: 'any' }], apple: '/apple-icon.png' },
 }
 export const viewport: Viewport = { themeColor: '#F4F6F9' }
 

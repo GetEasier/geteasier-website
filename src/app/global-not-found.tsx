@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Página não encontrada | GetEasier',
   description: 'A página que procura não existe no site da GetEasier.',
   robots: { index: false, follow: true },
-  icons: { icon: [{ url: '/favicon.ico', sizes: 'any' }, { url: '/icon.svg', type: 'image/svg+xml' }], apple: '/apple-icon.png' },
+  icons: { icon: [{ url: '/favicon.ico', sizes: 'any' }], apple: '/apple-icon.png' },
 }
 
 export default function GlobalNotFound() {
