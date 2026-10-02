@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import emailjs from '@emailjs/browser'
 import { SUBJECT_IDS, type SubjectId } from '@/content/contact'
 
 type Labels = {
@@ -73,43 +72,26 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
     const name = String(data.get('name')).trim()
     const email = String(data.get('email')).trim()
     try {
-      if (WEB3FORMS_KEY) {
-        // Web3Forms entrega no email associado à chave (definido em web3forms.com, não no código).
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_KEY,
-            subject: `Site GetEasier: ${subject}`,
-            from_name: 'Site GetEasier',
-            name,
-            email,
-            replyto: email,
-            Assunto: subject,
-            Empresa: company || '—',
-            message,
-            botcheck: data.get('botcheck') ? true : '',
-          }),
-        })
-        const out = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null
-        if (!res.ok || !out?.success) throw new Error(`Web3Forms ${res.status}: ${out?.message ?? 'sem resposta'}`)
-      } else {
-        // Sem chave do Web3Forms, mantém o envio antigo pelo EmailJS.
-        await emailjs.send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-          {
-            from_name: name,
-            from_email: email,
-            reply_to: email,
-            subject,
-            company,
-            // O modelo de email atual só mostra {{message}}: o assunto e a empresa vão também no texto.
-            message: `[${subject}]${company ? ` (${company})` : ''}\n\n${message}`,
-          },
-          { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! },
-        )
-      }
+      if (!WEB3FORMS_KEY) throw new Error('Falta NEXT_PUBLIC_WEB3FORMS_KEY no .env.local (reinicie o npm run dev depois de a pôr)')
+      // Web3Forms entrega no email associado à chave (definido em web3forms.com, não no código).
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Site GetEasier: ${subject}`,
+          from_name: 'Site GetEasier',
+          name,
+          email,
+          replyto: email,
+          Assunto: subject,
+          Empresa: company || '—',
+          message,
+          botcheck: data.get('botcheck') ? true : '',
+        }),
+      })
+      const out = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null
+      if (!res.ok || !out?.success) throw new Error(`Web3Forms ${res.status}: ${out?.message ?? 'sem resposta'}`)
       setStatus('sent')
       form.reset()
     } catch (err) {
