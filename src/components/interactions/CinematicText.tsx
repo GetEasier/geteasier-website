@@ -46,8 +46,9 @@ function useInViewOnce(ref: React.RefObject<HTMLElement | null>, once: boolean) 
   return inView
 }
 
-const WORD_CLASS =
-  'inline-block will-change-[filter,transform] motion-reduce:!transform-none motion-reduce:!filter-none motion-reduce:![transition:opacity_0.22s_ease-out]'
+const GROUP_ITEM_CLASS =
+  'will-change-[filter,transform] motion-reduce:!transform-none motion-reduce:!filter-none motion-reduce:![transition:opacity_0.22s_ease-out]'
+const WORD_CLASS = `inline-block ${GROUP_ITEM_CLASS}`
 
 function cinemaStyle(inView: boolean, blur: number, delay: number): React.CSSProperties {
   return {
@@ -90,25 +91,38 @@ export function CinematicText({
 
 CinematicText.displayName = 'CinematicText'
 
-// O mesmo efeito para elementos que não são texto simples (os botões do hero): cada filho entra
-// como uma palavra, com o mesmo desfoque, a mesma curva e o seu próprio atraso.
+// O mesmo efeito para elementos que não são texto simples (botões, etiquetas): cada filho entra
+// como uma palavra, com o mesmo desfoque, a mesma curva e o seu próprio atraso. Num <ul> o efeito
+// vai para cada <li>; nos outros casos cada filho fica dentro de um <span>, para não apagar as
+// transições que o próprio filho já tem (a cor dos botões ao passar o rato).
 export function CinematicGroup({
   children,
+  as = 'div',
   delay = 0.1,
   stagger = 0.07,
   blur = 28,
   once = true,
   className,
-}: Omit<CinematicTextProps, 'children' | 'as'> & { children: React.ReactNode }) {
-  const ref = React.useRef<HTMLDivElement>(null)
+}: Omit<CinematicTextProps, 'children' | 'as'> & { children: React.ReactNode; as?: 'div' | 'ul' }) {
+  const ref = React.useRef<HTMLElement>(null)
   const inView = useInViewOnce(ref, once)
+  const Tag = as as React.ElementType
   return (
-    <div ref={ref} className={className}>
-      {React.Children.toArray(children).map((child, i) => (
-        <span key={i} className={WORD_CLASS} style={cinemaStyle(inView, blur, delay + i * stagger)}>
-          {child}
-        </span>
-      ))}
-    </div>
+    <Tag ref={ref} className={className}>
+      {React.Children.toArray(children).map((child, i) => {
+        const style = cinemaStyle(inView, blur, delay + i * stagger)
+        if (as === 'ul' && React.isValidElement<{ className?: string; style?: React.CSSProperties }>(child)) {
+          return React.cloneElement(child, {
+            className: cn(child.props.className, GROUP_ITEM_CLASS),
+            style: { ...child.props.style, ...style },
+          })
+        }
+        return (
+          <span key={i} className={WORD_CLASS} style={style}>
+            {child}
+          </span>
+        )
+      })}
+    </Tag>
   )
 }

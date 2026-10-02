@@ -11,7 +11,7 @@ import { plans } from '@/content/plans'
 import { PRODUCT_IDS, href, type Locale, type ProductId } from '@/lib/seo.config'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
-import { CinematicText } from '@/components/interactions/CinematicText'
+import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 
 // Quatro funcionalidades de cada produto mostradas no cartão (índices em `features`, iguais em PT e EN).
 const HIGHLIGHTS: Record<ProductId, number[]> = {
@@ -49,15 +49,17 @@ export default function ProductsPage({ locale }: { locale: Locale }) {
           <div className="mt-10 grid items-center gap-12 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)]">
             <div>
               <CinematicText as="h1" className="t-h1 max-w-[20ch]">{p.indexH1}</CinematicText>
-              <p className="mt-5 max-w-[40ch] text-lead text-white/80">{p.indexLead}</p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <CinematicText as="p" delay={0.55} stagger={0.03} blur={16} className="mt-5 max-w-[40ch] text-lead text-white/80">
+                {p.indexLead}
+              </CinematicText>
+              <CinematicGroup delay={0.95} stagger={0.08} className="mt-7 flex flex-wrap gap-3">
                 <Link href={`${href('contact', locale)}?assunto=planos`} className="btn bg-ciano text-tinta hover:bg-white">
                   {locale === 'pt' ? 'Pedir ajuda para escolher' : 'Ask for help choosing'}
                 </Link>
                 <Link href={href('plans', locale)} className="btn-on-dark">
                   {c.cta.plans}
                 </Link>
-              </div>
+              </CinematicGroup>
             </div>
             <ul aria-hidden="true" className="grid grid-cols-2 gap-4 max-sm:hidden lg:pb-8">
               {PRODUCT_IDS.map((id, i) => {

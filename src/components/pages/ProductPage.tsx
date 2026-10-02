@@ -27,7 +27,7 @@ import { common } from '@/content/common'
 import { href, type Locale, type ProductId } from '@/lib/seo.config'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
-import { CinematicText } from '@/components/interactions/CinematicText'
+import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 
 // Demo numa só cena, com a câmara a aproximar-se de cada parte (CameraDemo).
 const SCENES: Record<ProductId, (p: { locale: Locale }) => React.ReactNode> = {
@@ -89,8 +89,10 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
               <CinematicText as="h1" className="t-h1 mt-6 max-w-[18ch]">{item.h1}</CinematicText>
             </div>
             <div>
-              <p className="max-w-prose text-lead text-white/80">{item.lead[0]}</p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <CinematicText as="p" delay={0.55} stagger={0.03} blur={16} className="max-w-prose text-lead text-white/80">
+                {item.lead[0]}
+              </CinematicText>
+              <CinematicGroup delay={1.05} stagger={0.08} className="mt-8 flex flex-wrap items-center gap-3">
                 <Link href={`${href('contact', locale)}?assunto=${item.demoSubject}`} className="btn bg-ciano text-tinta hover:bg-white">
                   {demo}
                 </Link>
@@ -102,8 +104,12 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
                     <Image src="/images/products/DGAV-Approved.png" alt="DGAV" width={629} height={461} className="h-12 w-auto" />
                   </span>
                 )}
-              </div>
-              {id === 'timeEasier' && <StoreBadges locale={locale} className="mt-6" />}
+              </CinematicGroup>
+              {id === 'timeEasier' && (
+                <CinematicGroup delay={1.25} className="mt-6">
+                  <StoreBadges locale={locale} />
+                </CinematicGroup>
+              )}
             </div>
           </div>
         </div>

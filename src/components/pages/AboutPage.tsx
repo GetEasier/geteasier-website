@@ -8,7 +8,7 @@ import { home } from '@/content/home'
 import { common } from '@/content/common'
 import { products } from '@/content/products'
 import { href, PRODUCT_IDS, type Locale } from '@/lib/seo.config'
-import { CinematicText } from '@/components/interactions/CinematicText'
+import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 
 // Sobre: hero escuro da marca com a fotografia da equipa, as duas frentes em cartões de cor, uma linha
 // animada por co-fundador. Contacto e financiamento ficam no rodapé.
@@ -27,23 +27,25 @@ export default function AboutPage({ locale }: { locale: Locale }) {
               <Breadcrumbs pageId="about" locale={locale} />
             </div>
             <CinematicText as="h1" className="t-h1 mt-10 max-w-[18ch]">{t.h1}</CinematicText>
-            <p className="mt-5 max-w-[40ch] text-lead text-white/80">{t.lead}</p>
-            <ul className="mt-6 flex flex-wrap gap-2">
+            <CinematicText as="p" delay={0.55} stagger={0.03} blur={16} className="mt-5 max-w-[40ch] text-lead text-white/80">
+              {t.lead}
+            </CinematicText>
+            <CinematicGroup as="ul" delay={0.85} stagger={0.06} className="mt-6 flex flex-wrap gap-2">
               {h.teamFacts.map((f, i) => (
                 <li key={f} className="team-fact">
                   <span aria-hidden="true">{FACT_ICONS[i]}</span>
                   {f}
                 </li>
               ))}
-            </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
+            </CinematicGroup>
+            <CinematicGroup delay={1.1} stagger={0.08} className="mt-8 flex flex-wrap gap-3">
               <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn bg-ciano text-tinta hover:bg-white">
                 {c.cta.project}
               </Link>
               <a href="#equipa" className="btn-on-dark">
                 {t.teamTitle}
               </a>
-            </div>
+            </CinematicGroup>
           </div>
           <div className="relative">
             <Image

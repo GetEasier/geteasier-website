@@ -10,7 +10,7 @@ import '@/components/custom/custom-software.css'
 import { customSoftware } from '@/content/custom-software'
 import { common } from '@/content/common'
 import { href, type Locale } from '@/lib/seo.config'
-import { CinematicText } from '@/components/interactions/CinematicText'
+import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 
 // Software à medida (revisão de 01/10): hero da marca com uma aplicação a ganhar módulos, cartões
 // em mosaico com mini ilustrações, etapas sem números, arquitetura genérica montada ao scroll e
@@ -41,15 +41,17 @@ export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
             <div className="mt-10 grid items-center gap-12 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)]">
               <div>
                 <CinematicText as="h1" className="t-h1 max-w-[20ch]">{t.h1}</CinematicText>
-                <p className="mt-6 max-w-[44ch] text-lead text-white/80">{t.lead[0]}</p>
-                <div className="mt-8 flex flex-wrap gap-3">
+                <CinematicText as="p" delay={0.55} stagger={0.03} blur={16} className="mt-6 max-w-[44ch] text-lead text-white/80">
+                  {t.lead[0]}
+                </CinematicText>
+                <CinematicGroup delay={0.95} stagger={0.08} className="mt-8 flex flex-wrap gap-3">
                   <Link href={contact} className="btn bg-ciano text-tinta hover:bg-white">
                     {c.cta.project}
                   </Link>
                   <a href="#arquitetura" className="btn-on-dark">
                     {t.heroArch}
                   </a>
-                </div>
+                </CinematicGroup>
               </div>
               <ModulesHero t={t.hero} />
             </div>

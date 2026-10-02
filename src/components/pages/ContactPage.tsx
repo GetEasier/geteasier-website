@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm'
 import { contact } from '@/content/contact'
 import { COMPANY } from '@/lib/site'
 import { href, type Locale } from '@/lib/seo.config'
-import { CinematicText } from '@/components/interactions/CinematicText'
+import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 
 const TILE = 'flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.06] p-4'
 
@@ -42,15 +42,17 @@ export default function ContactPage({ locale }: { locale: Locale }) {
           <div className="mt-10 grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
             <div>
               <CinematicText as="h1" className="t-display max-w-[16ch] max-sm:text-[2.125rem]">{t.h1}</CinematicText>
-              <p className="mt-5 max-w-[38ch] text-lead text-white/80">{t.lead}</p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <CinematicText as="p" delay={0.55} stagger={0.03} blur={16} className="mt-5 max-w-[38ch] text-lead text-white/80">
+                {t.lead}
+              </CinematicText>
+              <CinematicGroup delay={0.85} stagger={0.08} className="mt-7 flex flex-wrap gap-3">
                 <a href="#mensagem" className="btn bg-ciano text-tinta hover:bg-white">
                   {t.form.title}
                 </a>
                 <a href={COMPANY.whatsapp.href} className="btn-on-dark" target="_blank" rel="noopener noreferrer">
                   {t.whatsappCta}
                 </a>
-              </div>
+              </CinematicGroup>
             </div>
 
             <ul className="grid gap-3">
