@@ -1,112 +1,196 @@
-'use client';
+'use client'
 
-import { useForm } from 'react-hook-form';
-import emailjs from 'emailjs-com';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Textarea } from './ui/textarea';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from './ui/card';
-import { SiWhatsapp } from '@icons-pack/react-simple-icons';
-import { useToast } from './ui/use-toast';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { SUBJECT_IDS, type SubjectId } from '@/content/contact'
 
-export type FormData = {
-  name: string;
-  email: string;
-  message: string;
-};
+type Labels = {
+  title: string
+  name: string
+  email: string
+  company: string
+  subject: string
+  message: string
+  messageHint: string
+  submit: string
+  sending: string
+  success: string
+  error: string
+  required: string
+  invalidEmail: string
+  privacy: string
+  privacyLink: string
+}
 
-export default function ContactForm() {
-  const { t } = useLanguage();
-  const { register, handleSubmit } = useForm<FormData>();
-  const { toast } = useToast();
+type Props = { labels: Labels; subjects: Record<SubjectId, string>; chips: Record<SubjectId, string>; privacyHref: string }
+type Status = 'idle' | 'sending' | 'sent' | 'error'
+type Errors = Partial<Record<'name' | 'email' | 'message', string>>
 
-  function onSubmit(data: FormData) {
-    const templateParams = {
-      from_name: data.name,
-      from_email: data.email,
-      reply_to: data.email,
-      message: data.message,
-    };
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-    emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-      templateParams,
-      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-    )
-      .then(() => {
-        toast({
-          title: t('contact.form.success.title'),
-          description: t('contact.form.success.description'),
-        })
-      }, () => {
-        toast({
-          title: t('contact.form.error.title'),
-          description: t('contact.form.error.description'),
-        })
-      });
+export default function ContactForm({ labels, subjects, chips, privacyHref }: Props) {
+  const subjectsRef = useRef<HTMLFieldSetElement>(null)
+  const [status, setStatus] = useState<Status>('idle')
+  const [errors, setErrors] = useState<Errors>({})
+  const statusRef = useRef<HTMLParagraphElement>(null)
+
+  // Assunto pré-preenchido a partir de ?assunto=… (as páginas continuam estáticas).
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('assunto')
+    if (!q || !(SUBJECT_IDS as readonly string[]).includes(q)) return
+    const radio = subjectsRef.current?.querySelector<HTMLInputElement>(`input[value="${q}"]`)
+    if (radio) radio.checked = true
+  }, [])
+
+  function validate(form: HTMLFormElement): Errors {
+    const data = new FormData(form)
+    const e: Errors = {}
+    if (!String(data.get('name') ?? '').trim()) e.name = labels.required
+    const email = String(data.get('email') ?? '').trim()
+    if (!email) e.email = labels.required
+    else if (!EMAIL_RE.test(email)) e.email = labels.invalidEmail
+    if (!String(data.get('message') ?? '').trim()) e.message = labels.required
+    return e
   }
 
+  async function onSubmit(ev: FormEvent<HTMLFormElement>) {
+    ev.preventDefault()
+    const form = ev.currentTarget
+    const e = validate(form)
+    setErrors(e)
+    const first = Object.keys(e)[0]
+    if (first) {
+      form.querySelector<HTMLElement>(`[name="${first}"]`)?.focus()
+      return
+    }
+    const data = new FormData(form)
+    const company = String(data.get('company') ?? '').trim()
+    const message = String(data.get('message') ?? '').trim()
+    const subjectId = String(data.get('subject') ?? 'outro') as SubjectId
+    const subject = subjects[subjectId] ?? subjects.outro
+    setStatus('sending')
+    const name = String(data.get('name')).trim()
+    const email = String(data.get('email')).trim()
+    try {
+      if (!WEB3FORMS_KEY) throw new Error('Falta NEXT_PUBLIC_WEB3FORMS_KEY no .env.local (reinicie o npm run dev depois de a pôr)')
+      // Web3Forms entrega no email associado à chave (definido em web3forms.com, não no código).
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          // O texto de abertura do email é fixo no plano gratuito; o assunto, o remetente e os campos (em PT) controlamos aqui.
+          subject: `Novo contacto: ${subject} · ${name}${company ? ` (${company})` : ''}`,
+          from_name: `${name} via site GetEasier`,
+          replyto: email,
+          Nome: name,
+          Email: email,
+          ...(company ? { Empresa: company } : {}),
+          Assunto: subject,
+          Mensagem: message,
+          Página: window.location.href,
+          botcheck: data.get('botcheck') ? true : '',
+        }),
+      })
+      const out = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null
+      if (!res.ok || !out?.success) throw new Error(`Web3Forms ${res.status}: ${out?.message ?? 'sem resposta'}`)
+      setStatus('sent')
+      form.reset()
+    } catch (err) {
+      console.error('[contacto] envio falhou', err)
+      setStatus('error')
+    }
+    requestAnimationFrame(() => statusRef.current?.focus())
+  }
+
+  const field = 'mt-2 block w-full rounded-2xl border border-linha bg-papel/60 px-3.5 py-3 text-body text-tinta placeholder:text-grafite/70 focus:border-azul focus:outline-none focus:ring-2 focus:ring-azul/30 aria-[invalid=true]:border-estado-erro'
+  const errorText = 'mt-1.5 text-small text-estado-erro'
 
   return (
-    <Card className='w-full max-w-[700px] mx-auto relative'>
-      <CardContent className='px-4 sm:px-6 py-6 sm:py-8'>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className='space-y-4 sm:space-y-5'
-        >
-          <div className='space-y-2'>
-            <Label htmlFor='name' className='text-sm sm:text-base font-medium'>{t('contact.form.name')}</Label>
-            <Input
-              type='text'
-              placeholder={t('contact.form.namePlaceholder')}
-              className='w-full h-11 sm:h-12 text-sm sm:text-base'
-              {...register('name', { required: true })}
-            />
+    <form noValidate onSubmit={onSubmit} aria-labelledby="form-titulo">
+      <h2 id="form-titulo" className="t-h2">
+        {labels.title}
+      </h2>
+
+      <div className="mt-8 space-y-6">
+        {/* Armadilha para robôs do Web3Forms: escondida de pessoas e de leitores de ecrã */}
+        <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" className="hidden" />
+
+        <fieldset ref={subjectsRef}>
+          <legend className="font-semibold">{labels.subject}</legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {SUBJECT_IDS.map((id) => (
+              <label key={id} className="subject-chip">
+                <input type="radio" name="subject" value={id} defaultChecked={id === 'projeto'} className="sr-only" />
+                <span>{chips[id]}</span>
+              </label>
+            ))}
           </div>
-          <div className='space-y-2'>
-            <Label htmlFor='email' className='text-sm sm:text-base font-medium'>{t('contact.form.email')}</Label>
-            <Input
-              type='email'
-              placeholder={t('contact.form.emailPlaceholder')}
-              className='w-full h-11 sm:h-12 text-sm sm:text-base'
-              {...register('email', { required: true })}
-            />
+        </fieldset>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label htmlFor="cf-name" className="font-semibold">
+              {labels.name}
+            </label>
+            <input id="cf-name" name="name" type="text" autoComplete="name" required aria-invalid={!!errors.name} aria-describedby={errors.name ? 'cf-name-err' : undefined} className={field} />
+            {errors.name && <p id="cf-name-err" className={errorText}>{errors.name}</p>}
           </div>
-          <div className='space-y-2'>
-            <Label htmlFor='message' className='text-sm sm:text-base font-medium'>{t('contact.form.message')}</Label>
-            <Textarea
-              placeholder={t('contact.form.messagePlaceholder')}
-              className='w-full min-h-[120px] sm:min-h-[140px] text-sm sm:text-base resize-none'
-              {...register('message', { required: true })}
-            />
+
+          <div>
+            <label htmlFor="cf-email" className="font-semibold">
+              {labels.email}
+            </label>
+            <input id="cf-email" name="email" type="email" autoComplete="email" inputMode="email" required aria-invalid={!!errors.email} aria-describedby={errors.email ? 'cf-email-err' : undefined} className={field} />
+            {errors.email && <p id="cf-email-err" className={errorText}>{errors.email}</p>}
           </div>
-          <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 pt-2'>
-            <Button
-              type='submit'
-              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.98] text-sm sm:text-base"
-            >
-              {t('contact.form.send')}
-            </Button>
-            <div className='flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-center sm:text-left'>
-              <span className='text-xs sm:text-sm text-gray-600 dark:text-gray-400'>
-                {t('contact.form.whatsapp')}
-              </span>
-              <a 
-                href='https://wa.me/351914223323' 
-                target='_blank' 
-                rel='noopener noreferrer'
-                className='flex items-center justify-center sm:justify-start gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm sm:text-base transition-colors'
-              >
-                <SiWhatsapp className='w-5 h-5 sm:w-6 sm:h-6' /> 
-                <span>+351 914 223 323</span>
-              </a>
-            </div>
-          </div>
-        </form>
-      </CardContent>
-    </Card>
-  );
-};
+        </div>
+
+        <div>
+          <label htmlFor="cf-company" className="font-semibold">
+            {labels.company}
+          </label>
+          <input id="cf-company" name="company" type="text" autoComplete="organization" className={field} />
+        </div>
+
+        <div>
+          <label htmlFor="cf-message" className="font-semibold">
+            {labels.message}
+          </label>
+          <p id="cf-message-hint" className="text-small text-grafite">
+            {labels.messageHint}
+          </p>
+          <textarea
+            id="cf-message"
+            name="message"
+            rows={5}
+            required
+            aria-invalid={!!errors.message}
+            aria-describedby={errors.message ? 'cf-message-hint cf-message-err' : 'cf-message-hint'}
+            className={`${field} resize-y`}
+          />
+          {errors.message && <p id="cf-message-err" className={errorText}>{errors.message}</p>}
+        </div>
+
+        <p className="text-small text-grafite">
+          {labels.privacy}{' '}
+          <a href={privacyHref} className="link" hrefLang="pt-PT">
+            {labels.privacyLink}
+          </a>
+          .
+        </p>
+
+        <div className="flex flex-wrap items-center gap-4">
+          <button type="submit" className="btn-primary disabled:opacity-60" disabled={status === 'sending'}>
+            {status === 'sending' ? labels.sending : labels.submit}
+          </button>
+        </div>
+
+        <p ref={statusRef} tabIndex={-1} role="status" aria-live="polite" className="outline-none">
+          {status === 'sent' && <span className="font-semibold text-estado-valido">{labels.success}</span>}
+          {status === 'error' && <span className="font-semibold text-estado-erro">{labels.error}</span>}
+        </p>
+      </div>
+    </form>
+  )
+}

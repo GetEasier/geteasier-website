@@ -1,0 +1,86 @@
+/* Sobre, cada co-fundador (AboutPeople.tsx). Só [data-armed] esconde; [data-in] mostra. */
+
+.photo {
+  transition:
+    clip-path 900ms var(--ease-entrada),
+    transform 900ms var(--ease-entrada);
+}
+.row[data-armed] .photo {
+  clip-path: inset(100% 0 0 0 round 22px);
+  transform: translateY(24px) scale(0.97);
+}
+.row[data-armed][data-in] .photo {
+  clip-path: inset(0 0 0 0 round 22px);
+  transform: none;
+}
+
+.name {
+  transition:
+    opacity 600ms ease 200ms,
+    transform 600ms var(--ease-entrada) 200ms;
+}
+.row[data-armed] .name {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.row[data-armed][data-in] .name {
+  opacity: 1;
+  transform: none;
+}
+
+.code {
+  overflow-x: auto;
+  max-width: 40rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(6, 8, 60, 0.55);
+  box-shadow: 0 24px 48px -30px rgba(0, 0, 0, 0.7);
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+.code b {
+  font-weight: 600;
+  color: #82aaff;
+}
+.code em {
+  font-style: normal;
+  color: #18ddba;
+}
+.line {
+  display: block;
+  /* Se não couber (telemóvel), a linha parte com a continuação alinhada depois da chave. */
+  white-space: pre-wrap;
+  padding-left: 4ch;
+  text-indent: -4ch;
+}
+/* Cada linha "escreve-se" da esquerda para a direita, uma depois da outra. */
+.row[data-armed] .line {
+  clip-path: inset(0 100% 0 0);
+}
+.row[data-armed][data-in] .line {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 500ms steps(24, end) calc(500ms + var(--i) * 420ms);
+}
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 0.2em;
+  vertical-align: -0.2em;
+  background: #18ddba;
+  animation: caret 1s steps(1) infinite;
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

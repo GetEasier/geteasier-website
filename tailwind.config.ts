@@ -1,200 +1,69 @@
-import type { Config } from 'tailwindcss';
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
-const svgToDataUri = require('mini-svg-data-uri');
-const plugin = require('tailwindcss/plugin');
-const {
-  default: flattenColorPalette,
-} = require('tailwindcss/lib/util/flattenColorPalette');
+import type { Config } from 'tailwindcss'
 
-const config = {
-  darkMode: ['class'],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-  prefix: '',
+// Tokens de docs/website/design.md
+const config: Config = {
+  content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
     },
     extend: {
-      animation: {
-        aurora: 'aurora 60s linear infinite',
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        first: 'moveVertical 30s ease infinite',
-        second: 'moveInCircle 20s reverse infinite',
-        third: 'moveInCircle 40s linear infinite',
-        fourth: 'moveHorizontal 40s ease infinite',
-        fifth: 'moveInCircle 20s ease infinite',
-        scroll:
-          'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
-      },
-      boxShadow: {
-        input: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`,
-      },
       colors: {
-        marianBlue: 'hsl(var(--marian-blue))',
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+        tinta: '#06083C',
+        azul: { DEFAULT: '#1B54B8', escuro: '#15418F' },
+        ciano: '#18DDBA',
+        papel: '#F4F6F9',
+        // Fundo das secções alternadas e filetes (DESIGN_NOTES.md, revisto a 01/10)
+        betao: '#F4F6F9',
+        caixa: '#DCE2EA',
+        grafite: '#4A5263',
+        linha: '#C9D1DE',
+        // Cores dos logótipos de cada produto
+        produto: {
+          time: '#3B5FA8',
+          'time-claro': '#E8EEF9',
+          obras: '#1E7A45',
+          'obras-claro': '#E6F4EC',
+          stock: '#A51F2D',
+          'stock-claro': '#FBEAEC',
+          wood: '#7A3E1C',
+          'wood-claro': '#F6ECE4',
         },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+        estado: {
+          valido: '#0F7A5C',
+          aviso: '#8F5400',
+          sinal: '#F5B400',
+          erro: '#B42318',
         },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
+      },
+      fontFamily: {
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'Menlo', 'monospace'],
+      },
+      fontSize: {
+        display: ['clamp(2.5rem, 1.66rem + 3.4vw, 4.5rem)', { lineHeight: '1.02', letterSpacing: '-0.02em' }],
+        h1: ['clamp(2.125rem, 1.7rem + 1.7vw, 3.25rem)', { lineHeight: '1.06', letterSpacing: '-0.015em' }],
+        h2: ['clamp(1.6875rem, 1.48rem + 0.85vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '-0.01em' }],
+        h3: ['clamp(1.3125rem, 1.24rem + 0.3vw, 1.5rem)', { lineHeight: '1.25' }],
+        lead: ['clamp(1.125rem, 1.08rem + 0.2vw, 1.25rem)', { lineHeight: '1.55' }],
+        body: ['1.0625rem', { lineHeight: '1.6' }],
+        small: ['0.875rem', { lineHeight: '1.45' }],
+        data: ['0.8125rem', { lineHeight: '1.4' }],
+      },
+      maxWidth: {
+        page: '77.5rem',
+        prose: '64ch',
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      keyframes: {
-        aurora: {
-          from: {
-            backgroundPosition: '50% 50%, 50% 50%',
-          },
-          to: {
-            backgroundPosition: '350% 50%, 350% 50%',
-          },
-        },
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-        moveHorizontal: {
-          '0%': {
-            transform: 'translateX(-50%) translateY(-10%)',
-          },
-          '50%': {
-            transform: 'translateX(50%) translateY(10%)',
-          },
-          '100%': {
-            transform: 'translateX(-50%) translateY(-10%)',
-          },
-        },
-        moveInCircle: {
-          '0%': {
-            transform: 'rotate(0deg)',
-          },
-          '50%': {
-            transform: 'rotate(180deg)',
-          },
-          '100%': {
-            transform: 'rotate(360deg)',
-          },
-        },
-        moveVertical: {
-          '0%': {
-            transform: 'translateY(-50%)',
-          },
-          '50%': {
-            transform: 'translateY(50%)',
-          },
-          '100%': {
-            transform: 'translateY(-50%)',
-          },
-        },
-        scroll: {
-          to: {
-            transform: 'translate(calc(-50% - 0.5rem))',
-          },
-        },
-      },
-      backgroundImage: {
-        'hero-gradient':
-          'linear-gradient(45deg, hsla(263, 92%, 10%, 1) 61%, hsla(240, 91%, 73%, 1) 100%)',
-      },
-      textShadow: {
-        sm: '0 1px 2px var(--tw-shadow-color)',
-        DEFAULT: '0 2px 4px var(--tw-shadow-color)',
-        lg: '0 8px 16px var(--tw-shadow-color)',
+        ctl: '10px',
+        frame: '18px',
       },
     },
   },
-  plugins: [
-    require('tailwindcss-animate'),
-    addVariablesForColors,
-    function ({ matchUtilities, theme }: any) {
-      matchUtilities(
-        {
-          'bg-grid': (value: any) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`
-            )}")`,
-          }),
-          'bg-grid-small': (value: any) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="8" height="8" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`
-            )}")`,
-          }),
-          'bg-dot': (value: any) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="1.6257413380501518"></circle></svg>`
-            )}")`,
-          }),
-        },
-        { values: flattenColorPalette(theme('backgroundColor')), type: 'color' }
-      );
-    },
-    plugin(function ({ matchUtilities, theme }: any) {
-      matchUtilities(
-        {
-          'text-shadow': (value: any) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme('textShadow') }
-      );
-    }),
-  ],
-} satisfies Config;
-
-export default config;
-
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme('colors'));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
-
-  addBase({
-    ':root': newVars,
-  });
+  plugins: [],
 }
+
+export default config

@@ -1,0 +1,204 @@
+/* Software à medida no início (CustomBeams): feixes de luz do monitor até aos cartões, contorno
+   que acende e cenas nos ícones. Os cartões em si são os .medida-card de globals.css. */
+
+.mb-card > * {
+  position: relative;
+  z-index: 1;
+}
+/* Luz que segue o rato */
+.mb-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--c1) 13%, transparent), transparent 70%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+.mb-card:hover::after {
+  opacity: 1;
+}
+
+/* Feixes */
+.mb-beams {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.mb-rail {
+  fill: none;
+  stroke: #1b54b8;
+  stroke-opacity: 0.3;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 5;
+}
+.mb-pulse {
+  fill: none;
+  stroke: url(#mb-grad);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 24 100;
+  stroke-dashoffset: 24;
+}
+.mb-src {
+  fill: #18ddba;
+  stroke: #fff;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px #18ddba);
+}
+/* Só aparecem depois de desenhados, e nunca no telemóvel nem com "reduzir movimento" */
+.mb-beams:not(.is-ready) {
+  display: none;
+}
+@media (max-width: 1023.98px) {
+  .mb-beams {
+    display: none;
+  }
+}
+
+/* Contorno de luz que roda à volta do cartão aceso */
+.mb-ring {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0 !important;
+  overflow: hidden;
+  border-radius: inherit;
+  padding: 1.5px;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.mb-ring::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  aspect-ratio: 1;
+  background: conic-gradient(from 0deg, transparent 0 70%, var(--c2) 85%, var(--c1) 100%);
+  transform: translate(-50%, -50%);
+}
+.mb-card.is-hit {
+  box-shadow: 0 22px 44px -26px color-mix(in srgb, var(--c1) 70%, transparent);
+}
+.mb-card.is-hit .mb-ring {
+  opacity: 1;
+}
+.mb-card.is-hit .mb-ring::before {
+  animation: mb-spin 1.6s linear infinite;
+}
+@keyframes mb-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Cenas nos ícones */
+.mb-tile {
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+}
+.mb-scene {
+  width: 2.1rem;
+  height: auto;
+  overflow: visible;
+}
+.mb-scene .s-row,
+.mb-scene .s-bar,
+.mb-scene .s-note,
+.mb-scene .s-dest {
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+.mb-scene .s-bar {
+  transform-origin: center bottom;
+}
+.mb-scene .s-dest {
+  transform-origin: center;
+}
+.mb-scene .s-check {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.mb-card.is-hit .medida-icon {
+  animation: mb-tile 900ms var(--ease-entrada);
+}
+.mb-card.is-hit .s-row:nth-of-type(1) {
+  animation: mb-grow 600ms var(--ease-entrada) both;
+}
+.mb-card.is-hit .s-row:nth-of-type(2) {
+  animation: mb-grow 600ms 150ms var(--ease-entrada) both;
+}
+.mb-card.is-hit .s-bar {
+  animation: mb-rise 700ms 300ms var(--ease-entrada) both;
+}
+.mb-card.is-hit .s-note {
+  animation: mb-drop 700ms var(--ease-entrada) both;
+}
+.mb-card.is-hit .s-check {
+  animation: mb-draw 500ms 450ms ease-out both;
+}
+.mb-card.is-hit .s-dot {
+  animation: mb-travel 1100ms ease-in-out both;
+}
+.mb-card.is-hit .s-dest {
+  animation: mb-pop 400ms 650ms var(--ease-entrada) both;
+}
+@keyframes mb-tile {
+  30% {
+    transform: scale(1.08) rotate(-3deg);
+  }
+}
+@keyframes mb-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes mb-rise {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes mb-drop {
+  from {
+    transform: translateY(-9px);
+    opacity: 0;
+  }
+}
+@keyframes mb-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes mb-travel {
+  60%,
+  100% {
+    transform: translateX(15px);
+  }
+}
+@keyframes mb-pop {
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mb-card *,
+  .mb-card::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .mb-beams {
+    display: none;
+  }
+}
