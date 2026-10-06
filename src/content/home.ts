@@ -112,7 +112,7 @@ const pt = {
     },
     {
       q: 'Onde está a equipa?',
-      a: 'Em Marco de Canaveses. Desenhamos, desenvolvemos e damos suporte aos produtos e aos projetos à medida.',
+      a: 'No norte de Portugal, perto do Porto. Desenhamos, desenvolvemos e damos suporte aos produtos e aos projetos à medida.',
     },
   ],
   faqPlans: 'Comparar os planos',
@@ -231,7 +231,7 @@ const en: HomeDict = {
     },
     {
       q: 'Where is the team?',
-      a: 'In Marco de Canaveses, Portugal. We design, build and support both the products and the custom projects.',
+      a: 'In northern Portugal, near Porto. We design, build and support both the products and the custom projects.',
     },
   ],
   faqPlans: 'Compare the plans',
