@@ -2,11 +2,11 @@
 
 import { useEffect, useRef } from 'react'
 import Badge, { StatusIcon, type DocStatus } from '@/components/checkin/Badge'
-import type { HomeDict } from '@/content/home'
+import type { ConstructionDict } from '@/content/construction'
 import { belowFold, loadGsap, reducedMotion } from '@/motion/gsap'
 import { DUR, EASE, STAGGER } from '@/motion/tokens'
 
-type Chaos = HomeDict['chaos']
+type Chaos = ConstructionDict['chaos']
 
 // Linha da folha → pessoa na vista organizada (a linha duplicada junta-se ao Rui).
 const ROW_TO_PERSON = [0, 1, 0, 2, 3]

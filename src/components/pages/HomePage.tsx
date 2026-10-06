@@ -7,7 +7,6 @@ import TeamGrid from '@/components/TeamGrid'
 import BuildHero from '@/components/home/BuildHero'
 import CustomBeams from '@/components/home/CustomBeams'
 import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
-import ChaosToControl from '@/components/home/ChaosToControl'
 import ClientMarquee from '@/components/home/ClientMarquee'
 import TestimonialMarquee from '@/components/home/TestimonialMarquee'
 import HomeMotion from '@/components/home/HomeMotion'
@@ -125,12 +124,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
             </Link>
           </div>
           <ProductPanels locale={locale} headingLevel="h3" className="mt-10" mini />
-        </div>
-      </section>
-
-      <section aria-labelledby="caos-titulo" className="overflow-x-clip bg-betao py-16 md:py-24">
-        <div className="wrap">
-          <ChaosToControl t={t.chaos} headingId="caos-titulo" />
         </div>
       </section>
 

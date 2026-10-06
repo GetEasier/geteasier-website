@@ -116,50 +116,6 @@ const pt = {
     },
   ],
   faqPlans: 'Comparar os planos',
-  chaos: {
-    title: 'Do caos ao controlo',
-    intro: 'Uma manhã numa empresa, antes e depois de um sistema feito à medida. Dados de exemplo.',
-    acts: [
-      {
-        name: 'Caos',
-        text: 'Os pedidos vivem numa folha de cálculo, as notas ficam em post-its e em fotografias do quadro, e cada pessoa tem a sua versão.',
-      },
-      {
-        name: 'Pressão',
-        text: 'Ninguém sabe ao certo o que está atrasado nem quem é o responsável. O cliente liga antes de o aviso chegar.',
-      },
-      {
-        name: 'Controlo',
-        text: 'Cada pedido aparece uma vez, com o responsável, o prazo e o estado. Os avisos passam a resultados.',
-      },
-    ],
-    sheet: {
-      file: 'pedidos_clientes_FINAL_v3.xlsx',
-      cols: ['Cliente', 'Pedido', 'Responsável', 'Estado', 'Prazo'],
-      rows: [
-        ['Metalúrgica Ave', 'Orçamento', 'Joana Pinto', 'enviado', '02/10'],
-        ['Têxteis Sousa', 'Assistência', 'Rui Lopes', 'atrasado', '—'],
-        ['metalurgica ave', 'Orçamento', 'Joana', '—', '02/10'],
-        ['Clínica Foz', '—', 'Marta Reis', 'em curso', '03/10'],
-        ['Padaria Lima', 'Entrega', 'Hugo Matos', 'em falta', '01/10'],
-      ],
-      photo: 'Foto do quadro',
-      photoTime: '08:51',
-      book: 'Post-its',
-      bookLines: ['Ligar Sousa!', 'Lima ? sexta', 'Orç. Ave'],
-    },
-    alerts: ['Cliente à espera de resposta há 3 dias', 'Entrega falhou o prazo', 'Reunião com a direção amanhã'],
-    view: {
-      title: 'Pedidos, hoje',
-      people: [
-        { name: 'Joana Pinto', company: 'Metalúrgica Ave, orçamento', time: '02/10', status: 'ok', text: 'Enviado ao cliente' },
-        { name: 'Rui Lopes', company: 'Têxteis Sousa, assistência', time: '01/10', status: 'missing', text: 'Atrasado 1 dia' },
-        { name: 'Marta Reis', company: 'Clínica Foz, implementação', time: '03/10', status: 'ok', text: 'Dentro do prazo' },
-        { name: 'Hugo Matos', company: 'Padaria Lima, entrega', time: '01/10', status: 'soon', text: 'Entrega hoje às 16:00' },
-      ],
-    },
-    results: ['24 pedidos em curso', '9 prazos cumpridos esta semana', '0 pedidos esquecidos'],
-  },
   stats: {
     title: 'Em números',
     note: undefined as string | undefined,
@@ -279,50 +235,6 @@ const en: HomeDict = {
     },
   ],
   faqPlans: 'Compare the plans',
-  chaos: {
-    title: 'From chaos to control',
-    intro: 'A morning in a company, before and after a custom-built system. Sample data.',
-    acts: [
-      {
-        name: 'Chaos',
-        text: 'Requests live in a spreadsheet, notes end up on sticky notes and photos of the whiteboard, and everyone has their own version.',
-      },
-      {
-        name: 'Pressure',
-        text: 'Nobody knows for sure what is late or who is responsible. The client calls before the warning arrives.',
-      },
-      {
-        name: 'Control',
-        text: 'Each request appears once, with its owner, deadline and status. Warnings become results.',
-      },
-    ],
-    sheet: {
-      file: 'client_requests_FINAL_v3.xlsx',
-      cols: ['Client', 'Request', 'Owner', 'Status', 'Due'],
-      rows: [
-        ['Metalúrgica Ave', 'Quote', 'Joana Pinto', 'sent', '02/10'],
-        ['Têxteis Sousa', 'Support', 'Rui Lopes', 'late', '—'],
-        ['metalurgica ave', 'Quote', 'Joana', '—', '02/10'],
-        ['Clínica Foz', '—', 'Marta Reis', 'in progress', '03/10'],
-        ['Padaria Lima', 'Delivery', 'Hugo Matos', 'missing', '01/10'],
-      ],
-      photo: 'Whiteboard photo',
-      photoTime: '08:51',
-      book: 'Sticky notes',
-      bookLines: ['Call Sousa!', 'Lima ? Friday', 'Ave quote'],
-    },
-    alerts: ['Client waiting for an answer for 3 days', 'Delivery missed its deadline', 'Board meeting tomorrow'],
-    view: {
-      title: 'Requests, today',
-      people: [
-        { name: 'Joana Pinto', company: 'Metalúrgica Ave, quote', time: '02/10', status: 'ok', text: 'Sent to the client' },
-        { name: 'Rui Lopes', company: 'Têxteis Sousa, support', time: '01/10', status: 'missing', text: '1 day late' },
-        { name: 'Marta Reis', company: 'Clínica Foz, rollout', time: '03/10', status: 'ok', text: 'On schedule' },
-        { name: 'Hugo Matos', company: 'Padaria Lima, delivery', time: '01/10', status: 'soon', text: 'Delivery today at 16:00' },
-      ],
-    },
-    results: ['24 requests in progress', '9 deadlines met this week', '0 forgotten requests'],
-  },
   stats: {
     title: 'In numbers',
     note: undefined,

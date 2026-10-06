@@ -167,3 +167,7 @@ Afinação (2026-10-02): no iPhone a abertura engasgava. Causas medidas: (1) ao 
 Atualização: o botão do menu no telemóvel passa a ser só ícone (redondo, riscas que viram X), com o texto Menu/Fechar menu só para leitores de ecrã. Ao tocar para fechar, o ícone e o texto voltam logo, em vez de esperarem pelo fim da animação.
 
 Atualização (2026-10-02): inércia nas faixas. Ao largar o arrasto/swipe com velocidade, a faixa continua e abranda (atrito 0,996 por ms, como as listas do telemóvel); agarrar trava-a. O automático já não liga/desliga de repente: abranda até parar com o rato por cima e volta a ganhar velocidade em ~0,5 s. O trackpad mantém a inércia do próprio sistema.
+
+## Início sem "Do caos ao controlo" (2026-10-06)
+
+A pedido do Alexandre, a secção saiu do início (produtos passam direto aos testemunhos; a página fica ~1600 px mais curta). A versão de obras continua na página do ConstructionEasier; o tipo do componente passou a vir de `construction.ts`.
