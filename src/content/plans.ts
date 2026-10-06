@@ -91,21 +91,15 @@ const pt = {
   plans: ['Base', 'Avançado', 'Premium'] as [string, string, string],
   singlePlan: 'O WoodEasier tem um plano único, com todas as funcionalidades.',
   beOnly: 'Só na Bélgica',
-  notes: [
-    'Mínimo de 25 colaboradores nos módulos cobrados por colaborador.',
-    'Acresce IVA à taxa legal em vigor.',
-  ],
   productLink: (name: string) => `Como funciona o ${name}`,
   ctaTitle: 'Peça uma proposta',
   ctaText: 'Diga-nos que produto lhe interessa e quantos colaboradores tem. Enviamos a proposta por email.',
   ctaButton: 'Pedir proposta',
   choose: 'Escolha o produto',
-  price: 'Preço por proposta',
   everything: (plan: string) => `Tudo do ${plan}, e ainda:`,
   base: 'Inclui:',
   single: 'Plano único',
   allFeatures: 'Todas as funcionalidades:',
-  count: (n: number) => `${n} funcionalidades`,
 }
 
 export type PlansDict = typeof pt
@@ -116,21 +110,15 @@ const en: PlansDict = {
   plans: ['Base', 'Advanced', 'Premium'],
   singlePlan: 'WoodEasier has a single plan with every feature.',
   beOnly: 'Belgium only',
-  notes: [
-    'Minimum of 25 employees on modules charged per employee.',
-    'Prices exclude VAT at the applicable rate.',
-  ],
   productLink: (name: string) => `How ${name} works`,
   ctaTitle: 'Ask for a quote',
   ctaText: 'Tell us which product you are interested in and how many employees you have. We will send the quote by email.',
   ctaButton: 'Ask for a quote',
   choose: 'Choose a product',
-  price: 'Price on quote',
   everything: (plan: string) => `Everything in ${plan}, plus:`,
   base: 'Includes:',
   single: 'Single plan',
   allFeatures: 'Every feature:',
-  count: (n: number) => `${n} features`,
 }
 
 export const plans: Record<Locale, PlansDict> = { pt, en }

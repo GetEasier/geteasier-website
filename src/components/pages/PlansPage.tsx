@@ -59,9 +59,6 @@ export default function PlansPage({ locale }: { locale: Locale }) {
             >
               <span className="block h-1.5 w-12 rounded-full" style={{ backgroundColor: c.dark ? '#6CD3E6' : theme.hex }} />
               <h3 className="mt-5 text-h3 font-semibold">{c.name}</h3>
-              <p className={cn('mt-1 text-small', c.dark ? 'text-white/70' : 'text-grafite')}>
-                {t.price} · {t.count(m.rows.filter((r) => r.plans[m.singlePlan ? 0 : i]).length)}
-              </p>
               <Link
                 href={quote}
                 className={cn('btn mt-6 justify-center', c.dark ? 'bg-ciano text-tinta hover:opacity-90' : cn('text-white hover:opacity-90', theme.solid))}
@@ -105,18 +102,6 @@ export default function PlansPage({ locale }: { locale: Locale }) {
           }))}
           panels={panels}
         />
-
-        <ul className="mt-12 grid gap-3 text-small text-grafite md:grid-cols-2">
-          {t.notes.map((n) => (
-            <li key={n} className="flex gap-3 rounded-ctl bg-white p-4">
-              <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-0.5 h-4 w-4 shrink-0 text-azul" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <circle cx="8" cy="8" r="6.5" />
-                <path d="M8 7.2v4M8 4.8v.4" strokeLinecap="round" />
-              </svg>
-              {n}
-            </li>
-          ))}
-        </ul>
       </div>
 
       <ContactBand locale={locale} title={t.ctaTitle} text={t.ctaText} subject="planos" cta={t.ctaButton} />
