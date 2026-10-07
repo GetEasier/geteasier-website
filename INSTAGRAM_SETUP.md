@@ -64,8 +64,8 @@ INSTAGRAM_USER_ID=17841400008460056
 
 - O token de curta duração expira ao fim de pouco tempo; usa **Long-Lived Token** para produção.
 - A API devolve as últimas **5** publicações e a resposta é cacheada **1 hora**.
-- Se não configurares a API, o site usa os posts estáticos definidos em `src/app/page.tsx` (array `INSTAGRAM_POSTS`).
+- Se não configurares a API, o carrossel usa os posts recebidos na propriedade `initialPosts`. Sem posts válidos, fica oculto.
 
 ## Posts manuais (sem API)
 
-Se não quiseres usar a API, podes manter apenas os posts estáticos editando o array `INSTAGRAM_POSTS` em `src/app/page.tsx` e colocando aí as URLs das imagens e links dos posts.
+Se não quiseres usar a API, passa um array `initialPosts` ao componente `InstagramCarousel` em `src/app/page.tsx`. Cada publicação deve ter `id`, `imageUrl`, `link` e, opcionalmente, `caption`. As imagens devem usar HTTPS em `cdninstagram.com` ou `fbcdn.net`; os links devem usar HTTPS em `instagram.com`, incluindo os seus subdomínios.

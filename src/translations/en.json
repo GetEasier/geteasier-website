@@ -3,19 +3,21 @@
     "products": "Products",
     "testimonials": "Testimonials",
     "about": "About Us",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "services": "Services"
   },
   "hero": {
     "badge": "Custom development · Own products",
-    "title": "Simple Software",
-    "titleHighlight": "for Complex Problems",
-    "description1": "Complete management of your company anywhere in the world.",
-    "description2": "All the numbers your company needs, always in your pocket. GetEasier simplifies companies' internal processes, transforming complex tasks into simple and accessible solutions.",
-    "ctaPrimary": "Talk to us",
+    "title": "We build software",
+    "titleHighlight": "that simplifies your work.",
+    "description1": "Web and mobile applications and integrations built around your business processes.",
+    "description2": "From the first challenge to the next release, we work with you. With custom development and our own products for everyday operations.",
+    "ctaPrimary": "Discuss a project",
     "ctaSecondary": "Explore products",
     "newsletterPlaceholder": "Enter your email to receive updates",
     "newsletterButton": "Subscribe",
-    "newsletterSuccess": "Thank you! You will receive our updates soon."
+    "newsletterSuccess": "Thank you! You will receive our updates soon.",
+    "illustration": "GetEasier solutions illustration · Sample data"
   },
   "clients": {
     "trustedBy": "Trusted by"
@@ -39,33 +41,38 @@
   "products": {
     "title": "Our products",
     "subtitle": "Ready-to-use solutions, developed and supported by our team.",
+    "keyFeatures": "Key features",
     "timeEasier": {
       "name": "TimeEasier",
       "tagline": "Automatic Time Tracking. Increase your company's operational efficiency.",
       "description": "Time tracking doesn't have to be a friction point in companies' daily operations. With TimeEasier, clocking in and out becomes simple, fast, and reliable, whether through a tablet at the workplace or remotely. The system eliminates manual errors, reduces conflicts, ensures automatic history, and facilitates management control.",
       "learnMore": "Learn more about TimeEasier",
-      "shortDescription": "Simplified time tracking"
+      "shortDescription": "Simplified time tracking",
+      "features": "Clock in and out records|Schedule and absence management|Holiday and overtime tracking|Compliant monthly reports"
     },
     "constructionEasier": {
       "name": "ConstructionEasier",
       "tagline": "All your project information in one place. Build with confidence.",
       "description": "ConstructionEasier simplifies construction project management, enabling efficient control of works, materials, and teams. Centralize all your project information in one place and optimize construction management processes.",
       "learnMore": "Learn more about ConstructionEasier",
-      "shortDescription": "Complete construction management"
+      "shortDescription": "Complete construction management",
+      "features": "Cost control per project|Team management and location|Real-time progress updates|Centralised documentation"
     },
     "stockEasier": {
       "name": "StockEasier",
       "tagline": "Total inventory control. Never run out of essential materials again.",
       "description": "StockEasier is an intuitive software that simplifies stock management, enabling efficient control of consumable materials. Centralize and optimize your inventory management processes in a practical and effective way.",
       "learnMore": "Learn more about StockEasier",
-      "shortDescription": "Intelligent inventory management"
+      "shortDescription": "Intelligent inventory management",
+      "features": "Stock movement records|Automatic replenishment alerts|Complete consumption history|PPE reports per employee"
     },
     "woodEasier": {
       "name": "WoodEasier",
       "tagline": "Simplified wood passport management. Compliance guaranteed.",
       "description": "WoodEasier is software designed to simplify the management of treated wood passports, especially in industries dealing with pallets and other wood products. It offers features to track wood origin, verify compliance with regulations, and DGAV phytosanitary inspection forms.",
       "learnMore": "Learn more about WoodEasier",
-      "shortDescription": "Compliant wood passports"
+      "shortDescription": "Compliant wood passports",
+      "features": "Batch and movement records|End-to-end traceability|Automatic DGAV documentation|Audit preparation"
     }
   },
   "testimonials": {
@@ -84,7 +91,7 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Fill out the form and we will get in touch with you.",
+    "subtitle": "Tell us what you want to improve. We will explore the challenge and discuss the next steps.",
     "ready": "Ready to simplify your business?",
     "description": "Get in touch and discover all the solutions we have for you.",
     "contactUs": "Contact Us",
@@ -96,7 +103,7 @@
       "email": "Email",
       "emailPlaceholder": "example@domain.com",
       "message": "Message",
-      "messagePlaceholder": "Write your message here",
+      "messagePlaceholder": "What process would you like to improve? How does it work today?",
       "send": "Send",
       "whatsapp": "Or contact us via WhatsApp",
       "success": {
@@ -305,4 +312,3 @@
     }
   }
 }
-

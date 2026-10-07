@@ -1,36 +1,23 @@
 "use client";
-
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
-
-interface AnimationFadeUpProps {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-  duration?: number;
-  once?: boolean;
+interface Props { children: React.ReactNode; className?: string; delay?: number; duration?: number; once?: boolean }
+export default function AnimationFadeUp({children, className, delay = 0, duration = .5}: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !('IntersectionObserver' in window) || !el.animate) return;
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let animation: Animation | undefined;
+    const stop = () => { if (preference.matches) animation?.cancel(); };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      if (!preference.matches) animation = el.animate([{opacity: .35, transform: 'translateY(14px)'}, {opacity: 1, transform: 'translateY(0)'}], {duration: Math.min(duration, .6) * 1000, delay: Math.min(delay, .2) * 1000, easing: 'cubic-bezier(.22,1,.36,1)'});
+      observer.disconnect();
+    }, {threshold: .08});
+    observer.observe(el);
+    preference.addEventListener('change', stop);
+    return () => { observer.disconnect(); animation?.cancel(); preference.removeEventListener('change', stop); };
+  }, [delay, duration]);
+  return <div ref={ref} className={cn('reveal-section', className)}>{children}</div>;
 }
-
-const AnimationFadeUp = ({
-  children, className, delay, duration, once, ...props
-}: AnimationFadeUpProps) => {
-  return !!children && (
-    <motion.div
-      className={cn('animation-fade-up', className)}
-      initial={{ opacity: 0, y: 50 }}
-      transition={{
-        delay,
-        duration,
-        ease: 'easeOut',
-      }}
-      viewport={{ once }}
-      whileInView={{ opacity: 1, y: 0 }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-
-export default AnimationFadeUp;

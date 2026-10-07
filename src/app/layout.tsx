@@ -10,6 +10,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://geteasier.pt'),
   title: {
     default: "GetEasier — Softwares Simples para Problemas Complexos",
     template: "%s | GetEasier",
@@ -24,16 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt" className="">
+    <html lang="pt-PT" className="">
       <body className={cn(
         'relative h-full font-sans antialiased ',
         inter.className)}>
         <LanguageProvider>
-          <main className="relative overflow-hidden flex flex-col">
+          <div className="relative overflow-hidden flex flex-col">
             <Navbar />
-            <div className="flex-grow flex-1">{children}</div>
+            <main id="main-content" className="flex-grow flex-1">{children}</main>
             <Footer />
-          </main>
+          </div>
           <Toaster
           />
         </LanguageProvider>

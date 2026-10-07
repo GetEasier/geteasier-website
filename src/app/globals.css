@@ -109,3 +109,24 @@
     animation: float 5s ease-in-out infinite;
   }
 }
+
+/* Shared rhythm and motion: geometry stays stable while content changes. */
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+[id] { scroll-margin-top: 6rem; }
+body { overflow-x: clip; }
+::selection { background: #bfdbfe; color: #102b50; }
+a, button, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #2563eb; outline-offset: 5px; }
+.ge-button { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 48px; padding: .85rem 1.5rem; border-radius: .8rem; font-weight: 600; background: #1d4ed8; color: white; transition: transform .2s, background .2s, box-shadow .2s; }
+.ge-button:hover { background: #1e40af; transform: translateY(-2px); box-shadow: 0 8px 24px #1d4ed820; }
+.ge-button.secondary { background: white; color: #172c49; border: 1px solid #cbd5e1; }
+.product-stage { display: grid; }
+.product-stage > [role="tabpanel"] { grid-area: 1 / 1; min-width: 0; }
+.product-stage > [role="tabpanel"][hidden] { display: block; visibility: hidden; pointer-events: none; }
+.product-stage > [role="tabpanel"]:not([hidden]) { animation: product-enter .35s cubic-bezier(.22,1,.36,1); }
+@keyframes product-enter { from {opacity: .3; transform: translateY(8px)} to {opacity: 1; transform: translateY(0)} }
+@media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media (max-width: 767px) { .animate-float { animation: none; } }

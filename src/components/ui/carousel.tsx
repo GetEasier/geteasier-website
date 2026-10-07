@@ -87,6 +87,8 @@ const Carousel = React.forwardRef<
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const target = event.target as HTMLElement;
+        if (target.closest('input, textarea, select, [contenteditable], [role="tablist"]')) return;
         if (event.key === "ArrowLeft") {
           event.preventDefault()
           scrollPrev()
@@ -117,6 +119,7 @@ const Carousel = React.forwardRef<
 
       return () => {
         api?.off("select", onSelect)
+        api?.off("reInit", onSelect)
       }
     }, [api, onSelect])
 

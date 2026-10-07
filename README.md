@@ -1,41 +1,35 @@
-<<<<<<< HEAD
-# get-easier
-Get-easier website
-=======
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GetEasier website
 
-## Getting Started
+Website institucional em Next.js e React. Instalar e verificar com npm:
 
-First, run the development server:
-
-```bash
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run typecheck
+npm test
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A compilação descarrega a fonte Inter de Google Fonts e requer acesso à rede.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contactos
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Em `.env.local`, configurar **uma** das alternativas:
 
-## Learn More
+- `NEXT_PUBLIC_WEB3FORMS_KEY`: usa Web3Forms, compatível com a configuração local existente.
+- `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` e `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`: usa EmailJS se as três variáveis estiverem presentes.
 
-To learn more about Next.js, take a look at the following resources:
+Estas chaves públicas são identificadores destinados ao navegador. Nunca colocar credenciais privadas em variáveis `NEXT_PUBLIC_*`. As variáveis públicas são incorporadas na compilação; alterações em produção exigem uma nova compilação e publicação.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O formulário valida campos, evita envios simultâneos e contém um honeypot. Estas medidas no navegador podem ser contornadas. Configurar as restrições de domínio e a proteção contra spam/CAPTCHA no fornecedor escolhido; o código local não permite confirmar as definições da conta. O envio real deve ser validado com um pedido autorizado após configurar a conta.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Instagram
 
-## Deploy on Vercel
+Configurar `INSTAGRAM_ACCESS_TOKEN` e `INSTAGRAM_USER_ID` (ID numérico), exclusivamente no servidor. Ver [INSTAGRAM_SETUP.md](INSTAGRAM_SETUP.md).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A API usa autenticação por cabeçalho, cache de uma hora, limite de oito segundos e filtra URLs externas. Falhas devolvem uma resposta genérica sem credenciais e o carrossel usa `initialPosts` quando fornecidos; sem posts válidos, oculta-se.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
->>>>>>> 7801a99 (Initial commit from Create Next App)
+## Segurança
+
+Consultar [SECURITY_REVIEW.md](SECURITY_REVIEW.md) para as correções, validações e limitações da análise. As atualizações de dependências são fixadas em `package-lock.json`; npm é o processo de instalação verificado nesta análise.

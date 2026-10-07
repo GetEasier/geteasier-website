@@ -1,5 +1,6 @@
 'use client'
 
+import ProductNextSteps from '@/components/ProductNextSteps';
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Image from "next/image";
 import { Button } from "@/components/ui/moving-border";
@@ -144,12 +145,13 @@ export default function ConstructionEasierPage() {
         </MaxWidthWrapper>
       </section>
 
+      <ProductNextSteps name="ConstructionEasier" />
       {/* Contact Section - Mobile Optimized */}
-      <section className="py-12 md:py-16 lg:py-20 bg-gray-50">
+      <section id="product-contact" className="py-12 md:py-16 lg:py-20 bg-gray-50">
         <MaxWidthWrapper className="px-4 md:px-0">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">{t('productPages.contact.constructionEasier')}</h2>
-            <ContactForm />
+            <ContactForm product="ConstructionEasier" />
           </div>
         </MaxWidthWrapper>
       </section>

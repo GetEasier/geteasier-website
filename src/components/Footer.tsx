@@ -38,6 +38,7 @@ const Footer = () => {
   const { t } = useLanguage()
 
   const companyLinks = [
+    { label: t('nav.services'), href: '/desenvolvimento-a-medida' },
     { label: t('nav.products'), href: '/#products-list' },
     { label: t('footer.testimonialsLink'), href: '/#testimonials' },
     { label: t('footer.aboutLink'), href: '/#team' },

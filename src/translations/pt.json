@@ -3,19 +3,21 @@
     "products": "Produtos",
     "testimonials": "Testemunhos",
     "about": "Sobre Nós",
-    "contact": "Contacte-nos"
+    "contact": "Contacte-nos",
+    "services": "Serviços"
   },
   "hero": {
     "badge": "Desenvolvimento à medida · Produtos próprios",
-    "title": "Softwares Simples",
-    "titleHighlight": "para Problemas Complexos",
-    "description1": "A gestão completa da sua empresa em qualquer parte do mundo.",
-    "description2": "Todos os números que precisa da sua empresa sempre no seu bolso. A GetEasier simplifica os processos internos das empresas, transformando tarefas complexas em soluções simples e acessíveis.",
-    "ctaPrimary": "Fale connosco",
-    "ctaSecondary": "Conhecer produtos",
+    "title": "Desenvolvemos software",
+    "titleHighlight": "que simplifica o seu trabalho.",
+    "description1": "Aplicações web, mobile e integrações à medida dos processos da sua empresa.",
+    "description2": "Do primeiro desafio à evolução da solução, trabalhamos consigo. Com desenvolvimento personalizado e produtos próprios para a gestão do dia a dia.",
+    "ctaPrimary": "Falar sobre um projeto",
+    "ctaSecondary": "Explorar produtos",
     "newsletterPlaceholder": "Insira o seu email para receber novidades",
     "newsletterButton": "Subscrever",
-    "newsletterSuccess": "Obrigado! Vai receber as nossas novidades em breve."
+    "newsletterSuccess": "Obrigado! Vai receber as nossas novidades em breve.",
+    "illustration": "Ilustração das soluções GetEasier · Dados de exemplo"
   },
   "clients": {
     "trustedBy": "Empresas que confiam em nós"
@@ -39,33 +41,38 @@
   "products": {
     "title": "Os nossos produtos",
     "subtitle": "Soluções prontas a usar, desenvolvidas e suportadas pela nossa equipa.",
+    "keyFeatures": "Principais funcionalidades",
     "timeEasier": {
       "name": "TimeEasier",
       "tagline": "Registos de Ponto automáticos. Aumente a eficiência operacional da sua empresa.",
       "description": "O registo de ponto não tem de ser um momento de fricção no dia a dia das empresas. Com a TimeEasier, o registo de entradas e saídas passa a ser simples, rápido e fiável, seja através de tablet no local de trabalho ou em regime remoto. O sistema elimina erros manuais, reduz conflitos, garante histórico automático e facilita o controlo por parte da gestão.",
       "learnMore": "Saiba mais sobre TimeEasier",
-      "shortDescription": "Registo de ponto simplificado"
+      "shortDescription": "Registo de ponto simplificado",
+      "features": "Registo de entradas e saídas|Gestão de horários e ausências|Mapa de férias e horas extra|Relatórios mensais em conformidade"
     },
     "constructionEasier": {
       "name": "ConstructionEasier",
       "tagline": "Toda a informação do seu projeto num só lugar. Construa com confiança.",
       "description": "O ConstructionEasier simplifica a gestão de projetos de construção, permitindo um controlo eficiente de obras, materiais e equipas. Centralize toda a informação do seu projeto num só lugar e otimize os processos de gestão de construção.",
       "learnMore": "Saiba mais sobre ConstructionEasier",
-      "shortDescription": "Gestão completa de obras"
+      "shortDescription": "Gestão completa de obras",
+      "features": "Controlo de custos por obra|Gestão de equipas e localização|Progresso atualizado em tempo real|Documentação centralizada"
     },
     "stockEasier": {
       "name": "StockEasier",
-      "tagline": "Controle total do seu inventário. Nunca mais fique sem materiais essenciais.",
+      "tagline": "Controlo total do seu inventário. Nunca mais fique sem materiais essenciais.",
       "description": "O StockEasier é um software intuitivo que simplifica a gestão de stocks, permitindo um controlo eficiente dos materiais consumíveis. Centralize e otimize os seus processos de gestão de inventário de forma prática e eficaz.",
       "learnMore": "Saiba mais sobre StockEasier",
-      "shortDescription": "Gestão de inventário inteligente"
+      "shortDescription": "Gestão de inventário inteligente",
+      "features": "Registo de entradas e saídas|Alertas de reposição|Histórico de consumos|Relatórios de EPIs por colaborador"
     },
     "woodEasier": {
       "name": "WoodEasier",
       "tagline": "Gestão de passaportes de madeira simplificada. Conformidade garantida.",
       "description": "O WoodEasier é um software projetado para simplificar a gestão dos passaportes de madeira tratada, especialmente em indústrias que lidam com paletes e outros produtos de madeira. Ele oferece recursos para rastrear a origem da madeira, verificar a conformidade com regulamentações e fichas de inspeção fitossanitária da DGAV.",
       "learnMore": "Saiba mais sobre WoodEasier",
-      "shortDescription": "Passaportes de madeira em conformidade"
+      "shortDescription": "Passaportes de madeira em conformidade",
+      "features": "Registo de lotes e movimentos|Rastreabilidade integral|Emissão de documentação DGAV|Preparação para auditorias"
     }
   },
   "testimonials": {
@@ -84,7 +91,7 @@
   },
   "contact": {
     "title": "Contacte-nos",
-    "subtitle": "Preencha o formulário e entraremos em contacto consigo.",
+    "subtitle": "Conte-nos o que quer melhorar. Vamos perceber o desafio e conversar sobre os próximos passos.",
     "ready": "Pronto para simplificar o seu negócio?",
     "description": "Entre em contacto e descubra todas as soluções que temos para si.",
     "contactUs": "Contacte-nos",
@@ -96,7 +103,7 @@
       "email": "Email",
       "emailPlaceholder": "exemplo@domain.com",
       "message": "Mensagem",
-      "messagePlaceholder": "Escreva aqui a sua mensagem",
+      "messagePlaceholder": "Que processo gostaria de melhorar? Como funciona hoje?",
       "send": "Enviar",
       "whatsapp": "Ou contacte-nos através do WhatsApp",
       "success": {
@@ -231,7 +238,7 @@
     },
     "stockEasier": {
       "hero": {
-        "title": "Controle total do seu inventário",
+        "title": "Controlo total do seu inventário",
         "description1": "A StockEasier foi criada para simplificar e automatizar a gestão de consumíveis, permitindo um controlo rigoroso das entradas, saídas e níveis de stock, sem necessidade de folhas de cálculo ou processos manuais.",
         "description2": "Com este módulo, a empresa passa a ter informação atualizada em tempo real, reduzindo ruturas, desperdícios e compras urgentes, garantindo maior eficiência operacional."
       },
@@ -305,4 +312,3 @@
     }
   }
 }
-

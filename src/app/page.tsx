@@ -19,6 +19,7 @@ import ServicesSection from "@/components/ServicesSection";
 import TeamSection from "@/components/TeamSection";
 import { HeroMockup, ProductMockup } from "@/components/AppMockup";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ProcessSection, CaseStudySection } from '@/components/CompanyStory';
 import InstagramCarousel from "@/components/InstagramCarousel";
 
 const TESTIMONIALS = [
@@ -112,9 +113,16 @@ export default function Home() {
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
+    const onSelect = () => {
       setCurrent(api.selectedScrollSnap() + 1);
-    });
+      setCount(api.scrollSnapList().length);
+    };
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
   }, [api]);
 
   // Products with translations
@@ -126,6 +134,7 @@ export default function Home() {
       logo: "/images/products/logos/time-easier.png",
       getTagline: () => t('products.timeEasier.tagline'),
       getDescription: () => t('products.timeEasier.description'),
+      getFeatures: () => t('products.timeEasier.features'),
       getLearnMore: () => t('products.timeEasier.learnMore')
     },
     {
@@ -135,6 +144,7 @@ export default function Home() {
       logo: "/images/products/logos/construction-easier.png",
       getTagline: () => t('products.constructionEasier.tagline'),
       getDescription: () => t('products.constructionEasier.description'),
+      getFeatures: () => t('products.constructionEasier.features'),
       getLearnMore: () => t('products.constructionEasier.learnMore')
     },
     {
@@ -144,6 +154,7 @@ export default function Home() {
       logo: "/images/products/logos/stock-easier.png",
       getTagline: () => t('products.stockEasier.tagline'),
       getDescription: () => t('products.stockEasier.description'),
+      getFeatures: () => t('products.stockEasier.features'),
       getLearnMore: () => t('products.stockEasier.learnMore')
     },
     {
@@ -153,85 +164,9 @@ export default function Home() {
       logo: "/images/products/logos/wood-easier.png",
       getTagline: () => t('products.woodEasier.tagline'),
       getDescription: () => t('products.woodEasier.description'),
+      getFeatures: () => t('products.woodEasier.features'),
       getLearnMore: () => t('products.woodEasier.learnMore')
     }
-  ];
-
-  // Instagram posts - Update with real Instagram post URLs
-  // To get Instagram post image URLs:
-  // 1. Open Instagram post in browser
-  // 2. Right-click on image > "Copy image address" or inspect element to get image URL
-  // 3. Replace the imageUrl and link below with actual values
-  // Instagram posts - Update with real Instagram post URLs
-  // To get Instagram post image URLs:
-  // 1. Open Instagram post in browser
-  // 2. Right-click on image > "Copy image address" or inspect element to get image URL
-  // 3. Replace the imageUrl and link below with actual values
-  const INSTAGRAM_POSTS = [
-    {
-      id: '1',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 42,
-      comments: 5
-    },
-    {
-      id: '2',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 38,
-      comments: 3
-    },
-    {
-      id: '3',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 55,
-      comments: 8
-    },
-    {
-      id: '4',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 29,
-      comments: 2
-    },
-    {
-      id: '5',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 67,
-      comments: 12
-    },
-    {
-      id: '6',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 44,
-      comments: 6
-    },
-    {
-      id: '7',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 51,
-      comments: 7
-    },
-    {
-      id: '8',
-      imageUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="%23f3f4f6"/%3E', // Placeholder até a API carregar
-      caption: 'GetEasier Instagram post',
-      link: 'https://www.instagram.com/geteasier.pt/',
-      likes: 33,
-      comments: 4
-    },
   ];
 
   return (
@@ -284,23 +219,17 @@ export default function Home() {
 
               <AnimationFadeUp delay={0.3} duration={0.6} once>
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 md:gap-4 pt-2">
-                  <ScrollLink
-                    to="contact"
-                    smooth
-                    offset={-80}
+                  <a href="#contact"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-800 text-white font-semibold text-base shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
                   >
                     {t('hero.ctaPrimary')}
                     <ArrowRight className="w-4 h-4" />
-                  </ScrollLink>
-                  <ScrollLink
-                    to="products-list"
-                    smooth
-                    offset={-80}
+                  </a>
+                  <a href="#products-list"
                     className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-white text-gray-800 font-semibold text-base border border-gray-200 shadow-sm hover:border-blue-300 hover:text-blue-700 hover:shadow-md transition-all duration-200 cursor-pointer"
                   >
                     {t('hero.ctaSecondary')}
-                  </ScrollLink>
+                  </a>
                 </div>
               </AnimationFadeUp>
             </div>
@@ -308,6 +237,7 @@ export default function Home() {
             {/* Mockup visual */}
             <AnimationFadeUp delay={0.35} duration={0.7} once className="relative px-6 sm:px-10 lg:px-0 lg:pl-4 pt-4 lg:pt-0">
               <HeroMockup />
+              <p className="text-center text-xs text-slate-500 mt-6">{t('hero.illustration')}</p>
             </AnimationFadeUp>
           </div>
       </MaxWidthWrapper>
@@ -323,6 +253,7 @@ export default function Home() {
 
         {/* O que fazemos - desenvolvimento à medida, produtos próprios e suporte */}
         <ServicesSection />
+        <ProcessSection />
         <div className="w-full relative" style={{ overflow: 'visible' }}>
           {/* Background with smooth gradient - no diagonal shapes */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 pointer-events-none" style={{ overflow: 'visible' }}></div>
@@ -335,9 +266,9 @@ export default function Home() {
               <section className="w-full flex flex-col justify-center relative items-center py-16 md:py-20 px-4 md:px-8" id="products-list">
             {/* Header */}
             <div className="w-full max-w-7xl mb-0 md:mb-2 text-center">
-              <h3 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 tracking-tight">
                 {t('products.title')}
-              </h3>
+              </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
                 {t('products.subtitle')}
               </p>
@@ -354,16 +285,7 @@ export default function Home() {
             </div>
 
             {/* Product Content - Mobile First Design */}
-            <div className="w-full max-w-7xl relative">
-              {/* Mobile / tablet — mockups deslizáveis */}
-              <div className="lg:hidden mb-6 md:mb-8">
-                <ProductMockupsCarousel
-                  products={PRODUCTS.map((p) => ({ name: p.name, color: p.color }))}
-                  selectedIndex={selectedProduct}
-                  onSelect={setSelectedProduct}
-                />
-              </div>
-
+            <div className="w-full max-w-7xl relative product-stage">
               {PRODUCTS.map((product, index) => (
                 <div
                   key={product.name}
@@ -371,13 +293,13 @@ export default function Home() {
                   role="tabpanel"
                   aria-labelledby={`product-tab-${index}`}
                   hidden={selectedProduct !== index}
-                  className={selectedProduct === index ? 'block' : 'hidden'}
+                  tabIndex={0}
                 >
                   {/* Mobile Layout: Stacked */}
                   <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
                     
                     {/* Visual Card — só desktop; no mobile usa o carrossel acima */}
-                    <div className="hidden lg:block relative h-[450px] rounded-2xl overflow-hidden order-last">
+                    <div className="block relative h-[260px] sm:h-[320px] lg:h-[450px] rounded-2xl overflow-hidden order-last">
                       <div
                         className="absolute inset-0 rounded-2xl"
                         style={{
@@ -406,9 +328,20 @@ export default function Home() {
                           ))
                         ) : (
                           <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                            {product.getDescription()}
-                          </p>
-                        )}
+                          {product.getDescription()}
+                        </p>
+                      )}
+                      <div className="pt-2">
+                        <p className="text-sm font-semibold text-gray-900 mb-3">{t('products.keyFeatures')}</p>
+                        <ul className="grid sm:grid-cols-2 gap-x-5 gap-y-2" aria-label={t('products.keyFeatures')}>
+                          {product.getFeatures().split('|').map((feature: string) => (
+                            <li key={feature} className="flex items-start gap-2 text-sm text-gray-600">
+                              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-600" aria-hidden="true" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                       </div>
 
                       {/* CTA - Prominent and Touch-Friendly with Product Color */}
@@ -472,9 +405,9 @@ export default function Home() {
               className="absolute -bottom-24 -right-32 z-0 opacity-40"
               width={800} height={800} style={{ objectFit: 'cover', height: 'auto' }} />
             <div className="text-center relative z-10">
-              <h3 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 tracking-tight">
                 {t('testimonials.title')}
-              </h3>
+              </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
                 {t('testimonials.subtitle')}
               </p>
@@ -557,37 +490,35 @@ export default function Home() {
                 <CarouselNext className="max-md:absolute max-md:-bottom-16 max-md:right-10 max-md:left-auto max-md:top-auto" />
               </Carousel>
               <div className="pt-12 md:pt-16">
-                <ScrollLink
-                  to="contact"
-                  smooth
-                  offset={-80}
+                <a href="#contact"
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-800 text-white font-semibold text-base shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
                 >
                   {t('nav.contact')}
                   <ArrowRight className="w-4 h-4" />
-                </ScrollLink>
+                </a>
               </div>
             </div>
           </section>
+          <CaseStudySection />
           <TeamSection />
           </MaxWidthWrapper>
         </div>
 
         {/* Instagram Carousel */}
-        <InstagramCarousel initialPosts={INSTAGRAM_POSTS} />
+        <InstagramCarousel />
 
         <div className="w-full bg-gray-50 relative z-0 py-16 md:py-20">
           <MaxWidthWrapper>
             <div className="text-center mb-6 md:mb-8 px-4" id="contact">
-              <h3 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 tracking-tight">
                 {t('contact.title')}
-              </h3>
+              </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
                 {t('contact.subtitle')}
               </p>
             </div>
             <div ref={contactRef} className="w-full flex items-center justify-center relative py-6">
-            {beamsActive && <BackgroundBeams />}
+            {beamsActive && <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-blue-100/40 to-transparent rounded-3xl" />}
             <AnimationFadeUp
               delay={0.2}
               duration={0.5}

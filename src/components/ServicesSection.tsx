@@ -1,7 +1,7 @@
 'use client'
 
 import { Code2, Boxes, LifeBuoy } from 'lucide-react'
-import { Link as ScrollLink } from 'react-scroll'
+import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import AnimationFadeUp from '@/components/animation/fade-up'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -52,7 +52,7 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-8 px-4 items-stretch">
           {services.map((service, idx) => (
             <AnimationFadeUp key={service.key} delay={0.1 + idx * 0.1} duration={0.5} once className="h-full">
-              <ScrollLink to={service.scrollTo} smooth offset={-80} className="block h-full cursor-pointer touch-manipulation">
+              <Link href={service.key === 'custom' ? '/desenvolvimento-a-medida' : `/#${service.scrollTo}`} className="block h-full cursor-pointer touch-manipulation">
                 <div className="group relative h-full flex flex-col rounded-2xl border border-gray-200/80 bg-white p-6 md:p-8 shadow-sm lg:hover:shadow-xl lg:hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                   <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient} opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300`} />
                   <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-5 shadow-lg lg:group-hover:scale-110 transition-transform duration-300`}>
@@ -61,7 +61,7 @@ export default function ServicesSection() {
                   <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
                     {t(`services.${service.key}.title`)}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed flex-1">
+                  <p className="text-base text-gray-600 leading-relaxed flex-1">
                     {t(`services.${service.key}.description`)}
                   </p>
                   {service.key === 'products' && (
@@ -75,7 +75,7 @@ export default function ServicesSection() {
                     </div>
                   )}
                 </div>
-              </ScrollLink>
+              </Link>
             </AnimationFadeUp>
           ))}
         </div>

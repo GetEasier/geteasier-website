@@ -1,19 +1,12 @@
 'use client'
 
 import { useState, useEffect } from "react"
+import Image from 'next/image'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { Instagram, Heart, MessageCircle, Send, Bookmark, Loader2 } from "lucide-react"
 import MaxWidthWrapper from "./MaxWidthWrapper"
-
-interface InstagramPost {
-  id: string
-  imageUrl: string
-  caption?: string
-  link: string
-  likes?: number
-  comments?: number
-}
+import { isInstagramPost, type InstagramPost } from '@/lib/instagram'
 
 interface InstagramCarouselProps {
   initialPosts?: InstagramPost[]
@@ -41,9 +34,11 @@ function InstagramPostCard({ post }: { post: InstagramPost }) {
       {/* Image container */}
       <div className="relative aspect-square bg-gray-100">
         {!imageError ? (
-          <img
+          <Image
             src={post.imageUrl}
             alt={post.caption || 'Instagram post'}
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
             className={`w-full h-full object-cover transition-opacity duration-300 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
@@ -58,14 +53,14 @@ function InstagramPostCard({ post }: { post: InstagramPost }) {
         )}
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-          <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="hidden items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="flex items-center gap-1 text-white">
               <Heart className="w-6 h-6 fill-white" />
-              <span className="font-semibold">{post.likes || '0'}</span>
+              <span className="font-semibold">{post.likes ?? '—'}</span>
             </div>
             <div className="flex items-center gap-1 text-white">
               <MessageCircle className="w-6 h-6 fill-white" />
-              <span className="font-semibold">{post.comments || '0'}</span>
+              <span className="font-semibold">{post.comments ?? '—'}</span>
             </div>
           </div>
         </div>
@@ -93,35 +88,41 @@ function InstagramPostCard({ post }: { post: InstagramPost }) {
   )
 }
 
-export default function InstagramCarousel({ initialPosts = [] }: InstagramCarouselProps) {
+const EMPTY_POSTS: InstagramPost[] = []
+
+export default function InstagramCarousel({ initialPosts = EMPTY_POSTS }: InstagramCarouselProps) {
   const { t } = useLanguage()
-  const [posts, setPosts] = useState<InstagramPost[]>(initialPosts)
+  const [posts, setPosts] = useState<InstagramPost[]>(() => initialPosts.filter(isInstagramPost))
   // Se já temos posts estáticos, não mostrar loading (evita spinner longo enquanto a API Apify corre)
   const [loading, setLoading] = useState(initialPosts.length === 0)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    const controller = new AbortController()
+    let active = true
+    const timeout = window.setTimeout(() => controller.abort(), 10000)
+    const fallbackPosts = initialPosts.filter(isInstagramPost)
     const fetchPosts = async () => {
       if (initialPosts.length === 0) setLoading(true)
       try {
-        const response = await fetch('/api/instagram', { cache: 'no-store' })
+        const response = await fetch('/api/instagram', { signal: controller.signal })
+        if (!response.ok) throw new Error('Instagram unavailable')
         const data = await response.json()
-        if (data.posts && Array.isArray(data.posts) && data.posts.length > 0) {
-          setPosts(data.posts)
-        } else if (initialPosts.length > 0) {
-          setPosts(initialPosts)
-        }
-        setError(null)
-      } catch (err) {
-        console.error('Error fetching Instagram posts:', err)
-        setError('Failed to load Instagram posts')
-        if (initialPosts.length > 0) setPosts(initialPosts)
+        const validPosts = Array.isArray(data.posts) ? data.posts.filter(isInstagramPost) : []
+        if (active) setPosts(validPosts.length > 0 ? validPosts : fallbackPosts)
+      } catch {
+        if (active) setPosts(fallbackPosts)
       } finally {
-        setLoading(false)
+        window.clearTimeout(timeout)
+        if (active) setLoading(false)
       }
     }
 
     fetchPosts()
+    return () => {
+      active = false
+      window.clearTimeout(timeout)
+      controller.abort()
+    }
   }, [initialPosts])
 
   if (loading) {
@@ -193,4 +194,3 @@ export default function InstagramCarousel({ initialPosts = [] }: InstagramCarous
     </div>
   )
 }
-
