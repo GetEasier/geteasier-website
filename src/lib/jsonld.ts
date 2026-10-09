@@ -24,9 +24,6 @@ function organization(): Node {
     vatID: `PT${COMPANY.vatId}`,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: COMPANY.address.street,
-      postalCode: COMPANY.address.postalCode,
-      addressLocality: COMPANY.address.locality,
       addressRegion: COMPANY.address.region,
       addressCountry: COMPANY.address.country,
     },

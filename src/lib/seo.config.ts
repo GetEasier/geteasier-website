@@ -219,14 +219,14 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       path: '/sobre',
       title: 'Sobre a GetEasier e a equipa | GetEasier',
       description:
-        'Somos uma equipa de desenvolvimento em Marco de Canaveses, no distrito do Porto. Conheça quem faz o software à medida e os produtos da GetEasier.',
+        'Somos uma equipa de desenvolvimento no norte de Portugal, perto do Porto. Conheça quem faz o software à medida e os produtos da GetEasier.',
       breadcrumb: 'Sobre',
     },
     en: {
       path: '/en/about',
       title: 'About GetEasier and the team | GetEasier',
       description:
-        'We are a software team based in Marco de Canaveses, near Porto, Portugal. Meet the people who build GetEasier custom software and products.',
+        'We are a software team in northern Portugal, near Porto. Meet the people who build GetEasier custom software and products.',
       breadcrumb: 'About',
     },
   },
