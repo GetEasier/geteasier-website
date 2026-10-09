@@ -6,16 +6,21 @@ import { common } from '@/content/common'
 import { products } from '@/content/products'
 import { buildJsonLd } from '@/lib/jsonld'
 import { PRODUCT_IDS, type ProductId } from '@/lib/seo.config'
+import { COMPANY } from '@/lib/site'
 import type { Locale, PageId } from '@/lib/seo.config'
 
 function jsonLdFor(pageId: PageId, locale: Locale) {
   const isProduct = (PRODUCT_IDS as readonly string[]).includes(pageId)
-  const extra = isProduct
+  const item = isProduct ? products[locale].items[pageId as ProductId] : null
+  const isTime = pageId === 'timeEasier'
+  const extra = item
     ? {
-        name: products[locale].items[pageId as ProductId].name,
-        description: products[locale].items[pageId as ProductId].summary,
+        name: item.name,
+        description: item.summary,
+        featureList: item.features.map((f) => f.term),
         // Só o TimeEasier tem apps publicadas nas lojas (ver site.ts).
-        operatingSystem: pageId === 'timeEasier' ? 'iOS, Android' : undefined,
+        operatingSystem: isTime ? 'iOS, Android' : undefined,
+        downloadUrl: isTime ? [COMPANY.apps.ios, COMPANY.apps.android] : undefined,
       }
     : undefined
   return JSON.stringify(buildJsonLd(pageId, locale, extra)).replace(/</g, '\\u003c')

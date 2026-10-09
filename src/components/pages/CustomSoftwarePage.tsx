@@ -10,6 +10,7 @@ import '@/components/custom/custom-software.css'
 import { customSoftware } from '@/content/custom-software'
 import { common } from '@/content/common'
 import { href, type Locale } from '@/lib/seo.config'
+import { faqJsonLd } from '@/lib/jsonld'
 import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
 
 // Software à medida (revisão de 01/10): hero da marca com uma aplicação a ganhar módulos, cartões
@@ -20,19 +21,11 @@ export default function CustomSoftwarePage({ locale }: { locale: Locale }) {
   const t = customSoftware[locale]
   const c = common[locale]
   const contact = `${href('contact', locale)}?assunto=projeto`
-  const faqLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: t.faq.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  }).replace(/</g, '\\u003c')
+  const faqLd = faqJsonLd(t.faq)
 
   return (
     <SiteShell pageId="customSoftware" locale={locale}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />}
 
       <div className="cs-page">
         <section className="cs-hero hero-brand overflow-x-clip text-white">

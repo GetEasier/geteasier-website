@@ -6,6 +6,19 @@ export const COMPANY = {
   name: 'GetEasier',
   legalName: 'UNIVERSAL IDEAS - LDA',
   vatId: '517156261',
+  // Para os dados estruturados (Organization): o que a empresa faz, em poucas palavras.
+  description:
+    'Empresa portuguesa de software. Faz software à medida para empresas e quatro produtos próprios: TimeEasier (registo de ponto e gestão de RH), ConstructionEasier (gestão de obras e subempreiteiros), StockEasier (stocks de EPIs e consumíveis) e WoodEasier (passaportes de madeira tratada para a DGAV).',
+  knowsAbout: [
+    'Software à medida',
+    'Registo de ponto',
+    'Controlo de assiduidade',
+    'Gestão de recursos humanos',
+    'Gestão de obras',
+    'Gestão de subempreiteiros',
+    'Gestão de stocks de EPIs',
+    'Passaportes fitossanitários de madeira tratada',
+  ],
   address: {
     street: 'Alameda do Outeiro, n.º 163',
     postalCode: '4575-037',

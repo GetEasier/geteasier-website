@@ -3,6 +3,7 @@ import type { Locale, PageId, ProductId } from '@/lib/seo.config'
 // Funcionalidades: só as que já estavam publicadas no site (páginas de produto e /planos).
 
 export type Feature = { term: string; desc: string }
+export type FaqItem = { q: string; a: string }
 
 export type ProductContent = {
   name: string
@@ -22,6 +23,11 @@ export type ProductContent = {
   related: { id: PageId; text: string }[]
   planAnchor: string
   demoSubject: string
+  /** Perguntas frequentes do produto (o ConstructionEasier tem as suas em construction.ts) */
+  faqTitle?: string
+  faq?: FaqItem[]
+  /** Secção sobre reconhecimento facial e RGPD (só no TimeEasier). Factos da Política de Privacidade e dos Termos. */
+  privacy?: { title: string; intro: string; points: Feature[]; link: string }
 }
 
 type ProductsDict = {
@@ -114,6 +120,53 @@ const pt: ProductsDict = {
       ],
       planAnchor: 'time',
       demoSubject: 'demo-time-easier',
+      faqTitle: 'Perguntas sobre o TimeEasier',
+      faq: [
+        {
+          q: 'Como funciona o registo de ponto com reconhecimento facial?',
+          a: 'O colaborador toca no tablet do local de trabalho e identifica-se pelo rosto. Se não for reconhecido, pode entrar com o PIN. Fica registada a hora da entrada ou da saída.',
+        },
+        {
+          q: 'O reconhecimento facial cumpre o RGPD?',
+          a: 'O empregador é o responsável pelo tratamento e define o fundamento jurídico e a informação aos trabalhadores. A GetEasier trata os dados por conta dele, como subcontratante (artigo 28.º do RGPD). A correspondência do rosto é feita nos servidores da GetEasier e os dados biométricos são eliminados quando o trabalhador deixa a empresa.',
+        },
+        {
+          q: 'Serve para quem trabalha fora das instalações?',
+          a: 'Sim. Quem trabalha fora regista a entrada e a saída na app para iOS e Android. Nos planos Avançado e Premium, cada registo feito na app guarda o local onde foi feito.',
+        },
+        {
+          q: 'O relatório de horas serve para a ACT?',
+          a: 'Sim. Em todos os planos, o TimeEasier tira o relatório mensal de horas de cada colaborador, de acordo com o Artigo 202.º do Código do Trabalho e o que a ACT pede.',
+        },
+        {
+          q: 'Liga ao processamento salarial?',
+          a: 'Sim, no plano Premium: exportação para o processamento salarial e integração com o ERP da empresa.',
+        },
+      ],
+      privacy: {
+        title: 'Reconhecimento facial e RGPD',
+        intro:
+          'O rosto é um dado biométrico, uma categoria especial de dados pessoais no RGPD. É assim que o TimeEasier o trata.',
+        points: [
+          {
+            term: 'Quem é responsável',
+            desc: 'A empresa cliente é a responsável pelo tratamento: define o fundamento jurídico e informa os trabalhadores. A GetEasier é subcontratante e trata os dados só por conta da empresa (artigo 28.º do RGPD).',
+          },
+          {
+            term: 'Onde é feito o reconhecimento',
+            desc: 'A correspondência do rosto é feita nos servidores da GetEasier. A app não gera nem guarda descritores faciais no telemóvel.',
+          },
+          {
+            term: 'Quanto tempo se guarda',
+            desc: 'Os dados biométricos são eliminados quando o trabalhador deixa de estar ligado à empresa. Os registos de assiduidade ficam 5 anos, por defeito.',
+          },
+          {
+            term: 'Alternativa ao rosto',
+            desc: 'No tablet, o colaborador também pode entrar com o PIN.',
+          },
+        ],
+        link: 'Ler a Política de Privacidade',
+      },
     },
     constructionEasier: {
       name: 'ConstructionEasier',
@@ -193,6 +246,25 @@ const pt: ProductsDict = {
       ],
       planAnchor: 'stock',
       demoSubject: 'demo-stock-easier',
+      faqTitle: 'Perguntas sobre o StockEasier',
+      faq: [
+        {
+          q: 'O StockEasier serve só para EPIs?',
+          a: 'Não. Serve para EPIs e outros consumíveis, organizados por categoria e por local de armazenamento.',
+        },
+        {
+          q: 'Consigo saber que EPIs entreguei a cada colaborador?',
+          a: 'Sim. Nos planos Avançado e Premium há um relatório dos EPIs entregues a cada colaborador, com o histórico de todos os movimentos.',
+        },
+        {
+          q: 'Avisa quando é preciso comprar?',
+          a: 'Sim. Nos planos Avançado e Premium, o StockEasier avisa quando um artigo chega ao nível mínimo que definiu.',
+        },
+        {
+          q: 'Várias pessoas podem usar ao mesmo tempo?',
+          a: 'Sim. Em todos os planos, várias pessoas usam o StockEasier ao mesmo tempo, a partir de qualquer dispositivo.',
+        },
+      ],
     },
     woodEasier: {
       name: 'WoodEasier',
@@ -230,6 +302,25 @@ const pt: ProductsDict = {
       ],
       planAnchor: 'wood',
       demoSubject: 'demo-wood-easier',
+      faqTitle: 'Perguntas sobre o WoodEasier',
+      faq: [
+        {
+          q: 'Para que empresas é o WoodEasier?',
+          a: 'Para empresas que trabalham com madeira tratada e paletes e têm de cumprir as exigências da DGAV.',
+        },
+        {
+          q: 'Que documentos o WoodEasier emite?',
+          a: 'Os passaportes de madeiras tratadas de cada lote e os relatórios e comprovativos para a DGAV, de acordo com a legislação portuguesa.',
+        },
+        {
+          q: 'Ajuda numa inspeção ou auditoria?',
+          a: 'Sim. Cada lote tem o histórico completo, da receção à expedição, com os tratamentos, temperaturas e durações. A documentação já está organizada quando a inspeção chega.',
+        },
+        {
+          q: 'Quanto custa o WoodEasier?',
+          a: 'O WoodEasier tem um plano único, com todas as funcionalidades. O preço é dado numa proposta para a sua empresa.',
+        },
+      ],
     },
   },
 }
@@ -286,6 +377,52 @@ const en: ProductsDict = {
         { id: 'constructionEasier', text: 'ConstructionEasier: TimeEasier plus construction site management' },
         { id: 'customSoftware', text: 'How we built the TimeEasier platform' },
       ],
+      faqTitle: 'Questions about TimeEasier',
+      faq: [
+        {
+          q: 'How does clocking in with face recognition work?',
+          a: 'The employee taps the workplace tablet and identifies themselves by face. If they are not recognised, they can sign in with their PIN. The time of entry or exit is recorded.',
+        },
+        {
+          q: 'Does face recognition comply with the GDPR?',
+          a: 'The employer is the data controller and sets the legal basis and the information given to workers. GetEasier processes the data on the employer’s behalf, as a processor (Article 28 GDPR). Face matching runs on GetEasier’s servers, and biometric data is deleted when the worker leaves the company.',
+        },
+        {
+          q: 'Does it work for people who work off site?',
+          a: 'Yes. People working elsewhere clock in and out in the iOS and Android app. On the Advanced and Premium plans, every record made in the app stores where it was made.',
+        },
+        {
+          q: 'Is the hours report valid for the labour inspectorate (ACT)?',
+          a: 'Yes. On every plan, TimeEasier produces each employee’s monthly hours report, in line with Article 202 of the Portuguese Labour Code and what the ACT asks for.',
+        },
+        {
+          q: 'Does it connect to payroll?',
+          a: 'Yes, on the Premium plan: export to payroll and integration with the company’s ERP.',
+        },
+      ],
+      privacy: {
+        title: 'Face recognition and the GDPR',
+        intro: 'A face is biometric data, a special category of personal data under the GDPR. This is how TimeEasier handles it.',
+        points: [
+          {
+            term: 'Who is responsible',
+            desc: 'The customer company is the data controller: it sets the legal basis and informs its workers. GetEasier is the processor and handles the data only on the company’s behalf (Article 28 GDPR).',
+          },
+          {
+            term: 'Where matching happens',
+            desc: 'Face matching runs on GetEasier’s servers. The app does not create or store face descriptors on the phone.',
+          },
+          {
+            term: 'How long it is kept',
+            desc: 'Biometric data is deleted when the worker is no longer linked to the company. Attendance records are kept for 5 years by default.',
+          },
+          {
+            term: 'An alternative to the face',
+            desc: 'On the tablet, employees can also sign in with their PIN.',
+          },
+        ],
+        link: 'Read the Privacy Policy (in Portuguese)',
+      },
     },
     constructionEasier: {
       ...pt.items.constructionEasier,
@@ -357,6 +494,25 @@ const en: ProductsDict = {
         { id: 'constructionEasier', text: 'ConstructionEasier: the sites where the PPE is used' },
         { id: 'customSoftware', text: 'Custom software for your other processes' },
       ],
+      faqTitle: 'Questions about StockEasier',
+      faq: [
+        {
+          q: 'Is StockEasier only for PPE?',
+          a: 'No. It covers PPE and other consumables, organised by category and storage location.',
+        },
+        {
+          q: 'Can I see which PPE I handed to each employee?',
+          a: 'Yes. On the Advanced and Premium plans there is a report of the PPE handed to each employee, with the history of every movement.',
+        },
+        {
+          q: 'Does it tell me when to buy more?',
+          a: 'Yes. On the Advanced and Premium plans, StockEasier sends an alert when an item reaches the minimum level you set.',
+        },
+        {
+          q: 'Can several people use it at once?',
+          a: 'Yes. On every plan, several people use StockEasier at the same time, from any device.',
+        },
+      ],
     },
     woodEasier: {
       ...pt.items.woodEasier,
@@ -389,6 +545,25 @@ const en: ProductsDict = {
       related: [
         { id: 'customSoftware', text: 'Custom software for your industry' },
         { id: 'products', text: 'All GetEasier products' },
+      ],
+      faqTitle: 'Questions about WoodEasier',
+      faq: [
+        {
+          q: 'Which companies is WoodEasier for?',
+          a: 'Companies that work with treated timber and pallets and must meet the requirements of DGAV, the Portuguese food and veterinary authority.',
+        },
+        {
+          q: 'Which documents does WoodEasier issue?',
+          a: 'Treated timber passports for each batch, and the reports and certificates for DGAV, in line with Portuguese law.',
+        },
+        {
+          q: 'Does it help with an inspection or audit?',
+          a: 'Yes. Each batch has its full history, from receiving to shipping, with treatments, temperatures and durations. The paperwork is already in order when the inspection comes.',
+        },
+        {
+          q: 'How much does WoodEasier cost?',
+          a: 'WoodEasier has a single plan with every feature. The price comes in a quote for your company.',
+        },
       ],
     },
   },

@@ -108,7 +108,7 @@ const pt = {
     },
     {
       q: 'Quanto custa?',
-      a: 'Cada produto tem os planos Base, Avançado e Premium. Um projeto à medida tem uma proposta própria, com âmbito, fases e custo antes de começarmos.',
+      a: 'O TimeEasier, o ConstructionEasier e o StockEasier têm os planos Base, Avançado e Premium, e o WoodEasier tem um plano único. O preço depende da empresa e é dado numa proposta. Um projeto à medida tem uma proposta própria, com âmbito, fases e custo antes de começarmos.',
     },
     {
       q: 'Onde está a equipa?',
@@ -227,7 +227,7 @@ const en: HomeDict = {
     },
     {
       q: 'How much does it cost?',
-      a: 'Each product has Base, Advanced and Premium plans. A custom project gets its own proposal, with scope, phases and cost before we start.',
+      a: 'TimeEasier, ConstructionEasier and StockEasier have Base, Advanced and Premium plans, and WoodEasier has a single plan. The price depends on your company and comes in a quote. A custom project gets its own proposal, with scope, phases and cost before we start.',
     },
     {
       q: 'Where is the team?',
