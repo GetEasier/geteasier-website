@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import '../globals.css'
 import { sans, mono } from '@/lib/fonts'
 import { SITE_URL } from '@/lib/site'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,7 +23,11 @@ export default function EnLayout({ children }: { children: React.ReactNode }) {
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Estatísticas de visitas da Vercel (sem cookies). */}
+        <Analytics />
+      </body>
     </html>
   )
 }
