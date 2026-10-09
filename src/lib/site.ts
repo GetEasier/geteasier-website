@@ -19,10 +19,10 @@ export const COMPANY = {
     'Gestão de stocks de EPIs',
     'Passaportes fitossanitários de madeira tratada',
   ],
+  // Morada pública (dados estruturados): só a cidade, sem rua nem código postal, para pesquisas por
+  // proximidade. A sede completa fica apenas nos documentos legais (Alexandre, 09/10).
   address: {
-    street: 'Alameda do Outeiro, n.º 163',
-    postalCode: '4575-037',
-    locality: 'Alpendorada e Matos, Marco de Canaveses',
+    locality: 'Marco de Canaveses',
     region: 'Porto',
     country: 'PT',
   },
