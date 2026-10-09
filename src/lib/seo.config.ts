@@ -198,14 +198,14 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       path: '/planos',
       title: 'Planos e módulos | GetEasier',
       description:
-        'Compare os planos Base, Avançado e Premium de cada produto GetEasier e veja o que inclui cada um. Peça uma proposta para a dimensão da sua equipa.',
+        'Compare os planos Base, Avançado e Premium dos produtos GetEasier e o plano único do WoodEasier. Peça uma proposta para a dimensão da sua equipa.',
       breadcrumb: 'Planos',
     },
     en: {
       path: '/en/pricing',
       title: 'Plans and modules | GetEasier',
       description:
-        'Compare the Base, Advanced and Premium plans for each GetEasier product and see what each one includes. Ask for a quote for the size of your team.',
+        'Compare the Base, Advanced and Premium plans of GetEasier products and WoodEasier’s single plan. Ask for a quote for the size of your team.',
       breadcrumb: 'Plans',
     },
   },

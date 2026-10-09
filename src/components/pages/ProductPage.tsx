@@ -25,6 +25,7 @@ import { construction } from '@/content/construction'
 import { products } from '@/content/products'
 import { common } from '@/content/common'
 import { href, type Locale, type ProductId } from '@/lib/seo.config'
+import { faqJsonLd } from '@/lib/jsonld'
 import { PRODUCT_THEME } from '@/lib/product-theme'
 import { cn } from '@/lib/utils'
 import { CinematicGroup, CinematicText } from '@/components/interactions/CinematicText'
@@ -53,6 +54,9 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
   const Scene = SCENES[id]
   const Benefits = BENEFITS[id]
   const pt = locale === 'pt'
+  // O ConstructionEasier tem as perguntas em construction.ts; os outros produtos em products.ts.
+  const faq = id === 'constructionEasier' ? { title: construction[locale].faqTitle, items: construction[locale].faq } : item.faq && item.faqTitle ? { title: item.faqTitle, items: item.faq } : null
+  const faqLd = faq ? faqJsonLd(faq.items) : null
   const labels = {
     pause: pt ? 'Pausar' : 'Pause',
     play: pt ? 'Continuar' : 'Play',
@@ -62,6 +66,7 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
 
   return (
     <SiteShell pageId={id} locale={locale}>
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />}
       {/* Hero escuro com a luz da cor do produto (como o do início); a demo fica a meio caminho entre o hero e a página */}
       <section
         className="relative overflow-hidden bg-tinta text-white"
@@ -150,10 +155,29 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
         </>
       )}
 
-      {id === 'constructionEasier' && (
-        <Section id="perguntas" title={construction[locale].faqTitle}>
+      {item.privacy && (
+        <Section id="rgpd" title={item.privacy.title}>
+          <p className="max-w-prose text-lead">{item.privacy.intro}</p>
+          <dl className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
+            {item.privacy.points.map((point) => (
+              <div key={point.term}>
+                <dt className="font-semibold">{point.term}</dt>
+                <dd className="mt-2 text-grafite">{point.desc}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-10">
+            <Link href={href('privacy', locale)} className="link">
+              {item.privacy.link}
+            </Link>
+          </p>
+        </Section>
+      )}
+
+      {faq && (
+        <Section id="perguntas" title={faq.title}>
           <div className="max-w-3xl">
-            <Faq items={construction[locale].faq} />
+            <Faq items={faq.items} />
           </div>
         </Section>
       )}

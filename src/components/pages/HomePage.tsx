@@ -17,15 +17,18 @@ import { COMPANY } from '@/lib/site'
 import { home } from '@/content/home'
 import { common } from '@/content/common'
 import { href, type Locale } from '@/lib/seo.config'
+import { faqJsonLd } from '@/lib/jsonld'
 
 // Início (DESIGN_NOTES.md): o check-in é o único momento orquestrado; cada secção abaixo tem o
 // seu efeito ao descer, sem repetir o mesmo em todas.
 export default function HomePage({ locale }: { locale: Locale }) {
   const t = home[locale]
+  const faqLd = faqJsonLd(t.faq)
   const c = common[locale]
 
   return (
     <SiteShell pageId="home" locale={locale}>
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />}
       <LegacyHashRedirect locale={locale} />
       <HomeMotion />
 

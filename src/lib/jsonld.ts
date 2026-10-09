@@ -18,6 +18,9 @@ function organization(): Node {
     legalName: COMPANY.legalName,
     url: SITE_URL,
     logo: absoluteUrl('/icon-512.png'),
+    description: COMPANY.description,
+    knowsAbout: COMPANY.knowsAbout,
+    areaServed: 'PT',
     vatID: `PT${COMPANY.vatId}`,
     address: {
       '@type': 'PostalAddress',
@@ -63,7 +66,30 @@ function breadcrumbs(id: PageId, locale: Locale): Node | null {
   }
 }
 
-export function buildJsonLd(id: PageId, locale: Locale, extra?: { name?: string; description?: string; operatingSystem?: string }) {
+/** Perguntas frequentes em FAQPage. Deixa de fora respostas por confirmar ([CONFIRMAR]). */
+export function faqJsonLd(items: { q: string; a: string }[]) {
+  const ready = items.filter((f) => !f.q.includes('[CONFIRMAR]') && !f.a.includes('[CONFIRMAR]'))
+  if (!ready.length) return null
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: ready.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }).replace(/</g, '\\u003c')
+}
+
+type Extra = {
+  name?: string
+  description?: string
+  operatingSystem?: string
+  featureList?: string[]
+  downloadUrl?: string[]
+}
+
+export function buildJsonLd(id: PageId, locale: Locale, extra?: Extra) {
   const r = ROUTES[id]
   const loc = route(id, locale)
   const lang = r.en ? LANG[locale] : 'pt-PT'
@@ -109,7 +135,10 @@ export function buildJsonLd(id: PageId, locale: Locale, extra?: { name?: string;
       name: extra?.name ?? loc.breadcrumb,
       description: extra?.description ?? loc.description,
       applicationCategory: 'BusinessApplication',
+      inLanguage: lang,
       ...(extra?.operatingSystem ? { operatingSystem: extra.operatingSystem } : {}),
+      ...(extra?.featureList?.length ? { featureList: extra.featureList } : {}),
+      ...(extra?.downloadUrl?.length ? { downloadUrl: extra.downloadUrl, sameAs: extra.downloadUrl } : {}),
       publisher: { '@id': ORG_ID },
       url,
     })
