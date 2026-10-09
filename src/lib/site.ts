@@ -19,8 +19,10 @@ export const COMPANY = {
     'Gestão de stocks de EPIs',
     'Passaportes fitossanitários de madeira tratada',
   ],
-  // Morada pública: só a região. A sede completa fica apenas nos documentos legais (Alexandre, 09/10).
+  // Morada pública (dados estruturados): só a cidade, sem rua nem código postal, para pesquisas por
+  // proximidade. A sede completa fica apenas nos documentos legais (Alexandre, 09/10).
   address: {
+    locality: 'Marco de Canaveses',
     region: 'Porto',
     country: 'PT',
   },
