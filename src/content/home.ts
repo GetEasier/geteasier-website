@@ -100,7 +100,7 @@ const pt = {
     },
     {
       q: 'Os produtos funcionam em conjunto?',
-      a: 'Sim. Cada produto funciona sozinho, e o ConstructionEasier já inclui o registo de ponto do TimeEasier.',
+      a: 'Não. Cada produto funciona sozinho. O ConstructionEasier já inclui o registo de ponto do TimeEasier.',
     },
     {
       q: 'Como se identifica um trabalhador no tablet?',
@@ -141,7 +141,7 @@ const pt = {
   },
   products: {
     title: 'Os nossos produtos',
-    text: 'Feitos e mantidos por nós. Funcionam sozinhos ou em conjunto.',
+    text: 'Feitos e mantidos por nós. Cada um funciona sozinho.',
     link: 'Ver os quatro produtos',
     open: (name: string) => `Conhecer o ${name}`,
   },
@@ -219,7 +219,7 @@ const en: HomeDict = {
     },
     {
       q: 'Do the products work together?',
-      a: 'Yes. Each product works on its own, and ConstructionEasier already includes TimeEasier’s time tracking.',
+      a: 'No. Each product works on its own. ConstructionEasier already includes TimeEasier’s time tracking.',
     },
     {
       q: 'How does a worker identify themselves on the tablet?',
@@ -260,7 +260,7 @@ const en: HomeDict = {
   },
   products: {
     title: 'Our products',
-    text: 'Built and maintained by us. They work on their own or together.',
+    text: 'Built and maintained by us. Each one works on its own.',
     link: 'See the four products',
     open: (name: string) => `Explore ${name}`,
   },
