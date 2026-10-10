@@ -155,24 +155,6 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
         </>
       )}
 
-      {item.privacy && (
-        <Section id="rgpd" title={item.privacy.title}>
-          <p className="max-w-prose text-lead">{item.privacy.intro}</p>
-          <dl className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
-            {item.privacy.points.map((point) => (
-              <div key={point.term}>
-                <dt className="font-semibold">{point.term}</dt>
-                <dd className="mt-2 text-grafite">{point.desc}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-10">
-            <Link href={href('privacy', locale)} className="link">
-              {item.privacy.link}
-            </Link>
-          </p>
-        </Section>
-      )}
 
       {faq && (
         <Section id="perguntas" title={faq.title}>

@@ -26,8 +26,6 @@ export type ProductContent = {
   /** Perguntas frequentes do produto (o ConstructionEasier tem as suas em construction.ts) */
   faqTitle?: string
   faq?: FaqItem[]
-  /** Secção sobre reconhecimento facial e RGPD (só no TimeEasier). Factos da Política de Privacidade e dos Termos. */
-  privacy?: { title: string; intro: string; points: Feature[]; link: string }
 }
 
 type ProductsDict = {
@@ -124,7 +122,7 @@ const pt: ProductsDict = {
       faq: [
         {
           q: 'O reconhecimento facial cumpre o RGPD?',
-          a: 'O empregador é o responsável pelo tratamento e define o fundamento jurídico e a informação aos trabalhadores. A GetEasier trata os dados por conta dele, como subcontratante (artigo 28.º do RGPD), e os dados biométricos são eliminados quando o trabalhador deixa a empresa.',
+          a: 'O empregador é o responsável pelo tratamento e define o fundamento jurídico e a informação aos trabalhadores. A GetEasier trata os dados por conta dele, como subcontratante (artigo 28.º do RGPD). No tablet, o colaborador também pode entrar com o PIN.',
         },
         {
           q: 'Serve para quem trabalha fora das instalações?',
@@ -135,26 +133,6 @@ const pt: ProductsDict = {
           a: 'Sim, no plano Premium: exportação para o processamento salarial e integração com o ERP da empresa.',
         },
       ],
-      privacy: {
-        title: 'Reconhecimento facial e RGPD',
-        intro:
-          'O rosto é um dado biométrico, uma categoria especial de dados pessoais no RGPD. É assim que o TimeEasier o trata.',
-        points: [
-          {
-            term: 'Quem é responsável',
-            desc: 'A empresa cliente é a responsável pelo tratamento: define o fundamento jurídico e informa os trabalhadores. A GetEasier é subcontratante e trata os dados só por conta da empresa (artigo 28.º do RGPD).',
-          },
-          {
-            term: 'Quanto tempo se guarda',
-            desc: 'Os dados biométricos são eliminados quando o trabalhador deixa de estar ligado à empresa. Os registos de assiduidade ficam 5 anos, por defeito.',
-          },
-          {
-            term: 'Alternativa ao rosto',
-            desc: 'No tablet, o colaborador também pode entrar com o PIN.',
-          },
-        ],
-        link: 'Ler a Política de Privacidade',
-      },
     },
     constructionEasier: {
       name: 'ConstructionEasier',
@@ -180,6 +158,7 @@ const pt: ProductsDict = {
         { term: 'Alojamento e carreira', desc: 'Despesas de alojamento dos colaboradores e progressão de carreira.' },
         { term: 'Painel central', desc: 'Visão de todas as obras para acompanhamento e análise.' },
         { term: 'Registo de ponto', desc: 'Todas as funcionalidades do TimeEasier no plano correspondente.' },
+        { term: 'Leitura de documentos com IA', desc: 'Os documentos são lidos com inteligência artificial (OCR) e os dados entram na plataforma sem ninguém os escrever à mão.' },
       ],
       stepsTitle: 'Uma obra vista pelo diretor de obra',
       stepsIntro: 'O que o diretor de obra vê ao abrir uma obra:',
@@ -369,7 +348,7 @@ const en: ProductsDict = {
       faq: [
         {
           q: 'Does face recognition comply with the GDPR?',
-          a: 'The employer is the data controller and sets the legal basis and the information given to workers. GetEasier processes the data on the employer’s behalf, as a processor (Article 28 GDPR), and biometric data is deleted when the worker leaves the company.',
+          a: 'The employer is the data controller and sets the legal basis and the information given to workers. GetEasier processes the data on the employer’s behalf, as a processor (Article 28 GDPR). On the tablet, employees can also sign in with their PIN.',
         },
         {
           q: 'Does it work for people who work off site?',
@@ -380,25 +359,6 @@ const en: ProductsDict = {
           a: 'Yes, on the Premium plan: export to payroll and integration with the company’s ERP.',
         },
       ],
-      privacy: {
-        title: 'Face recognition and the GDPR',
-        intro: 'A face is biometric data, a special category of personal data under the GDPR. This is how TimeEasier handles it.',
-        points: [
-          {
-            term: 'Who is responsible',
-            desc: 'The customer company is the data controller: it sets the legal basis and informs its workers. GetEasier is the processor and handles the data only on the company’s behalf (Article 28 GDPR).',
-          },
-          {
-            term: 'How long it is kept',
-            desc: 'Biometric data is deleted when the worker is no longer linked to the company. Attendance records are kept for 5 years by default.',
-          },
-          {
-            term: 'An alternative to the face',
-            desc: 'On the tablet, employees can also sign in with their PIN.',
-          },
-        ],
-        link: 'Read the Privacy Policy (in Portuguese)',
-      },
     },
     constructionEasier: {
       ...pt.items.constructionEasier,
@@ -422,6 +382,7 @@ const en: ProductsDict = {
         { term: 'Housing and careers', desc: 'Employee housing expenses and career progression.' },
         { term: 'Central dashboard', desc: 'An overview of every site for follow-up and analysis.' },
         { term: 'Time tracking', desc: 'Every TimeEasier feature in the matching plan.' },
+        { term: 'AI document reading', desc: 'Documents are read with artificial intelligence (OCR) and their details go into the platform without anyone typing them.' },
       ],
       stepsTitle: 'A site as the site manager sees it',
       stepsIntro: 'What the site manager sees when opening a site:',

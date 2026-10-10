@@ -111,6 +111,10 @@ const pt = {
       a: 'O TimeEasier, o ConstructionEasier e o StockEasier têm os planos Base, Avançado e Premium, e o WoodEasier tem um plano único. O preço depende da empresa e é dado numa proposta. Um projeto à medida tem uma proposta própria, com âmbito, fases e custo antes de começarmos.',
     },
     {
+      q: 'Os produtos usam inteligência artificial?',
+      a: 'Sim. Já usamos inteligência artificial na leitura de documentos (OCR) e estamos a levá-la a mais partes dos produtos.',
+    },
+    {
       q: 'Onde está a equipa?',
       a: 'No norte de Portugal, perto do Porto. Desenhamos, desenvolvemos e damos suporte aos produtos e aos projetos à medida.',
     },
@@ -228,6 +232,10 @@ const en: HomeDict = {
     {
       q: 'How much does it cost?',
       a: 'TimeEasier, ConstructionEasier and StockEasier have Base, Advanced and Premium plans, and WoodEasier has a single plan. The price depends on your company and comes in a quote. A custom project gets its own proposal, with scope, phases and cost before we start.',
+    },
+    {
+      q: 'Do your products use artificial intelligence?',
+      a: 'Yes. We already use artificial intelligence for document reading (OCR), and we are bringing it to more parts of our products.',
     },
     {
       q: 'Where is the team?',

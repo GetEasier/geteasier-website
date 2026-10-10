@@ -17,7 +17,7 @@ const pt = {
       {
         id: 'documento',
         tab: 'Ler documento',
-        text: '[CONFIRMAR] Os dados do documento de identificação passam para a ficha do trabalhador sem ninguém os escrever à mão.',
+        text: 'O documento de identificação é lido com inteligência artificial e os dados passam para a ficha do trabalhador sem ninguém os escrever à mão.',
         detail: '[CONFIRMAR] Nome, número do documento, validade e nacionalidade.',
       },
       {
@@ -186,6 +186,10 @@ const pt = {
       a: 'As permissões são por função: Encarregado de Obra, Diretor de Obra, TSST e Encarregado Geral, cada um com o que precisa de ver.',
     },
     {
+      q: 'O ConstructionEasier usa inteligência artificial?',
+      a: 'Sim. A leitura dos documentos (OCR) é feita com inteligência artificial, e os dados passam para a plataforma sem ninguém os escrever à mão. Estamos a levar a IA a mais partes da plataforma.',
+    },
+    {
       q: 'Que caixa leva o tablet na portaria?',
       a: '[CONFIRMAR] Características da caixa (proteção, fixação, alimentação).',
     },
@@ -208,7 +212,7 @@ const en: ConstructionDict = {
       {
         id: 'documento',
         tab: 'Read a document',
-        text: '[CONFIRMAR] The ID document’s details go into the worker’s record without anyone typing them.',
+        text: 'The ID document is read with artificial intelligence and its details go into the worker’s record without anyone typing them.',
         detail: '[CONFIRMAR] Name, document number, expiry date and nationality.',
       },
       {
@@ -330,6 +334,7 @@ const en: ConstructionDict = {
     { q: 'Does ConstructionEasier include time tracking?', a: 'Yes. It includes TimeEasier: on-site tablet with face recognition, an app for remote workers and the monthly hours report.' },
     { q: 'Do subcontractors use the same platform?', a: 'Yes. Your own company and subcontractors share the site, each with their own workers and documents.' },
     { q: 'Who sees what?', a: 'Permissions are per role: Site Foreman, Site Manager, Health and Safety Officer and General Foreman, each seeing what they need.' },
+    { q: 'Does ConstructionEasier use artificial intelligence?', a: 'Yes. Document reading (OCR) uses artificial intelligence, and the details go into the platform without anyone typing them. We are bringing AI to more parts of the platform.' },
     { q: 'What box holds the gate tablet?', a: '[CONFIRMAR] Box specifications (protection, mounting, power).' },
   ],
 }

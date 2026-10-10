@@ -49,7 +49,7 @@ const ICON_PATHS = {
 
 const ICONS: Record<ProductId, Icon[]> = {
   timeEasier: ['clock', 'face', 'pin', 'calendar', 'sun', 'plusClock', 'approve', 'doc', 'chart', 'plug'],
-  constructionEasier: ['building', 'pin', 'users', 'key', 'euro', 'fileCheck', 'folder', 'home', 'dashboard', 'clock'],
+  constructionEasier: ['building', 'pin', 'users', 'key', 'euro', 'fileCheck', 'folder', 'home', 'dashboard', 'clock', 'doc'],
   stockEasier: ['box', 'gauge', 'bell', 'history', 'tag', 'userBox', 'devices', 'download'],
   woodEasier: ['layers', 'thermo', 'passport', 'stamp', 'route', 'factory', 'search'],
 }
