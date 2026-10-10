@@ -66,7 +66,7 @@ const ICONS = {
 
 const pt: ProductsDict = {
   indexH1: 'Quatro produtos para empresas que trabalham no terreno',
-  indexLead: 'Cada um resolve um problema concreto. Funcionam sozinhos ou em conjunto.',
+  indexLead: 'Cada um resolve um problema concreto e funciona sozinho.',
   indexSame: 'A mesma equipa que faz os produtos constrói o que eles não fazem.',
   indexSameLink: 'Ver software à medida',
   plansLine: 'Planos de cada produto',
@@ -123,20 +123,12 @@ const pt: ProductsDict = {
       faqTitle: 'Perguntas sobre o TimeEasier',
       faq: [
         {
-          q: 'Como funciona o registo de ponto com reconhecimento facial?',
-          a: 'O colaborador toca no tablet do local de trabalho e identifica-se pelo rosto. Se não for reconhecido, pode entrar com o PIN. Fica registada a hora da entrada ou da saída.',
-        },
-        {
           q: 'O reconhecimento facial cumpre o RGPD?',
-          a: 'O empregador é o responsável pelo tratamento e define o fundamento jurídico e a informação aos trabalhadores. A GetEasier trata os dados por conta dele, como subcontratante (artigo 28.º do RGPD). A correspondência do rosto é feita nos servidores da GetEasier e os dados biométricos são eliminados quando o trabalhador deixa a empresa.',
+          a: 'O empregador é o responsável pelo tratamento e define o fundamento jurídico e a informação aos trabalhadores. A GetEasier trata os dados por conta dele, como subcontratante (artigo 28.º do RGPD), e os dados biométricos são eliminados quando o trabalhador deixa a empresa.',
         },
         {
           q: 'Serve para quem trabalha fora das instalações?',
           a: 'Sim. Quem trabalha fora regista a entrada e a saída na app para iOS e Android. Nos planos Avançado e Premium, cada registo feito na app guarda o local onde foi feito.',
-        },
-        {
-          q: 'O relatório de horas serve para a ACT?',
-          a: 'Sim. Em todos os planos, o TimeEasier tira o relatório mensal de horas de cada colaborador, de acordo com o Artigo 202.º do Código do Trabalho e o que a ACT pede.',
         },
         {
           q: 'Liga ao processamento salarial?',
@@ -151,10 +143,6 @@ const pt: ProductsDict = {
           {
             term: 'Quem é responsável',
             desc: 'A empresa cliente é a responsável pelo tratamento: define o fundamento jurídico e informa os trabalhadores. A GetEasier é subcontratante e trata os dados só por conta da empresa (artigo 28.º do RGPD).',
-          },
-          {
-            term: 'Onde é feito o reconhecimento',
-            desc: 'A correspondência do rosto é feita nos servidores da GetEasier. A app não gera nem guarda descritores faciais no telemóvel.',
           },
           {
             term: 'Quanto tempo se guarda',
@@ -327,7 +315,7 @@ const pt: ProductsDict = {
 
 const en: ProductsDict = {
   indexH1: 'Four products for companies that work on site',
-  indexLead: 'Each one solves one specific problem. They work on their own or together.',
+  indexLead: 'Each one solves one specific problem and works on its own.',
   indexSame: 'The team that builds the products also builds what they do not do.',
   indexSameLink: 'See custom software',
   plansLine: 'Plans for each product',
@@ -380,20 +368,12 @@ const en: ProductsDict = {
       faqTitle: 'Questions about TimeEasier',
       faq: [
         {
-          q: 'How does clocking in with face recognition work?',
-          a: 'The employee taps the workplace tablet and identifies themselves by face. If they are not recognised, they can sign in with their PIN. The time of entry or exit is recorded.',
-        },
-        {
           q: 'Does face recognition comply with the GDPR?',
-          a: 'The employer is the data controller and sets the legal basis and the information given to workers. GetEasier processes the data on the employer’s behalf, as a processor (Article 28 GDPR). Face matching runs on GetEasier’s servers, and biometric data is deleted when the worker leaves the company.',
+          a: 'The employer is the data controller and sets the legal basis and the information given to workers. GetEasier processes the data on the employer’s behalf, as a processor (Article 28 GDPR), and biometric data is deleted when the worker leaves the company.',
         },
         {
           q: 'Does it work for people who work off site?',
           a: 'Yes. People working elsewhere clock in and out in the iOS and Android app. On the Advanced and Premium plans, every record made in the app stores where it was made.',
-        },
-        {
-          q: 'Is the hours report valid for the labour inspectorate (ACT)?',
-          a: 'Yes. On every plan, TimeEasier produces each employee’s monthly hours report, in line with Article 202 of the Portuguese Labour Code and what the ACT asks for.',
         },
         {
           q: 'Does it connect to payroll?',
@@ -407,10 +387,6 @@ const en: ProductsDict = {
           {
             term: 'Who is responsible',
             desc: 'The customer company is the data controller: it sets the legal basis and informs its workers. GetEasier is the processor and handles the data only on the company’s behalf (Article 28 GDPR).',
-          },
-          {
-            term: 'Where matching happens',
-            desc: 'Face matching runs on GetEasier’s servers. The app does not create or store face descriptors on the phone.',
           },
           {
             term: 'How long it is kept',
