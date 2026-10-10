@@ -8,7 +8,7 @@ export const COMPANY = {
   vatId: '517156261',
   // Para os dados estruturados (Organization): o que a empresa faz, em poucas palavras.
   description:
-    'Empresa portuguesa de software. Faz software à medida para empresas e quatro produtos próprios: TimeEasier (registo de ponto e gestão de RH), ConstructionEasier (gestão de obras e subempreiteiros), StockEasier (stocks de EPIs e consumíveis) e WoodEasier (passaportes de madeira tratada para a DGAV).',
+    'Empresa portuguesa de software. Faz software à medida para empresas e quatro produtos próprios: TimeEasier (registo de ponto e gestão de RH), ConstructionEasier (gestão de obras e subempreiteiros), StockEasier (stocks de EPIs e consumíveis) e WoodEasier (passaportes de madeira tratada para a DGAV). Usa inteligência artificial na leitura de documentos (OCR).',
   knowsAbout: [
     'Software à medida',
     'Registo de ponto',
@@ -17,6 +17,7 @@ export const COMPANY = {
     'Gestão de obras',
     'Gestão de subempreiteiros',
     'Gestão de stocks de EPIs',
+    'Leitura de documentos com inteligência artificial (OCR)',
     'Passaportes fitossanitários de madeira tratada',
   ],
   // Morada pública (dados estruturados): só a cidade, sem rua nem código postal, para pesquisas por
