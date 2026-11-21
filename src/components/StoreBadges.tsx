@@ -2,9 +2,17 @@ import { COMPANY } from '@/lib/site'
 import type { Locale } from '@/lib/seo.config'
 import { cn } from '@/lib/utils'
 
+const STORE_PRE: Record<Locale, string> = {
+  pt: 'TimeEasier na',
+  en: 'TimeEasier on',
+  nl: 'TimeEasier op',
+  es: 'TimeEasier en',
+  fr: 'TimeEasier sur',
+}
+
 // Ligações para a app TimeEasier nas lojas (URLs em site.ts).
 export default function StoreBadges({ locale, className }: { locale: Locale; className?: string }) {
-  const pre = locale === 'pt' ? 'TimeEasier na' : 'TimeEasier on'
+  const pre = STORE_PRE[locale]
   const badge = 'flex min-h-[48px] items-center gap-2.5 rounded-ctl bg-black px-3.5 py-2 text-white ring-1 ring-white/25 transition-transform hover:-translate-y-0.5'
   return (
     <ul className={cn('flex flex-wrap gap-3', className)}>

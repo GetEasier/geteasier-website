@@ -1,7 +1,9 @@
 // Fonte única de verdade para rotas, navegação, breadcrumbs, metadados e sitemap.
-// Cada página tem uma entrada por língua. `en: null` quando a página só existe em português.
+// Cada página tem uma entrada por língua. `null` quando a página só existe em português.
 
-export type Locale = 'pt' | 'en'
+export type Locale = 'pt' | 'en' | 'nl' | 'es' | 'fr'
+
+export const LOCALES: readonly Locale[] = ['pt', 'en', 'nl', 'es', 'fr']
 
 export type PageId =
   | 'home'
@@ -35,6 +37,9 @@ export type RouteConfig = {
   sources: string[]
   pt: LocalizedRoute
   en: LocalizedRoute | null
+  nl: LocalizedRoute | null
+  es: LocalizedRoute | null
+  fr: LocalizedRoute | null
 }
 
 const PAGE = 'src/components/pages'
@@ -61,6 +66,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
         'Portuguese software team. We build custom software and our own products for time tracking, construction sites, stock and timber. Tell us your project.',
       breadcrumb: 'Home',
     },
+    nl: {
+      path: '/nl',
+      title: 'GetEasier | Maatwerksoftware en producten voor bedrijven',
+      description:
+        'Portugees softwareteam actief in België. Wij bouwen maatwerksoftware en producten voor tijdsregistratie, werven, voorraad en hout. Bespreek uw project.',
+      breadcrumb: 'Start',
+    },
+    es: {
+      path: '/es',
+      title: 'GetEasier | Software a medida y productos para empresas',
+      description:
+        'Equipo portugués de desarrollo. Creamos software a medida y productos para control horario, obras, stock y madera tratada. Cuéntanos tu proyecto hoy.',
+      breadcrumb: 'Inicio',
+    },
+    fr: {
+      path: '/fr',
+      title: 'GetEasier | Logiciels sur mesure et produits pour entreprises',
+      description:
+        'Équipe de développement active en Belgique. Nous créons des logiciels sur mesure et des outils pour pointage, chantiers, stocks et bois. Parlons-en.',
+      breadcrumb: 'Accueil',
+    },
   },
   customSoftware: {
     id: 'customSoftware',
@@ -81,6 +107,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       description:
         'Web apps, mobile apps and integrations built around how your company works. See how we work and the stack we use, then tell us about your project.',
       breadcrumb: 'Custom software',
+    },
+    nl: {
+      path: '/nl/custom-software',
+      title: 'Maatwerksoftware voor bedrijven | GetEasier',
+      description:
+        'Webapps, mobiele apps en integraties gebouwd rond de processen van uw bedrijf. Bekijk onze aanpak en stack en vertel ons meer over uw project.',
+      breadcrumb: 'Maatwerksoftware',
+    },
+    es: {
+      path: '/es/custom-software',
+      title: 'Desarrollo de software a medida | GetEasier',
+      description:
+        'Aplicaciones web, móviles e integraciones diseñadas para los procesos de tu empresa. Conoce nuestra forma de trabajar y cuéntanos tu proyecto hoy.',
+      breadcrumb: 'Software a medida',
+    },
+    fr: {
+      path: '/fr/custom-software',
+      title: 'Développement logiciel sur mesure | GetEasier',
+      description:
+        'Applications web, mobiles et intégrations conçues autour des processus de votre entreprise. Découvrez notre méthode et parlez-nous de votre projet.',
+      breadcrumb: 'Logiciel sur mesure',
     },
   },
   products: {
@@ -103,6 +150,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
         'TimeEasier, ConstructionEasier, StockEasier and WoodEasier: four GetEasier products for companies working on site. Compare them and ask for a demo.',
       breadcrumb: 'Products',
     },
+    nl: {
+      path: '/nl/products',
+      title: 'Producten: tijd, werven, voorraad en hout | GetEasier',
+      description:
+        'TimeEasier, ConstructionEasier, StockEasier en WoodEasier: vier GetEasier-producten voor bedrijven op de werkvloer. Vergelijk en vraag een demo aan.',
+      breadcrumb: 'Producten',
+    },
+    es: {
+      path: '/es/products',
+      title: 'Productos: horario, obras, stock y madera | GetEasier',
+      description:
+        'TimeEasier, ConstructionEasier, StockEasier y WoodEasier: cuatro productos de GetEasier para empresas en campo. Compáralos y solicita una demo.',
+      breadcrumb: 'Productos',
+    },
+    fr: {
+      path: '/fr/products',
+      title: 'Produits : pointage, chantiers, stock et bois | GetEasier',
+      description:
+        'TimeEasier, ConstructionEasier, StockEasier et WoodEasier : quatre produits GetEasier pour les équipes sur le terrain. Comparez et demandez une démo.',
+      breadcrumb: 'Produits',
+    },
   },
   timeEasier: {
     id: 'timeEasier',
@@ -122,6 +190,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       title: 'TimeEasier: time and attendance tracking | GetEasier',
       description:
         'Clock in on a workplace tablet or the mobile app, manage holidays and absences, and get the monthly hours report Portuguese law requires. Ask for a demo.',
+      breadcrumb: 'TimeEasier',
+    },
+    nl: {
+      path: '/nl/time-easier',
+      title: 'TimeEasier: tijdsregistratie en aanwezigheid | GetEasier',
+      description:
+        'Inklokken via tablet op de werkplek of mobiele app, vakantie en afwezigheden beheren en maandelijkse urenrapporten ontvangen. Vraag een demo aan.',
+      breadcrumb: 'TimeEasier',
+    },
+    es: {
+      path: '/es/time-easier',
+      title: 'TimeEasier: control horario y asistencia | GetEasier',
+      description:
+        'Ficha desde la tablet del centro de trabajo o la app móvil, gestiona vacaciones y ausencias y obtén informes mensuales de horas. Solicita una demo.',
+      breadcrumb: 'TimeEasier',
+    },
+    fr: {
+      path: '/fr/time-easier',
+      title: 'TimeEasier : pointage et gestion des présences | GetEasier',
+      description:
+        'Pointage sur tablette sur site ou application mobile, gestion des congés et absences et rapports mensuels conformes. Demandez une démonstration.',
       breadcrumb: 'TimeEasier',
     },
   },
@@ -145,6 +234,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
         'Who is on each site, subcontractors and their documents, costs per site and progress reports. See how ConstructionEasier works and ask for a demo.',
       breadcrumb: 'ConstructionEasier',
     },
+    nl: {
+      path: '/nl/construction-easier',
+      title: 'ConstructionEasier: werfbeheer en kosten | GetEasier',
+      description:
+        'Wie er op elke werf werkt, onderaannemers en hun documenten, kosten per werf en vorderingsstaten. Bekijk hoe het werkt en vraag een demo aan.',
+      breadcrumb: 'ConstructionEasier',
+    },
+    es: {
+      path: '/es/construction-easier',
+      title: 'ConstructionEasier: gestión de obras | GetEasier',
+      description:
+        'Quién está en cada obra, subcontratistas y su documentación, costes por proyecto y certificaciones de avance. Descubre cómo funciona y pide una demo.',
+      breadcrumb: 'ConstructionEasier',
+    },
+    fr: {
+      path: '/fr/construction-easier',
+      title: 'ConstructionEasier : gestion de chantiers | GetEasier',
+      description:
+        'Qui intervient sur chaque chantier, sous-traitants et documents, coûts par projet et états d’avancement. Découvrez le module et demandez une démo.',
+      breadcrumb: 'ConstructionEasier',
+    },
   },
   stockEasier: {
     id: 'stockEasier',
@@ -164,6 +274,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       title: 'StockEasier: stock and PPE management | GetEasier',
       description:
         'Record stock in and out for PPE and consumables, see what each employee received and get reorder alerts before you run out. Ask for a StockEasier demo.',
+      breadcrumb: 'StockEasier',
+    },
+    nl: {
+      path: '/nl/stock-easier',
+      title: 'StockEasier: voorraad- en PBM-beheer | GetEasier',
+      description:
+        'Registreer in- en uitgaande PBM’s en verbruiksmaterialen, zie wat elke medewerker ontving en krijg tijdige bestelmeldingen. Vraag een demo aan.',
+      breadcrumb: 'StockEasier',
+    },
+    es: {
+      path: '/es/stock-easier',
+      title: 'StockEasier: gestión de stock y EPI | GetEasier',
+      description:
+        'Registra entradas y salidas de EPI y consumibles, consulta qué recibió cada empleado y recibe alertas de reposición a tiempo. Solicita una demo.',
+      breadcrumb: 'StockEasier',
+    },
+    fr: {
+      path: '/fr/stock-easier',
+      title: 'StockEasier : gestion des stocks et EPI | GetEasier',
+      description:
+        'Enregistrez entrées et sorties d’EPI et consommables, suivez les dotations par collaborateur et recevez des alertes de réapprovisionnement. Demander une démo.',
       breadcrumb: 'StockEasier',
     },
   },
@@ -187,6 +318,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
         'Batches, treatments, plant passports and DGAV reports, from receiving treated timber to shipping it. See how WoodEasier works and ask for a demo.',
       breadcrumb: 'WoodEasier',
     },
+    nl: {
+      path: '/nl/wood-easier',
+      title: 'WoodEasier: paspoorten voor behandeld hout | GetEasier',
+      description:
+        'Loten, behandelingen, plantenpaspoorten en DGAV-rapporten van ontvangst tot verzending van behandeld hout. Bekijk hoe WoodEasier werkt en vraag een demo.',
+      breadcrumb: 'WoodEasier',
+    },
+    es: {
+      path: '/es/wood-easier',
+      title: 'WoodEasier: pasaportes de madera tratada | GetEasier',
+      description:
+        'Lotes, tratamientos, pasaportes fitosanitarios e informes desde la recepción hasta el envío de la madera tratada. Descubre cómo funciona y pide una demo.',
+      breadcrumb: 'WoodEasier',
+    },
+    fr: {
+      path: '/fr/wood-easier',
+      title: 'WoodEasier : passeports pour bois traité | GetEasier',
+      description:
+        'Lots, traitements, passeports phytosanitaires et rapports de la réception à l’expédition du bois traité. Découvrez WoodEasier et demandez une démo.',
+      breadcrumb: 'WoodEasier',
+    },
   },
   plans: {
     id: 'plans',
@@ -207,6 +359,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       description:
         'Compare the Base, Advanced and Premium plans of GetEasier products and WoodEasier’s single plan. Ask for a quote for the size of your team.',
       breadcrumb: 'Plans',
+    },
+    nl: {
+      path: '/nl/pricing',
+      title: 'Plannen en modules | GetEasier',
+      description:
+        'Vergelijk de Base-, Advanced- en Premium-plannen van de GetEasier-producten en het WoodEasier-plan. Vraag een offerte op maat van uw teamgrootte.',
+      breadcrumb: 'Plannen',
+    },
+    es: {
+      path: '/es/pricing',
+      title: 'Planes y módulos | GetEasier',
+      description:
+        'Compara los planes Base, Avanzado y Premium de los productos GetEasier y el plan único de WoodEasier. Solicita una propuesta para el tamaño de tu equipo.',
+      breadcrumb: 'Planes',
+    },
+    fr: {
+      path: '/fr/pricing',
+      title: 'Formules et modules | GetEasier',
+      description:
+        'Comparez les formules Base, Avancé et Premium des produits GetEasier et le plan unique de WoodEasier. Demandez un devis selon la taille de votre équipe.',
+      breadcrumb: 'Formules',
     },
   },
   about: {
@@ -229,6 +402,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
         'We are a software team based in Marco de Canaveses, near Porto, Portugal. Meet the people who build GetEasier custom software and products.',
       breadcrumb: 'About',
     },
+    nl: {
+      path: '/nl/about',
+      title: 'Over GetEasier en het team | GetEasier',
+      description:
+        'Wij zijn een softwareteam uit Marco de Canaveses nabij Porto, ook actief in België. Maak kennis met de mensen achter GetEasier maatwerk en producten.',
+      breadcrumb: 'Over ons',
+    },
+    es: {
+      path: '/es/about',
+      title: 'Sobre GetEasier y el equipo | GetEasier',
+      description:
+        'Somos un equipo de desarrollo en Marco de Canaveses, cerca de Oporto, Portugal. Conoce a las personas que crean el software y los productos GetEasier.',
+      breadcrumb: 'Sobre nosotros',
+    },
+    fr: {
+      path: '/fr/about',
+      title: 'À propos de GetEasier et l’équipe | GetEasier',
+      description:
+        'Nous sommes une équipe de développement basée près de Porto et active en Belgique. Découvrez celles et ceux qui conçoivent les logiciels GetEasier.',
+      breadcrumb: 'À propos',
+    },
   },
   contact: {
     id: 'contact',
@@ -250,6 +444,27 @@ export const ROUTES: Record<PageId, RouteConfig> = {
         'Tell us about a custom software project or ask for a product demo. Use the contact form or message us on WhatsApp at +351 914 223 323.',
       breadcrumb: 'Contact',
     },
+    nl: {
+      path: '/nl/contact',
+      title: 'Contact | GetEasier',
+      description:
+        'Vertel ons over uw maatwerkproject of vraag een productdemo aan. Gebruik het contactformulier of stuur een bericht via WhatsApp op +351 914 223 323.',
+      breadcrumb: 'Contact',
+    },
+    es: {
+      path: '/es/contact',
+      title: 'Contacto | GetEasier',
+      description:
+        'Cuéntanos tu proyecto de software a medida o solicita una demostración de producto. Usa el formulario o escríbenos por WhatsApp al +351 914 223 323.',
+      breadcrumb: 'Contacto',
+    },
+    fr: {
+      path: '/fr/contact',
+      title: 'Contact | GetEasier',
+      description:
+        'Parlez-nous d’un projet de logiciel sur mesure ou demandez une démo produit. Utilisez le formulaire ou contactez-nous sur WhatsApp au +351 914 223 323.',
+      breadcrumb: 'Contact',
+    },
   },
   privacy: {
     id: 'privacy',
@@ -265,6 +480,9 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       breadcrumb: 'Política de Privacidade',
     },
     en: null,
+    nl: null,
+    es: null,
+    fr: null,
   },
   terms: {
     id: 'terms',
@@ -280,6 +498,9 @@ export const ROUTES: Record<PageId, RouteConfig> = {
       breadcrumb: 'Termos e Condições',
     },
     en: null,
+    nl: null,
+    es: null,
+    fr: null,
   },
 }
 
@@ -287,7 +508,7 @@ export const ROUTE_LIST = Object.values(ROUTES)
 
 export function route(id: PageId, locale: Locale): LocalizedRoute {
   const r = ROUTES[id]
-  return (locale === 'en' && r.en) || r.pt
+  return (locale !== 'pt' && r[locale]) || r.pt
 }
 
 /** Caminho da página na língua pedida; se não existir nessa língua, usa o português. */

@@ -3,19 +3,27 @@ import Link from 'next/link'
 import Logo from '@/components/Logo'
 import MobileMenu from './MobileMenu'
 import HeaderScroll from './HeaderScroll'
-import { MAIN_NAV, PRODUCT_IDS, ROUTES, breadcrumbTrail, href, route, type Locale, type PageId } from '@/lib/seo.config'
+import LanguageFlagDropdown, { type LangOption } from './LanguageFlagDropdown'
+import { LOCALES, MAIN_NAV, PRODUCT_IDS, ROUTES, breadcrumbTrail, href, route, type Locale, type PageId } from '@/lib/seo.config'
 import { common } from '@/content/common'
 import { products as productsContent } from '@/content/products'
 
 type Props = { pageId: PageId | null; locale: Locale }
 
-/** Página na outra língua; se não existir tradução, a página inicial da outra língua. */
-export function alternateHref(pageId: PageId | null, locale: Locale) {
-  const other: Locale = locale === 'pt' ? 'en' : 'pt'
-  if (!pageId) return href('home', other)
+const LOCALE_META: Record<Locale, { code: string; name: string }> = {
+  pt: { code: 'pt-PT', name: 'Português' },
+  en: { code: 'en', name: 'English' },
+  nl: { code: 'nl-BE', name: 'Nederlands' },
+  es: { code: 'es', name: 'Español' },
+  fr: { code: 'fr', name: 'Français' },
+}
+
+/** Página na língua pedida; se não existir tradução, a página inicial dessa língua. */
+export function alternateHref(pageId: PageId | null, target: Locale) {
+  if (!pageId) return href('home', target)
   const r = ROUTES[pageId]
-  if (other === 'en' && !r.en) return href('home', 'en')
-  return href(pageId, other)
+  if (!r[target]) return href('home', target)
+  return href(pageId, target)
 }
 
 export default function Header({ pageId, locale }: Props) {
@@ -31,7 +39,14 @@ export default function Header({ pageId, locale }: Props) {
     path: href(id, locale),
     active: id === 'home' ? pageId === 'home' : activeIds.has(id),
   }))
-  const other = locale === 'pt' ? 'en' : 'pt'
+
+  const langs: LangOption[] = LOCALES.map((l) => ({
+    locale: l,
+    code: LOCALE_META[l].code,
+    name: LOCALE_META[l].name,
+    href: l === locale ? href(pageId ?? 'home', locale) : alternateHref(pageId, l),
+    current: l === locale,
+  }))
 
   return (
     <header className="site-header sticky top-0 z-50 h-[var(--header-h)]">
@@ -90,17 +105,8 @@ export default function Header({ pageId, locale }: Props) {
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
-          <Link
-            href={alternateHref(pageId, locale)}
-            hrefLang={other === 'pt' ? 'pt-PT' : 'en'}
-            lang={other === 'pt' ? 'pt-PT' : 'en'}
-            className="inline-flex min-h-[44px] items-center rounded-ctl px-2 text-small font-semibold text-grafite hover:text-tinta"
-            title={t.lang.hint}
-          >
-            <span aria-hidden="true">{t.lang.short}</span>
-            <span className="sr-only">{t.lang.switchTo}</span>
-          </Link>
+        <div className="hidden items-center gap-4 lg:flex">
+          <LanguageFlagDropdown langs={langs} currentLocale={locale} hint={t.lang.hint} />
           <Link href={`${href('contact', locale)}?assunto=projeto`} className="btn-primary min-h-[44px] py-2.5">
             {t.nav.cta}
           </Link>
@@ -117,12 +123,9 @@ export default function Header({ pageId, locale }: Props) {
             active: pageId === id,
           }))}
           ctaHref={`${href('contact', locale)}?assunto=projeto`}
-          langs={(['pt', 'en'] as const).map((l) => ({
-            code: l === 'pt' ? 'pt-PT' : 'en',
-            short: l.toUpperCase(),
-            name: l === 'pt' ? 'Português' : 'English',
-            href: l === locale ? href(pageId ?? 'home', locale) : alternateHref(pageId, locale),
-            current: l === locale,
+          langs={langs.map((l) => ({
+            ...l,
+            short: l.locale.toUpperCase(),
           }))}
         />
       </div>

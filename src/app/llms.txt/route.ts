@@ -10,7 +10,7 @@ export const dynamic = 'force-static'
 const PAGES: PageId[] = ['customSoftware', 'products', 'plans', 'about', 'contact']
 
 function link(id: PageId, locale: Locale) {
-  const r = locale === 'en' && ROUTES[id].en ? ROUTES[id].en! : ROUTES[id].pt
+  const r = (locale !== 'pt' && ROUTES[id][locale]) || ROUTES[id].pt
   return `- [${r.breadcrumb}](${absoluteUrl(href(id, locale))}): ${r.description}`
 }
 

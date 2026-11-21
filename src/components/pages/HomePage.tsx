@@ -141,7 +141,11 @@ export default function HomePage({ locale }: { locale: Locale }) {
           <TestimonialMarquee />
         </div>
         <div className="wrap">
-          {locale === 'en' && <p className="mt-4 text-small text-grafite">Quoted in the original Portuguese.</p>}
+          {locale !== 'pt' && (
+            <p className="mt-4 text-small text-grafite">
+              {{ en: 'Quoted in the original Portuguese.', nl: 'Geciteerd in het oorspronkelijke Portugees.', es: 'Citado en el portugués original.', fr: 'Cité dans la version originale portugaise.' }[locale]}
+            </p>
+          )}
         </div>
       </section>
 

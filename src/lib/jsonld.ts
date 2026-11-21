@@ -6,7 +6,7 @@ import { COMPANY, SITE_URL, absoluteUrl } from './site'
 
 const ORG_ID = `${SITE_URL}/#organizacao`
 const SITE_ID = `${SITE_URL}/#website`
-const LANG: Record<Locale, string> = { pt: 'pt-PT', en: 'en' }
+const LANG: Record<Locale, string> = { pt: 'pt-PT', en: 'en', nl: 'nl', es: 'es', fr: 'fr' }
 
 type Node = Record<string, unknown>
 
@@ -32,7 +32,7 @@ function organization(): Node {
       '@type': 'ContactPoint',
       telephone: COMPANY.whatsapp.e164,
       contactType: 'customer service',
-      availableLanguage: ['Portuguese', 'English'],
+      availableLanguage: ['Portuguese', 'English', 'Dutch', 'Spanish', 'French'],
     },
     sameAs: COMPANY.socials.map((s) => s.href),
   }
@@ -44,7 +44,7 @@ function website(): Node {
     '@id': SITE_ID,
     url: SITE_URL,
     name: COMPANY.name,
-    inLanguage: ['pt-PT', 'en'],
+    inLanguage: ['pt-PT', 'en', 'nl', 'es', 'fr'],
     publisher: { '@id': ORG_ID },
   }
 }

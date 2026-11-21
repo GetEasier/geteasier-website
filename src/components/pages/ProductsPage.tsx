@@ -33,10 +33,39 @@ const Arrow = () => (
   </svg>
 )
 
+const HELP_TEXT: Record<Locale, { btn: string; title: string; text: string }> = {
+  pt: {
+    btn: 'Pedir ajuda para escolher',
+    title: 'Ajudamos a escolher o produto e o plano',
+    text: 'Diga-nos o que quer controlar e quantas pessoas tem. Indicamos o produto e o plano que fazem sentido.',
+  },
+  en: {
+    btn: 'Ask for help choosing',
+    title: 'We can help you choose a product and plan',
+    text: 'Tell us what you want to keep track of and how many people you have. We will point you to the right product and plan.',
+  },
+  nl: {
+    btn: 'Hulp vragen bij het kiezen',
+    title: 'We helpen u het juiste product en plan te kiezen',
+    text: 'Vertel ons wat u wilt opvolgen en hoeveel medewerkers u heeft. We wijzen u het juiste product en plan aan.',
+  },
+  es: {
+    btn: 'Pedir ayuda para elegir',
+    title: 'Te ayudamos a elegir el producto y el plan',
+    text: 'Cuéntanos qué quieres controlar y cuántas personas sois. Te indicamos el producto y el plan adecuados.',
+  },
+  fr: {
+    btn: 'Demander conseil pour choisir',
+    title: 'Nous vous aidons à choisir le produit et l’offre',
+    text: 'Dites-nous ce que vous souhaitez suivre et combien de personnes vous êtes. Nous vous orientons vers le bon choix.',
+  },
+}
+
 export default function ProductsPage({ locale }: { locale: Locale }) {
   const p = products[locale]
   const c = common[locale]
   const open = home[locale].products.open
+  const help = HELP_TEXT[locale]
 
   return (
     <SiteShell pageId="products" locale={locale}>
@@ -54,7 +83,7 @@ export default function ProductsPage({ locale }: { locale: Locale }) {
               </CinematicText>
               <CinematicGroup delay={0.95} stagger={0.08} className="mt-7 flex flex-wrap gap-3">
                 <Link href={`${href('contact', locale)}?assunto=planos`} className="btn bg-ciano text-tinta hover:bg-white">
-                  {locale === 'pt' ? 'Pedir ajuda para escolher' : 'Ask for help choosing'}
+                  {help.btn}
                 </Link>
                 <Link href={href('plans', locale)} className="btn-on-dark">
                   {c.cta.plans}
@@ -174,10 +203,10 @@ export default function ProductsPage({ locale }: { locale: Locale }) {
 
       <ContactBand
         locale={locale}
-        title={locale === 'pt' ? 'Ajudamos a escolher o produto e o plano' : 'We can help you choose a product and plan'}
-        text={locale === 'pt' ? 'Diga-nos o que quer controlar e quantas pessoas tem. Indicamos o produto e o plano que fazem sentido.' : 'Tell us what you want to keep track of and how many people you have. We will point you to the right product and plan.'}
+        title={help.title}
+        text={help.text}
         subject="planos"
-        cta={locale === 'pt' ? 'Pedir ajuda para escolher' : 'Ask for help choosing'}
+        cta={help.btn}
       />
     </SiteShell>
   )

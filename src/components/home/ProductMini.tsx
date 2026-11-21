@@ -17,6 +17,24 @@ const T = {
     stock: { item: 'Safety gloves', out: '6 pairs handed to Hugo Tavares', alert: 'Below minimum: reorder' },
     wood: { lot: 'Lot L-114', before: 'Being treated', after: 'Shipped with passport' },
   },
+  nl: {
+    time: { before: 'Gezicht herkennen', after: 'Aanwezigheid geregistreerd' },
+    obras: { doc: 'Verzekering Cofragens Tejo', before: 'Ontbreekt', after: 'Geldig tot december' },
+    stock: { item: 'Veiligheidshandschoenen', out: '6 paar uitgereikt aan Hugo Tavares', alert: 'Onder minimum: bijbestellen' },
+    wood: { lot: 'Partij L-114', before: 'In behandeling', after: 'Verzonden met paspoort' },
+  },
+  es: {
+    time: { before: 'Reconociendo rostro', after: 'Asistencia registrada' },
+    obras: { doc: 'Seguro de Cofragens Tejo', before: 'Falta', after: 'Válido hasta diciembre' },
+    stock: { item: 'Guantes de protección', out: '6 pares entregados a Hugo Tavares', alert: 'Bajo mínimo: reponer' },
+    wood: { lot: 'Lote L-114', before: 'En tratamiento', after: 'Expedido con pasaporte' },
+  },
+  fr: {
+    time: { before: 'Reconnaissance faciale', after: 'Présence enregistrée' },
+    obras: { doc: 'Assurance Cofragens Tejo', before: 'Manquant', after: 'Valide jusqu’en décembre' },
+    stock: { item: 'Gants de protection', out: '6 paires remises à Hugo Tavares', alert: 'Sous le minimum : recommander' },
+    wood: { lot: 'Lot L-114', before: 'En traitement', after: 'Expédié avec passeport' },
+  },
 }
 
 export default function ProductMini({ id, locale }: { id: ProductId; locale: Locale }) {

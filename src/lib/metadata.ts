@@ -1,26 +1,48 @@
 import type { Metadata } from 'next'
-import { ROUTES, type Locale, type PageId } from './seo.config'
+import { LOCALES, ROUTES, type Locale, type PageId } from './seo.config'
 import { SITE_URL, absoluteUrl } from './site'
 
-const OG_LOCALE: Record<Locale, string> = { pt: 'pt_PT', en: 'en_GB' }
+const OG_LOCALE: Record<Locale, string> = {
+  pt: 'pt_PT',
+  en: 'en_GB',
+  nl: 'nl_BE',
+  es: 'es_ES',
+  fr: 'fr_BE',
+}
+
+const HREFLANG: Record<Locale, string> = {
+  pt: 'pt-PT',
+  en: 'en',
+  nl: 'nl',
+  es: 'es',
+  fr: 'fr',
+}
 
 /** Metadados de uma página a partir de seo.config.ts. */
 export function buildMetadata(id: PageId, locale: Locale): Metadata {
   const r = ROUTES[id]
-  const loc = locale === 'en' && r.en ? r.en : r.pt
+  const loc = (locale !== 'pt' && r[locale]) || r.pt
   const url = absoluteUrl(loc.path)
 
-  const languages: Record<string, string> = { 'pt-PT': absoluteUrl(r.pt.path) }
-  if (r.en) languages.en = absoluteUrl(r.en.path)
+  const languages: Record<string, string> = {}
+  const alternates: string[] = []
+  for (const l of LOCALES) {
+    const entry = r[l]
+    if (entry) {
+      languages[HREFLANG[l]] = absoluteUrl(entry.path)
+      if (l !== locale) alternates.push(OG_LOCALE[l])
+    }
+  }
   if (r.en) languages['x-default'] = absoluteUrl(r.pt.path)
 
-  const ogImage = `${SITE_URL}/og/${id}-${locale === 'en' && r.en ? 'en' : 'pt'}.png`
+  const ogLocale = locale === 'pt' ? 'pt' : 'en'
+  const ogImage = `${SITE_URL}/og/${id}-${r[ogLocale] ? ogLocale : 'pt'}.png`
 
   return {
     metadataBase: new URL(SITE_URL),
     title: { absolute: loc.title },
     description: loc.description,
-    alternates: { canonical: url, languages: r.en ? languages : undefined },
+    alternates: { canonical: url, languages: Object.keys(languages).length > 1 ? languages : undefined },
     robots: r.indexable ? { index: true, follow: true } : { index: false, follow: true },
     openGraph: {
       type: 'website',
@@ -29,7 +51,7 @@ export function buildMetadata(id: PageId, locale: Locale): Metadata {
       title: loc.title,
       description: loc.description,
       locale: OG_LOCALE[locale],
-      alternateLocale: r.en ? [OG_LOCALE[locale === 'pt' ? 'en' : 'pt']] : undefined,
+      alternateLocale: alternates.length ? alternates : undefined,
       images: [{ url: ogImage, width: 1200, height: 630, alt: loc.title }],
     },
     twitter: {

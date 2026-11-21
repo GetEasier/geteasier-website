@@ -3,7 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useCallback, useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, type ReactNode } from 'react'
+
+import { FlagIcon } from './FlagIcon'
+import type { Locale } from '@/lib/seo.config'
 
 type Item = { id: string; label: string; path: string; active: boolean }
 type Product = { id: string; name: string; icon: string; path: string; active: boolean }
@@ -12,8 +15,8 @@ type Props = {
   items: Item[]
   products: Product[]
   ctaHref: string
-  /** As duas línguas, pela ordem do seletor; a atual não é ligação. */
-  langs: { code: string; short: string; name: string; href: string; current: boolean }[]
+  /** As línguas do seletor; a atual não é ligação. */
+  langs: { locale: Locale; code: string; short: string; name: string; href: string; current: boolean }[]
 }
 
 // Menu do telemóvel: um painel que cresce a partir do botão e volta para ele ao fechar (o estilo vem do
@@ -242,17 +245,30 @@ export default function MobileMenu({ labels, items, products, ctaHref, langs }: 
               {GLOBE}
             </span>
             <span className="flex-1 font-medium">{labels.langTitle}</span>
-            <div className="mm-seg" style={{ '--index': langs.findIndex((l) => l.current) } as CSSProperties}>
-              <span className="mm-thumb" aria-hidden="true" />
+            <div className="flex items-center gap-1.5">
               {langs.map((l) =>
                 l.current ? (
-                  <span key={l.code} className="mm-seg-opt" aria-current="true" title={l.name}>
-                    {l.short}
+                  <span
+                    key={l.code}
+                    aria-current="true"
+                    title={l.name}
+                    className="inline-flex items-center justify-center rounded-lg bg-azul/10 p-1.5 ring-1 ring-azul/40"
+                  >
+                    <FlagIcon code={l.locale} />
+                    <span className="sr-only">{l.name}</span>
                   </span>
                 ) : (
-                  <Link key={l.code} prefetch={false} href={l.href} hrefLang={l.code} lang={l.code} className="mm-seg-opt" title={l.name}>
-                    <span aria-hidden="true">{l.short}</span>
-                    <span className="sr-only">{l.name}</span>
+                  <Link
+                    key={l.code}
+                    prefetch={false}
+                    href={l.href}
+                    hrefLang={l.code}
+                    lang={l.code}
+                    title={l.name}
+                    aria-label={l.name}
+                    className="inline-flex items-center justify-center rounded-lg p-1.5 transition-colors hover:bg-papel"
+                  >
+                    <FlagIcon code={l.locale} />
                   </Link>
                 ),
               )}

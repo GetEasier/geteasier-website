@@ -4,10 +4,18 @@ import type { Locale } from '@/lib/seo.config'
 
 type Item = (typeof TESTIMONIALS)[number]
 
-// Citações originais, em português. Na versão inglesa ficam marcadas com lang="pt-PT".
+const ORIGINAL_PT_NOTE: Record<Locale, string | null> = {
+  pt: null,
+  en: 'Quoted in the original Portuguese.',
+  nl: 'Geciteerd in het oorspronkelijke Portugees.',
+  es: 'Citado en el portugués original.',
+  fr: 'Cité dans la version originale portugaise.',
+}
+
+// Citações originais, em português. Nas versões noutras línguas ficam marcadas com lang="pt-PT".
 export default function Testimonials({ locale, only }: { locale: Locale; only?: Item['name'] }) {
   const items = only ? TESTIMONIALS.filter((t) => t.name === only) : TESTIMONIALS
-  const note = locale === 'en' ? 'Quoted in the original Portuguese.' : null
+  const note = ORIGINAL_PT_NOTE[locale]
   return (
     <div className="mt-10">
       <ul className={items.length > 1 ? 'grid gap-6 lg:grid-cols-3' : 'max-w-3xl'}>

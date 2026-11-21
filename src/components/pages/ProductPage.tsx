@@ -45,6 +45,44 @@ const BENEFITS: Partial<Record<ProductId, (p: { locale: Locale }) => React.React
   woodEasier: WoodBenefits,
 }
 
+const PRODUCT_UI: Record<Locale, { pause: string; play: string; step: string; ctaTitle: (name: string) => string; ctaText: string }> = {
+  pt: {
+    pause: 'Pausar',
+    play: 'Continuar',
+    step: 'Ver o passo',
+    ctaTitle: (name) => `Ver o ${name} a funcionar`,
+    ctaText: 'Mostramos o produto com dados de exemplo e respondemos às perguntas da sua equipa.',
+  },
+  en: {
+    pause: 'Pause',
+    play: 'Play',
+    step: 'Show step',
+    ctaTitle: (name) => `See ${name} in action`,
+    ctaText: 'We show you the product with sample data and answer your team’s questions.',
+  },
+  nl: {
+    pause: 'Pauzeren',
+    play: 'Hervatten',
+    step: 'Toon stap',
+    ctaTitle: (name) => `Zie ${name} in actie`,
+    ctaText: 'We tonen het product met voorbeeldgegevens en beantwoorden alle vragen van uw team.',
+  },
+  es: {
+    pause: 'Pausar',
+    play: 'Reanudar',
+    step: 'Ver paso',
+    ctaTitle: (name) => `Ver ${name} en acción`,
+    ctaText: 'Mostramos el producto con datos de ejemplo y respondemos las dudas de tu equipo.',
+  },
+  fr: {
+    pause: 'Pause',
+    play: 'Reprendre',
+    step: 'Voir l’étape',
+    ctaTitle: (name) => `Voir ${name} en action`,
+    ctaText: 'Nous vous présentons le produit avec des données d’exemple et répondons à vos questions.',
+  },
+}
+
 export default function ProductPage({ id, locale }: { id: ProductId; locale: Locale }) {
   const p = products[locale]
   const item = p.items[id]
@@ -53,14 +91,14 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
   const demo = c.cta.demo(item.name)
   const Scene = SCENES[id]
   const Benefits = BENEFITS[id]
-  const pt = locale === 'pt'
+  const ui = PRODUCT_UI[locale]
   // O ConstructionEasier tem as perguntas em construction.ts; os outros produtos em products.ts.
   const faq = id === 'constructionEasier' ? { title: construction[locale].faqTitle, items: construction[locale].faq } : item.faq && item.faqTitle ? { title: item.faqTitle, items: item.faq } : null
   const faqLd = faq ? faqJsonLd(faq.items) : null
   const labels = {
-    pause: pt ? 'Pausar' : 'Pause',
-    play: pt ? 'Continuar' : 'Play',
-    step: pt ? 'Ver o passo' : 'Show step',
+    pause: ui.pause,
+    play: ui.play,
+    step: ui.step,
     list: item.stepsTitle,
   }
 
@@ -167,8 +205,8 @@ export default function ProductPage({ id, locale }: { id: ProductId; locale: Loc
 
       <ContactBand
         locale={locale}
-        title={pt ? `Ver o ${item.name} a funcionar` : `See ${item.name} in action`}
-        text={pt ? 'Mostramos o produto com dados de exemplo e respondemos às perguntas da sua equipa.' : 'We show you the product with sample data and answer your team’s questions.'}
+        title={ui.ctaTitle(item.name)}
+        text={ui.ctaText}
         subject={item.demoSubject}
         cta={demo}
       />

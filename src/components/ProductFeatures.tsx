@@ -72,10 +72,19 @@ function FeatureIcon({ name, className }: { name: Icon; className?: string }) {
 
 const bar = (w: string, c: string) => <span className={cn('block h-2 rounded-full', c)} style={{ width: w }} />
 
+const COST_LABELS: Record<Locale, [string, string]> = {
+  pt: ['Materiais', 'Mão de obra'],
+  en: ['Materials', 'Labour'],
+  nl: ['Materialen', 'Werkuren'],
+  es: ['Materiales', 'Mano de obra'],
+  fr: ['Matériaux', 'Main-d’œuvre'],
+}
+
 // Pequenos ecrãs, um por funcionalidade em destaque. Chave: `${produto}-${índice}`.
-function illustration(key: string, hex: string, pt: boolean): ReactNode {
+function illustration(key: string, hex: string, locale: Locale): ReactNode {
   const accent = { backgroundColor: hex }
   const color = { color: hex }
+  const [matLabel, labLabel] = COST_LABELS[locale]
   switch (key) {
     case 'timeEasier-1':
       return (
@@ -142,8 +151,8 @@ function illustration(key: string, hex: string, pt: boolean): ReactNode {
       return (
         <div className="w-48 space-y-3">
           {[
-            [pt ? 'Materiais' : 'Materials', '64%'],
-            [pt ? 'Mão de obra' : 'Labour', '36%'],
+            [matLabel, '64%'],
+            [labLabel, '36%'],
           ].map(([l, w], i) => (
             <div key={l}>
               <span className="text-[11px] font-semibold text-tinta">{l}</span>
@@ -256,7 +265,7 @@ export default function ProductFeatures({ id, locale }: { id: ProductId; locale:
           return (
             <li key={f.term} className="feat-card reveal-panel overflow-hidden rounded-frame border border-linha bg-white shadow-[0_18px_40px_-28px_rgba(6,8,60,.45)] transition-transform duration-300 hover:-translate-y-1">
               <div aria-hidden="true" className={cn('grid h-40 place-items-center overflow-hidden', theme.tint)}>
-                {illustration(`${id}-${i}`, theme.hex, locale === 'pt')}
+                {illustration(`${id}-${i}`, theme.hex, locale)}
               </div>
               <div className="p-5">
                 <h3 className="flex items-center gap-2 text-lead font-semibold">

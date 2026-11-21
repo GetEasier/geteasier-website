@@ -2,6 +2,14 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/lib/seo.config";
 import { cn } from "@/lib/utils";
 
+const SAMPLE_LABEL: Record<Locale, string> = {
+  pt: 'dados de exemplo',
+  en: 'sample data',
+  nl: 'voorbeeldgegevens',
+  es: 'datos de ejemplo',
+  fr: 'données d’exemple',
+}
+
 // Moldura das demos: uma janela simples com o nome do ecrã e o aviso de que os dados são de exemplo.
 export default function DemoWindow({
   locale,
@@ -24,7 +32,7 @@ export default function DemoWindow({
       <div className="flex items-center justify-between gap-4 border-b border-tinta/80 bg-white px-4 py-2.5">
         <span className="truncate text-small font-semibold">{title}</span>
         <span className="t-data shrink-0 text-grafite">
-          {locale === "pt" ? "dados de exemplo" : "sample data"}
+          {SAMPLE_LABEL[locale]}
         </span>
       </div>
       <div className="p-4 text-small sm:p-5">{children}</div>

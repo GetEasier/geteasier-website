@@ -38,8 +38,8 @@ export default function TestimonialCarousel({ labels, lang, dark }: { labels: La
     <div
       ref={root}
       role="region"
-      aria-roledescription={lang === 'pt' ? 'carrossel' : 'carousel'}
-      aria-label={lang === 'pt' ? 'Testemunhos de clientes' : 'Client testimonials'}
+      aria-roledescription={{ pt: 'carrossel', en: 'carousel', nl: 'carrousel', es: 'carrusel', fr: 'carrousel' }[lang]}
+      aria-label={{ pt: 'Testemunhos de clientes', en: 'Client testimonials', nl: 'Getuigenissen van klanten', es: 'Testimonios de clientes', fr: 'Témoignages de clients' }[lang]}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
       onFocus={() => setHover(true)}
@@ -87,7 +87,11 @@ export default function TestimonialCarousel({ labels, lang, dark }: { labels: La
           <span className={cn('px-2 text-small font-semibold', dark ? 'text-white/70' : 'text-grafite')}>{labels.of.replace('{i}', String(i + 1)).replace('{n}', String(n))}</span>
         </div>
       )}
-      {lang === 'en' && <p className={cn('mt-6 text-small', dark ? 'text-white/70' : 'text-grafite')}>Quoted in the original Portuguese.</p>}
+      {lang !== 'pt' && (
+        <p className={cn('mt-6 text-small', dark ? 'text-white/70' : 'text-grafite')}>
+          {{ en: 'Quoted in the original Portuguese.', nl: 'Geciteerd in het oorspronkelijke Portugees.', es: 'Citado en el portugués original.', fr: 'Cité dans la version originale portugaise.' }[lang]}
+        </p>
+      )}
     </div>
   )
 }

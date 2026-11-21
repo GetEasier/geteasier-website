@@ -176,4 +176,259 @@ const en: CustomSoftwareDict = {
   ],
 }
 
-export const customSoftware: Record<Locale, CustomSoftwareDict> = { pt, en }
+const nl: CustomSoftwareDict = {
+  h1: 'Software gebouwd rond de manier waarop uw bedrijf werkt',
+  lead: [
+    'Wanneer een standaardproduct uw team dwingt om zijn manier van werken aan te passen, is het zinvoller om het juiste systeem te bouwen.',
+  ],
+  heroArch: 'Bekijk de architectuur',
+  hero: {
+    caption:
+      'Animatie: een beheerapplicatie krijgt één voor één modules (bestellingen, goedkeuringen, teams, facturatie en rapporten) en het hoofdscherm toont elke module in werking. Voorbeeldgegevens.',
+    url: 'beheer.uwbedrijf.be',
+    modules: ['Bestellingen', 'Goedkeuringen', 'Teams', 'Facturatie', 'Rapporten'],
+    orders: [
+      ['#1042', 'Metalúrgica Ave', 'Verzonden'],
+      ['#1043', 'Têxteis Sousa', 'In voorbereiding'],
+      ['#1044', 'Clínica Foz', 'Nieuw'],
+    ],
+    approval: { title: 'Aankoopaanvraag', value: '€ 1.240', who: 'Marta R. · Aankoop', approve: 'Goedkeuren', approved: 'Goedgekeurd' },
+    teams: { title: 'Teams vandaag', items: ['Team A · Antwerpen', 'Team B · Gent', 'Team C · Leuven'] },
+    invoice: { title: 'Factuur FT 2026/318', client: 'Padaria Lima', total: '€ 860,40', sent: 'Verzonden naar klant' },
+    reports: { title: 'Verkoop per maand', kpis: [['Bestellingen', '312'], ['Te laat', '4']] },
+  },
+  buildTitle: 'Wat we bouwen',
+  build: [
+    { term: 'Webapplicaties voor beheer', desc: 'Back-offices, portalen en goedkeuringsstromen die de stappen van uw team volgen.' },
+    { term: 'Apps voor iOS en Android', desc: 'Voor medewerkers op de werkvloer of op verplaatsing, zoals de TimeEasier-app.' },
+    { term: 'Integraties', desc: 'Koppelingen met uw ERP, loonverwerking en overheidssystemen zonder handmatig overtypen.' },
+    { term: 'Platformen voor meerdere bedrijven', desc: 'Eén systeem, meerdere klanten, elk met eigen gegevens en rechten.' },
+    { term: 'Opvolging en ondersteuning', desc: 'We blijven na de oplevering aan boord om het systeem samen verder te laten groeien.' },
+  ],
+  buildCta: { term: 'Een ander idee?', desc: 'Vertel ons wat u nodig heeft.' },
+  mocks: {
+    mobile: { title: 'Taken van vandaag', items: ['Installatie · Antwerpen', 'Bezoek · Gent', 'Levering · Leuven'], done: 'Afgerond' },
+    integrations: { center: 'Uw systeem', nodes: ['ERP', 'Lonen', 'Fiscus', 'Bank'] },
+    tenants: ['Bedrijf A', 'Bedrijf B', 'Bedrijf C'],
+    support: ['Kunnen jullie een verkooprapport per vestiging toevoegen?', 'Ja. Het staat al live ✓'],
+  },
+  processTitle: 'Hoe we werken',
+  process: [
+    { term: 'Verkenning', desc: 'We luisteren naar wie het systeem gaat gebruiken en zien waar tijd verloren gaat.' },
+    { term: 'Offerte en architectuur', desc: 'Omvang, architectuur, fasen en kostprijs, nog voor we beginnen te coderen.' },
+    { term: 'Ontwikkeling in sprints', desc: 'Korte cycli met regelmatige demo’s. Prioriteiten kunnen bijgestuurd worden.' },
+    { term: 'Oplevering', desc: 'We zetten het systeem in productie en begeleiden de opstart.' },
+    { term: 'Onderhoud en evolutie', desc: 'We lossen op, werken bij en voegen nieuwe functies toe.' },
+  ],
+  archTitle: 'Een beheersysteem van binnenuit',
+  archIntro: 'Een voorbeeld van wat we ontwerpen voor een bedrijf met meerdere afdelingen. Elke laag heeft een duidelijke rol.',
+  archFigure:
+    'Architectuurdiagram van een beheersysteem: de kanalen (web, mobiele app, klantenportaal en kiosk) lopen via een toegangslaag met single sign-on en rechten, die de diensten voor bestellingen, facturatie, stock, HR en goedkeuringen aanroept. De diensten communiceren via events, bewaren gegevens in een databank, bestanden en cache, en koppelen met het ERP, de bank, de fiscus en e-mail/sms.',
+  arch: [
+    { key: 'channels', term: 'Kanalen', desc: 'Web, mobiele app, klantenportaal en kiosk. Iedereen gebruikt het scherm dat past.' },
+    { key: 'access', term: 'Toegang en rechten', desc: 'Eén login voor alles, met profielen per afdeling, team en bedrijf.' },
+    { key: 'services', term: 'Bedrijfsdiensten', desc: 'Bestellingen, facturatie, stock, HR en goedkeuringen, elk met eigen regels.' },
+    { key: 'data', term: 'Gegevens en events', desc: 'Diensten praten via events en elk gegeven wordt één keer op de juiste plek bewaard.' },
+    { key: 'integrations', term: 'Integraties', desc: 'ERP, bank, overheid, e-mail en sms, zonder handmatig kopiëren.' },
+    { key: 'ops', term: 'Operaties', desc: 'Automatische uitrol, statistieken, meldingen en back-ups.' },
+  ],
+  archLabels: {
+    channels: ['Web', 'Mobiele app', 'Klantenportaal', 'Kiosk'],
+    access: 'Toegang · single sign-on · rechten',
+    services: ['Bestellingen', 'Facturatie', 'Stock', 'HR', 'Goedkeuringen'],
+    bus: 'events',
+    data: ['Databank', 'Bestanden', 'Cache'],
+    integrations: ['ERP', 'Bank', 'Fiscus', 'E-mail/SMS'],
+    ops: 'CI/CD · statistieken · meldingen · back-ups',
+  },
+  faqTitle: 'Veelgestelde vragen',
+  faqText: 'Vindt u uw vraag niet? Neem contact op.',
+  faq: [
+    {
+      q: 'Hoe lang duurt een project?',
+      a: 'Dat hangt af van de omvang. De offerte bevat de fasen en doorlooptijd, en omdat we in korte sprints werken ziet u vanaf het begin resultaat.',
+    },
+    { q: 'Wat kost het?', a: 'Elk project krijgt een eigen offerte met omvang, fasen en prijs voordat we beginnen te ontwikkelen.' },
+    {
+      q: 'Wie is eigenaar van de code en de gegevens?',
+      a: 'De gegevens zijn altijd van uw bedrijf. Het eigendom van de code en de overdracht leggen we vast in de offerte.',
+    },
+    {
+      q: 'Kunnen jullie een bestaand systeem verbeteren?',
+      a: 'Ja. We bekijken eerst wat er al bestaat en stellen voor wat het meest zinvol is: uitbreiden, koppelen of vervangen.',
+    },
+    { q: 'En na de oplevering?', a: 'We blijven u ondersteunen: support, aanpassingen, updates en nieuwe functies.' },
+  ],
+}
+
+const es: CustomSoftwareDict = {
+  h1: 'Software diseñado en torno a la forma en que trabaja tu empresa',
+  lead: [
+    'Cuando un producto estándar obliga a tu equipo a cambiar su forma de trabajar, tiene sentido construir el sistema adecuado.',
+  ],
+  heroArch: 'Ver la arquitectura',
+  hero: {
+    caption:
+      'Animación: una aplicación de gestión incorpora módulos uno a uno (pedidos, aprobaciones, equipos, facturación e informes) y la pantalla principal muestra cada módulo en funcionamiento. Datos de ejemplo.',
+    url: 'gestion.tuempresa.es',
+    modules: ['Pedidos', 'Aprobaciones', 'Equipos', 'Facturación', 'Informes'],
+    orders: [
+      ['#1042', 'Metalúrgica Ave', 'Enviado'],
+      ['#1043', 'Têxteis Sousa', 'En preparación'],
+      ['#1044', 'Clínica Foz', 'Nuevo'],
+    ],
+    approval: { title: 'Solicitud de compra', value: '1.240 €', who: 'Marta R. · Compras', approve: 'Aprobar', approved: 'Aprobado' },
+    teams: { title: 'Equipos hoy', items: ['Equipo A · Madrid', 'Equipo B · Valencia', 'Equipo C · Bilbao'] },
+    invoice: { title: 'Factura FT 2026/318', client: 'Padaria Lima', total: '860,40 €', sent: 'Enviada al cliente' },
+    reports: { title: 'Ventas por mes', kpis: [['Pedidos', '312'], ['Con retraso', '4']] },
+  },
+  buildTitle: 'Qué construimos',
+  build: [
+    { term: 'Aplicaciones web de gestión', desc: 'Back-offices, portales y flujos de aprobación que siguen los pasos de tu equipo.' },
+    { term: 'Apps para iOS y Android', desc: 'Para quienes trabajan sobre el terreno, como la app de TimeEasier.' },
+    { term: 'Integraciones', desc: 'Conexión con tu ERP, nóminas y organismos públicos sin copiar datos a mano.' },
+    { term: 'Plataformas multiempresa', desc: 'Un sistema, múltiples clientes, cada uno con sus propios datos y permisos.' },
+    { term: 'Acompañamiento y soporte', desc: 'Nos quedamos tras la entrega para evolucionar el sistema contigo.' },
+  ],
+  buildCta: { term: '¿Tienes otra idea?', desc: 'Cuéntanos qué necesitas.' },
+  mocks: {
+    mobile: { title: 'Tareas de hoy', items: ['Instalación · Madrid', 'Visita · Valencia', 'Entrega · Bilbao'], done: 'Completado' },
+    integrations: { center: 'Tu sistema', nodes: ['ERP', 'Nóminas', 'Hacienda', 'Banco'] },
+    tenants: ['Empresa A', 'Empresa B', 'Empresa C'],
+    support: ['¿Podéis añadir un informe de ventas por tienda?', 'Sí. Ya está publicado ✓'],
+  },
+  processTitle: 'Cómo trabajamos',
+  process: [
+    { term: 'Descubrimiento', desc: 'Escuchamos a quienes usarán el sistema y vemos dónde se pierde tiempo.' },
+    { term: 'Propuesta y arquitectura', desc: 'Alcance, arquitectura, fases y coste antes de empezar a programar.' },
+    { term: 'Desarrollo en sprints', desc: 'Ciclos cortos con demostraciones periódicas. Puedes cambiar prioridades.' },
+    { term: 'Entrega', desc: 'Ponemos el sistema en producción y acompañamos el arranque.' },
+    { term: 'Mantenimiento y evolución', desc: 'Corregimos, actualizamos y añadimos nuevas funcionalidades.' },
+  ],
+  archTitle: 'Un sistema de gestión por dentro',
+  archIntro: 'Un ejemplo de lo que diseñamos para una empresa con varios departamentos. Cada capa tiene una función.',
+  archFigure:
+    'Diagrama de arquitectura de un sistema de gestión: los canales (web, app móvil, portal de clientes y quiosco) pasan por una capa de acceso con inicio de sesión único y permisos, que llama a los servicios de pedidos, facturación, stock, RR. HH. y aprobaciones. Los servicios se comunican mediante eventos, guardan los datos en base de datos, archivos y caché, y se conectan con ERP, banco, Hacienda y correo/SMS.',
+  arch: [
+    { key: 'channels', term: 'Canales', desc: 'Web, app móvil, portal de clientes y quiosco. Cada persona usa la pantalla que necesita.' },
+    { key: 'access', term: 'Acceso y permisos', desc: 'Un inicio de sesión para todo, con perfiles por departamento, equipo y empresa.' },
+    { key: 'services', term: 'Servicios de negocio', desc: 'Pedidos, facturación, stock, RR. HH. y aprobaciones, cada uno con sus reglas.' },
+    { key: 'data', term: 'Datos y eventos', desc: 'Los servicios hablan mediante eventos y cada dato se guarda una sola vez, en el sitio correcto.' },
+    { key: 'integrations', term: 'Integraciones', desc: 'ERP, banco, Hacienda, correo y SMS, sin copiar datos a mano.' },
+    { key: 'ops', term: 'Operación', desc: 'Publicación automática, métricas, alertas y copias de seguridad.' },
+  ],
+  archLabels: {
+    channels: ['Web', 'App móvil', 'Portal clientes', 'Quiosco'],
+    access: 'Acceso · login único · permisos',
+    services: ['Pedidos', 'Facturación', 'Stock', 'RR. HH.', 'Aprobaciones'],
+    bus: 'eventos',
+    data: ['Base de datos', 'Archivos', 'Caché'],
+    integrations: ['ERP', 'Banco', 'Hacienda', 'Email/SMS'],
+    ops: 'CI/CD · métricas · alertas · copias de seguridad',
+  },
+  faqTitle: 'Preguntas frecuentes',
+  faqText: '¿No encuentras tu pregunta? Háblanos.',
+  faq: [
+    {
+      q: '¿Cuánto tarda un proyecto?',
+      a: 'Depende del alcance. La propuesta incluye las fases y el plazo de cada una, y como trabajamos en sprints cortos ves resultados desde el inicio.',
+    },
+    { q: '¿Cuánto cuesta?', a: 'Cada proyecto tiene su propia propuesta, con alcance, fases y coste antes de empezar a programar.' },
+    {
+      q: '¿Quién se queda con el código y los datos?',
+      a: 'Los datos son siempre de tu empresa. La propiedad del código y su entrega quedan definidas en la propuesta.',
+    },
+    {
+      q: '¿Podéis mejorar un sistema que ya tenemos?',
+      a: 'Sí. Empezamos entendiendo lo que existe y proponemos lo que tiene más sentido: evolucionarlo, integrarlo o sustituirlo.',
+    },
+    { q: '¿Y después de la entrega?', a: 'Seguimos contigo: soporte, correcciones, actualizaciones y nuevas funcionalidades.' },
+  ],
+}
+
+const fr: CustomSoftwareDict = {
+  h1: 'Un logiciel conçu autour de la façon dont votre entreprise travaille',
+  lead: [
+    'Quand un logiciel standard oblige votre équipe à changer ses habitudes, il est plus pertinent de construire le bon système.',
+  ],
+  heroArch: 'Voir l’architecture',
+  hero: {
+    caption:
+      'Animation : une application de gestion intègre des modules un par un (commandes, validations, équipes, facturation et rapports) et l’écran principal montre chaque module en action. Données fictives.',
+    url: 'gestion.votreentreprise.fr',
+    modules: ['Commandes', 'Validations', 'Équipes', 'Facturation', 'Rapports'],
+    orders: [
+      ['#1042', 'Metalúrgica Ave', 'Expédiée'],
+      ['#1043', 'Têxteis Sousa', 'En préparation'],
+      ['#1044', 'Clínica Foz', 'Nouvelle'],
+    ],
+    approval: { title: 'Demande d’achat', value: '1 240 €', who: 'Marta R. · Achats', approve: 'Valider', approved: 'Validé' },
+    teams: { title: 'Équipes aujourd’hui', items: ['Équipe A · Lyon', 'Équipe B · Paris', 'Équipe C · Lille'] },
+    invoice: { title: 'Facture FT 2026/318', client: 'Padaria Lima', total: '860,40 €', sent: 'Envoyée au client' },
+    reports: { title: 'Ventes par mois', kpis: [['Commandes', '312'], ['En retard', '4']] },
+  },
+  buildTitle: 'Ce que nous construisons',
+  build: [
+    { term: 'Applications web de gestion', desc: 'Back-offices, portails et circuits de validation adaptés aux étapes de votre équipe.' },
+    { term: 'Apps iOS et Android', desc: 'Pour ceux qui travaillent sur le terrain, comme l’application TimeEasier.' },
+    { term: 'Intégrations', desc: 'Connexion à votre ERP, à la paie et aux systèmes publics, sans ressaisie manuelle.' },
+    { term: 'Plateformes multi-entreprises', desc: 'Un seul système, plusieurs clients, chacun avec ses données et ses droits.' },
+    { term: 'Suivi et support', desc: 'Nous restons après la livraison pour faire évoluer le système avec vous.' },
+  ],
+  buildCta: { term: 'Une autre idée ?', desc: 'Dites-nous ce dont vous avez besoin.' },
+  mocks: {
+    mobile: { title: 'Tâches du jour', items: ['Installation · Lyon', 'Visite · Paris', 'Livraison · Lille'], done: 'Terminé' },
+    integrations: { center: 'Votre système', nodes: ['ERP', 'Paie', 'Fisc', 'Banque'] },
+    tenants: ['Entreprise A', 'Entreprise B', 'Entreprise C'],
+    support: ['Pouvez-vous ajouter un rapport des ventes par magasin ?', 'Oui. C’est en ligne ✓'],
+  },
+  processTitle: 'Notre méthode',
+  process: [
+    { term: 'Découverte', desc: 'Nous écoutons les futurs utilisateurs et identifions où se perd le temps.' },
+    { term: 'Proposition et architecture', desc: 'Périmètre, architecture, phases et budget avant de coder.' },
+    { term: 'Développement en sprints', desc: 'Cycles courts avec démonstrations régulières. Vous ajustez les priorités.' },
+    { term: 'Mise en production', desc: 'Nous déployons le système et accompagnons le démarrage.' },
+    { term: 'Maintenance et évolution', desc: 'Nous corrigeons, mettons à jour et ajoutons de nouvelles fonctionnalités.' },
+  ],
+  archTitle: 'Un système de gestion, vu de l’intérieur',
+  archIntro: 'Un exemple de ce que nous concevons pour une entreprise multi-départements. Chaque couche a un rôle précis.',
+  archFigure:
+    'Schéma d’architecture d’un système de gestion : les canaux (web, application mobile, portail client et borne) passent par une couche d’accès avec authentification unique et droits, qui sollicite les services commandes, facturation, stock, RH et validations. Les services communiquent par événements, stockent les données en base, fichiers et cache, et se connectent à l’ERP, la banque, l’administration et les e-mails/SMS.',
+  arch: [
+    { key: 'channels', term: 'Canaux', desc: 'Web, app mobile, portail client et borne. Chacun utilise l’écran adapté.' },
+    { key: 'access', term: 'Accès et droits', desc: 'Une seule connexion pour tout, avec des profils par service, équipe et entreprise.' },
+    { key: 'services', term: 'Services métier', desc: 'Commandes, facturation, stock, RH et validations, chacun avec ses règles.' },
+    { key: 'data', term: 'Données et événements', desc: 'Les services échangent par événements et chaque donnée est stockée au bon endroit.' },
+    { key: 'integrations', term: 'Intégrations', desc: 'ERP, banque, administration, e-mail et SMS, sans copie manuelle.' },
+    { key: 'ops', term: 'Exploitation', desc: 'Déploiement automatisé, métriques, alertes et sauvegardes.' },
+  ],
+  archLabels: {
+    channels: ['Web', 'App mobile', 'Portail client', 'Borne'],
+    access: 'Accès · connexion unique · droits',
+    services: ['Commandes', 'Facturation', 'Stock', 'RH', 'Validations'],
+    bus: 'événements',
+    data: ['Base de données', 'Fichiers', 'Cache'],
+    integrations: ['ERP', 'Banque', 'Fisc', 'E-mail/SMS'],
+    ops: 'CI/CD · métriques · alertes · sauvegardes',
+  },
+  faqTitle: 'Questions fréquentes',
+  faqText: 'Vous ne trouvez pas votre réponse ? Contactez-nous.',
+  faq: [
+    {
+      q: 'Combien de temps dure un projet ?',
+      a: 'Cela dépend du périmètre. La proposition détaille chaque phase et son délai, et nos sprints courts vous montrent des résultats dès le début.',
+    },
+    { q: 'Combien cela coûte-t-il ?', a: 'Chaque projet fait l’objet d’un devis détaillant périmètre, phases et coût avant de commencer à coder.' },
+    {
+      q: 'À qui appartiennent le code et les données ?',
+      a: 'Les données appartiennent toujours à votre entreprise. La propriété du code et sa remise sont définies dans la proposition.',
+    },
+    {
+      q: 'Pouvez-vous améliorer un système existant ?',
+      a: 'Oui. Nous analysons l’existant et proposons l’approche la plus adaptée : faire évoluer, intégrer ou remplacer.',
+    },
+    { q: 'Et après la livraison ?', a: 'Nous restons à vos côtés : support, correctifs, mises à jour et nouvelles fonctionnalités.' },
+  ],
+}
+
+export const customSoftware: Record<Locale, CustomSoftwareDict> = { pt, en, nl, es, fr }
