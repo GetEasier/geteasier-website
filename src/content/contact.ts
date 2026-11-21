@@ -102,7 +102,7 @@ const en: ContactDict = {
 
 const nl: ContactDict = {
   h1: 'Neem contact op',
-  lead: 'Een project op maat, een productdemo of een offerte. Schrijf ons of stuur meteen een bericht via WhatsApp.',
+  lead: 'Een project op maat, een demo of een offerte voor een plan. Schrijf ons of stuur meteen een bericht via WhatsApp.',
   form: {
     title: 'Bericht versturen',
     name: 'Naam',
@@ -110,11 +110,11 @@ const nl: ContactDict = {
     company: 'Bedrijf (optioneel)',
     subject: 'Onderwerp',
     message: 'Bericht',
-    messageHint: 'Wat uw team vandaag doet en wat u graag zou vereenvoudigen.',
+    messageHint: 'Wat uw team vandaag doet en wat u graag zou veranderen.',
     submit: 'Bericht versturen',
     sending: 'Bezig met verzenden…',
     success: 'Bericht verzonden. We antwoorden op het opgegeven e-mailadres.',
-    error: 'Het bericht kon niet worden verzonden. Probeer opnieuw of stuur ons via WhatsApp.',
+    error: 'Het bericht kon niet worden verzonden. Probeer opnieuw of schrijf ons via WhatsApp.',
     required: 'Verplicht veld',
     invalidEmail: 'Geef een geldig e-mailadres op, bv. naam@bedrijf.be',
     privacy: 'We gebruiken deze gegevens enkel om op uw bericht te antwoorden, zoals uitgelegd in het',
@@ -139,7 +139,7 @@ const nl: ContactDict = {
     outro: 'Anders',
   },
   whatsapp: 'WhatsApp',
-  whatsappCta: 'Stuur via WhatsApp',
+  whatsappCta: 'Schrijf ons via WhatsApp',
   social: 'Sociale media',
 }
 
@@ -153,7 +153,7 @@ const es: ContactDict = {
     company: 'Empresa (opcional)',
     subject: 'Asunto',
     message: 'Mensaje',
-    messageHint: 'Qué hace tu equipo hoy y qué te gustaría mejorar.',
+    messageHint: 'Qué hace tu equipo hoy y qué te gustaría cambiar.',
     submit: 'Enviar mensaje',
     sending: 'Enviando…',
     success: 'Mensaje enviado. Responderemos al correo que nos indicaste.',
@@ -188,7 +188,7 @@ const es: ContactDict = {
 
 const fr: ContactDict = {
   h1: 'Contactez-nous',
-  lead: 'Un projet sur mesure, une démonstration ou un devis. Écrivez-nous ou contactez-nous directement sur WhatsApp.',
+  lead: 'Un projet sur mesure, une démonstration ou un devis pour une formule. Écrivez-nous ou contactez-nous directement sur WhatsApp.',
   form: {
     title: 'Envoyer un message',
     name: 'Nom',
@@ -196,7 +196,7 @@ const fr: ContactDict = {
     company: 'Entreprise (optionnel)',
     subject: 'Objet',
     message: 'Message',
-    messageHint: 'Ce que fait votre équipe aujourd’hui et ce que vous souhaitez simplifier.',
+    messageHint: 'Ce que fait votre équipe aujourd’hui et ce que vous aimeriez changer.',
     submit: 'Envoyer le message',
     sending: 'Envoi en cours…',
     success: 'Message envoyé. Nous vous répondrons à l’adresse indiquée.',
@@ -212,7 +212,7 @@ const fr: ContactDict = {
     'demo-construction-easier': 'Démonstration de ConstructionEasier',
     'demo-stock-easier': 'Démonstration de StockEasier',
     'demo-wood-easier': 'Démonstration de WoodEasier',
-    planos: 'Demande de devis',
+    planos: 'Devis pour une formule',
     outro: 'Autre sujet',
   },
   chips: {
@@ -221,7 +221,7 @@ const fr: ContactDict = {
     'demo-construction-easier': 'Démo ConstructionEasier',
     'demo-stock-easier': 'Démo StockEasier',
     'demo-wood-easier': 'Démo WoodEasier',
-    planos: 'Offres',
+    planos: 'Formules',
     outro: 'Autre',
   },
   whatsapp: 'WhatsApp',

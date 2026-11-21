@@ -31,7 +31,7 @@ const T = {
   },
   fr: {
     time: { before: 'Reconnaissance faciale', after: 'Présence enregistrée' },
-    obras: { doc: 'Assurance Cofragens Tejo', before: 'Manquant', after: 'Valide jusqu’en décembre' },
+    obras: { doc: 'Assurance Cofragens Tejo', before: 'Manquante', after: 'Valide jusqu’en décembre' },
     stock: { item: 'Gants de protection', out: '6 paires remises à Hugo Tavares', alert: 'Sous le minimum : recommander' },
     wood: { lot: 'Lot L-114', before: 'En traitement', after: 'Expédié avec passeport' },
   },

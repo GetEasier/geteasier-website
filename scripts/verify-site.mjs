@@ -22,7 +22,13 @@ import { chromium } from 'playwright'
 const SITE_URL = 'https://geteasier.pt'
 const SHOTS = '.verify/screens'
 const LEGAL = ['/privacy-policy', '/terms-and-conditions']
-const UNKNOWN = ['/esta-pagina-nao-existe', '/en/this-page-does-not-exist', '/time-easier/xyz']
+const UNKNOWN = ['/esta-pagina-nao-existe', '/en/this-page-does-not-exist', '/nl/deze-pagina-bestaat-niet', '/es/esta-pagina-no-existe', '/fr/cette-page-n-existe-pas', '/time-easier/xyz']
+// Línguas com prefixo no URL: atributo lang esperado. Sem prefixo é português.
+const LANGS = { en: 'en', nl: 'nl-BE', es: 'es', fr: 'fr' }
+const HOMES = ['/', ...Object.keys(LANGS).map((l) => `/${l}`)]
+const langFor = (path) => LANGS[path.split('/')[1]] ?? 'pt-PT'
+// aria-label dos breadcrumbs em cada língua (common.ts, `breadcrumbs`).
+const CRUMB_LABELS = ['Caminho de navegação', 'Breadcrumb', 'Broodkruimelpad', 'Ruta de navegación', 'Fil d’Ariane']
 const VIEWS = [
   { name: 'm390', viewport: { width: 390, height: 844 }, reducedMotion: 'no-preference' },
   { name: 'd1440', viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' },
@@ -119,9 +125,9 @@ try {
       const res = await page.goto(BASE + path, { waitUntil: 'networkidle' })
       if (!res || res.status() !== 200) fail(where, `estado ${res?.status()}`)
 
-      const info = await page.evaluate(() => {
+      const info = await page.evaluate((crumbLabels) => {
         const meta = (sel) => document.querySelector(sel)?.getAttribute('content') ?? null
-        const crumbNav = document.querySelector('nav[aria-label="Caminho de navegação"], nav[aria-label="Breadcrumb"]')
+        const crumbNav = [...document.querySelectorAll('nav[aria-label]')].find((n) => crumbLabels.includes(n.getAttribute('aria-label'))) ?? null
         return {
           lang: document.documentElement.lang,
           title: document.title,
@@ -141,11 +147,11 @@ try {
           links: [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href')),
           overflow: document.documentElement.scrollWidth > window.innerWidth,
         }
-      })
+      }, CRUMB_LABELS)
 
       if (view.name === 'd1440') {
         // Metadados: basta verificar uma vez por página.
-        const expectLang = path === '/en' || path.startsWith('/en/') ? 'en' : 'pt-PT'
+        const expectLang = langFor(path)
         if (info.lang !== expectLang) fail(path, `lang "${info.lang}", esperado "${expectLang}"`)
         if (!info.title) fail(path, 'sem title')
         else if (info.title.length > 60) fail(path, `title com ${info.title.length} caracteres (máx. 60)`)
@@ -176,7 +182,7 @@ try {
         }
 
         // Breadcrumbs visíveis = BreadcrumbList
-        if (path !== '/' && path !== '/en') {
+        if (!HOMES.includes(path)) {
           if (!info.crumbs) fail(path, 'sem breadcrumbs')
           else if (!breadcrumbList) fail(path, 'breadcrumbs sem BreadcrumbList')
           else {

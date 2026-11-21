@@ -116,7 +116,7 @@ const T = {
     item: "Gants de protection",
     meta: "EPI · Entrepôt · paire",
     stock: "EN STOCK",
-    min: "Premier seuil 30",
+    min: "Première alerte 30",
     entry: "+ Entrée",
     inMove: "Entrée · fournisseur",
     outMove: "Remis · Carla P.",

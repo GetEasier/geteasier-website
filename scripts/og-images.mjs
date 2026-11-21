@@ -1,10 +1,10 @@
-// Gera as imagens Open Graph (1200×630) de cada página em public/og/{id}-{pt|en}.png.
+// Gera as imagens Open Graph (1200×630) de cada página em public/og/{id}-{pt|en|nl|es|fr}.png.
 // Uso: node --experimental-strip-types scripts/og-images.mjs
 // Usa o Playwright (dependência de desenvolvimento) e as fontes do site. Correr quando os títulos mudam.
 import { chromium } from 'playwright'
 import { mkdirSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { ROUTE_LIST } from '../src/lib/seo.config.ts'
+import { LOCALES, ROUTE_LIST } from '../src/lib/seo.config.ts'
 
 const OUT = 'public/og'
 mkdirSync(OUT, { recursive: true })
@@ -14,10 +14,19 @@ const logo = readFileSync('public/logo.svg', 'utf8')
   .replace(/<\?xml[^>]*>/, '')
   .replace('.st1{fill:#FFFFFF;}', '.st1{fill:#06083C;}')
 
+const HTML_LANG = { pt: 'pt-PT', en: 'en', nl: 'nl-BE', es: 'es', fr: 'fr' }
+const TAGS = {
+  pt: 'Equipa de software, Portugal',
+  en: 'Software team, Portugal',
+  nl: 'Softwareteam, Portugal',
+  es: 'Equipo de software, Portugal',
+  fr: 'Équipe logicielle, Portugal',
+}
+
 function html(title, lang) {
   const url = 'geteasier.pt'
-  const tag = lang === 'en' ? 'Software team, Portugal' : 'Equipa de software, Portugal'
-  return `<!doctype html><html lang="${lang}"><meta charset="utf-8"><style>
+  const tag = TAGS[lang]
+  return `<!doctype html><html lang="${HTML_LANG[lang]}"><meta charset="utf-8"><style>
   @font-face{font-family:Geist;src:url(${font('geist-latin-wght100-900.woff2')}) format('woff2');font-weight:100 900}
   @font-face{font-family:GeistMono;src:url(${font('geist-mono-latin-wght100-900.woff2')}) format('woff2');font-weight:100 900}
   *{margin:0;box-sizing:border-box}
@@ -35,15 +44,16 @@ function html(title, lang) {
   <div class="box"><div class="logo">${logo}</div><h1>${title}</h1><div class="foot"><span>${tag}</span><span>${url}</span></div></div></body></html>`
 }
 
-const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || '/opt/pw-browsers/chromium' })
+// PW_CHROMIUM: caminho do Chromium (opcional); sem ele usa o Chromium instalado pelo Playwright.
+const browser = await chromium.launch(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {})
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } })
 let n = 0
 for (const r of ROUTE_LIST) {
-  for (const lang of ['pt', 'en']) {
-    const loc = lang === 'en' ? r.en : r.pt
+  for (const lang of LOCALES) {
+    const loc = r[lang]
     if (!loc) continue
     const title = r.id === 'home' ? loc.title.replace(/^GetEasier \| /, '') : loc.title.replace(/ \| GetEasier$/, '')
-    await page.setContent(html(title, lang === 'pt' ? 'pt-PT' : 'en'), { waitUntil: 'load' })
+    await page.setContent(html(title, lang), { waitUntil: 'load' })
     await page.evaluate(() => document.fonts.ready)
     await page.screenshot({ path: `${OUT}/${r.id}-${lang}.png` })
     n++

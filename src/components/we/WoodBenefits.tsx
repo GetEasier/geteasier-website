@@ -66,8 +66,8 @@ const T = {
     steps: [
       { title: 'Elke partij geregistreerd bij aankomst', text: 'Het hout komt binnen en wordt een partij met materiaal en aantal. Geen schriften of losse blaadjes meer.' },
       { title: 'De behandeling blijft bewaard', text: 'De temperatuur en duur van elke behandeling worden bij de partij opgeslagen.' },
-      { title: 'Het paspoort komt uit de partij', text: 'Na de behandeling genereert WoodEasier automatisch het paspoort voor behandeld hout.' },
-      { title: 'Inspecties zonder haast', text: 'Rapporten en attesten rollen er meteen klaar uit en bij een inspectie ligt de historiek van elke partij klaar.' },
+      { title: 'Het paspoort komt uit de partij', text: 'Na de behandeling genereert WoodEasier het paspoort voor het behandelde hout.' },
+      { title: 'De DGAV zonder haast', text: 'De rapporten en bewijsstukken komen er klaar uit en bij een inspectie ligt de historiek van elke partij bij de hand.' },
     ],
     lot: 'Partij L-0142',
     fields: [
@@ -81,8 +81,8 @@ const T = {
     passport: 'Paspoort',
     generated: 'Gegenereerd',
     reports: [
-      ['Conformiteitsrapport', 'Klaar'],
-      ['Behandelingsattesten', '12'],
+      ['Rapport voor de DGAV', 'Klaar'],
+      ['Bewijsstukken van behandeling', '12'],
       ['Historiek van partij', 'Volledig'],
     ],
   },
@@ -93,7 +93,7 @@ const T = {
       { title: 'Cada lote registrado al llegar', text: 'La madera entra y se registra como lote con material y cantidad. Sin cuadernos ni hojas sueltas.' },
       { title: 'El tratamiento queda registrado', text: 'La temperatura y duración de cada tratamiento se guardan en el lote.' },
       { title: 'El pasaporte sale del lote', text: 'Completado el tratamiento, WoodEasier genera el pasaporte de la madera tratada.' },
-      { title: 'Inspecciones sin prisas', text: 'Los informes y justificantes salen listos y, ante una inspección, el historial de cada lote está a mano.' },
+      { title: 'La DGAV sin prisas', text: 'Los informes y justificantes salen listos y, ante una inspección, el historial de cada lote está a mano.' },
     ],
     lot: 'Lote L-0142',
     fields: [
@@ -107,7 +107,7 @@ const T = {
     passport: 'Pasaporte',
     generated: 'Generado',
     reports: [
-      ['Informe de conformidad', 'Listo'],
+      ['Informe para la DGAV', 'Listo'],
       ['Justificantes de tratamiento', '12'],
       ['Historial del lote', 'Completo'],
     ],
@@ -117,9 +117,9 @@ const T = {
     intro: 'Un lot de bois, de la réception à l’expédition.',
     steps: [
       { title: 'Chaque lot enregistré à l’arrivée', text: 'Le bois entre et devient un lot avec matière et quantité. Fini les cahiers et feuilles volantes.' },
-      { title: 'Le traitement est archivé', text: 'La température et la durée de chaque traitement sont enregistrées dans le lot.' },
-      { title: 'Le passeport découle du lot', text: 'Une fois traité, WoodEasier génère le passeport du bois traité.' },
-      { title: 'Audits et contrôles sereins', text: 'Les rapports et justificatifs sont prêts et, lors d’une inspection, l’historique de chaque lot est accessible.' },
+      { title: 'Le traitement est enregistré', text: 'La température et la durée de chaque traitement sont enregistrées dans le lot.' },
+      { title: 'Le passeport vient du lot', text: 'Une fois traité, WoodEasier génère le passeport du bois traité.' },
+      { title: 'La DGAV sans précipitation', text: 'Les rapports et justificatifs sortent prêts et, lors d’une inspection, l’historique de chaque lot est à portée de main.' },
     ],
     lot: 'Lot L-0142',
     fields: [
@@ -133,8 +133,8 @@ const T = {
     passport: 'Passeport',
     generated: 'Généré',
     reports: [
-      ['Rapport de conformité', 'Prêt'],
-      ['Certificats de traitement', '12'],
+      ['Rapport pour la DGAV', 'Prêt'],
+      ['Justificatifs de traitement', '12'],
       ['Historique du lot', 'Complet'],
     ],
   },

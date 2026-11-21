@@ -4,9 +4,12 @@ import './globals.css'
 import { sans, mono } from '@/lib/fonts'
 import SiteShell from '@/components/site/SiteShell'
 import { common } from '@/content/common'
-import { MAIN_NAV, href, route } from '@/lib/seo.config'
+import { LOCALES, MAIN_NAV, href, route, type Locale } from '@/lib/seo.config'
 
-// Página 404 de todo o site (há dois layouts raiz, um por língua). Devolve HTTP 404.
+// Página 404 de todo o site (há um layout raiz por língua). Devolve HTTP 404.
+// O texto principal é em português; ao lado, um resumo em cada uma das outras línguas.
+const HTML_LANG: Record<Locale, string> = { pt: 'pt-PT', en: 'en', nl: 'nl-BE', es: 'es', fr: 'fr' }
+const OTHER_LOCALES = LOCALES.filter((l) => l !== 'pt')
 export const metadata: Metadata = {
   title: 'Página não encontrada | GetEasier',
   description: 'A página que procura não existe no site da GetEasier.',
@@ -16,7 +19,6 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   const pt = common.pt.notFound
-  const en = common.en.notFound
   return (
     <html lang="pt-PT" className={`${sans.variable} ${mono.variable}`}>
       <body>
@@ -27,7 +29,7 @@ export default function GlobalNotFound() {
               <h1 className="t-h1 mt-3">{pt.title}</h1>
               <p className="mt-6 max-w-prose text-lead text-grafite">{pt.text}</p>
               <ul className="mt-6 border-t border-linha">
-                {(['home', ...MAIN_NAV] as const).map((id) => (
+                {MAIN_NAV.map((id) => (
                   <li key={id} className="border-b border-linha">
                     <Link href={href(id, 'pt')} className="flex min-h-[52px] items-center font-medium hover:text-azul hover:underline">
                       {id === 'home' ? 'Página inicial' : route(id, 'pt').breadcrumb}
@@ -42,18 +44,22 @@ export default function GlobalNotFound() {
                 </Link>
               </p>
             </div>
-            <div lang="en" className="lg:border-l lg:border-linha lg:pl-12">
-              <h2 className="t-h3">{en.title}</h2>
-              <p className="mt-4 max-w-prose text-grafite">{en.text}</p>
-              <ul className="mt-4 space-y-2">
-                {(['home', 'customSoftware', 'products', 'contact'] as const).map((id) => (
-                  <li key={id}>
-                    <Link href={href(id, 'en')} hrefLang="en" className="link">
-                      {id === 'home' ? 'Home page' : route(id, 'en').breadcrumb}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="space-y-10 lg:border-l lg:border-linha lg:pl-12">
+              {OTHER_LOCALES.map((l) => (
+                <div key={l} lang={HTML_LANG[l]}>
+                  <h2 className="t-h3">{common[l].notFound.title}</h2>
+                  <p className="mt-4 max-w-prose text-grafite">{common[l].notFound.text}</p>
+                  <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                    {(['home', 'customSoftware', 'products', 'contact'] as const).map((id) => (
+                      <li key={id}>
+                        <Link href={href(id, l)} hrefLang={HTML_LANG[l]} className="link">
+                          {route(id, l).breadcrumb}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </section>
         </SiteShell>

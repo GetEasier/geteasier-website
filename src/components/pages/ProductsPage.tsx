@@ -56,8 +56,8 @@ const HELP_TEXT: Record<Locale, { btn: string; title: string; text: string }> = 
   },
   fr: {
     btn: 'Demander conseil pour choisir',
-    title: 'Nous vous aidons à choisir le produit et l’offre',
-    text: 'Dites-nous ce que vous souhaitez suivre et combien de personnes vous êtes. Nous vous orientons vers le bon choix.',
+    title: 'Nous vous aidons à choisir le produit et la formule',
+    text: 'Dites-nous ce que vous souhaitez suivre et combien de personnes vous êtes. Nous vous indiquons le produit et la formule adaptés.',
   },
 }
 

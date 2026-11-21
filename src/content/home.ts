@@ -288,7 +288,7 @@ const en: HomeDict = {
 const nl: HomeDict = {
   build: {
     summary:
-      'Geanimeerde illustratie met voorbeeldgegevens: de vraag van een klant om aanwezigheden zonder papier te registreren wordt vertaald naar een architectuur, de code wordt geschreven en getest, en de applicatie draait op computer en smartphone, gekoppeld aan ERP en loonverwerking.',
+      'Geanimeerde illustratie met voorbeeldgegevens: de vraag van een klant om aanwezigheden zonder papier te registreren wordt een architectuur (web-, smartphone- en tabletapps verbonden met een API, de services en de databank), de code wordt geschreven en getest, en de aanwezigheidsapp komt op de computer en de smartphone, gekoppeld aan het ERP en de loonverwerking.',
     steps: ['Idee', 'Architectuur', 'Code', 'Lancering'],
     sample: 'voorbeeldgegevens',
     noteKicker: 'De vraag',
@@ -324,7 +324,7 @@ const nl: HomeDict = {
   },
   hero: {
     summary:
-      'Geanimeerde illustratie met voorbeeldgegevens: Rui Marques van Cofragens Tejo komt aan bij de werfpoort, de tablet herkent zijn gezicht, zijn aankomst wordt geregistreerd om 07:42 en de werfleider krijgt een melding dat de verzekering over 12 dagen vervalt.',
+      'Geanimeerde illustratie met voorbeeldgegevens: Rui Marques, van Cofragens Tejo, komt aan bij de poort van werf Marvila, de tablet herkent zijn gezicht, de aankomst wordt geregistreerd om 07:42 en de verantwoordelijke krijgt een melding dat de verzekering van Cofragens Tejo over 12 dagen vervalt.',
     detected: 'Medewerker aan de poort',
     company: 'Cofragens Tejo',
     role: 'bekister',
@@ -340,7 +340,7 @@ const nl: HomeDict = {
   faq: [
     {
       q: 'Bouwen jullie software op maat of verkopen jullie producten?',
-      a: 'Allebei. We hebben vier eigen producten (TimeEasier, ConstructionEasier, StockEasier en WoodEasier) en we bouwen software op maat voor bedrijven met unieke processen.',
+      a: 'Allebei. We hebben vier eigen producten (TimeEasier, ConstructionEasier, StockEasier en WoodEasier) en we bouwen software op maat voor bedrijven waarvan de processen door geen enkel product worden gedekt.',
     },
     {
       q: 'Werken de producten samen?',
@@ -352,11 +352,11 @@ const nl: HomeDict = {
     },
     {
       q: 'Wat kost het?',
-      a: 'TimeEasier, ConstructionEasier en StockEasier hebben de plannen Basis, Geavanceerd en Premium, en WoodEasier heeft één plan. De prijs hangt af van uw bedrijf en staat in een offerte op maat. Een maatwerkproject krijgt een eigen offerte met omvang, fasen en prijs voor we starten.',
+      a: 'TimeEasier, ConstructionEasier en StockEasier hebben de plannen Basis, Geavanceerd en Premium, en WoodEasier heeft één plan. De prijs hangt af van uw bedrijf en krijgt u in een offerte. Een maatwerkproject krijgt een eigen voorstel, met omvang, fasen en kostprijs voor we starten.',
     },
     {
       q: 'Gebruiken de producten artificiële intelligentie?',
-      a: 'Ja. We gebruiken AI nu al voor het uitlezen van documenten (OCR) en breiden dat verder uit in onze producten.',
+      a: 'Ja. We gebruiken artificiële intelligentie al voor het uitlezen van documenten (OCR) en brengen ze naar meer onderdelen van de producten.',
     },
     {
       q: 'Waar is het team gevestigd?',
@@ -378,11 +378,11 @@ const nl: HomeDict = {
   lead: 'Software op maat en vier eigen producten, gebouwd door een Portugees team.',
   custom: {
     title: 'Software op maat',
-    text: 'Als geen enkel standaardproduct past bij hoe uw bedrijf werkt, bouwen wij het juiste systeem.',
+    text: 'Als geen enkel product past bij hoe uw bedrijf werkt, bouwen wij het juiste systeem.',
     items: [
       { title: 'Webapplicaties', text: 'Platformen op maat van uw bedrijf, overal toegankelijk.' },
       { title: 'Mobiele apps', text: 'Apps voor iOS en Android die eenvoudig zijn voor wie er elke dag mee werkt.' },
-      { title: 'Integraties', text: 'We koppelen het nieuwe systeem aan uw bestaande tools zodat gegevens automatisch doorstromen.' },
+      { title: 'Integraties', text: 'We koppelen het nieuwe systeem aan de tools die u al gebruikt, zodat informatie doorstroomt zonder manueel werk.' },
     ],
     link: 'Hoe we software op maat bouwen',
     photoAlt: 'Het GetEasier-team aan het werk op kantoor',
@@ -400,7 +400,7 @@ const nl: HomeDict = {
   teamLink: 'Over GetEasier',
   teamFacts: ['Jong en dynamisch', 'Portugees team', 'Van architectuur tot support'],
   contact: {
-    title: 'Vertel ons welk proces u wilt vereenvoudigen',
+    title: 'Vertel ons welk proces u wilt aanpakken',
     text: 'Vertel waar uw team tijd verliest. We antwoorden met gerichte vragen en, als het past, een voorstel.',
     whatsapp: 'WhatsApp',
   },
@@ -409,10 +409,10 @@ const nl: HomeDict = {
 const es: HomeDict = {
   build: {
     summary:
-      'Ilustración animada con datos de ejemplo: la petición de un cliente para fichar sin papel se convierte en una arquitectura, el código se escribe y se prueba, y la app de control horario llega al ordenador y al móvil conectada al ERP y nóminas.',
+      'Ilustración animada con datos de ejemplo: la petición de un cliente para fichar sin papel se convierte en una arquitectura (aplicaciones web, móvil y tablet conectadas a una API, a los servicios y a la base de datos), el código se escribe y se prueba, y la aplicación de asistencia llega al ordenador y al móvil, conectada al ERP y a las nóminas.',
     steps: ['Idea', 'Arquitectura', 'Código', 'Entrega'],
     sample: 'datos de ejemplo',
-    noteKicker: 'El pedido',
+    noteKicker: 'La petición',
     note: 'Registrar la jornada de todos los equipos, sin papel',
     url: 'app.tuempresa.es',
     appTitle: 'Asistencia',
@@ -445,7 +445,7 @@ const es: HomeDict = {
   },
   hero: {
     summary:
-      'Ilustración animada con datos de ejemplo: Rui Marques, de Cofragens Tejo, llega al acceso de la obra, la tablet reconoce su rostro, la entrada queda registrada a las 07:42 y el encargado recibe un aviso de que el seguro caduca en 12 días.',
+      'Ilustración animada con datos de ejemplo: Rui Marques, de Cofragens Tejo, llega al acceso de la Obra Marvila, la tablet reconoce su rostro, la entrada queda registrada a las 07:42 y el responsable recibe un aviso de que el seguro de Cofragens Tejo caduca en 12 días.',
     detected: 'Trabajador en el acceso',
     company: 'Cofragens Tejo',
     role: 'encofrador',
@@ -461,7 +461,7 @@ const es: HomeDict = {
   faq: [
     {
       q: '¿Hacéis software a medida o vendéis productos?',
-      a: 'Las dos cosas. Tenemos cuatro productos propios (TimeEasier, ConstructionEasier, StockEasier y WoodEasier) y desarrollamos software a medida para procesos que ningún producto cubre.',
+      a: 'Las dos cosas. Tenemos cuatro productos propios (TimeEasier, ConstructionEasier, StockEasier y WoodEasier) y desarrollamos software a medida para empresas cuyos procesos ningún producto cubre.',
     },
     {
       q: '¿Los productos funcionan juntos?',
@@ -473,11 +473,11 @@ const es: HomeDict = {
     },
     {
       q: '¿Cuánto cuesta?',
-      a: 'TimeEasier, ConstructionEasier y StockEasier tienen los planes Base, Avanzado y Premium, y WoodEasier tiene un plan único. El precio depende de la empresa y se entrega en propuesta. Un proyecto a medida tiene su propio presupuesto cerrado por fases.',
+      a: 'TimeEasier, ConstructionEasier y StockEasier tienen los planes Base, Avanzado y Premium, y WoodEasier tiene un plan único. El precio depende de la empresa y se indica en una propuesta. Un proyecto a medida tiene su propia propuesta, con alcance, fases y coste antes de empezar.',
     },
     {
       q: '¿Los productos usan inteligencia artificial?',
-      a: 'Sí. Ya utilizamos inteligencia artificial en la lectura de documentos (OCR) y la estamos llevando a más áreas.',
+      a: 'Sí. Ya utilizamos inteligencia artificial en la lectura de documentos (OCR) y la estamos llevando a más partes de los productos.',
     },
     {
       q: '¿Dónde está el equipo?',
@@ -503,7 +503,7 @@ const es: HomeDict = {
     items: [
       { title: 'Aplicaciones web', text: 'Plataformas a medida de tu negocio, accesibles desde cualquier lugar.' },
       { title: 'Aplicaciones móviles', text: 'Apps para iOS y Android sencillas para quienes las usan cada día.' },
-      { title: 'Integraciones', text: 'Conectamos el nuevo sistema con tus herramientas actuales para evitar trabajo manual.' },
+      { title: 'Integraciones', text: 'Conectamos el nuevo sistema con las herramientas que ya usas, para que la información circule sin trabajo manual.' },
     ],
     link: 'Cómo hacemos software a medida',
     photoAlt: 'El equipo de GetEasier trabajando en la oficina',
@@ -530,7 +530,7 @@ const es: HomeDict = {
 const fr: HomeDict = {
   build: {
     summary:
-      'Illustration animée avec données d’exemple : la demande d’un client pour pointer sans papier devient une architecture, le code est écrit et testé, et l’application arrive sur ordinateur et mobile, connectée à l’ERP et à la paie.',
+      'Illustration animée avec des données d’exemple : la demande d’un client pour pointer sans papier devient une architecture (applications web, mobile et tablette reliées à une API, aux services et à la base de données), le code est écrit et testé, et l’application de présences arrive sur l’ordinateur et le téléphone, connectée à l’ERP et à la paie.',
     steps: ['Idée', 'Architecture', 'Code', 'Livraison'],
     sample: 'données d’exemple',
     noteKicker: 'La demande',
@@ -566,7 +566,7 @@ const fr: HomeDict = {
   },
   hero: {
     summary:
-      'Illustration animée avec données d’exemple : Rui Marques arrive à l’entrée du chantier, la tablette reconnaît son visage, l’entrée est enregistrée à 07:42 et le responsable reçoit une alerte sur l’assurance qui expire dans 12 jours.',
+      'Illustration animée avec des données d’exemple : Rui Marques, de Cofragens Tejo, arrive à l’entrée du chantier Marvila, la tablette reconnaît son visage, l’entrée est enregistrée à 07:42 et le responsable est averti que l’assurance de Cofragens Tejo expire dans 12 jours.',
     detected: 'Ouvrier à l’entrée',
     company: 'Cofragens Tejo',
     role: 'coffreur',
@@ -582,30 +582,30 @@ const fr: HomeDict = {
   faq: [
     {
       q: 'Faites-vous du sur-mesure ou vendez-vous des produits ?',
-      a: 'Les deux. Nous avons quatre produits propres (TimeEasier, ConstructionEasier, StockEasier et WoodEasier) et nous créons des logiciels sur mesure pour les processus spécifiques.',
+      a: 'Les deux. Nous avons quatre produits propres (TimeEasier, ConstructionEasier, StockEasier et WoodEasier) et nous créons des logiciels sur mesure pour les entreprises dont les processus ne sont couverts par aucun produit.',
     },
     {
       q: 'Les produits fonctionnent-ils ensemble ?',
-      a: 'Non. Chaque produit fonctionne de manière autonome. ConstructionEasier intègre déjà le suivi des temps de TimeEasier.',
+      a: 'Non. Chaque produit fonctionne de manière autonome. ConstructionEasier inclut déjà le pointage de TimeEasier.',
     },
     {
       q: 'Comment un collaborateur s’identifie-t-il sur la tablette ?',
-      a: 'Il touche l’écran et la tablette reconnaît son visage. En cas de besoin, il peut se connecter avec son code PIN.',
+      a: 'Il touche l’écran et la tablette reconnaît son visage. S’il n’est pas reconnu, il peut se connecter avec son code PIN.',
     },
     {
       q: 'Combien cela coûte-t-il ?',
-      a: 'TimeEasier, ConstructionEasier et StockEasier proposent les formules Base, Avancé et Premium, et WoodEasier une formule unique. Le tarif dépend de votre entreprise sur devis. Un projet sur mesure fait l’objet d’une proposition dédiée.',
+      a: 'TimeEasier, ConstructionEasier et StockEasier proposent les formules Base, Avancé et Premium, et WoodEasier une formule unique. Le prix dépend de votre entreprise et est indiqué dans un devis. Un projet sur mesure fait l’objet d’une proposition dédiée, avec périmètre, phases et coût avant de commencer.',
     },
     {
       q: 'Vos produits utilisent-ils l’intelligence artificielle ?',
-      a: 'Oui. Nous utilisons déjà l’IA pour la lecture de documents (OCR) et l’étendons progressivement à d’autres fonctions.',
+      a: 'Oui. Nous utilisons déjà l’IA pour la lecture de documents (OCR) et l’étendons à d’autres parties de nos produits.',
     },
     {
       q: 'Où se trouve l’équipe ?',
       a: 'Dans le nord du Portugal, près de Porto. Nous concevons, développons et assurons le support de nos produits et projets sur mesure.',
     },
   ],
-  faqPlans: 'Comparer les offres',
+  faqPlans: 'Comparer les formules',
   stats: {
     title: 'En chiffres',
     note: undefined,
@@ -615,7 +615,7 @@ const fr: HomeDict = {
       { value: 4, suffix: '+', label: 'ans de développement logiciel' },
     ],
   },
-  carousel: { prev: 'Témoignage précédent', next: 'Témoignage suivant', pause: 'Mettre en pause', play: 'Reprendre', of: '{i} sur {n}' },
+  carousel: { prev: 'Témoignage précédent', next: 'Témoignage suivant', pause: 'Mettre les témoignages en pause', play: 'Reprendre les témoignages', of: '{i} sur {n}' },
   h1: 'Nous créons les logiciels que votre entreprise utilise sur le terrain',
   lead: 'Logiciels sur mesure et quatre produits propres, conçus par une équipe portugaise.',
   custom: {
@@ -624,9 +624,9 @@ const fr: HomeDict = {
     items: [
       { title: 'Applications web', text: 'Des plateformes adaptées à votre métier, accessibles partout.' },
       { title: 'Applications mobiles', text: 'Des apps iOS et Android simples pour ceux qui les utilisent chaque jour.' },
-      { title: 'Intégrations', text: 'Nous connectons le nouveau système à vos outils actuels pour supprimer les saisies manuelles.' },
+      { title: 'Intégrations', text: 'Nous connectons le nouveau système aux outils que vous utilisez déjà, pour que l’information circule sans travail manuel.' },
     ],
-    link: 'Notre approche sur mesure',
+    link: 'Comment nous faisons du logiciel sur mesure',
     photoAlt: 'L’équipe GetEasier au travail au bureau',
   },
   products: {
@@ -642,8 +642,8 @@ const fr: HomeDict = {
   teamLink: 'À propos de GetEasier',
   teamFacts: ['Jeune et dynamique', 'Équipe portugaise', 'De l’architecture au support'],
   contact: {
-    title: 'Parlez-nous du processus que vous voulez simplifier',
-    text: 'Expliquez-nous où votre équipe perd du temps. Nous répondons avec des questions précises et, si besoin, une proposition.',
+    title: 'Parlez-nous du processus que vous voulez améliorer',
+    text: 'Expliquez-nous où votre équipe perd du temps. Nous répondons avec des questions précises et, si cela a du sens, une proposition.',
     whatsapp: 'WhatsApp',
   },
 }

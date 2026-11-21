@@ -7,6 +7,13 @@ import { COMPANY, SITE_URL, absoluteUrl } from './site'
 const ORG_ID = `${SITE_URL}/#organizacao`
 const SITE_ID = `${SITE_URL}/#website`
 const LANG: Record<Locale, string> = { pt: 'pt-PT', en: 'en', nl: 'nl', es: 'es', fr: 'fr' }
+const SERVICE_TYPE: Record<Locale, string> = {
+  pt: 'Desenvolvimento de software à medida',
+  en: 'Custom software development',
+  nl: 'Ontwikkeling van software op maat',
+  es: 'Desarrollo de software a medida',
+  fr: 'Développement de logiciels sur mesure',
+}
 
 type Node = Record<string, unknown>
 
@@ -119,7 +126,7 @@ export function buildJsonLd(id: PageId, locale: Locale, extra?: Extra) {
       '@id': `${url}#servico`,
       name: extra?.name ?? loc.breadcrumb,
       description: extra?.description ?? loc.description,
-      serviceType: locale === 'en' ? 'Custom software development' : 'Desenvolvimento de software à medida',
+      serviceType: SERVICE_TYPE[locale],
       provider: { '@id': ORG_ID },
       url,
     })

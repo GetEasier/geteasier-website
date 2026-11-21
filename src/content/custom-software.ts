@@ -179,7 +179,7 @@ const en: CustomSoftwareDict = {
 const nl: CustomSoftwareDict = {
   h1: 'Software gebouwd rond de manier waarop uw bedrijf werkt',
   lead: [
-    'Wanneer een standaardproduct uw team dwingt om zijn manier van werken aan te passen, is het zinvoller om het juiste systeem te bouwen.',
+    'Wanneer een standaardproduct uw team dwingt om zijn manier van werken aan te passen, is het zinvol om het juiste systeem te bouwen.',
   ],
   heroArch: 'Bekijk de architectuur',
   hero: {
@@ -193,7 +193,7 @@ const nl: CustomSoftwareDict = {
       ['#1044', 'Clínica Foz', 'Nieuw'],
     ],
     approval: { title: 'Aankoopaanvraag', value: '€ 1.240', who: 'Marta R. · Aankoop', approve: 'Goedkeuren', approved: 'Goedgekeurd' },
-    teams: { title: 'Teams vandaag', items: ['Team A · Antwerpen', 'Team B · Gent', 'Team C · Leuven'] },
+    teams: { title: 'Teams vandaag', items: ['Team A · Braga', 'Team B · Porto', 'Team C · Penafiel'] },
     invoice: { title: 'Factuur FT 2026/318', client: 'Padaria Lima', total: '€ 860,40', sent: 'Verzonden naar klant' },
     reports: { title: 'Verkoop per maand', kpis: [['Bestellingen', '312'], ['Te laat', '4']] },
   },
@@ -207,7 +207,7 @@ const nl: CustomSoftwareDict = {
   ],
   buildCta: { term: 'Een ander idee?', desc: 'Vertel ons wat u nodig heeft.' },
   mocks: {
-    mobile: { title: 'Taken van vandaag', items: ['Installatie · Antwerpen', 'Bezoek · Gent', 'Levering · Leuven'], done: 'Afgerond' },
+    mobile: { title: 'Taken van vandaag', items: ['Installatie · Braga', 'Bezoek · Porto', 'Levering · Penafiel'], done: 'Afgerond' },
     integrations: { center: 'Uw systeem', nodes: ['ERP', 'Lonen', 'Fiscus', 'Bank'] },
     tenants: ['Bedrijf A', 'Bedrijf B', 'Bedrijf C'],
     support: ['Kunnen jullie een verkooprapport per vestiging toevoegen?', 'Ja. Het staat al live ✓'],
@@ -221,15 +221,15 @@ const nl: CustomSoftwareDict = {
     { term: 'Onderhoud en evolutie', desc: 'We lossen op, werken bij en voegen nieuwe functies toe.' },
   ],
   archTitle: 'Een beheersysteem van binnenuit',
-  archIntro: 'Een voorbeeld van wat we ontwerpen voor een bedrijf met meerdere afdelingen. Elke laag heeft een duidelijke rol.',
+  archIntro: 'Een voorbeeld van wat we ontwerpen voor een bedrijf met meerdere afdelingen. Elke laag heeft een eigen functie.',
   archFigure:
-    'Architectuurdiagram van een beheersysteem: de kanalen (web, mobiele app, klantenportaal en kiosk) lopen via een toegangslaag met single sign-on en rechten, die de diensten voor bestellingen, facturatie, stock, HR en goedkeuringen aanroept. De diensten communiceren via events, bewaren gegevens in een databank, bestanden en cache, en koppelen met het ERP, de bank, de fiscus en e-mail/sms.',
+    'Architectuurdiagram van een beheersysteem: de kanalen (web, mobiele app, klantenportaal en kiosk) lopen via een toegangslaag met single sign-on en rechten, die de diensten voor bestellingen, facturatie, stock, HR en goedkeuringen aanroept. De diensten communiceren via events, bewaren de gegevens in een databank, in bestanden en in cache, en koppelen met het ERP, de bank, de fiscus en e-mail en sms. Alles draait met automatische uitrol, statistieken, meldingen en back-ups.',
   arch: [
     { key: 'channels', term: 'Kanalen', desc: 'Web, mobiele app, klantenportaal en kiosk. Iedereen gebruikt het scherm dat past.' },
     { key: 'access', term: 'Toegang en rechten', desc: 'Eén login voor alles, met profielen per afdeling, team en bedrijf.' },
     { key: 'services', term: 'Bedrijfsdiensten', desc: 'Bestellingen, facturatie, stock, HR en goedkeuringen, elk met eigen regels.' },
     { key: 'data', term: 'Gegevens en events', desc: 'Diensten praten via events en elk gegeven wordt één keer op de juiste plek bewaard.' },
-    { key: 'integrations', term: 'Integraties', desc: 'ERP, bank, overheid, e-mail en sms, zonder handmatig kopiëren.' },
+    { key: 'integrations', term: 'Integraties', desc: 'ERP, bank, fiscus, e-mail en sms, zonder gegevens handmatig over te typen.' },
     { key: 'ops', term: 'Operaties', desc: 'Automatische uitrol, statistieken, meldingen en back-ups.' },
   ],
   archLabels: {
@@ -246,7 +246,7 @@ const nl: CustomSoftwareDict = {
   faq: [
     {
       q: 'Hoe lang duurt een project?',
-      a: 'Dat hangt af van de omvang. De offerte bevat de fasen en doorlooptijd, en omdat we in korte sprints werken ziet u vanaf het begin resultaat.',
+      a: 'Dat hangt af van de omvang. De offerte bevat de fasen en de termijn van elke fase, en omdat we in korte sprints werken ziet u vanaf het begin resultaat.',
     },
     { q: 'Wat kost het?', a: 'Elk project krijgt een eigen offerte met omvang, fasen en prijs voordat we beginnen te ontwikkelen.' },
     {
@@ -278,7 +278,7 @@ const es: CustomSoftwareDict = {
       ['#1044', 'Clínica Foz', 'Nuevo'],
     ],
     approval: { title: 'Solicitud de compra', value: '1.240 €', who: 'Marta R. · Compras', approve: 'Aprobar', approved: 'Aprobado' },
-    teams: { title: 'Equipos hoy', items: ['Equipo A · Madrid', 'Equipo B · Valencia', 'Equipo C · Bilbao'] },
+    teams: { title: 'Equipos hoy', items: ['Equipo A · Braga', 'Equipo B · Oporto', 'Equipo C · Penafiel'] },
     invoice: { title: 'Factura FT 2026/318', client: 'Padaria Lima', total: '860,40 €', sent: 'Enviada al cliente' },
     reports: { title: 'Ventas por mes', kpis: [['Pedidos', '312'], ['Con retraso', '4']] },
   },
@@ -292,7 +292,7 @@ const es: CustomSoftwareDict = {
   ],
   buildCta: { term: '¿Tienes otra idea?', desc: 'Cuéntanos qué necesitas.' },
   mocks: {
-    mobile: { title: 'Tareas de hoy', items: ['Instalación · Madrid', 'Visita · Valencia', 'Entrega · Bilbao'], done: 'Completado' },
+    mobile: { title: 'Tareas de hoy', items: ['Instalación · Braga', 'Visita · Oporto', 'Entrega · Penafiel'], done: 'Completado' },
     integrations: { center: 'Tu sistema', nodes: ['ERP', 'Nóminas', 'Hacienda', 'Banco'] },
     tenants: ['Empresa A', 'Empresa B', 'Empresa C'],
     support: ['¿Podéis añadir un informe de ventas por tienda?', 'Sí. Ya está publicado ✓'],
@@ -308,7 +308,7 @@ const es: CustomSoftwareDict = {
   archTitle: 'Un sistema de gestión por dentro',
   archIntro: 'Un ejemplo de lo que diseñamos para una empresa con varios departamentos. Cada capa tiene una función.',
   archFigure:
-    'Diagrama de arquitectura de un sistema de gestión: los canales (web, app móvil, portal de clientes y quiosco) pasan por una capa de acceso con inicio de sesión único y permisos, que llama a los servicios de pedidos, facturación, stock, RR. HH. y aprobaciones. Los servicios se comunican mediante eventos, guardan los datos en base de datos, archivos y caché, y se conectan con ERP, banco, Hacienda y correo/SMS.',
+    'Diagrama de arquitectura de un sistema de gestión: los canales (web, app móvil, portal de clientes y quiosco) pasan por una capa de acceso con inicio de sesión único y permisos, que llama a los servicios de pedidos, facturación, stock, RR. HH. y aprobaciones. Los servicios se comunican mediante eventos, guardan los datos en una base de datos, en archivos y en caché, y se conectan con el ERP, el banco, Hacienda y el correo y SMS. Todo funciona con publicación automática, métricas, alertas y copias de seguridad.',
   arch: [
     { key: 'channels', term: 'Canales', desc: 'Web, app móvil, portal de clientes y quiosco. Cada persona usa la pantalla que necesita.' },
     { key: 'access', term: 'Acceso y permisos', desc: 'Un inicio de sesión para todo, con perfiles por departamento, equipo y empresa.' },
@@ -349,7 +349,7 @@ const es: CustomSoftwareDict = {
 const fr: CustomSoftwareDict = {
   h1: 'Un logiciel conçu autour de la façon dont votre entreprise travaille',
   lead: [
-    'Quand un logiciel standard oblige votre équipe à changer ses habitudes, il est plus pertinent de construire le bon système.',
+    'Quand un produit standard oblige votre équipe à changer sa façon de travailler, il est logique de construire le bon système.',
   ],
   heroArch: 'Voir l’architecture',
   hero: {
@@ -363,7 +363,7 @@ const fr: CustomSoftwareDict = {
       ['#1044', 'Clínica Foz', 'Nouvelle'],
     ],
     approval: { title: 'Demande d’achat', value: '1 240 €', who: 'Marta R. · Achats', approve: 'Valider', approved: 'Validé' },
-    teams: { title: 'Équipes aujourd’hui', items: ['Équipe A · Lyon', 'Équipe B · Paris', 'Équipe C · Lille'] },
+    teams: { title: 'Équipes aujourd’hui', items: ['Équipe A · Braga', 'Équipe B · Porto', 'Équipe C · Penafiel'] },
     invoice: { title: 'Facture FT 2026/318', client: 'Padaria Lima', total: '860,40 €', sent: 'Envoyée au client' },
     reports: { title: 'Ventes par mois', kpis: [['Commandes', '312'], ['En retard', '4']] },
   },
@@ -377,29 +377,29 @@ const fr: CustomSoftwareDict = {
   ],
   buildCta: { term: 'Une autre idée ?', desc: 'Dites-nous ce dont vous avez besoin.' },
   mocks: {
-    mobile: { title: 'Tâches du jour', items: ['Installation · Lyon', 'Visite · Paris', 'Livraison · Lille'], done: 'Terminé' },
+    mobile: { title: 'Tâches du jour', items: ['Installation · Braga', 'Visite · Porto', 'Livraison · Penafiel'], done: 'Terminé' },
     integrations: { center: 'Votre système', nodes: ['ERP', 'Paie', 'Fisc', 'Banque'] },
     tenants: ['Entreprise A', 'Entreprise B', 'Entreprise C'],
     support: ['Pouvez-vous ajouter un rapport des ventes par magasin ?', 'Oui. C’est en ligne ✓'],
   },
-  processTitle: 'Notre méthode',
+  processTitle: 'Comment nous travaillons',
   process: [
     { term: 'Découverte', desc: 'Nous écoutons les futurs utilisateurs et identifions où se perd le temps.' },
     { term: 'Proposition et architecture', desc: 'Périmètre, architecture, phases et budget avant de coder.' },
-    { term: 'Développement en sprints', desc: 'Cycles courts avec démonstrations régulières. Vous ajustez les priorités.' },
+    { term: 'Développement en sprints', desc: 'Cycles courts avec démonstrations régulières. Vous pouvez changer les priorités.' },
     { term: 'Mise en production', desc: 'Nous déployons le système et accompagnons le démarrage.' },
     { term: 'Maintenance et évolution', desc: 'Nous corrigeons, mettons à jour et ajoutons de nouvelles fonctionnalités.' },
   ],
   archTitle: 'Un système de gestion, vu de l’intérieur',
-  archIntro: 'Un exemple de ce que nous concevons pour une entreprise multi-départements. Chaque couche a un rôle précis.',
+  archIntro: 'Un exemple de ce que nous concevons pour une entreprise avec plusieurs services. Chaque couche a une fonction.',
   archFigure:
-    'Schéma d’architecture d’un système de gestion : les canaux (web, application mobile, portail client et borne) passent par une couche d’accès avec authentification unique et droits, qui sollicite les services commandes, facturation, stock, RH et validations. Les services communiquent par événements, stockent les données en base, fichiers et cache, et se connectent à l’ERP, la banque, l’administration et les e-mails/SMS.',
+    'Schéma d’architecture d’un système de gestion : les canaux (web, application mobile, portail client et borne) passent par une couche d’accès avec authentification unique et droits, qui sollicite les services commandes, facturation, stock, RH et validations. Les services communiquent par événements, stockent les données dans une base de données, des fichiers et un cache, et se connectent à l’ERP, à la banque, au fisc et aux e-mails et SMS. Tout fonctionne avec déploiement automatisé, métriques, alertes et sauvegardes.',
   arch: [
     { key: 'channels', term: 'Canaux', desc: 'Web, app mobile, portail client et borne. Chacun utilise l’écran adapté.' },
     { key: 'access', term: 'Accès et droits', desc: 'Une seule connexion pour tout, avec des profils par service, équipe et entreprise.' },
     { key: 'services', term: 'Services métier', desc: 'Commandes, facturation, stock, RH et validations, chacun avec ses règles.' },
-    { key: 'data', term: 'Données et événements', desc: 'Les services échangent par événements et chaque donnée est stockée au bon endroit.' },
-    { key: 'integrations', term: 'Intégrations', desc: 'ERP, banque, administration, e-mail et SMS, sans copie manuelle.' },
+    { key: 'data', term: 'Données et événements', desc: 'Les services échangent par événements et chaque donnée est stockée une seule fois, au bon endroit.' },
+    { key: 'integrations', term: 'Intégrations', desc: 'ERP, banque, fisc, e-mail et SMS, sans copier les données à la main.' },
     { key: 'ops', term: 'Exploitation', desc: 'Déploiement automatisé, métriques, alertes et sauvegardes.' },
   ],
   archLabels: {
@@ -418,7 +418,7 @@ const fr: CustomSoftwareDict = {
       q: 'Combien de temps dure un projet ?',
       a: 'Cela dépend du périmètre. La proposition détaille chaque phase et son délai, et nos sprints courts vous montrent des résultats dès le début.',
     },
-    { q: 'Combien cela coûte-t-il ?', a: 'Chaque projet fait l’objet d’un devis détaillant périmètre, phases et coût avant de commencer à coder.' },
+    { q: 'Combien cela coûte-t-il ?', a: 'Chaque projet fait l’objet d’une proposition dédiée, avec périmètre, phases et coût, avant de commencer à coder.' },
     {
       q: 'À qui appartiennent le code et les données ?',
       a: 'Les données appartiennent toujours à votre entreprise. La propriété du code et sa remise sont définies dans la proposition.',

@@ -354,7 +354,7 @@ const nl: ConstructionDict = {
         id: 'documento',
         tab: 'Document uitlezen',
         text: 'Het identiteitsdocument wordt uitgelezen met artificiële intelligentie en de gegevens komen in de medewerkersfiche terecht zonder dat iemand ze hoeft over te typen.',
-        detail: 'Naam, documentnummer, vervaldatum en nationaliteit.',
+        detail: '[CONFIRMAR] Naam, documentnummer, vervaldatum en nationaliteit.',
       },
       {
         id: 'presentes',
@@ -386,10 +386,10 @@ const nl: ConstructionDict = {
       { tab: 'Identiteit en biometrie', title: 'Gezichtsherkenning op de tablet', text: 'Iedereen identificeert zich met zijn gezicht bij het inklokken. Geen badges om te verliezen of uit te lenen.' },
       { tab: 'Documenten en conformiteit', title: 'Documenten in orde, per medewerker', text: 'Een matrix per medewerker toont wat geldig is, wat binnenkort vervalt en wat ontbreekt.' },
       { tab: 'Onderaannemers en teams', title: 'Alle bedrijven op de werf op één plek', text: 'Eigen medewerkers en onderaannemers, elk met hun eigen arbeiders en documenten.' },
-      { tab: 'Rapporten', title: 'Uren en werfverslagen meteen klaar', text: 'Maandelijks urenrapport per medewerker en automatisch gegenereerd werfverslag.' },
+      { tab: 'Rapporten', title: 'Uren en vorderingsstaten meteen klaar', text: 'Maandelijks urenrapport per medewerker (Portugese arbeidswet, art. 202) en automatisch gegenereerde vorderingsstaat.' },
     ],
     docCols: ['AS', 'RM', 'CP', 'AD'],
-    docNote: 'Documentstatus per medewerker',
+    docNote: '[CONFIRMAR] volledige naam van elke afkorting',
     companies: [
       { name: 'Construções Marvila (eigen)', n: 14 },
       { name: 'Cofragens Tejo', n: 9 },
@@ -417,14 +417,14 @@ const nl: ConstructionDict = {
     title: 'Van de werfpoort naar kantoor',
     text: 'Links de tablet in de poortkast. Rechts wat de projectleider tegelijkertijd ziet. Voorbeeldgegevens.',
     kiosk: 'Tablet aan de poort',
-    feed: 'Nu aan het werk',
+    feed: 'A Trabalhar Agora (nu aan het werk)',
     present: '{n} aanwezig',
     all: 'Alle',
     filter: 'Filteren op bedrijf',
     entered: 'kwam aan',
     pause: 'Demo pauzeren',
     play: 'Demo hervatten',
-    summary: 'Geanimeerde demo: telkens wanneer een medewerker op de tablet aan de poort wordt herkend, verschijnt hij bovenaan de lijst met wie er nu werkt.',
+    summary: 'Geanimeerde demo: telkens wanneer een medewerker op de tablet aan de poort wordt herkend, verschijnt hij bovenaan de lijst met wie er nu werkt, met uur en bedrijf.',
   },
   chaos: {
     title: 'Van chaos naar controle',
@@ -472,11 +472,11 @@ const nl: ConstructionDict = {
   },
   faqTitle: 'Vragen over ConstructionEasier',
   faq: [
-    { q: 'Bevat ConstructionEasier ook tijdregistratie?', a: 'Ja. Het omvat TimeEasier: tablet op de werf met gezichtsherkenning, app voor buitendienst en het maandelijks urenrapport.' },
+    { q: 'Bevat ConstructionEasier ook tijdregistratie?', a: 'Ja. Het omvat TimeEasier: tablet op de werf met gezichtsherkenning, app voor wie buiten werkt en het maandelijks urenrapport.' },
     { q: 'Gebruiken onderaannemers hetzelfde platform?', a: 'Ja. Uw eigen bedrijf en onderaannemers werken op dezelfde werf, elk met hun eigen arbeiders en documenten.' },
     { q: 'Wie ziet wat?', a: 'De rechten zijn per rol ingesteld: werfleider, projectleider, preventieadviseur en hoofduitvoerder, elk met wat zij nodig hebben.' },
-    { q: 'Gebruikt ConstructionEasier artificiële intelligentie?', a: 'Ja. Documenten worden uitgelezen met AI (OCR), zodat de gegevens zonder overtypen in het platform komen. We breiden AI verder uit in het platform.' },
-    { q: 'Welke behuizing heeft de tablet aan de poort?', a: 'Weerbestendige werfbehuizing met vaste voeding en bevestiging.' },
+    { q: 'Gebruikt ConstructionEasier artificiële intelligentie?', a: 'Ja. Documenten worden uitgelezen (OCR) met artificiële intelligentie, en de gegevens komen in het platform zonder dat iemand ze overtypt. We brengen AI naar steeds meer onderdelen van het platform.' },
+    { q: 'Welke behuizing heeft de tablet aan de poort?', a: '[CONFIRMAR] Kenmerken van de behuizing (bescherming, bevestiging, voeding).' },
   ],
 }
 
@@ -495,7 +495,7 @@ const es: ConstructionDict = {
         id: 'documento',
         tab: 'Leer documento',
         text: 'El documento de identidad se lee con inteligencia artificial y los datos pasan a la ficha del trabajador sin escribirlos a mano.',
-        detail: 'Nombre, número de documento, validez y nacionalidad.',
+        detail: '[CONFIRMAR] Nombre, número de documento, validez y nacionalidad.',
       },
       {
         id: 'presentes',
@@ -527,10 +527,10 @@ const es: ConstructionDict = {
       { tab: 'Identidad y biometría', title: 'Reconocimiento facial en la tablet', text: 'Cada persona se identifica por su rostro al fichar. Sin tarjetas que perder o prestar.' },
       { tab: 'Documentación y cumplimiento', title: 'Documentos al día por trabajador', text: 'Una matriz por trabajador muestra qué es válido, qué caduca pronto y qué falta.' },
       { tab: 'Subcontratistas y equipos', title: 'Todas las empresas de la obra en un sitio', text: 'Personal propio y subcontratistas, cada uno con sus trabajadores y documentos.' },
-      { tab: 'Informes', title: 'Horas y certificaciones listas', text: 'Informe mensual de horas por empleado y certificación de obra generada automáticamente.' },
+      { tab: 'Informes', title: 'Horas y certificaciones listas', text: 'Informe mensual de horas por empleado (Código del Trabajo portugués, art. 202) y certificación de obra generada automáticamente.' },
     ],
     docCols: ['AS', 'RM', 'CP', 'AD'],
-    docNote: 'Estado documental por trabajador',
+    docNote: '[CONFIRMAR] nombre completo de cada sigla',
     companies: [
       { name: 'Construções Marvila (propia)', n: 14 },
       { name: 'Cofragens Tejo', n: 9 },
@@ -556,16 +556,16 @@ const es: ConstructionDict = {
   },
   gateFeed: {
     title: 'De la entrada a la oficina',
-    text: 'A la izquierda, la tablet en el acceso. A la derecha, lo que ve el jefe de obra al mismo tiempo. Datos de ejemplo.',
+    text: 'A la izquierda, la tablet en su caja del acceso. A la derecha, lo que ve el jefe de obra al mismo tiempo. Datos de ejemplo.',
     kiosk: 'Tablet en acceso',
-    feed: 'Trabajando ahora',
+    feed: 'A Trabalhar Agora (trabajando ahora)',
     present: '{n} presentes',
     all: 'Todas',
     filter: 'Filtrar por empresa',
     entered: 'entró',
     pause: 'Pausar la demo',
     play: 'Reanudar la demo',
-    summary: 'Demo animada: cada vez que un trabajador es reconocido en la tablet de acceso, aparece arriba en la lista de quienes trabajan ahora.',
+    summary: 'Demo animada: cada vez que un trabajador es reconocido en la tablet de acceso, aparece arriba en la lista de quienes trabajan ahora, con la hora y la empresa.',
   },
   chaos: {
     title: 'Del caos al control',
@@ -573,7 +573,7 @@ const es: ConstructionDict = {
     acts: [
       {
         name: 'Caos',
-        text: 'La lista de trabajadores está en una hoja de cálculo, los documentos llegan por foto en el móvil y las entradas quedan en un cuaderno.',
+        text: 'La lista de trabajadores está en una hoja de cálculo, los documentos llegan por foto en el móvil y las entradas quedan en un libro en el acceso.',
       },
       {
         name: 'Presión',
@@ -599,7 +599,7 @@ const es: ConstructionDict = {
       book: 'Libro de entradas',
       bookLines: ['Rui M. 7h40', 'Paulo ? 8h', 'H. Tavares'],
     },
-    alerts: ['Persona no identificada en la obra', 'Seguro del subcontratista caducado', 'Inspección mañana'],
+    alerts: ['Persona no identificada en la obra', 'Seguro del subcontratista caducado', 'Inspección de trabajo mañana'],
     view: {
       title: 'Obra Marvila, hoy',
       people: [
@@ -613,11 +613,11 @@ const es: ConstructionDict = {
   },
   faqTitle: 'Preguntas sobre ConstructionEasier',
   faq: [
-    { q: '¿ConstructionEasier incluye el control horario?', a: 'Sí. Incluye TimeEasier: tablet en obra con reconocimiento facial, app para desplazados e informe mensual de horas.' },
+    { q: '¿ConstructionEasier incluye el control horario?', a: 'Sí. Incluye TimeEasier: tablet en obra con reconocimiento facial, app para quien trabaja fuera e informe mensual de horas.' },
     { q: '¿Los subcontratistas usan la misma plataforma?', a: 'Sí. Tu empresa y los subcontratistas comparten la obra, cada uno con sus trabajadores y documentos.' },
-    { q: '¿Quién ve qué?', a: 'Los permisos son por rol: Encargado de Obra, Jefe de Obra, Técnico de PRL y Encargado General, cada uno con lo que necesita.' },
-    { q: '¿ConstructionEasier usa inteligencia artificial?', a: 'Sí. La lectura de documentos (OCR) utiliza inteligencia artificial y los datos pasan a la plataforma sin teclearlos. Llevamos la IA a más partes del sistema.' },
-    { q: '¿Qué carcasa lleva la tablet en la entrada?', a: 'Carcasa resistente para obra con fijación y alimentación protegida.' },
+    { q: '¿Quién ve qué?', a: 'Los permisos son por rol: Encargado de Obra, Jefe de Obra, Técnico de PRL y Encargado General, cada uno con lo que necesita ver.' },
+    { q: '¿ConstructionEasier usa inteligencia artificial?', a: 'Sí. La lectura de documentos (OCR) utiliza inteligencia artificial y los datos pasan a la plataforma sin que nadie los teclee. Estamos llevando la IA a más partes de la plataforma.' },
+    { q: '¿Qué caja lleva la tablet en la entrada?', a: '[CONFIRMAR] Características de la caja (protección, fijación, alimentación).' },
   ],
 }
 
@@ -636,7 +636,7 @@ const fr: ConstructionDict = {
         id: 'documento',
         tab: 'Lire un document',
         text: 'La pièce d’identité est lue par intelligence artificielle et les données alimentent la fiche du collaborateur sans saisie manuelle.',
-        detail: 'Nom, numéro de document, date d’expiration et nationalité.',
+        detail: '[CONFIRMAR] Nom, numéro du document, date d’expiration et nationalité.',
       },
       {
         id: 'presentes',
@@ -661,17 +661,17 @@ const fr: ConstructionDict = {
   modules: {
     title: 'Modules',
     label: 'Modules de ConstructionEasier',
-    pause: 'Mettre en pause',
-    play: 'Reprendre',
+    pause: 'Mettre en pause le défilement automatique',
+    play: 'Reprendre le défilement automatique',
     items: [
-      { tab: 'Contrôle d’accès', title: 'Qui entre, et à quelle heure', text: 'La tablette enregistre chaque entrée et sortie, et le conducteur de travaux est averti.' },
+      { tab: 'Contrôle d’accès', title: 'Qui entre, et à quelle heure', text: 'La tablette d’entrée enregistre chaque entrée et sortie, et le conducteur de travaux est averti.' },
       { tab: 'Identité et biométrie', title: 'Reconnaissance faciale sur tablette', text: 'Chacun s’identifie par le visage au pointage. Plus de badges perdus ou prêtés.' },
       { tab: 'Documents et conformité', title: 'Documents à jour, par ouvrier', text: 'Une matrice par collaborateur montre ce qui est valide, expire bientôt ou manque.' },
       { tab: 'Sous-traitants et équipes', title: 'Toutes les entreprises du chantier au même endroit', text: 'Équipes internes et sous-traitants, chacun avec ses collaborateurs et ses documents.' },
-      { tab: 'Rapports', title: 'Heures et rapports d’avancement prêts', text: 'Relevé mensuel des heures par collaborateur et rapport d’avancement généré automatiquement.' },
+      { tab: 'Rapports', title: 'Heures et états d’avancement prêts', text: 'Relevé mensuel des heures par collaborateur (Code du travail portugais, art. 202) et état d’avancement généré automatiquement.' },
     ],
     docCols: ['AS', 'RM', 'CP', 'AD'],
-    docNote: 'Statut documentaire par ouvrier',
+    docNote: '[CONFIRMAR] nom complet de chaque sigle',
     companies: [
       { name: 'Construções Marvila (interne)', n: 14 },
       { name: 'Cofragens Tejo', n: 9 },
@@ -689,7 +689,7 @@ const fr: ConstructionDict = {
     pain: 'Le problème',
     gain: 'Ce que vous gagnez',
     items: [
-      { tab: 'Entreprise générale et maître d’ouvrage', pain: 'Responsable de tout sur le chantier, y compris des équipes sous-traitantes.', gain: 'Voit tous les chantiers, toutes les entreprises et les coûts en un seul endroit.' },
+      { tab: 'Entreprise générale et maître d’ouvrage', pain: 'Responsable de tout sur le chantier, y compris des équipes sous-traitantes.', gain: 'Voit tous les chantiers, toutes les entreprises et le coût de chaque chantier en un seul endroit.' },
       { tab: 'Conducteur de travaux', pain: 'Passe le début de journée à vérifier qui est présent par téléphone et sur papier.', gain: 'Consulte la liste en direct des présents et reçoit une alerte à chaque entrée.' },
       { tab: 'Sous-traitant', pain: 'Renvoie sans cesse les mêmes documents par e-mail ou message sans certitude de réception.', gain: 'Les documents de l’entreprise et des ouvriers sont centralisés avec leur statut.' },
       { tab: 'Sécurité et conformité', pain: 'Découvre une assurance expirée alors que l’ouvrier travaille déjà.', gain: 'Anticipe chaque échéance avant expiration, par ouvrier et par entreprise.' },
@@ -697,16 +697,16 @@ const fr: ConstructionDict = {
   },
   gateFeed: {
     title: 'De l’entrée du chantier au bureau',
-    text: 'À gauche, la tablette à l’entrée. À droite, ce que voit le conducteur de travaux en temps réel. Données d’exemple.',
+    text: 'À gauche, la tablette dans son boîtier à l’entrée. À droite, ce que voit le conducteur de travaux au même moment. Données d’exemple.',
     kiosk: 'Tablette d’entrée',
-    feed: 'En poste maintenant',
+    feed: 'A Trabalhar Agora (en poste maintenant)',
     present: '{n} présents',
     all: 'Toutes',
     filter: 'Filtrer par entreprise',
     entered: 'est entré',
     pause: 'Mettre la démo en pause',
     play: 'Reprendre la démo',
-    summary: 'Démo animée : dès qu’un ouvrier est reconnu sur la tablette d’entrée, il apparaît en haut de la liste des présents.',
+    summary: 'Démo animée : chaque fois qu’un ouvrier est reconnu sur la tablette d’entrée, il apparaît en haut de la liste des personnes en poste, avec l’heure et l’entreprise.',
   },
   chaos: {
     title: 'Du chaos à la maîtrise',
@@ -714,7 +714,7 @@ const fr: ConstructionDict = {
     acts: [
       {
         name: 'Chaos',
-        text: 'La liste des ouvriers vit dans un tableur, les documents arrivent en photo par message et les entrées dans un cahier.',
+        text: 'La liste des ouvriers vit dans un tableur, les documents arrivent en photo sur le téléphone et les entrées sont notées dans un cahier à l’entrée.',
       },
       {
         name: 'Pression',
@@ -740,7 +740,7 @@ const fr: ConstructionDict = {
       book: 'Registre d’entrée',
       bookLines: ['Rui M. 7h40', 'Paulo ? 8h', 'H. Tavares'],
     },
-    alerts: ['Personne non identifiée sur le chantier', 'Assurance du sous-traitant expirée', 'Inspection demain'],
+    alerts: ['Personne non identifiée sur le chantier', 'Assurance du sous-traitant expirée', 'Inspection du travail demain'],
     view: {
       title: 'Chantier Marvila, aujourd’hui',
       people: [
@@ -754,11 +754,11 @@ const fr: ConstructionDict = {
   },
   faqTitle: 'Questions sur ConstructionEasier',
   faq: [
-    { q: 'ConstructionEasier inclut-il le pointage ?', a: 'Oui. Il intègre TimeEasier : tablette sur chantier avec reconnaissance faciale, application mobile et relevé mensuel des heures.' },
+    { q: 'ConstructionEasier inclut-il le pointage ?', a: 'Oui. Il intègre TimeEasier : tablette sur chantier avec reconnaissance faciale, application pour ceux qui travaillent à l’extérieur et relevé mensuel des heures.' },
     { q: 'Les sous-traitants utilisent-ils la même plateforme ?', a: 'Oui. Votre entreprise et vos sous-traitants partagent le chantier, chacun avec ses ouvriers et documents.' },
-    { q: 'Qui voit quoi ?', a: 'Les accès sont gérés par rôle : Chef de chantier, Conducteur de travaux, Préventeur et Chef général.' },
-    { q: 'ConstructionEasier utilise-t-il l’intelligence artificielle ?', a: 'Oui. La lecture des documents (OCR) s’appuie sur l’IA pour remplir la plateforme sans saisie manuelle.' },
-    { q: 'Quel boîtier protège la tablette sur chantier ?', a: 'Boîtier renforcé pour chantier avec fixation sécurisée et alimentation continue.' },
+    { q: 'Qui voit quoi ?', a: 'Les accès sont gérés par rôle : Chef de chantier, Conducteur de travaux, Préventeur et Chef général, chacun avec ce qu’il doit voir.' },
+    { q: 'ConstructionEasier utilise-t-il l’intelligence artificielle ?', a: 'Oui. La lecture des documents (OCR) se fait par intelligence artificielle, et les données arrivent dans la plateforme sans que personne ne les saisisse. Nous étendons l’IA à d’autres parties de la plateforme.' },
+    { q: 'Quel boîtier accueille la tablette à l’entrée ?', a: '[CONFIRMAR] Caractéristiques du boîtier (protection, fixation, alimentation).' },
   ],
 }
 

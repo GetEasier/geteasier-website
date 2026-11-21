@@ -15,7 +15,7 @@ const pt = {
     label: 'Language',
     switchTo: 'English',
     short: 'EN',
-    hint: 'Ver esta página em inglês',
+    hint: 'Escolher idioma',
   },
   breadcrumbs: 'Caminho de navegação',
   footer: {
@@ -75,7 +75,7 @@ const en: CommonDict = {
     label: 'Idioma',
     switchTo: 'Português',
     short: 'PT',
-    hint: 'Ver esta página em português',
+    hint: 'Choose language',
   },
   breadcrumbs: 'Breadcrumb',
   footer: {
@@ -164,7 +164,7 @@ const nl: CommonDict = {
     demo: (product: string) => `Vraag een demo van ${product}`,
     plans: 'Bekijk plannen',
     products: 'Bekijk producten',
-    whatsapp: 'Stuur via WhatsApp',
+    whatsapp: 'Schrijf ons via WhatsApp',
   },
   notFound: {
     title: 'Deze pagina bestaat niet',
@@ -274,7 +274,7 @@ const fr: CommonDict = {
   cta: {
     project: 'Parler d’un projet',
     demo: (product: string) => `Demander une démo de ${product}`,
-    plans: 'Voir les offres',
+    plans: 'Voir les formules',
     products: 'Voir les produits',
     whatsapp: 'Écrire sur WhatsApp',
   },

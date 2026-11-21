@@ -27,7 +27,7 @@ export function GET() {
     '',
     `> ${COMPANY.description}`,
     '',
-    `${COMPANY.name} (${COMPANY.legalName}) é uma equipa de desenvolvimento de software no norte de Portugal, perto do Porto. O site está em português (${absoluteUrl('/')}) e em inglês (${absoluteUrl('/en')}). Os preços dos produtos são dados numa proposta para cada empresa.`,
+    `${COMPANY.name} (${COMPANY.legalName}) é uma equipa de desenvolvimento de software no norte de Portugal, perto do Porto. O site está em português (${absoluteUrl('/')}), inglês (${absoluteUrl('/en')}), neerlandês (${absoluteUrl('/nl')}), espanhol (${absoluteUrl('/es')}) e francês (${absoluteUrl('/fr')}). Os preços dos produtos são dados numa proposta para cada empresa.`,
     '',
     '## Produtos',
     '',

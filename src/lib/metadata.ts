@@ -35,8 +35,8 @@ export function buildMetadata(id: PageId, locale: Locale): Metadata {
   }
   if (r.en) languages['x-default'] = absoluteUrl(r.pt.path)
 
-  const ogLocale = locale === 'pt' ? 'pt' : 'en'
-  const ogImage = `${SITE_URL}/og/${id}-${r[ogLocale] ? ogLocale : 'pt'}.png`
+  // Uma imagem por língua (scripts/og-images.mjs); páginas só em português usam a portuguesa.
+  const ogImage = `${SITE_URL}/og/${id}-${r[locale] ? locale : 'pt'}.png`
 
   return {
     metadataBase: new URL(SITE_URL),
