@@ -6,6 +6,13 @@ import { COMPANY } from '@/lib/site'
 import { common } from '@/content/common'
 import Newsletter from './Newsletter'
 
+const PRODUCT_ICONS: Record<string, string> = {
+  timeEasier: '/images/products/icons/time-easier.png',
+  constructionEasier: '/images/products/icons/construction-easier.png',
+  stockEasier: '/images/products/icons/stock-easier.png',
+  woodEasier: '/images/products/icons/wood-easier.png',
+}
+
 // Rodapé: fundo da marca com grelha, um convite a falar (fora do início e dos contactos, que já
 // acabam num cartão de contacto), colunas de ligações, redes em ícones e os apoios. Clicar nos
 // logótipos dos apoios descarrega a ficha do projeto.
@@ -84,7 +91,16 @@ export default function Footer({ locale, cta = true, newsletter = true }: { loca
               </li>
               {PRODUCT_IDS.map((id) => (
                 <li key={id}>
-                  <Link href={href(id, locale)} className={linkCls}>
+                  <Link href={href(id, locale)} className={`${linkCls} inline-flex items-center gap-2.5`}>
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white p-0.5 shadow-sm">
+                      <Image
+                        src={PRODUCT_ICONS[id]}
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </span>
                     {route(id, locale).breadcrumb}
                   </Link>
                 </li>
