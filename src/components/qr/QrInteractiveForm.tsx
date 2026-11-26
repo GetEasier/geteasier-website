@@ -526,13 +526,13 @@ export default function QrInteractiveForm({ initialLanguage }: { initialLanguage
     inFlight.current = true;
     setStatus('submitting');
 
-    try {
+    const selectedProductNames = form.products.map(getProductTitle);
+    const countryObj = COUNTRIES.find((c) => c.code === form.country);
+    const countryName = countryObj ? getLocalizedCountryName(countryObj, lang) : form.country;
+
+    // Email para a equipa (Web3Forms).
+    const sendEmail = async () => {
       if (!WEB3FORMS_KEY) throw new Error('Missing NEXT_PUBLIC_WEB3FORMS_KEY');
-
-      const selectedProductNames = form.products.map(getProductTitle);
-      const countryObj = COUNTRIES.find((c) => c.code === form.country);
-      const countryName = countryObj ? getLocalizedCountryName(countryObj, lang) : form.country;
-
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -554,9 +554,37 @@ export default function QrInteractiveForm({ initialLanguage }: { initialLanguage
         }),
         signal: AbortSignal.timeout(15000),
       });
-
       const out = (await res.json().catch(() => null)) as { success?: boolean } | null;
       if (!res.ok || !out?.success) throw new Error('Web3Forms failed');
+    };
+
+    // Lead no Portal de Parceiros (via servidor do site, que guarda o segredo).
+    const sendToPortal = async () => {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company,
+          employees: form.employees,
+          country: form.country,
+          // Ids estáveis (TimeEasier, Custom, ...): o portal faz a correspondência com os seus produtos.
+          products: form.products,
+          message: form.message,
+          language: lang,
+          botcheck: form.botcheck,
+        }),
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!res.ok) throw new Error('Portal failed');
+    };
+
+    try {
+      // Basta um dos dois chegar para o pedido não se perder.
+      const results = await Promise.allSettled([sendEmail(), sendToPortal()]);
+      if (results.every((r) => r.status === 'rejected')) throw new Error('All channels failed');
       setStatus('success');
     } catch {
       setStatus('error');
