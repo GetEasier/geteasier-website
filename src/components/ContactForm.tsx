@@ -71,9 +71,11 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
     setStatus('sending')
     const name = String(data.get('name')).trim()
     const email = String(data.get('email')).trim()
-    try {
+    const botcheck = !!data.get('botcheck')
+
+    // Email para a equipa (Web3Forms entrega no email associado à chave, definido em web3forms.com).
+    const sendEmail = async () => {
       if (!WEB3FORMS_KEY) throw new Error('Falta NEXT_PUBLIC_WEB3FORMS_KEY no .env.local (reinicie o npm run dev depois de a pôr)')
-      // Web3Forms entrega no email associado à chave (definido em web3forms.com, não no código).
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -89,15 +91,41 @@ export default function ContactForm({ labels, subjects, chips, privacyHref }: Pr
           Assunto: subject,
           Mensagem: message,
           Página: window.location.href,
-          botcheck: data.get('botcheck') ? true : '',
+          botcheck: botcheck ? true : '',
         }),
       })
       const out = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null
       if (!res.ok || !out?.success) throw new Error(`Web3Forms ${res.status}: ${out?.message ?? 'sem resposta'}`)
+    }
+
+    // Lead no Portal de Parceiros (via servidor do site, que guarda o segredo).
+    const sendToPortal = async () => {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form: 'contact',
+          name,
+          email,
+          company,
+          subject: subjectId,
+          subjectLabel: subject,
+          message,
+          language: document.documentElement.lang.slice(0, 2),
+          botcheck,
+        }),
+        signal: AbortSignal.timeout(15000),
+      })
+      if (!res.ok) throw new Error(`Portal ${res.status}`)
+    }
+
+    // Basta um dos dois chegar para o pedido não se perder.
+    const results = await Promise.allSettled([sendEmail(), sendToPortal()])
+    results.forEach((r) => r.status === 'rejected' && console.error('[contacto] um dos envios falhou', r.reason))
+    if (results.some((r) => r.status === 'fulfilled')) {
       setStatus('sent')
       form.reset()
-    } catch (err) {
-      console.error('[contacto] envio falhou', err)
+    } else {
       setStatus('error')
     }
     requestAnimationFrame(() => statusRef.current?.focus())
