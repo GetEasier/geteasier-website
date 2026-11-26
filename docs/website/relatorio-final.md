@@ -27,6 +27,16 @@ O formulário de contacto envia pelo Web3Forms quando existe `NEXT_PUBLIC_WEB3FO
 NEXT_PUBLIC_WEB3FORMS_KEY=...
 ```
 
+O formulário rápido (`/f/9k4m7p`, `/f/7p5z3m`) também regista cada pedido como lead no Portal de Parceiros
+(parceiros.geteasier.pt), através da rota de servidor `src/app/api/leads/route.ts`. O segredo é partilhado com o portal
+(variável `PARTNERS_INBOUND_WEBSITE_KEY` no servidor do portal), fica só no servidor (sem `NEXT_PUBLIC_`) e põe-se nas
+variáveis da Vercel. O email e o lead seguem em paralelo: basta um dos dois chegar para o visitante ver sucesso.
+
+```
+PARTNERS_INBOUND_KEY=...            # obrigatório para gravar no portal; sem ele só segue o email
+PARTNERS_LEADS_URL=...              # opcional; por omissão https://parceiros.geteasier.pt/api/inbound/website-leads
+```
+
 
 ```
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=...
